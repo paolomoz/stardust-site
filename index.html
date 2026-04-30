@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype)
+  writtenAt:        2026-04-30
+  page:             home
+  variant:          C — Editorial drama (iter 2)
+  iteration:        2
+  iterationPhrase:  "iterate further: white-label before/after, no real brands, no showcase links, math-not-mysticism headline, AI-facing brand frame, cleaner footer, drop 'built on impeccable'"
+  stash:            home-C-stash-2026-04-30T1100.html (iter 1)
+  againstDirection: stardust/direction.md (Active 2026-04-30)
+  shapeBrief:       stardust/prototypes/home-shape.md
+  stardustVersion:  0.3.0
+  designSystem:     DESIGN.md, DESIGN.json
+  notes:
+    - White-label before/after: generic CSS wireframe placeholders. User to replace with real assets.
+    - Showcase links removed (samples page is internal-only per IP/legal).
+    - Brand logos removed.
+    - "Built on impeccable" reference removed.
+    - Section 03 replaced: "The AI-facing brand" (was "See it in action").
+    - Footer restructured to editorial colophon style.
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stardust — math, not mysticism</title>
+<meta name="description" content="Stardust generates a brand expression for today only. Deterministic, reproducible, structured — the canonical AI-facing version of your brand, rendered as deployable HTML." />
+<style>
+  :root {
+    --ink:         #0A1024;
+    --ink-deep:    #060A14;
+    --ink-soft:    #141B3A;
+    --dust:        #F5F0E6;
+    --deep-ink:    #1A1F38;
+    --amber:       #E8B95E;
+    --amber-light: #FFD98A;
+    --amber-deep:  #C9822D;
+
+    --dust-72: rgba(245, 240, 230, 0.72);
+    --dust-50: rgba(245, 240, 230, 0.50);
+    --dust-30: rgba(245, 240, 230, 0.30);
+    --dust-15: rgba(245, 240, 230, 0.15);
+    --dust-08: rgba(245, 240, 230, 0.08);
+
+    --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --text:    "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono:    "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+
+    --pad: clamp(20px, 4vw, 64px);
+    --maxw: 1320px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ink-deep);
+    color: var(--dust);
+    font: 16px/1.6 var(--text);
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--amber); color: var(--ink); }
+  a { color: var(--amber); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; }
+  h1 { font-size: clamp(80px, 10vw, 144px); line-height: 0.92; letter-spacing: -0.04em; color: var(--dust); }
+  h2 { font-size: clamp(48px, 7vw, 96px); line-height: 0.96; letter-spacing: -0.032em; color: var(--dust); }
+  h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.18; color: var(--dust); }
+  p  { margin: 0 0 20px; line-height: 1.6; max-width: 60ch; color: var(--dust-72); }
+  p:last-child { margin-bottom: 0; }
+  em, .ital { color: var(--amber); font-style: italic; }
+  strong { color: var(--dust); font-weight: 600; }
+
+  /* GROUNDS */
+  .ground-ink  { background: var(--ink-deep); color: var(--dust); }
+  .ground-dust { background: var(--dust); color: var(--deep-ink); }
+  .ground-dust .eyebrow { color: var(--amber-deep); }
+  .ground-dust .eyebrow .num { color: rgba(26,31,56,0.5); }
+  .ground-dust h1, .ground-dust h2, .ground-dust h3 { color: var(--deep-ink); }
+  .ground-dust p   { color: rgba(26,31,56,0.72); }
+  .ground-dust strong { color: var(--deep-ink); }
+  .ground-dust .ital { color: var(--amber-deep); }
+  .ground-dust .head .right { color: rgba(26,31,56,0.45); }
+
+  .eyebrow {
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--amber);
+    display: inline-block; margin-bottom: 28px;
+  }
+  .eyebrow .num { color: var(--dust-50); margin-right: 12px; }
+
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; }
+  .head .right {
+    font: 500 11px/1.4 var(--mono);
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-30);
+    text-align: right;
+  }
+
+  /* HEX CORNERS — variant C: hero only */
+  .codes {
+    position: absolute; inset: 96px var(--pad) 24px;
+    pointer-events: none; opacity: 0.34;
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.2em; color: var(--dust);
+  }
+  .codes span { position: absolute; }
+  .codes .tl { top: 0; left: 0; }
+  .codes .tr { top: 0; right: 0; }
+  .codes .bl { bottom: 0; left: 0; }
+  .codes .br { bottom: 0; right: 0; }
+
+  /* NAV */
+  nav.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6,10,20,0.86);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--dust-08);
+  }
+  .nav-row { display: flex; align-items: center; justify-content: space-between; height: 60px; padding: 0 var(--pad); }
+  .nav-mark { display: flex; align-items: center; gap: 10px; font: 600 14px/1 var(--display); color: var(--dust); text-decoration: none; }
+  .nav-meta { display: flex; align-items: center; gap: 24px; font: 500 11px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-50); }
+  .nav-meta a { color: var(--dust-50); transition: color 120ms ease; }
+  .nav-meta a:hover { color: var(--amber); }
+  .nav-meta .op { color: var(--amber); padding: 0 4px; }
+
+  /* HERO */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 200px 0 100px; min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    background: radial-gradient(ellipse 90% 70% at 80% 35%, #1a2450 0%, #070c1e 55%, #060a14 100%);
+  }
+  .dust-layer {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(2px 2px at 8% 14%, rgba(245,240,230,0.5), transparent 60%),
+      radial-gradient(1.5px 1.5px at 90% 8%, rgba(245,240,230,0.4), transparent 60%),
+      radial-gradient(2px 2px at 16% 88%, rgba(245,240,230,0.34), transparent 60%),
+      radial-gradient(1px 1px at 76% 78%, rgba(245,240,230,0.45), transparent 60%),
+      radial-gradient(0.8px 0.8px at 50% 10%, rgba(245,240,230,0.28), transparent 60%),
+      radial-gradient(1.4px 1.4px at 4% 58%, rgba(245,240,230,0.32), transparent 60%),
+      radial-gradient(1.2px 1.2px at 98% 60%, rgba(245,240,230,0.4), transparent 60%);
+  }
+  .hero .container { position: relative; z-index: 2; }
+  .hero h1 { max-width: 12ch; }
+
+  .hero .hero-subtitle {
+    margin: 20px 0 0; max-width: 22ch;
+    font: italic 400 clamp(32px, 5vw, 64px)/1.02 var(--display);
+    letter-spacing: -0.024em; color: var(--dust);
+  }
+  .hero .hero-subtitle .accent { color: var(--amber); }
+
+  .hero .lede {
+    margin-top: 40px; max-width: 58ch;
+    font: 400 clamp(20px, 2.4vw, 30px)/1.36 var(--display); color: var(--dust);
+    letter-spacing: -0.012em;
+  }
+  .hero .lede strong { color: var(--amber-light); font-weight: 500; }
+
+  .chiprow { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 44px; }
+  .chip {
+    font: 500 11px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-50);
+    padding: 11px 16px; border: 1px solid var(--dust-15); border-radius: 999px;
+  }
+  .chip .op { color: var(--amber); padding: 0 6px; }
+  .chip.solid { background: var(--amber); color: var(--ink); border-color: var(--amber); font-weight: 600; }
+  .chip.solid .op { color: var(--ink); }
+
+  .seed-display {
+    margin-top: 36px;
+    font: 500 13px/1.5 var(--mono);
+    letter-spacing: 0.06em; color: var(--dust-50);
+    padding: 14px 0;
+    border-top: 1px solid var(--dust-08);
+    border-bottom: 1px solid var(--dust-08);
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .seed-display .lbl { color: var(--dust-30); }
+  .seed-display .arrow { color: var(--amber); }
+  .seed-display .seed { color: var(--amber-light); background: rgba(232,185,94,0.08); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(232,185,94,0.2); }
+
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; }
+  .ds-btn {
+    font: 600 14px/1 var(--text); letter-spacing: -0.005em;
+    padding: 14px 24px; border-radius: 8px; border: 0; cursor: pointer;
+    transition: background 120ms ease, border-color 120ms ease;
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+  }
+  .ds-btn--primary { background: var(--amber); color: var(--ink); }
+  .ds-btn--primary:hover { background: var(--amber-light); }
+  .ds-btn--secondary {
+    background: transparent; color: var(--dust);
+    border: 1px solid var(--dust-15); padding: 13px 24px;
+  }
+  .ds-btn--secondary:hover { border-color: var(--amber); }
+  .ds-btn .arrow { font-family: var(--mono); }
+
+  /* FULL-BLEED BEFORE/AFTER */
+  .ba-bleed {
+    margin: 80px calc(50% - 50vw) 0;
+    width: 100vw;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border-top: 1px solid var(--dust-08); border-bottom: 1px solid var(--dust-08);
+  }
+  .ba-bleed figure { margin: 0; position: relative; aspect-ratio: 16 / 9; overflow: hidden; }
+  .ba-bleed figure + figure { border-left: 1px solid var(--dust-08); }
+  .ba-bleed figure img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  .ba-bleed figure.before img { filter: grayscale(0.6) brightness(0.94); }
+
+  .ba-bleed .label-tag {
+    position: absolute; top: 24px; left: 28px;
+    font: 600 11px/1 var(--mono); letter-spacing: 0.24em; text-transform: uppercase;
+    background: var(--ink-deep); color: var(--dust); padding: 8px 12px; border-radius: 4px;
+    z-index: 2;
+  }
+  .ba-bleed figure.after .label-tag { background: var(--amber); color: var(--ink); }
+
+  /* SECTIONS */
+  section.b {
+    padding: clamp(96px, 12vw, 160px) 0;
+    position: relative;
+  }
+
+  /* CARDS */
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 48px; }
+  .card {
+    background: var(--ink-soft); border: 1px solid var(--dust-08);
+    border-radius: 22px; padding: 36px 32px;
+  }
+  .ground-dust .card { background: rgba(26,31,56,0.04); border-color: rgba(26,31,56,0.10); }
+  .card .lbl {
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber);
+    margin-bottom: 18px;
+  }
+  .ground-dust .card .lbl { color: var(--amber-deep); }
+  .card h3 { font-size: 22px; line-height: 1.2; margin-bottom: 12px; color: var(--dust); }
+  .ground-dust .card h3 { color: var(--deep-ink); }
+  .card p { font: 400 15px/1.6 var(--text); color: var(--dust-72); margin: 0; }
+  .ground-dust .card p { color: rgba(26,31,56,0.72); }
+
+  /* OVERSIZED SHIFT ROW */
+  .shift-row {
+    margin-top: 64px;
+    padding: 56px 0;
+    border-top: 1px solid var(--dust-08);
+    border-bottom: 1px solid var(--dust-08);
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 48px; align-items: center;
+  }
+  .ground-dust .shift-row { border-color: rgba(26,31,56,0.10); }
+  .shift-row .term {
+    font: 500 clamp(28px, 4vw, 56px)/1.05 var(--display);
+    letter-spacing: -0.022em; color: var(--dust);
+  }
+  .ground-dust .shift-row .term { color: var(--deep-ink); }
+  .shift-row .term.r { text-align: right; }
+  .shift-row .term em { color: var(--amber); font-style: italic; }
+  .ground-dust .shift-row .term em { color: var(--amber-deep); }
+  .shift-row .arrow { font: 64px var(--mono); color: var(--amber); }
+  .ground-dust .shift-row .arrow { color: var(--amber-deep); }
+
+  /* PIPELINE FULL-BLEED SCENE */
+  .pipeline-scene {
+    margin: 64px calc(50% - 50vw) 0;
+    width: 100vw;
+    padding: 96px var(--pad);
+    background: linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 100%);
+    border-top: 1px solid var(--amber);
+    border-bottom: 1px solid var(--amber);
+  }
+  .pipeline-scene .inner { max-width: var(--maxw); margin: 0 auto; }
+  .pipeline {
+    background: var(--ink); border: 1px solid var(--dust-08);
+    border-radius: 22px; padding: 40px;
+  }
+  .pipeline .lane-name { font: italic 600 18px/1 var(--display); color: var(--dust); margin-bottom: 22px; display: block; }
+  .pipeline .pills {
+    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 12px; align-items: center;
+  }
+  .pipeline .pill {
+    background: var(--ink-soft); border: 1px solid var(--dust-15); border-radius: 12px;
+    padding: 18px;
+    font: 500 13px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dust);
+    text-align: center;
+  }
+  .pipeline .pill .step-name { display: block; margin-bottom: 6px; font-size: 14px; }
+  .pipeline .pill .caption {
+    display: block;
+    font: 500 10px/1.4 var(--mono);
+    letter-spacing: 0.08em; color: var(--dust-50);
+    text-transform: none;
+  }
+  .pipeline .arrow { font: 24px var(--mono); color: var(--amber); }
+
+  /* DEPLOY & CONTRIBUTE */
+  .two-divided {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin-top: 56px;
+    border-top: 1px solid var(--dust-08); border-bottom: 1px solid var(--dust-08);
+  }
+  .two-divided > .col { padding: 64px 56px 56px; }
+  .two-divided > .col + .col { border-left: 1px solid var(--dust-08); }
+  .two-divided .lbl {
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber);
+    margin-bottom: 18px; display: block;
+  }
+  .two-divided h3 {
+    font: 600 clamp(28px, 3.4vw, 40px)/1.1 var(--display);
+    letter-spacing: -0.022em; color: var(--dust); margin-bottom: 18px;
+  }
+  .two-divided p { font: 400 16px/1.6 var(--text); color: var(--dust-72); margin: 0 0 22px; max-width: 50ch; }
+  .two-divided .inline-link {
+    display: inline-block; margin-top: 10px;
+    font: 500 14px/1 var(--mono); letter-spacing: 0.06em; color: var(--amber);
+    border-bottom: 1px solid var(--dust-15); padding-bottom: 6px;
+  }
+  .two-divided .inline-link:hover { border-bottom-color: var(--amber); }
+  .two-divided .code {
+    margin: 18px 0 22px; padding: 16px 20px;
+    background: var(--ink-deep); border: 1px solid var(--dust-08);
+    border-radius: 14px;
+    font: 500 14px/1.6 var(--mono); color: var(--dust);
+    overflow-x: auto;
+  }
+  .two-divided .code .prompt { color: var(--amber); margin-right: 10px; }
+  .two-divided .install-credit {
+    font: 400 13px/1.5 var(--text); color: var(--dust-50);
+    letter-spacing: -0.002em; margin: -8px 0 18px;
+  }
+  .two-divided .install-credit a {
+    color: var(--amber); text-decoration: none;
+    border-bottom: 1px solid rgba(232,185,94,0.3);
+    transition: border-color 120ms ease;
+  }
+  .two-divided .install-credit a:hover { border-bottom-color: var(--amber); }
+
+  /* FOOTER — editorial colophon (rebuilt cleaner) */
+  footer.colophon {
+    padding: 80px 0 64px;
+    background: var(--ink-deep);
+    border-top: 4px solid var(--amber);
+    color: var(--dust-50);
+    text-align: center;
+  }
+  .colophon .container {
+    display: flex; flex-direction: column; gap: 28px;
+    align-items: center;
+    max-width: 720px;
+  }
+  .colophon .mark-row {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--dust);
+  }
+  .colophon .mark-row svg { display: block; }
+  .colophon .mark-row .wordmark {
+    font: 600 28px/1 var(--display); letter-spacing: -0.018em;
+  }
+  .colophon .tagline {
+    font: italic 400 18px/1.4 var(--display);
+    color: var(--dust-72); letter-spacing: -0.005em;
+    max-width: 38ch;
+  }
+  .colophon .links {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+    font: 500 12px/1 var(--mono);
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .colophon .links a {
+    color: var(--dust); text-decoration: none;
+    transition: color 120ms ease;
+  }
+  .colophon .links a:hover { color: var(--amber); }
+  .colophon .links .dot { color: var(--amber); }
+  .colophon .meta {
+    font: 500 11px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--dust-30);
+  }
+  .colophon .meta .op { color: var(--amber); padding: 0 6px; }
+
+  /* MOTION */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateX(-24px); transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0, 0, 1); }
+    .reveal.in { opacity: 1; transform: translateX(0); }
+    .reveal.fade-only { transform: translateY(16px); }
+    .reveal.fade-only.in { transform: translateY(0); }
+  }
+
+  @media (max-width: 980px) {
+    .three, .ba-bleed, .two-divided { grid-template-columns: 1fr; }
+    .ba-bleed figure + figure { border-left: 0; border-top: 1px solid var(--dust-08); }
+    .pipeline .pills { grid-template-columns: 1fr; gap: 8px; }
+    .pipeline .arrow { transform: rotate(90deg); justify-self: center; }
+    .two-divided > .col + .col { border-left: 0; border-top: 1px solid var(--dust-08); }
+    .two-divided > .col { padding: 48px 32px; }
+    .shift-row { grid-template-columns: 1fr; gap: 24px; }
+    .shift-row .term.r { text-align: left; }
+    .shift-row .arrow { transform: rotate(90deg); justify-self: start; }
+    .nav-meta { display: none; }
+    .codes { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" data-section="header" data-intent="navigate" data-layout="full-width-dark">
+  <div class="nav-row">
+    <a href="/" class="nav-mark" aria-label="Stardust home">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      Stardust
+    </a>
+    <div class="nav-meta">
+      <a href="/docs/">Docs</a>
+      <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub <span class="op">›</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero ground-ink" data-section="hero" data-intent="primary-action" data-layout="centered-with-before-after" data-items="2">
+  <div class="dust-layer"></div>
+  <div class="codes">
+    <span class="tl">a3f7</span><span class="tr">c92e</span>
+    <span class="bl">b1d4</span><span class="br">8a0c</span>
+  </div>
+  <div class="container">
+    <span class="eyebrow"><span class="num">00 ·</span>Stardust</span>
+
+    <h1>Redesign<br>any website.</h1>
+
+    <p class="hero-subtitle">Math, not <span class="accent">mysticism.</span></p>
+
+    <p class="lede">
+      Stardust generates a brand expression for today only — one that this brand and this date alone can produce. <strong>Deterministic, reproducible, structured.</strong> The canonical AI-facing version of your brand, rendered as deployable HTML.
+    </p>
+
+    <div class="chiprow" aria-hidden="true">
+      <span class="chip">brief<span class="op">+</span>seed<span class="op">=</span>star</span>
+      <span class="chip">127 palettes <span class="op">·</span> curated <span class="op">·</span> deterministic</span>
+      <span class="chip solid">open source <span class="op">·</span> MIT</span>
+    </div>
+
+    <div class="seed-display" role="note">
+      <span class="lbl">Today's seed</span>
+      <span>Stardust · 2026-04-30</span>
+      <span class="arrow">→</span>
+      <span>md5</span>
+      <span class="arrow">→</span>
+      <span class="seed">a3f7c9</span>
+      <span class="arrow">→</span>
+      <span>palette × decade × craft × register</span>
+    </div>
+
+    <div class="cta-row">
+      <a class="ds-btn ds-btn--primary" href="/docs/">Install in two minutes <span class="arrow">›</span></a>
+      <a class="ds-btn ds-btn--secondary" href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">View on GitHub <span class="arrow">›</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- FULL-BLEED BEFORE/AFTER -->
+<div class="ba-bleed" data-section="before-after" data-intent="proof" data-layout="full-bleed-pair" data-items="2">
+  <figure class="before">
+    <span class="label-tag">Before</span>
+    <img src="/assets/before.png" alt="A coffee site's existing landing page — warm amber illustration, friendly but unmemorable." loading="lazy" />
+  </figure>
+  <figure class="after">
+    <span class="label-tag">After · Stardust</span>
+    <img src="/assets/after.png" alt="The same site, redesigned by Stardust — ink-deep ground, editorial photography, confident type." loading="lazy" />
+  </figure>
+</div>
+
+<!-- 01 THE SEED — ground-ink -->
+<section class="b ground-ink" data-section="the-seed" data-intent="explain" data-layout="grid-3" data-items="3">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow"><span class="num">01 ·</span>The seed</span>
+      <span class="right">Deterministic · curated · today-only</span>
+    </div>
+
+    <h2>Every design tool<br>promises <em>uniqueness</em>.</h2>
+
+    <div class="shift-row">
+      <div class="term">Most deliver <em>the average</em>.</div>
+      <div class="arrow">→</div>
+      <div class="term r">Stardust delivers <em>a seed</em>.</div>
+    </div>
+
+    <p style="font-size: 18px; max-width: 64ch; margin-top: 56px;">
+      Stardust doesn't introduce chaos. It introduces <strong>structured variation within a defined design space</strong> — three variant theses per page, each prototyped at desktop, tablet, and mobile, each accompanied by design rationale. The brand manager isn't ceding control. They're <em>expanding the vocabulary of control</em>.
+    </p>
+
+    <div class="three">
+      <div class="card">
+        <div class="lbl">127 real palettes</div>
+        <h3>Curated, not invented.</h3>
+        <p>Scraped from coolors.co/trending. Every chosen hex carries a source URL. The seed picks one for you, today.</p>
+      </div>
+      <div class="card">
+        <div class="lbl">Names the defaults</div>
+        <h3>The divergence toolkit.</h3>
+        <p>Lists the moves an LLM reaches for first — gradient blob hero, glassmorphism, generic icon trios. Stardust subverts them deliberately.</p>
+      </div>
+      <div class="card">
+        <div class="lbl">Show the seed</div>
+        <h3>Provenance is a feature.</h3>
+        <p>Every choice has a source. The chosen palette has a URL. The chosen decade × craft × register has a hash. Math, not mysticism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 THE LOOP — ground-dust -->
+<section class="b ground-dust" data-section="the-loop" data-intent="explain" data-layout="diagram-stacked" data-items="4">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow"><span class="num">02 ·</span>The loop</span>
+      <span class="right">From any URL <span style="color:var(--amber-deep);padding:0 4px;">·</span> to deployable HTML</span>
+    </div>
+
+    <h2>Take any website.<br>Bring back the <em>redesign</em>.</h2>
+
+    <p style="font-size: 18px; max-width: 60ch;">
+      Four sub-commands. Run them in order, or jump in at any point. Each step writes its own artifacts; the next step reads them.
+    </p>
+  </div>
+</section>
+
+<!-- PIPELINE FULL-BLEED -->
+<section class="pipeline-scene" data-section="the-pipeline" data-intent="explain" data-layout="full-bleed-scene" data-items="4">
+  <div class="inner">
+    <div class="pipeline">
+      <span class="lane-name">stardust</span>
+      <div class="pills">
+        <span class="pill">
+          <span class="step-name">Extract</span>
+          <span class="caption">crawl + capture brand</span>
+        </span>
+        <span class="arrow">›</span>
+        <span class="pill">
+          <span class="step-name">Direct</span>
+          <span class="caption">resolve direction, roll seed</span>
+        </span>
+        <span class="arrow">›</span>
+        <span class="pill">
+          <span class="step-name">Prototype</span>
+          <span class="caption">3 variants per page</span>
+        </span>
+        <span class="arrow">›</span>
+        <span class="pill">
+          <span class="step-name">Migrate</span>
+          <span class="caption">ship deployable HTML</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="three" style="margin-top: 56px;">
+      <div class="card">
+        <div class="lbl">Extract</div>
+        <h3>The current state, captured.</h3>
+        <p>Crawl any URL. Capture the brand surface — palette, type, voice, motifs. The current state is described, not authored.</p>
+      </div>
+      <div class="card">
+        <div class="lbl">Direct + prototype</div>
+        <h3>The seed picks the lane.</h3>
+        <p>Roll a seed. Resolve a direction. Generate three variants for every page. Iterate in the browser.</p>
+      </div>
+      <div class="card">
+        <div class="lbl">Migrate</div>
+        <h3>Static HTML, deployable.</h3>
+        <p>Output every page as deployable static HTML. No build step, no framework lock-in. Drop it on any host that serves files.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 THE AI-FACING BRAND — ground-ink (replaces "see it in action") -->
+<section class="b ground-ink" data-section="ai-facing-brand" data-intent="explain" data-layout="grid-3" data-items="3">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow"><span class="num">03 ·</span>The AI-facing brand</span>
+      <span class="right">Canonical · structured · curatable</span>
+    </div>
+
+    <h2>The canonical brand,<br>for the <em>AI-facing web</em>.</h2>
+
+    <p style="font-size: 18px; max-width: 64ch;">
+      Stardust answers a question your team will be asked more often: <strong>what is the canonical, AI-facing expression of this brand today?</strong> It produces the default experience — the reference point from which all variations are measured — in a form your marketing team can update and curate without developer intervention at every touchpoint.
+    </p>
+
+    <div class="three">
+      <div class="card">
+        <div class="lbl">Structured signal</div>
+        <h3>Richer signals for AI to read.</h3>
+        <p>When AI synthesizes your brand — Google AI Mode, Claude, search synth — it draws on available signals. Stardust output provides richer, more intentional signals than a static page designed for a pre-AI web.</p>
+      </div>
+      <div class="card">
+        <div class="lbl">Reproducible by date</div>
+        <h3>Same seed, same brand.</h3>
+        <p>Today's expression is locked. Tomorrow's seed yields a related-but-distinct variation. The default is always reproducible — yours alone, today only.</p>
+      </div>
+      <div class="card">
+        <div class="lbl">Curatable, not handed off</div>
+        <h3>Marketing keeps the keys.</h3>
+        <p>Three variant theses per page, each rendered, each rationalized. The brand team picks. Updates land without developer intervention at every touchpoint.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 DEPLOY & CONTRIBUTE -->
+<section class="b ground-ink" data-section="deploy-contribute" data-intent="route" data-layout="grid-2" data-items="2">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow"><span class="num">04 ·</span>Deploy & contribute</span>
+      <span class="right">Open source · MIT · since 2026</span>
+    </div>
+
+    <h2>Stardust ships <em>static HTML</em>.<br>Take it anywhere.</h2>
+
+    <div class="two-divided">
+      <div class="col">
+        <span class="lbl">Deploy</span>
+        <h3>Anywhere static HTML runs.</h3>
+        <p>
+          GitHub Pages, Cloudflare, your CDN, your CMS — Stardust outputs files, not lock-in. Drop the migration into any host that serves HTML and the redesigned site is live.
+        </p>
+        <a href="/docs/" class="inline-link">Read the deployment notes ›</a>
+      </div>
+
+      <div class="col">
+        <span class="lbl">Contribute</span>
+        <h3>Open to all.</h3>
+        <p>
+          Stardust is open source under MIT. Anyone can contribute — file an issue, send a PR, write a sample. The skill ships as a Claude Code plugin.
+        </p>
+        <pre class="code"><span class="prompt">$</span>claude plugin marketplace add adobe/skills
+<span class="prompt">$</span>claude plugin install stardust@adobe-skills
+
+<span class="prompt">$</span>claude plugin marketplace add pbakaus/impeccable
+<span class="prompt">$</span>claude plugin install impeccable@impeccable</pre>
+        <p class="install-credit">Built on <a href="https://impeccable.style/" rel="external">impeccable</a>. Which is, frankly, brilliant.</p>
+        <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external" class="inline-link">github.com/adobe/skills ›</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — editorial colophon -->
+<footer class="colophon" data-section="footer" data-intent="navigate" data-layout="colophon">
+  <div class="container">
+    <div class="mark-row">
+      <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      <span class="wordmark">Stardust</span>
+    </div>
+
+    <p class="tagline">A design-phase toolkit. <em>Math, not mysticism.</em></p>
+
+    <div class="links">
+      <a href="/docs/">Docs</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/adobe/skills/blob/main/LICENSE" rel="external">MIT License</a>
+    </div>
+
+    <div class="meta">
+      brief <span class="op">+</span> seed <span class="op">=</span> star <span class="op">·</span> 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.16 });
+    document.querySelectorAll('section.b > .container > .head, section.b > .container > h2, .pipeline-scene > .inner').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+    document.querySelectorAll('.three .card, .two-divided > .col, .ba-bleed, .pipeline').forEach(el => { el.classList.add('reveal','fade-only'); io.observe(el); });
+  }
+</script>
+
+</body>
+</html>

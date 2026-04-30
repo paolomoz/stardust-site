@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype)
+  writtenAt:        2026-04-30
+  page:             docs-commands
+  variant:          single (sub-page, not multi-variant)
+  layout:           inherits docs-B (split sidebar + main, full-width footer)
+  abstractionLevel: impeccable.style/tutorials — second-person, intent-driven
+                    (reference shape: terser than getting-started)
+  contentSources:
+    - skills/extract/SKILL.md (Inputs, Outputs)
+    - skills/direct/SKILL.md (Inputs, Outputs)
+    - skills/prototype/SKILL.md (Inputs, Outputs)
+    - skills/migrate/SKILL.md (Inputs, Outputs)
+  stardustVersion:  0.3.0
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Commands · Stardust</title>
+<meta name="description" content="The four Stardust sub-commands: extract, direct, prototype, migrate. Inputs, flags, and what each writes." />
+<style>
+  :root {
+    --ink:         #0A1024;
+    --ink-deep:    #060A14;
+    --ink-soft:    #141B3A;
+    --dust:        #F5F0E6;
+    --deep-ink:    #1A1F38;
+    --amber:       #E8B95E;
+    --amber-light: #FFD98A;
+    --amber-deep:  #C9822D;
+
+    --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --text:    "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono:    "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+
+    --pad: clamp(20px, 4vw, 48px);
+    --maxw: 1320px;
+    --sidebar-w: 260px;
+    --nav-h: 60px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--dust);
+    color: var(--deep-ink);
+    font: 17px/1.65 var(--text);
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--amber); color: var(--ink); }
+  a { color: var(--amber-deep); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--amber-deep); outline-offset: 3px; border-radius: 2px; }
+
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; color: var(--deep-ink); }
+  h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.032em; margin-bottom: 18px; }
+  h1 .ital { color: var(--amber-deep); font-style: italic; }
+  h2 {
+    font-size: clamp(28px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.024em;
+    margin: 80px 0 14px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+    font-family: var(--mono); font-weight: 600;
+    color: var(--deep-ink);
+  }
+  h2 .slash { color: var(--amber-deep); }
+  h2 .name  { color: var(--deep-ink); }
+  h3 {
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber-deep);
+    margin: 28px 0 12px;
+  }
+  p  { margin: 0 0 16px; line-height: 1.65; max-width: 64ch; color: rgba(26,31,56,0.78); }
+  p:last-child { margin-bottom: 0; }
+  em { font-style: italic; color: var(--amber-deep); }
+  strong { color: var(--deep-ink); font-weight: 600; }
+
+  .eyebrow {
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber-deep);
+    display: inline-block;
+  }
+  .eyebrow .num { color: rgba(26,31,56,0.5); margin-right: 10px; }
+
+  .breadcrumb {
+    font: 500 11px/1.4 var(--mono);
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,31,56,0.45);
+    margin-bottom: 18px;
+  }
+  .breadcrumb a { color: rgba(26,31,56,0.45); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--amber-deep); }
+  .breadcrumb .sep { color: var(--amber-deep); padding: 0 6px; }
+
+  /* INLINE CODE */
+  code {
+    font: 500 0.92em/1 var(--mono);
+    background: rgba(232,185,94,0.18);
+    color: var(--amber-deep);
+    padding: 2px 6px; border-radius: 4px; letter-spacing: 0.02em;
+  }
+
+  /* CODE BLOCKS */
+  pre.code {
+    margin: 12px 0 18px;
+    background: var(--ink-soft);
+    color: var(--dust);
+    border-radius: 14px;
+    padding: 18px 22px;
+    font: 500 14px/1.65 var(--mono);
+    overflow-x: auto;
+    user-select: text;
+    max-width: 64ch;
+  }
+  pre.code .prompt { color: var(--amber); margin-right: 10px; user-select: none; }
+  pre.code .comment { color: rgba(245,240,230,0.45); }
+  pre.code .arg { color: var(--amber-light); }
+
+  /* COMMAND LEDE */
+  .cmd-lede {
+    font: 400 18px/1.5 var(--display);
+    color: rgba(26,31,56,0.82);
+    letter-spacing: -0.008em;
+    max-width: 60ch;
+    margin: 0 0 6px;
+  }
+
+  /* FLAG / WRITES LIST */
+  dl.spec {
+    display: grid;
+    grid-template-columns: minmax(120px, max-content) 1fr;
+    gap: 6px 24px;
+    margin: 12px 0 22px;
+    max-width: 64ch;
+  }
+  dl.spec dt {
+    font: 500 13px/1.55 var(--mono);
+    color: var(--amber-deep);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+  dl.spec dd {
+    margin: 0;
+    font: 400 14.5px/1.55 var(--text);
+    color: rgba(26,31,56,0.78);
+  }
+  dl.spec dd strong { color: var(--deep-ink); font-weight: 500; }
+
+  /* WRITES LIST — like dl.spec but compact */
+  ul.writes {
+    list-style: none; padding: 0; margin: 12px 0 22px;
+    display: flex; flex-direction: column; gap: 4px;
+    max-width: 64ch;
+  }
+  ul.writes li {
+    font: 500 13px/1.55 var(--mono);
+    color: rgba(26,31,56,0.78); letter-spacing: 0.02em;
+  }
+  ul.writes li code {
+    background: transparent; padding: 0; color: var(--amber-deep);
+    font-size: 13px;
+  }
+  ul.writes li .desc {
+    font-family: var(--text); font-weight: 400; font-size: 14.5px; letter-spacing: 0;
+    color: rgba(26,31,56,0.65); margin-left: 6px;
+  }
+
+  /* TOC */
+  .toc {
+    margin: 28px 0 8px; padding: 18px 22px;
+    background: rgba(26,31,56,0.04); border: 1px solid rgba(26,31,56,0.10);
+    border-radius: 12px;
+    max-width: 64ch;
+  }
+  .toc .lbl {
+    font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(26,31,56,0.5); margin-bottom: 10px; display: block;
+  }
+  .toc ol {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px;
+  }
+  .toc li { margin: 0; }
+  .toc a {
+    font: 500 14px/1.4 var(--mono); color: var(--deep-ink);
+    letter-spacing: 0; text-decoration: none;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .toc a:hover { color: var(--amber-deep); }
+  .toc a .step {
+    font-size: 11px; color: var(--amber-deep); flex-shrink: 0;
+  }
+
+  /* COMMAND SECTION CONTAINER */
+  section.cmd {
+    padding: 0;
+    border-top: 1px solid rgba(26,31,56,0.10);
+    padding-top: 24px;
+    margin-top: 80px;
+  }
+  section.cmd:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+  section.cmd h2 { margin-top: 0; }
+
+  /* NAV */
+  nav.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6,10,20,0.86);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(245,240,230,0.08);
+  }
+  .nav-row { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); padding: 0 var(--pad); }
+  .nav-mark { display: flex; align-items: center; gap: 10px; font: 600 14px/1 var(--display); color: var(--dust); text-decoration: none; }
+  .nav-meta { display: flex; align-items: center; gap: 24px; font: 500 11px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,230,0.5); }
+  .nav-meta a { color: rgba(245,240,230,0.5); transition: color 120ms ease; }
+  .nav-meta a:hover { color: var(--amber); }
+  .nav-meta a[aria-current="page"] { color: var(--amber); }
+  .nav-meta .op { color: var(--amber); padding: 0 4px; }
+
+  /* SPLIT LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    max-width: var(--maxw); margin: 0 auto;
+    padding-top: var(--nav-h);
+    position: relative;
+  }
+  .layout::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: var(--sidebar-w);
+    background: var(--ink-deep);
+    border-right: 1px solid rgba(245,240,230,0.06);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* SIDEBAR */
+  aside.sidebar {
+    background: var(--ink-deep);
+    color: var(--dust);
+    padding: 56px 28px 32px;
+    position: sticky; top: var(--nav-h); align-self: start;
+    max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
+    z-index: 1;
+  }
+  .sidebar .lbl {
+    font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245,240,230,0.5); margin-bottom: 14px; display: block;
+  }
+  .sidebar nav.side {
+    display: flex; flex-direction: column; gap: 2px;
+    margin-bottom: 32px;
+  }
+  .sidebar nav.side a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding: 11px 14px; border-radius: 8px;
+    font: 500 13px/1.4 var(--text); color: rgba(245,240,230,0.78);
+    text-decoration: none;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .sidebar nav.side a:hover { background: rgba(245,240,230,0.06); color: var(--dust); }
+  .sidebar nav.side a[aria-current="page"] { background: rgba(232,185,94,0.12); color: var(--amber-light); }
+  .sidebar nav.side a .num {
+    font: 500 10px/1 var(--mono); letter-spacing: 0.16em;
+    color: var(--amber); flex-shrink: 0;
+  }
+  .sidebar .star {
+    display: flex; align-items: center; gap: 10px;
+    font: 600 14px/1 var(--display); color: var(--dust);
+    margin-bottom: 36px;
+  }
+  .sidebar .meta-bottom {
+    margin-top: 24px; padding-top: 24px;
+    border-top: 1px solid rgba(245,240,230,0.08);
+    font: 500 10px/1.4 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,230,0.4);
+  }
+  .sidebar .meta-bottom .op { color: var(--amber); padding: 0 4px; }
+
+  /* MAIN */
+  main.main { padding: 72px 64px 96px; max-width: 880px; }
+
+  /* FOOTER */
+  footer.colophon {
+    padding: 80px 0 64px;
+    background: var(--ink-deep);
+    border-top: 4px solid var(--amber);
+    color: rgba(245,240,230,0.5);
+    text-align: center;
+  }
+  .colophon .container {
+    display: flex; flex-direction: column; gap: 28px;
+    align-items: center;
+    max-width: 720px; margin: 0 auto; padding: 0 var(--pad);
+  }
+  .colophon .mark-row { display: flex; align-items: center; gap: 12px; color: var(--dust); }
+  .colophon .mark-row .wordmark { font: 600 28px/1 var(--display); letter-spacing: -0.018em; }
+  .colophon .tagline {
+    font: italic 400 18px/1.4 var(--display);
+    color: rgba(245,240,230,0.72); letter-spacing: -0.005em;
+    max-width: 38ch;
+  }
+  .colophon .tagline em { color: var(--amber); }
+  .colophon .links {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+    font: 500 12px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .colophon .links a { color: var(--dust); text-decoration: none; transition: color 120ms ease; }
+  .colophon .links a:hover { color: var(--amber); }
+  .colophon .links .dot { color: var(--amber); }
+  .colophon .meta {
+    font: 500 11px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245,240,230,0.4);
+  }
+  .colophon .meta .op { color: var(--amber); padding: 0 6px; }
+
+  @media (max-width: 880px) {
+    .layout { grid-template-columns: 1fr; }
+    .layout::before { display: none; }
+    aside.sidebar { position: static; max-height: none; padding: 32px var(--pad); }
+    .sidebar nav.side a { padding: 9px 12px; }
+    main.main { padding: 48px var(--pad) 64px; }
+    .toc ol { grid-template-columns: 1fr; }
+    dl.spec { grid-template-columns: 1fr; }
+    dl.spec dt { margin-top: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" data-section="header" data-intent="navigate" data-layout="full-width-dark">
+  <div class="nav-row">
+    <a href="/" class="nav-mark" aria-label="Stardust home">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      Stardust
+    </a>
+    <div class="nav-meta">
+      <a href="/docs/" aria-current="page">Docs</a>
+      <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub <span class="op">›</span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar" data-section="sidebar" data-intent="navigate" data-layout="vertical-nav" data-items="2">
+    <div class="star">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      <span>Stardust · Docs</span>
+    </div>
+
+    <span class="lbl">Get started</span>
+    <nav class="side">
+      <a href="/docs/"><span>Install</span><span class="num">·</span></a>
+    </nav>
+
+    <span class="lbl">Guides</span>
+    <nav class="side">
+      <a href="/docs/getting-started/"><span>Getting started</span><span class="num">01</span></a>
+      <a href="/docs/commands/" aria-current="page"><span>Commands</span><span class="num">02</span></a>
+    </nav>
+
+    <div class="meta-bottom">
+      brief <span class="op">+</span> seed <span class="op">=</span> star
+    </div>
+  </aside>
+
+  <main class="main" data-section="article" data-intent="explain" data-layout="reference">
+
+    <p class="breadcrumb"><a href="/docs/">Docs</a><span class="sep">›</span>Commands</p>
+
+    <span class="eyebrow"><span class="num">02 ·</span>Commands</span>
+
+    <h1>Every sub-command,<br><span class="ital">named.</span></h1>
+
+    <p style="font: 400 19px/1.5 var(--display); color: rgba(26,31,56,0.72); letter-spacing: -0.008em; max-width: 56ch; margin-bottom: 8px;">
+      Reference for the four Stardust sub-commands. Inputs, common flags, and the artifacts each one writes.
+    </p>
+
+    <div class="callout" style="margin-top: 32px;">
+      <p><strong>You don't need to memorize the syntax.</strong> Every command and flag can be triggered through plain conversational intent — Stardust reads your phrasing and routes it. The reference below is the canonical form, not a requirement.</p>
+    </div>
+
+    <style>
+      .callout {
+        margin: 22px 0;
+        padding: 16px 20px;
+        background: rgba(232,185,94,0.10);
+        border-left: 3px solid var(--amber-deep);
+        border-radius: 0 8px 8px 0;
+        max-width: 64ch;
+      }
+      .callout p { font-size: 15px; line-height: 1.55; color: var(--deep-ink); margin: 0; }
+      .callout strong { color: var(--amber-deep); }
+    </style>
+
+    <div class="toc">
+      <span class="lbl">On this page</span>
+      <ol>
+        <li><a href="#extract"><span>/stardust:extract</span><span class="step">01</span></a></li>
+        <li><a href="#direct"><span>/stardust:direct</span><span class="step">02</span></a></li>
+        <li><a href="#prototype"><span>/stardust:prototype</span><span class="step">03</span></a></li>
+        <li><a href="#migrate"><span>/stardust:migrate</span><span class="step">04</span></a></li>
+      </ol>
+    </div>
+
+    <p style="margin-top: 32px;">
+      The four commands run in order — <code>extract</code> describes the current state, <code>direct</code> resolves a target, <code>prototype</code> renders proposed redesigns, <code>migrate</code> ships deployable HTML. Each writes its own artifacts under <code>stardust/</code>; the next reads them. You can run them in order, or jump in at any point.
+    </p>
+
+    <!-- ============ EXTRACT ============ -->
+    <section class="cmd" id="extract">
+      <h2><span class="slash">/</span><span class="name">stardust:extract</span></h2>
+
+      <p class="cmd-lede">Capture a brand surface — palette, typography, voice, motifs. Most often from a live URL (Stardust crawls it), but also from a prompt, a document, a Figma file, or any other source where brand traits can be read. Descriptive only; does not modify the source.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:extract <span class="arg">[url]</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>[url]</dt>
+        <dd>Optional. The most common source. If supplied, Stardust crawls the origin (a path narrows to a subtree). If omitted, supply another source via the chat — a prompt describing the brand, a document, a Figma URL, an image.</dd>
+
+        <dt>--cap &lt;N&gt;</dt>
+        <dd>URL crawl only. Override the default 5-page cap. Stardust picks the home plus four IA pillars by default.</dd>
+
+        <dt>--all</dt>
+        <dd>URL crawl only. Lift the cap entirely. Crawl every discovered page after junk filtering.</dd>
+
+        <dt>--pages &lt;slug,…&gt;</dt>
+        <dd>URL crawl only. Restrict the crawl to specific paths. Bypasses the cap.</dd>
+
+        <dt>--refresh &lt;slug&gt;</dt>
+        <dd>Re-extract one page that already exists in <code>state.json</code>.</dd>
+
+        <dt>--wait &lt;mode&gt;</dt>
+        <dd>URL crawl only. Wait strategy per page: <code>fast</code>, <code>medium</code> (default), <code>spec</code>, or <code>auto</code>. Use <code>spec</code> for JavaScript-driven sites.</dd>
+      </dl>
+
+      <h3>Writes</h3>
+      <ul class="writes">
+        <li><code>stardust/current/PRODUCT.md</code> <span class="desc">descriptive snapshot of the captured brand</span></li>
+        <li><code>stardust/current/DESIGN.md</code> <span class="desc">+ <code>DESIGN.json</code> — captured visual surface</span></li>
+        <li><code>stardust/current/brand-review.html</code> <span class="desc">eyeball-check artifact</span></li>
+        <li><code>stardust/current/pages/&lt;slug&gt;.json</code> <span class="desc">per-page parsed structure + content (URL crawl)</span></li>
+        <li><code>stardust/current/_brand-extraction.json</code> <span class="desc">consolidated brand surface</span></li>
+        <li><code>stardust/state.json</code> <span class="desc">pages: extracted</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:extract https://example.com --cap 10 --wait spec
+<span class="prompt">›</span>/stardust:extract <span class="comment"># with a Figma URL or document attached in chat</span></pre>
+
+      <div class="callout">
+        <p><strong>New site, no source to extract from?</strong> Stardust supports designing new sites too — provide a brief about the new brand and it will roll a fresh seed without an inherited surface. Redesigning an existing source is the main supported use case today; new-site design works but is less battle-tested.</p>
+      </div>
+    </section>
+
+    <!-- ============ DIRECT ============ -->
+    <section class="cmd" id="direct">
+      <h2><span class="slash">/</span><span class="name">stardust:direct</span></h2>
+
+      <p class="cmd-lede">Resolve a redesign direction from a freeform phrase. Writes the target spec — what the site should become.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:direct <span class="arg">"&lt;phrase&gt;"</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>"&lt;phrase&gt;"</dt>
+        <dd>Optional positional. Your freeform redesign intent — <em>"more editorial"</em>, <em>"feel more premium on mobile"</em>, <em>"keep typography and palette"</em>. If omitted, Stardust asks for one.</dd>
+
+        <dt>--re-direct</dt>
+        <dd>Replace the current direction with a new one. Stale-flags any prototyped, approved, or migrated pages.</dd>
+
+        <dt>--rebrand</dt>
+        <dd>Force rebrand mode — full divergence-seed roll, no brand-faithful inheritance. The default is brand-faithful when the captured surface has signal; this flag opts out.</dd>
+      </dl>
+
+      <h3>Writes</h3>
+      <ul class="writes">
+        <li><code>PRODUCT.md</code> <span class="desc">at project root — target product spec</span></li>
+        <li><code>DESIGN.md</code> + <code>DESIGN.json</code> <span class="desc">at project root — target design system</span></li>
+        <li><code>stardust/direction.md</code> <span class="desc">resolved direction + full reasoning trace</span></li>
+        <li><code>stardust/state.json</code> <span class="desc">pages: extracted → directed</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:direct <span class="arg">"more editorial. lean into typography. keep the palette."</span></pre>
+    </section>
+
+    <!-- ============ PROTOTYPE ============ -->
+    <section class="cmd" id="prototype">
+      <h2><span class="slash">/</span><span class="name">stardust:prototype</span></h2>
+
+      <p class="cmd-lede">Generate a proposed redesign for one page or all directed pages. Writes a per-page composition brief, then renders the proposed HTML, then opens a before/after viewer.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:prototype <span class="arg">[slug]</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>[slug]</dt>
+        <dd>Optional positional. Prototype just this page. Without it, prototype every <code>directed</code> page that isn't <code>stale</code>.</dd>
+
+        <dt>--refresh-stale</dt>
+        <dd>Re-prototype every page flagged <code>stale</code> by a direction change.</dd>
+
+        <dt>--all</dt>
+        <dd>Prototype every <code>directed</code> page, including stale ones.</dd>
+
+        <dt>--no-iterate</dt>
+        <dd>Render the proposed file and open the viewer, but skip the iteration loop. You iterate manually later.</dd>
+
+        <dt>--no-critique</dt>
+        <dd>Skip the automatic post-render critique pass. Default behaviour gates <code>prototyped</code> status on P0/P1 findings.</dd>
+      </dl>
+
+      <h3>Writes</h3>
+      <ul class="writes">
+        <li><code>stardust/prototypes/&lt;slug&gt;-shape.md</code> <span class="desc">per-page composition brief</span></li>
+        <li><code>stardust/prototypes/&lt;slug&gt;-proposed.html</code> <span class="desc">the proposed redesign</span></li>
+        <li><code>stardust/prototypes/&lt;slug&gt;.html</code> <span class="desc">before/after viewer</span></li>
+        <li><code>stardust/state.json</code> <span class="desc">page status: directed → prototyped</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:prototype home
+<span class="prompt">›</span>/stardust:prototype <span class="comment"># every directed page</span></pre>
+    </section>
+
+    <!-- ============ MIGRATE ============ -->
+    <section class="cmd" id="migrate">
+      <h2><span class="slash">/</span><span class="name">stardust:migrate</span></h2>
+
+      <p class="cmd-lede">Emit deployable static HTML from approved prototypes. The final step. Output is yours to publish anywhere.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:migrate <span class="arg">[slug]</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>[slug]</dt>
+        <dd>Optional positional. Migrate just this page. Without it, migrate every page whose status is <code>directed</code>, <code>prototyped</code>, or <code>approved</code> (and not <code>stale</code>).</dd>
+
+        <dt>--refresh-stale</dt>
+        <dd>Re-migrate every page flagged <code>stale</code>. Default skips them.</dd>
+
+        <dt>--all</dt>
+        <dd>Migrate every page including stale ones.</dd>
+
+        <dt>--force</dt>
+        <dd>Re-migrate every page even when the idempotent skip would skip them.</dd>
+
+        <dt>--require-approved</dt>
+        <dd>Refuse to migrate any non-<code>approved</code> page. Default migrates <code>directed</code> pages too.</dd>
+
+        <dt>--strict-canon</dt>
+        <dd>Refuse approvals that conflict with canon. Default logs the deviation and continues.</dd>
+      </dl>
+
+      <h3>Writes</h3>
+      <ul class="writes">
+        <li><code>stardust/migrated/&lt;slug&gt;.html</code> <span class="desc">deployable static page</span></li>
+        <li><code>stardust/migrated/assets/</code> <span class="desc">media + fonts + anything referenced</span></li>
+        <li><code>stardust/state.json</code> <span class="desc">page status: prototyped/approved → migrated</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:migrate home
+<span class="prompt">›</span>/stardust:migrate <span class="comment"># whole site</span></pre>
+    </section>
+
+  </main>
+
+</div>
+
+<footer class="colophon" data-section="footer" data-intent="navigate" data-layout="colophon-dark">
+  <div class="container">
+    <div class="mark-row">
+      <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      <span class="wordmark">Stardust</span>
+    </div>
+
+    <p class="tagline">A design-phase toolkit. <em>Math, not mysticism.</em></p>
+
+    <div class="links">
+      <a href="/docs/">Docs</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/adobe/skills/blob/main/LICENSE" rel="external">MIT License</a>
+    </div>
+
+    <div class="meta">
+      brief <span class="op">+</span> seed <span class="op">=</span> star <span class="op">·</span> 2026
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

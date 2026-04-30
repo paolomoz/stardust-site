@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+# Publishes the static site to https://paolomoz.github.io/stardust-site/.
+#
+# Project Pages live under a /<repo-name>/ subpath, but the source HTML uses
+# absolute paths starting with `/` (so localhost serves at root cleanly). The
+# build step below rewrites those absolute paths to `/stardust-site/...` at
+# deploy time. When this site eventually moves to a custom domain or root path,
+# delete the rewrite step — source files don't change.
+#
+# One-time repo setup:
+#   Settings → Pages → Source: GitHub Actions
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage site and prefix absolute paths with /stardust-site/
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' --exclude='README.md' ./ _site/
+          # Rewrite absolute href/src/action attributes so they resolve under the project-page subpath.
+          # Pattern matches `="/X` where X is any single character that is not `/` (excludes
+          # protocol-relative `//example.com` URLs). Captures and reinserts X after the prefix.
+          find _site -type f \( -name '*.html' -o -name '*.svg' \) \
+            -exec sed -i 's|="/\([^/]\)|="/stardust-site/\1|g' {} +
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

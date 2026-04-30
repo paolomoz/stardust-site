@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype)
+  writtenAt:        2026-04-30
+  page:             docs
+  variant:          B — Split (sidebar nav + main column)
+  againstDirection: stardust/direction.md (Active 2026-04-30)
+  shapeBrief:       stardust/prototypes/docs-shape.md
+  stardustVersion:  0.3.0
+  designSystem:     DESIGN.md, DESIGN.json
+-->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Stardust · Get started</title>
+<meta name="description" content="The design-phase toolkit, end to end. Install, run, iterate, ship." />
+<style>
+  :root {
+    --ink:         #0A1024;
+    --ink-deep:    #060A14;
+    --ink-soft:    #141B3A;
+    --dust:        #F5F0E6;
+    --deep-ink:    #1A1F38;
+    --amber:       #E8B95E;
+    --amber-light: #FFD98A;
+    --amber-deep:  #C9822D;
+
+    --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --text:    "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono:    "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+
+    --pad: clamp(20px, 4vw, 48px);
+    --maxw: 1320px;
+    --sidebar-w: 260px;
+    --nav-h: 60px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--dust);
+    color: var(--deep-ink);
+    font: 17px/1.65 var(--text);
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--amber); color: var(--ink); }
+  a { color: var(--amber-deep); text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--amber-deep); outline-offset: 3px; border-radius: 2px; }
+
+  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; color: var(--deep-ink); }
+  h1 { font-size: clamp(40px, 5vw, 72px); line-height: 1.02; letter-spacing: -0.032em; }
+  h1 .ital { color: var(--amber-deep); font-style: italic; }
+  h2 { font-size: 24px; line-height: 1.18; letter-spacing: -0.018em; margin-bottom: 14px; }
+  h3 { font-size: 18px; line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.005em; }
+  p  { margin: 0 0 16px; line-height: 1.65; max-width: 60ch; color: rgba(26,31,56,0.78); }
+  p:last-child { margin-bottom: 0; }
+  em { font-style: italic; color: var(--amber-deep); }
+  strong { color: var(--deep-ink); font-weight: 600; }
+
+  .eyebrow {
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber-deep);
+    display: inline-block; margin-bottom: 22px;
+  }
+  .eyebrow .num { color: rgba(26,31,56,0.5); margin-right: 10px; }
+
+  /* NAV — same as home (ink-deep dark, fixed) */
+  nav.nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(6,10,20,0.86);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--dust-08, rgba(245,240,230,0.08));
+  }
+  .nav-row { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); padding: 0 var(--pad); }
+  .nav-mark { display: flex; align-items: center; gap: 10px; font: 600 14px/1 var(--display); color: var(--dust); text-decoration: none; }
+  .nav-meta { display: flex; align-items: center; gap: 24px; font: 500 11px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,240,230,0.5); }
+  .nav-meta a { color: rgba(245,240,230,0.5); transition: color 120ms ease; }
+  .nav-meta a:hover { color: var(--amber); }
+  .nav-meta a[aria-current="page"] { color: var(--amber); }
+  .nav-meta .op { color: var(--amber); padding: 0 4px; }
+
+  /* SPLIT LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-w) 1fr;
+    max-width: var(--maxw); margin: 0 auto;
+    padding-top: var(--nav-h);   /* compensate for fixed nav */
+    position: relative;
+  }
+
+  /* Paint the left column ink-deep for the full layout height (desktop only).
+     Sidebar sits on top of this strip with its own sticky positioning. */
+  .layout::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: var(--sidebar-w);
+    background: var(--ink-deep);
+    border-right: 1px solid rgba(245,240,230,0.06);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* SIDEBAR — sticky, painted on top of the .layout::before strip */
+  aside.sidebar {
+    background: var(--ink-deep);
+    color: var(--dust);
+    padding: 56px 28px 32px;
+    position: sticky; top: var(--nav-h); align-self: start;
+    max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
+    z-index: 1;
+  }
+  .sidebar .lbl {
+    font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245,240,230,0.5); margin-bottom: 14px; display: block;
+  }
+  .sidebar nav.side {
+    display: flex; flex-direction: column; gap: 2px;
+    margin-bottom: 32px;
+  }
+  .sidebar nav.side a {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding: 11px 14px; border-radius: 8px;
+    font: 500 13px/1.4 var(--text); color: rgba(245,240,230,0.78);
+    text-decoration: none;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .sidebar nav.side a:hover { background: rgba(245,240,230,0.06); color: var(--dust); }
+  .sidebar nav.side a[aria-current="page"] { background: rgba(232,185,94,0.12); color: var(--amber-light); }
+  .sidebar nav.side a .num {
+    font: 500 10px/1 var(--mono); letter-spacing: 0.16em;
+    color: var(--amber); flex-shrink: 0;
+  }
+  .sidebar .star {
+    display: flex; align-items: center; gap: 10px;
+    font: 600 14px/1 var(--display); color: var(--dust);
+    margin-bottom: 36px;
+  }
+  .sidebar .meta-bottom {
+    margin-top: auto; padding-top: 24px;
+    border-top: 1px solid rgba(245,240,230,0.08);
+    font: 500 10px/1.4 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(245,240,230,0.4);
+  }
+  .sidebar .meta-bottom .op { color: var(--amber); padding: 0 4px; }
+
+  /* MAIN — fills the right column up to layout cap */
+  main.main {
+    padding: 72px 64px 96px;
+  }
+
+  /* HERO */
+  .hero h1 { max-width: 14ch; margin-bottom: 24px; }
+  .hero .lede {
+    font: 400 19px/1.5 var(--display);
+    color: rgba(26,31,56,0.72); letter-spacing: -0.008em;
+    max-width: 52ch; margin: 0 0 32px;
+  }
+
+  .install-block {
+    margin: 24px 0 22px;
+    background: var(--ink-soft); border: 1px solid var(--ink-soft); border-radius: 14px;
+    padding: 20px 24px;
+    font: 500 15px/1.4 var(--mono); color: var(--dust);
+    overflow-x: auto;
+    user-select: text;
+  }
+  .install-block .prompt { color: var(--amber); margin-right: 12px; user-select: none; }
+
+  .install-credit {
+    font: 400 13px/1.5 var(--text); color: rgba(26,31,56,0.55);
+    letter-spacing: -0.002em; margin: 14px 0 0;
+  }
+  .install-credit a {
+    color: var(--amber-deep); text-decoration: none;
+    border-bottom: 1px solid rgba(201,130,45,0.3);
+    transition: border-color 120ms ease;
+  }
+  .install-credit a:hover { border-bottom-color: var(--amber-deep); }
+
+  .hero-links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 22px; }
+  .hero-links a {
+    font: 500 14px/1 var(--text); color: var(--amber-deep);
+    border-bottom: 1px solid rgba(201,130,45,0.3); padding-bottom: 4px;
+    transition: border-color 120ms ease;
+  }
+  .hero-links a:hover { border-bottom-color: var(--amber-deep); }
+
+  /* SECTIONS */
+  section.b { padding: 56px 0 0; }
+  section.b .head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  section.b .head .right {
+    font: 500 11px/1.4 var(--mono);
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,31,56,0.4);
+  }
+
+  /* SUB-PAGES — 2x2 grid (now that we have the room) */
+  .sub-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .sub-list a {
+    background: rgba(26,31,56,0.04); border: 1px solid rgba(26,31,56,0.10);
+    border-radius: 14px; padding: 24px 26px;
+    text-decoration: none;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+  .sub-list a:hover { border-color: var(--amber-deep); background: rgba(232,185,94,0.10); }
+  .sub-list .lbl-row {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    font: 500 11px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--amber-deep);
+    margin-bottom: 10px;
+  }
+  .sub-list .tag {
+    font: 500 9px/1 var(--mono); letter-spacing: 0.18em; color: rgba(26,31,56,0.45);
+    border: 1px solid rgba(26,31,56,0.18); border-radius: 999px; padding: 4px 9px;
+    text-transform: uppercase;
+  }
+  .sub-list h3 { font-size: 17px; line-height: 1.25; margin-bottom: 6px; color: var(--deep-ink); }
+  .sub-list p { font: 400 14px/1.55 var(--text); color: rgba(26,31,56,0.72); margin: 0; }
+
+  /* CONCEPT */
+  .concept-block {
+    margin: 36px 0 0;
+    padding: 28px 0;
+    border-top: 1px solid rgba(26,31,56,0.10);
+    border-bottom: 1px solid rgba(26,31,56,0.10);
+  }
+  .concept-block .line-1 {
+    font: 500 17px/1.5 var(--display);
+    letter-spacing: -0.008em; color: var(--deep-ink);
+    max-width: 60ch; margin: 0 0 8px;
+  }
+  .concept-block .line-1 code {
+    font: 500 15px/1 var(--mono);
+    background: rgba(232,185,94,0.18); color: var(--amber-deep);
+    padding: 3px 7px; border-radius: 4px; letter-spacing: 0.04em;
+  }
+  .concept-block .line-2 {
+    font: italic 500 17px/1.4 var(--display);
+    color: var(--amber-deep); letter-spacing: -0.012em;
+    max-width: 60ch; margin: 0;
+  }
+
+  /* FOOTER — full viewport width, same as home */
+  footer.colophon {
+    padding: 80px 0 64px;
+    background: var(--ink-deep);
+    border-top: 4px solid var(--amber);
+    color: rgba(245,240,230,0.5);
+    text-align: center;
+  }
+  .colophon .container {
+    display: flex; flex-direction: column; gap: 28px;
+    align-items: center;
+    max-width: 720px;
+  }
+  .colophon .mark-row {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--dust);
+  }
+  .colophon .mark-row .wordmark {
+    font: 600 28px/1 var(--display); letter-spacing: -0.018em;
+  }
+  .colophon .tagline {
+    font: italic 400 18px/1.4 var(--display);
+    color: rgba(245,240,230,0.72); letter-spacing: -0.005em;
+    max-width: 38ch;
+  }
+  .colophon .tagline em { color: var(--amber); }
+  .colophon .links {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .colophon .links a { color: var(--dust); text-decoration: none; transition: color 120ms ease; }
+  .colophon .links a:hover { color: var(--amber); }
+  .colophon .links .dot { color: var(--amber); }
+  .colophon .meta {
+    font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245,240,230,0.35);
+  }
+  .colophon .meta .op { color: var(--amber); padding: 0 6px; }
+
+  @media (max-width: 880px) {
+    .layout { grid-template-columns: 1fr; }
+    .layout::before { display: none; }
+    aside.sidebar {
+      position: static; height: auto; max-height: none;
+      padding: 32px var(--pad);
+    }
+    .sidebar nav.side a { padding: 9px 12px; }
+    main.main { padding: 48px var(--pad) 64px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" data-section="header" data-intent="navigate" data-layout="full-width-dark">
+  <div class="nav-row">
+    <a href="/" class="nav-mark" aria-label="Stardust home">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      Stardust
+    </a>
+    <div class="nav-meta">
+      <a href="/docs/" aria-current="page">Docs</a>
+      <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub <span class="op">›</span></a>
+    </div>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar" data-section="sidebar" data-intent="navigate" data-layout="vertical-nav" data-items="4">
+    <div class="star">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      <span>Stardust · Docs</span>
+    </div>
+
+    <span class="lbl">Get started</span>
+    <nav class="side">
+      <a href="/docs/" aria-current="page"><span>Install</span><span class="num">·</span></a>
+    </nav>
+
+    <span class="lbl">Guides</span>
+    <nav class="side">
+      <a href="/docs/getting-started/"><span>Getting started</span><span class="num">01</span></a>
+      <a href="/docs/commands/"><span>Commands</span><span class="num">02</span></a>
+    </nav>
+
+    <div class="meta-bottom">
+      brief <span class="op">+</span> seed <span class="op">=</span> star
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="hero" data-section="hero" data-intent="primary-action" data-layout="install-led" data-items="1">
+      <span class="eyebrow"><span class="num">01 ·</span>Docs</span>
+
+      <h1>Install.</h1>
+
+      <p class="lede">
+        The design-phase toolkit, end to end. Install, run, iterate, ship — every command documented, every artifact named.
+      </p>
+
+      <pre class="install-block"><span class="prompt">$</span>claude plugin marketplace add adobe/skills
+<span class="prompt">$</span>claude plugin install stardust@adobe-skills
+
+<span class="prompt">$</span>claude plugin marketplace add pbakaus/impeccable
+<span class="prompt">$</span>claude plugin install impeccable@impeccable</pre>
+
+      <p class="install-credit">Built on <a href="https://impeccable.style/" rel="external">impeccable</a>. Which is, frankly, brilliant.</p>
+
+      <div class="hero-links">
+        <a href="/docs/getting-started/">Read the getting-started guide ›</a>
+        <a href="/docs/commands/">Browse all commands ›</a>
+      </div>
+    </header>
+
+    <section class="b" data-section="sub-pages" data-intent="navigate" data-layout="list-4" data-items="4">
+      <div class="head">
+        <span class="eyebrow"><span class="num">02 ·</span>Guides</span>
+        <span class="right">Two guides · v1</span>
+      </div>
+
+      <h2>Where to start.</h2>
+
+      <div class="sub-list">
+        <a href="/docs/getting-started/">
+          <div class="lbl-row">
+            <span>01 · Getting started</span>
+            <span class="tag">Tutorial</span>
+          </div>
+          <h3>Your first redesign, end to end.</h3>
+          <p>Install the plugin. Point it at a URL. Run extract → direct → prototype → migrate. End up with a deployable site — every page redesigned, not just the home.</p>
+        </a>
+
+        <a href="/docs/commands/">
+          <div class="lbl-row">
+            <span>02 · Commands</span>
+            <span class="tag">Reference</span>
+          </div>
+          <h3>Every sub-command, named.</h3>
+          <p>Extract, Direct, Prototype, Migrate. The arguments, the flags, the artifacts each one writes. Reference, not tutorial.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="b" data-section="concept" data-intent="explain" data-layout="prose-1" data-items="1">
+      <span class="eyebrow"><span class="num">03 ·</span>Concept</span>
+
+      <div class="concept-block">
+        <p class="line-1">
+          Stardust adds a deterministic seed — <code>md5(brand · date)</code> — that picks decade × craft × register × ground for today, only today.
+        </p>
+        <p class="line-2">
+          Math, not mysticism. Yours alone, today only.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<!-- FOOTER — full viewport width, same as home (sibling of .layout, not a child) -->
+<footer class="colophon" data-section="footer" data-intent="navigate" data-layout="colophon-dark">
+  <div class="container">
+    <div class="mark-row">
+      <svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true">
+        <g fill="#e8b95e">
+          <rect x="11" y="3" width="2" height="3"/><rect x="11" y="18" width="2" height="3"/>
+          <rect x="3" y="11" width="3" height="2"/><rect x="18" y="11" width="3" height="2"/>
+          <rect x="10" y="10" width="4" height="4"/>
+        </g>
+      </svg>
+      <span class="wordmark">Stardust</span>
+    </div>
+
+    <p class="tagline">A design-phase toolkit. <em>Math, not mysticism.</em></p>
+
+    <div class="links">
+      <a href="/docs/">Docs</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/adobe/skills/blob/main/LICENSE" rel="external">MIT License</a>
+    </div>
+
+    <div class="meta">
+      brief <span class="op">+</span> seed <span class="op">=</span> star <span class="op">·</span> 2026
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
