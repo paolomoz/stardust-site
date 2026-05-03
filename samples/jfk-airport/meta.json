@@ -97,6 +97,110 @@
       "thesis": "The captured editorial photography of named program participants (accessibility services, animal-relief areas, sunflower lanyard) is the trust signal the brand has been hiding. Lead with it. Hero is a full-bleed portrait with a quote. Audience routing follows. Each section carries a person's voice — what a New Yorker would say out loud.",
       "fix": "<strong>The brand's strongest asset is the people in its photography.</strong> Hero is a full-bleed portrait of a named participant with a quote in 64px Sharp Grotesk. Audience routing follows below the fold rather than above. Each section opens with a person's voice — the warm, direct, faintly editorial register the captured copy gestures at but never commits to. Service utility remains accessible; the brand-recognition problem is the one being solved.",
       "proposedFile": "proposed-E.html"
+    },
+    {
+      "id": "F",
+      "name": "V1 axis · pre-Mode-A",
+      "dominantDimension": "iteration: starting point",
+      "thesis": "The initial V1 axis variant before brand-faithful Mode A was applied. Audience-routing-led structure but with the divergence-toolkit-rolled type and palette (still exploring before pinning to PANYNJ stack).",
+      "fix": "<strong>Iteration step 1.</strong> The initial V1 audience-routing concept rendered before the user pinned type and palette. The IA structure is here in nascent form (5-way audience tile grid as first viewport) but the visual treatment hasn't yet returned to the captured PANYNJ surface. This is the design's starting point.",
+      "proposedFile": "proposed-F.html"
+    },
+    {
+      "id": "G",
+      "name": "+ Mode A pin",
+      "dominantDimension": "iteration: brand fidelity",
+      "thesis": "Type and palette pinned to the captured PANYNJ surface. Sharp Grotesk Semibold returns as display, Helvetica Now for PANYNJ as body. Palette inherits the panynj-blue family with role renames. The IA carries through unchanged.",
+      "fix": "<strong>Iteration step 2.</strong> Mode A applied — type and palette returned to the captured brand. Hierarchy now leans on the licensed Sharp Grotesk display family rather than the rolled font deck. The same V1 IA but in brand-faithful clothes.",
+      "proposedFile": "proposed-G.html"
+    },
+    {
+      "id": "H",
+      "name": "+ navy refinement",
+      "dominantDimension": "iteration: color application",
+      "thesis": "Color application sharpened. panynj-navy promoted to dominant dark surface (task panel + footer); panynj-blue restricted to single primary action per surface. The Restrained-with-Committed-darks color strategy lands.",
+      "fix": "<strong>Iteration step 3.</strong> Color strategy refined — panynj-navy carries the dark surfaces, panynj-blue narrows to one primary action per fold. The page reads less as a SaaS dashboard of blue cues and more as an institutional brand with deliberate accent restraint.",
+      "proposedFile": "proposed-H.html"
+    },
+    {
+      "id": "I",
+      "name": "Critique-rebuild",
+      "dominantDimension": "iteration: critique pass",
+      "thesis": "Impeccable critique surfaced hierarchy regressions, contrast gaps, and reflex slop in the previous iteration. This rebuild addresses each finding: heading scale ratio raised to 1.333, contrast on .audience-tile.active fixed (light text on dark navy), category-reflex check on the hero composition.",
+      "fix": "<strong>Iteration step 4 — critique-driven rebuild.</strong> Findings from $impeccable critique applied: type ratio bumped past 1.25, active-tile contrast fixed (the prior design had panynj-blue text on navy at 2.5:1, failed AA), and the hero recomposed away from the centered-photo + dual-CTA SaaS template. The page is structurally the same but cleaner on every craft axis.",
+      "proposedFile": "proposed-I.html"
+    },
+    {
+      "id": "J",
+      "name": "+ impeccable delight",
+      "dominantDimension": "iteration: personality",
+      "thesis": "$impeccable delight applied. Counter-up animation on the live-departures number, micro-interactions on audience tiles (hover lift + subtle glow on the destination icon), warm-pause moment on the welcome lockup. Personality without spectacle.",
+      "fix": "<strong>Iteration step 5 — delight pass.</strong> Counter-up animation on the departures number on first viewport entry; audience tiles gain a 200ms hover lift with a subtle glow on the destination icon; the JFK lockup has a quiet 80ms warm-pause on initial render. The brand reads as warmer without becoming chatty.",
+      "proposedFile": "proposed-J.html"
+    },
+    {
+      "id": "K",
+      "name": "+ impeccable animate",
+      "dominantDimension": "iteration: motion",
+      "thesis": "$impeccable animate added scroll-triggered section reveals. Each section fades + slides 12px on entering the viewport (240ms ease-out-quart, IntersectionObserver-driven, single-fire). Honors prefers-reduced-motion.",
+      "fix": "<strong>Iteration step 6 — animate pass.</strong> Sections reveal with a fade + 12px upward slide as they enter the viewport; the cubic ease-out-quart curve gives the motion deliberate weight. Reduced-motion users get the instant-visible fall-through. The page now feels composed rather than statically painted.",
+      "proposedFile": "proposed-K.html"
+    },
+    {
+      "id": "L",
+      "name": "+ impeccable typeset",
+      "dominantDimension": "iteration: typography",
+      "thesis": "$impeccable typeset audited the type system. Heading ratios clamped to a strict 1.333 modular scale (24/32/42/56/76/100); body line-height raised to 1.55; max-width clamped to 68ch on long-form blocks. Sharp Grotesk usage count audited and lifted to 6× per home.",
+      "fix": "<strong>Iteration step 7 — typeset pass.</strong> Strict 1.333 modular scale applied across all headings; body line-height raised to 1.55; long-form max-width clamped to 68ch. Sharp Grotesk usage explicitly counted and lifted to ≥6× per home (was 3×). Type now carries the page's hierarchy without help from color.",
+      "proposedFile": "proposed-L.html"
+    },
+    {
+      "id": "M",
+      "name": "+ impeccable colorize",
+      "dominantDimension": "iteration: color system",
+      "thesis": "$impeccable colorize migrated the palette to OKLCH while preserving every captured hex value. Brand-hue token (oklch lightness/chroma centred on panynj-blue) drives derived states (hover, active, focus, disabled) deterministically. Tinted neutrals replace pure greys.",
+      "fix": "<strong>Iteration step 8 — colorize pass.</strong> Palette migrated to OKLCH; a single --brand-hue token (centred on panynj-blue at 265°) generates hover, active, focus, and disabled states through deterministic L/C deltas. Pure greys retired in favour of brand-tinted neutrals (chroma 0.005 toward 265°). The system feels coherent across surfaces without any palette change visible to the eye.",
+      "proposedFile": "proposed-M.html"
+    },
+    {
+      "id": "N",
+      "name": "+ impeccable overdrive (status grid)",
+      "dominantDimension": "iteration: signature moment",
+      "thesis": "$impeccable overdrive added a live-status section: 4-card grid (security wait, T5 pickup, AirTrain status, departures count) below the audience router. The page gains a functional signature moment. But — the grid trips impeccable's hero-metric-template ban.",
+      "fix": "<strong>Iteration step 9 — overdrive pass with a known issue.</strong> A live-status section was added below the audience router: 4-card grid showing security wait, T5 pickup, AirTrain, departures count. Each card has a big number, small label, supporting context — the SaaS hero-metric template impeccable bans. Subsequent iterations (O, P, A) bracket-test alternative status treatments that escape the ban while keeping the live-data signature.",
+      "proposedFile": "proposed-N.html"
+    },
+    {
+      "id": "O",
+      "name": "Status as horizontal band",
+      "dominantDimension": "iteration: alternative status treatment",
+      "thesis": "Bracket-test 1 for the status section. Status flattened to a horizontal full-width band above the audience router: monospace strip of timestamped state in Sharp Grotesk, no card chrome. Escapes the hero-metric ban via density + typography rather than card grid.",
+      "fix": "<strong>Iteration step 10 — status as horizontal band (alternative).</strong> The 4-card status grid from N is collapsed to a single full-width band above the audience router: monospace data strip in Sharp Grotesk, no card chrome, no big-number-small-label motif. Reads as transit-authority signage rather than a SaaS dashboard. The data is denser; the page is calmer.",
+      "proposedFile": "proposed-O.html"
+    },
+    {
+      "id": "P",
+      "name": "Status as feed",
+      "dominantDimension": "iteration: alternative status treatment",
+      "thesis": "Bracket-test 2 for the status section. Status as a vertical feed of timestamped entries — 'Security T4: 18 min · 2:14pm', 'AirTrain: normal · 2:09pm'. Three entries visible, scrolls horizontally on mobile. Escapes the hero-metric ban via temporal framing.",
+      "fix": "<strong>Iteration step 11 — status as feed (alternative).</strong> Status reformatted as a vertical feed of timestamped entries; reads as a 'what's happening at JFK right now' panel rather than a metric grid. Three entries visible by default, scrollable on mobile. Voice is editorial rather than dashboard.",
+      "proposedFile": "proposed-P.html"
+    },
+    {
+      "id": "Q",
+      "name": "Post-lock: + impeccable bolder",
+      "dominantDimension": "iteration: amplification exploration",
+      "thesis": "After lock (variant A): $impeccable bolder applied as exploration. Type scale lifted further (display 100→120px), photography full-bleed at 100vh on hero, accent CTA contrast amplified. Tested whether the brand could carry more confidence; not adopted in the final.",
+      "fix": "<strong>Post-lock exploration — bolder.</strong> Display type pushed from 100px to 120px on the hero; photography lifted to full-viewport-height; primary CTA amplified to a high-contrast solid block. Tests how much the captured brand surface can absorb before reading as a different brand. Not adopted in the final — the brand-faithful constraint held — but the test showed the upper bound.",
+      "proposedFile": "proposed-Q.html"
+    },
+    {
+      "id": "R",
+      "name": "Post-lock: + impeccable distill",
+      "dominantDimension": "iteration: reduction exploration",
+      "thesis": "After lock: $impeccable distill applied as exploration. Removed the audience-tile copy descriptions; reduced status sidekick to single-line entries; collapsed the explore-jfk preview to a typographic list. Tested the lower bound of content the page could carry while keeping the brand voice.",
+      "fix": "<strong>Post-lock exploration — distill.</strong> Audience-tile descriptions removed (icon + name only); status sidekick reduced to single-line entries; explore-jfk preview flattened to a typographic list. Tests the lower bound of content density — what the page carries when only structure and voice remain. Not adopted (the descriptions earn their space) but the test established the floor.",
+      "proposedFile": "proposed-R.html"
     }
   ],
 
