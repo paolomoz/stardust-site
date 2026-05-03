@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "slug": "lovesac",
+  "title": "Lovesac",
+  "tagline": "Modular kit-of-parts buried in carousel slide 1. Variants make the system the page's visual language without rebranding it.",
+
+  "source": {
+    "url": "https://www.lovesac.com/",
+    "register": "brand",
+    "category": "DTC commerce · modular furniture · lifetime promise",
+    "extractedAt": "2026-04-30"
+  },
+
+  "direction": {
+    "phrase": "Refresh the existing brand. Fix the chrome clutter and type-scale drift. Amplify the captured modular-system / Designed For Life story — make the kit-of-parts visible. 3 variants.",
+    "movements": [
+      "register — brand (inherited)",
+      "expressive: restrained → committed across all variants; distinctive at B and C",
+      "tone: aspirational → aspirational + material",
+      "density: balanced (default; brand-register multi-audience hard floor applies)",
+      "distinctiveness: familiar → distinctive for B (kit-bracket motif) and C (year-rule motif)",
+      "audience: preserved tuple per Mode A IA-priority preservation",
+      "constraints: brand-faithful (Mode A active), commercial-conversion preservation"
+    ],
+    "seed": {
+      "input": "Lovesac|2026-04-30",
+      "decade": "2025-now",
+      "craft": "Tailor's pattern paper",
+      "register": "Catalogue",
+      "groundFamily": "stark-white",
+      "pickedBy": "deterministic"
+    },
+    "fontDeck": {
+      "name": "brand-inherited",
+      "value": "Miller Display + Museo Sans",
+      "pickedBy": "user-constraint"
+    },
+    "palette": {
+      "name": "Lovesac brand-pinned",
+      "source": "inherited from stardust/current/_brand-extraction.json",
+      "anchor": "#0098a7",
+      "pickedBy": "user-constraint",
+      "brandFaithfulInversions": [
+        "pure-white #ffffff retained",
+        "pure-black #000000 retained",
+        "hex format retained",
+        "ALL CAPS nav retained",
+        "miller-display + museo-sans retained"
+      ]
+    },
+    "antiToolbox": { "hits": 0, "justified": 0 }
+  },
+
+  "originalCritique": "A signal-strong brand surface buried under commerce chrome. The Spring Sale promo squats in the header on 3 of 5 captured pages; the type scale is ad-hoc (three different ratios: 1.222 / 1.125 / 1.143); 12 above-fold CTAs compete for attention with a fixed CHAT widget rendered as the page's primary button colour. The captured wordmark is icon-mark only (18×19 SVG), and the modular kit-of-parts that justifies the entire Sactionals product line is buried inside slide 1 of an 8-slide carousel. Palette is single-context — `#0098a7` brand teal appears almost exclusively as button fill. <strong>The strongest assets — the modular system, the Designed For Life® promise, the saturated brand teal — are present on the page but never composed.</strong>",
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Faithful refresh",
+      "dominantDimension": "tokens",
+      "thesis": "All seed dimensions recede. Brand mannerism dominates verbatim. The seven captured weaknesses are corrected under the same IA and section sequence — nothing else moves. The lowest-risk option.",
+      "fix": "Same IA, same section order. <strong>The seven captured improvements applied with extreme care, nothing else moved.</strong> The Spring Sale becomes a dismissible promo strip; CHAT demotes to a fixed corner widget; 12 above-fold CTAs collapse to 3 named verbs (Configure · Order Swatches · Find a Showroom); type scale snaps to a 1.2 minor third anchored on the captured 44/36/32/28 ladder; the kit-of-parts surfaces as a 3-piece tile (Seat · Cover · Side) below the hero instead of being buried in carousel slide 1. The brand-team's preferred safe-baseline.",
+      "proposedFile": "proposed-A.html"
+    },
+    {
+      "id": "B",
+      "name": "Kit-of-parts amplified",
+      "dominantDimension": "craft",
+      "thesis": "Spatial grammar. Corner-bracket motif at every container, exploded-view hero replaces the carousel, and a configuration grid is the first affordance below the trust band. The captured Sactionals click-together physical assembly becomes the page's visual language.",
+      "fix": "<strong>Spatial grammar.</strong> Corner-bracket motifs at every container — sourced verbatim from the literal corner-bracket Sactionals click-together physical assembly. The hero becomes an exploded-view kit composition: Seat · Side · Wedge · Cover laid out side-by-side, dimensioned and labelled. A configuration grid replaces the 8-slide carousel as the first affordance below the trust band. The system isn't shown — the system <em>is</em> the page.",
+      "proposedFile": "proposed-B.html",
+      "isPrimary": true
+    },
+    {
+      "id": "C",
+      "name": "Designed For Life",
+      "dominantDimension": "decade",
+      "thesis": "Temporal grammar. Year-rule hairlines as section delimiters, a chronological heritage filmstrip between hero and product sections, sections sequenced by launch year (Sacs 2006 → Sactionals 2010 → StealthTech 2020). The Designed For Life® registered promise gains visible substrate.",
+      "fix": "<strong>Temporal grammar.</strong> Year-rule hairlines (1px + year label) replace standard section margins; a chronological heritage filmstrip sits between hero and product sections; sections are sequenced by product-line launch year — Sacs 2006, Sactionals 2010, StealthTech 2020, Snugg newest. The captured Designed For Life® registered trademark — currently a typographic flourish — finally has an entire IA structure carrying it.",
+      "proposedFile": "proposed-C.html"
+    },
+    {
+      "id": "V01",
+      "name": "v2 · B · Live Build",
+      "dominantDimension": "ia",
+      "thesis": "The configurator IS the homepage. Live state-driven JS configurator on the canvas, with a Rooms Others Built gallery of captured lifestyle photos as preset configurations. The system isn't shown — it's operated.",
+      "fix": "<strong>The configurator IS the homepage.</strong> A live state-driven vanilla-JS configurator occupies the hero canvas — click-to-add Sactional pieces snap to a footprint grid (88px cells = one seat footprint), a bracket-snap micro-animation flashes on placement, swatch chips swap fabric live. A \"Rooms Others Built\" gallery below loads each captured lifestyle photo as a preset piece-list — click a room, the configurator rebuilds it. Same captured trait as B (modular kit), rotated to the interaction axis.",
+      "proposedFile": "proposed-V01.html"
+    },
+    {
+      "id": "V02",
+      "name": "v2 · B · Spec Sheet",
+      "dominantDimension": "register",
+      "thesis": "Vitra meets Apple. Inline-SVG line-art exploded-view with dimension callouts on captured photographs, bill-of-materials pricing typography, fabrics treated as specifications. The system is documented.",
+      "fix": "<strong>Vitra meets Apple — technical-drawing aesthetic.</strong> Inline-SVG line-art overlays (1px stroke) sit over captured photos with dimension callouts in a system-mono caption face. Pricing renders as a bill-of-materials line-itemed table with a right-aligned mono total; section dividers are dimension-lines, not margins; every fabric becomes a specification. Same captured trait as B (modular kit), rotated to the documentation axis.",
+      "proposedFile": "proposed-V02.html"
+    }
+  ],
+
+  "current": {
+    "renderingFile": null,
+    "note": "No current.html rendering captured. The original site at https://www.lovesac.com/ is the live before-state."
+  },
+
+  "createdAt": "2026-05-03",
+  "stardustVersion": "0.2.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0",
+  "thumbnail": "logo.png"
+}

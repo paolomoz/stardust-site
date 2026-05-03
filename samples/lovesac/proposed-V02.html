@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         stardust:prototype (direct authoring; impeccable unavailable in harness)
+  writtenAt:         2026-04-30T12:50:00Z
+  page:              home
+  variant:           B2
+  variantParent:     B
+  pageUrl:           https://www.lovesac.com/
+  againstDirection:  stardust/direction.md (Active 2026-04-30T09:00:00Z)
+  readArtifacts:
+    - stardust/current/pages/home.json
+    - stardust/current/_brand-extraction.json
+    - stardust/prototypes/home-B2-shape.md
+    - DESIGN-B2.md
+    - DESIGN-B2.json
+    - stardust/prototypes/home-B-proposed.html
+  divergenceVersion: v1.0 (stardust v2)
+  fontDeck:          brand-inherited (miller-display + museo-sans + system-mono fallback load-bearing for spec captions)
+  paletteSource:     inherited from _brand-extraction.json
+  offToolboxMoves:
+    - inline-SVG-line-art-overlays-on-captured-photos (1px stroke; mono callouts)
+    - bill-of-materials-pricing-typography (line-itemed, right-aligned, mono total)
+    - dimension-line-section-dividers (every section margin is a measurement)
+    - mono-caption-annotations-on-every-spec
+  unsourcedContent:
+    - selector: 'header [data-placeholder="true"]'
+      type: other
+      reason: "Captured logo asset is icon-mark only (18×19 SVG); wordmark must be authored before production. Improvement #7."
+    - selector: '[data-dim-placeholder="true"]'
+      type: dimension
+      reason: "Sactional dimensions other than the standard seat (72\" W · 35\" D · 32\" H, captured-sourced) are NOT in the captured surface. Lounger, wedge, storage seat dimensions render with the [—] dashed-leader signature."
+    - selector: '[data-fabric-placeholder="true"]'
+      type: fabric-spec
+      reason: "Fabric weight (oz/yd²) and fiber composition (% cotton / polyester) not in captured surface. Render with [—] signature."
+    - selector: '[data-weight-placeholder="true"]'
+      type: weight
+      reason: "Per-piece weight (43 lb / Seat is a credible Lovesac figure but not in the captured surface). Render with [—] signature."
+  stardustVersion:   0.2.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lovesac Modern Furniture | Sectionals, Bean Bags, &amp; Sofas</title>
+<style>
+:root {
+  --ground: #ffffff;
+  --surface-neutral: #f5f5f5;
+  --text-primary: #000000;
+  --text-secondary: #56585a;
+  --primary: #0098a7;
+  --primary-dark: #00808c;
+  --border: #e6e6e6;
+  --bracket: #000000;
+  --reviews-tint: #c4dee0;
+  --spec-line: #000000;
+  --spec-leader: #56585a;
+  --photo-dim-scrim: rgba(255,255,255,0.65);
+  --placeholder-accent: #c44a00;
+
+  --font-heading: "miller-display", "miller-display-fallback", Georgia, "Times New Roman", serif;
+  --font-body: "museo-sans", "museo-sans-fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --scale-ratio: 1.2;
+  --size-h1: 48px;
+  --size-h2: 40px;
+  --size-h3: 32px;
+  --size-h4: 24px;
+  --size-body: 16px;
+  --size-label: 13px;
+  --size-spec-caption: 12px;
+  --size-dim-callout: 11px;
+  --size-bom-total: 18px;
+
+  --base-unit: 8px;
+  --section-padding-desktop: 64px;
+  --section-padding-tablet: 48px;
+  --section-padding-mobile: 36px;
+  --container-max: 1280px;
+  --bracket-gutter: 12px;
+  --bracket-len: 18px;
+  --bracket-weight: 1px;
+
+  --radius-primary: 0px;
+  --radius-thumbnail: 50%;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-micro: 120ms;
+  --dur-default: 220ms;
+  --dur-expressive: 360ms;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body); font-size: var(--size-body); font-weight: 300;
+  line-height: 1.5; color: var(--text-secondary); background: var(--ground);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading); font-weight: 400; margin: 0;
+  letter-spacing: -0.02em; color: var(--text-primary);
+}
+h1 { font-size: var(--size-h1); line-height: 1.10; }
+h2 { font-size: var(--size-h2); line-height: 1.15; }
+h3 { font-size: var(--size-h3); line-height: 1.20; }
+h4 { font-size: var(--size-h4); line-height: 1.25; }
+
+a { color: var(--primary); text-decoration: underline 1px solid currentColor; text-underline-offset: 3px; }
+a:hover { color: var(--primary-dark); }
+
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 24px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 700; font-size: var(--size-label);
+  letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 12px 22px; border-radius: 0; text-decoration: none; cursor: pointer; border: 0;
+  transition: all var(--dur-default) var(--ease);
+}
+.btn-primary { background: var(--primary); color: #ffffff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-secondary {
+  background: transparent; color: var(--primary);
+  border: 1px solid var(--primary); padding: 11px 21px;
+}
+.btn-secondary:hover { background: var(--surface-neutral); }
+
+.eyebrow {
+  font-family: var(--font-mono); font-weight: 500; font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary);
+}
+
+.spec-caption {
+  font-family: var(--font-mono); font-weight: 500; font-size: var(--size-spec-caption);
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-primary);
+}
+.spec-caption--secondary { color: var(--text-secondary); }
+.dim-callout {
+  font-family: var(--font-mono); font-weight: 500; font-size: var(--size-dim-callout);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  fill: var(--text-primary);
+}
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Bracket motif — used sparingly: hero frame + BOM panel only. */
+.bracketed {
+  position: relative;
+  padding: var(--bracket-gutter);
+}
+.bracketed::before, .bracketed::after,
+.bracketed > .bracket-tl, .bracketed > .bracket-br {
+  content: ""; position: absolute;
+  width: var(--bracket-len); height: var(--bracket-len);
+  pointer-events: none;
+}
+.bracketed::before { top: 0; left: 0;
+  border-top: var(--bracket-weight) solid var(--bracket);
+  border-left: var(--bracket-weight) solid var(--bracket);
+}
+.bracketed::after { top: 0; right: 0;
+  border-top: var(--bracket-weight) solid var(--bracket);
+  border-right: var(--bracket-weight) solid var(--bracket);
+}
+.bracketed > .bracket-tl {
+  bottom: 0; left: 0; top: auto;
+  border-bottom: var(--bracket-weight) solid var(--bracket);
+  border-left: var(--bracket-weight) solid var(--bracket);
+}
+.bracketed > .bracket-br {
+  bottom: 0; right: 0; top: auto;
+  border-bottom: var(--bracket-weight) solid var(--bracket);
+  border-right: var(--bracket-weight) solid var(--bracket);
+}
+
+.promo-strip {
+  background: var(--text-primary); color: #ffffff;
+  font-size: 13px; padding: 8px 24px;
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+  position: relative;
+}
+.promo-strip strong { font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.promo-strip .evergreen { color: rgba(255,255,255,0.7); }
+.promo-strip .dismiss {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  background: transparent; border: 0; color: #ffffff; cursor: pointer; font-size: 14px;
+}
+
+.trust-band {
+  background: var(--ground); color: var(--text-secondary);
+  font-size: 13px; padding: 10px 24px; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+}
+.trust-band a { color: var(--text-secondary); text-decoration: none; }
+.trust-band a:hover { color: var(--primary); }
+
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--ground); border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+}
+.site-header__inner {
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 32px;
+  padding: 12px 24px; max-width: var(--container-max); margin: 0 auto;
+}
+.site-header__brand { display: flex; align-items: center; gap: 12px; }
+.site-header__logo { width: 28px; height: 28px; }
+.placeholder-wordmark {
+  display: inline-flex; align-items: center; padding: 4px 10px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  color: var(--placeholder-accent); background: rgba(196,74,0,0.06);
+  border: 2px dashed var(--placeholder-accent);
+}
+.placeholder-wordmark::before { content: "PLACEHOLDER · WORDMARK"; }
+
+.audience-router {
+  display: flex; gap: 22px; justify-content: center;
+  list-style: none; margin: 0; padding: 0;
+}
+.audience-router a {
+  font-family: var(--font-body); font-weight: 500; font-size: 12px;
+  color: var(--text-secondary); letter-spacing: 0.06em; text-decoration: none; padding: 6px 0;
+  border-bottom: 1px solid transparent;
+}
+.audience-router a:hover { color: var(--text-primary); border-bottom-color: var(--primary); }
+.site-header__utility { display: flex; gap: 12px; align-items: center; }
+.icon-btn { background: transparent; border: 0; cursor: pointer; padding: 6px; color: var(--text-secondary); }
+.icon-btn:hover { color: var(--text-primary); }
+
+/* HERO — Spec sheet with scrim + inline-SVG exploded view */
+.hero {
+  padding: var(--section-padding-desktop) 0;
+  background: var(--ground);
+}
+.hero__frame {
+  position: relative;
+}
+.hero__photo {
+  position: absolute; inset: 0; overflow: hidden;
+  z-index: 0;
+}
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+.hero__photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--photo-dim-scrim);
+}
+.hero__svg-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 6fr 6fr; gap: 32px;
+  align-items: center; min-height: 520px;
+  padding: 56px 40px;
+}
+.hero__copy {
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--border);
+  padding: 28px 28px 32px;
+  max-width: 540px;
+}
+.hero__copy h1 { margin-bottom: 12px; }
+.hero__sub { color: var(--text-secondary); font-size: 16px; margin-bottom: 22px; }
+.hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero__diagram-frame {
+  position: relative; height: 100%; min-height: 380px;
+}
+.hero__spec-list {
+  list-style: none; margin: 18px 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 6px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+  color: var(--text-primary); text-transform: uppercase;
+}
+.hero__spec-list li { display: flex; gap: 12px; align-items: baseline; }
+.hero__spec-list li::before {
+  content: ""; flex: 0 0 18px; height: 1px; background: var(--text-primary);
+  align-self: center;
+}
+
+/* Dimension-line section divider */
+.dim-divider {
+  position: relative; padding: 28px 0;
+  display: flex; align-items: center; gap: 14px;
+}
+.dim-divider .container { display: flex; align-items: center; gap: 14px; flex: 1; }
+.dim-divider__line {
+  flex: 1; height: 1px; background: var(--spec-line);
+  position: relative;
+}
+.dim-divider__line::before, .dim-divider__line::after {
+  content: ""; position: absolute; top: -3px; width: 1px; height: 7px; background: var(--spec-line);
+}
+.dim-divider__line::before { left: 0; }
+.dim-divider__line::after { right: 0; }
+.dim-divider__label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-primary); white-space: nowrap;
+}
+.dim-divider--placeholder .dim-divider__line { background-image: repeating-linear-gradient(to right, var(--placeholder-accent) 0 4px, transparent 4px 8px); background-color: transparent; height: 1px; }
+.dim-divider--placeholder .dim-divider__label { color: var(--placeholder-accent); }
+
+/* Section base */
+section { padding: var(--section-padding-desktop) 0; }
+.section-head { margin-bottom: 32px; display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.section-head .eyebrow { display: block; margin-bottom: 6px; }
+
+/* Photo-with-spec-overlay cards */
+.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.spec-card {
+  position: relative;
+  display: flex; flex-direction: column;
+  background: var(--ground);
+  padding: 0;
+  text-decoration: none; color: inherit;
+}
+.spec-card__media {
+  position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+  background: var(--surface-neutral);
+}
+.spec-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.spec-card__svg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.spec-card__caption {
+  display: flex; flex-direction: column; gap: 6px; padding: 14px 4px 0;
+}
+.spec-card__caption-row {
+  display: flex; justify-content: space-between; gap: 12px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--text-secondary);
+  padding: 4px 0; border-top: 1px dotted var(--border);
+}
+.spec-card__caption-row:first-child { border-top: 0; }
+.spec-card__caption-row span:last-child { color: var(--text-primary); }
+.spec-card__caption-row[data-dim-placeholder="true"] span:last-child {
+  color: var(--placeholder-accent); border-bottom: 1px dashed var(--placeholder-accent); padding-bottom: 1px;
+}
+.spec-card__title {
+  font-family: var(--font-heading); font-size: 22px; color: var(--text-primary);
+  margin: 6px 0 4px;
+}
+
+/* BOM pricing panel */
+.bom-wrap {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 32px; align-items: start;
+}
+.bom-copy { padding: 12px 0; }
+.bom-copy h2 { margin-bottom: 12px; }
+.bom-copy p { font-size: 16px; color: var(--text-secondary); max-width: 380px; }
+.bom-panel {
+  background: var(--surface-neutral);
+  padding: 28px 28px;
+  position: relative;
+}
+.bom-panel::before, .bom-panel::after,
+.bom-panel > .bracket-tl, .bom-panel > .bracket-br {
+  content: ""; position: absolute; width: 16px; height: 16px;
+}
+.bom-panel::before { top: 0; left: 0; border-top: 1px solid var(--bracket); border-left: 1px solid var(--bracket); }
+.bom-panel::after  { top: 0; right: 0; border-top: 1px solid var(--bracket); border-right: 1px solid var(--bracket); }
+.bom-panel > .bracket-tl { bottom: 0; left: 0; border-bottom: 1px solid var(--bracket); border-left: 1px solid var(--bracket); }
+.bom-panel > .bracket-br { bottom: 0; right: 0; border-bottom: 1px solid var(--bracket); border-right: 1px solid var(--bracket); }
+
+.bom-panel h3 {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary);
+  margin: 0 0 16px;
+}
+.bom-table {
+  width: 100%; border-collapse: collapse;
+  font-family: var(--font-mono); font-size: 13px; color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.bom-table th, .bom-table td {
+  padding: 10px 0; text-align: left; border-bottom: 1px dotted var(--border);
+}
+.bom-table th { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); font-weight: 700; }
+.bom-table td.qty   { width: 64px; }
+.bom-table td.unit  { width: 96px; text-align: right; color: var(--text-secondary); }
+.bom-table td.line  { width: 96px; text-align: right; }
+.bom-table tr:hover td { background: rgba(0,0,0,0.02); }
+.bom-table tr.bom-total { border-top: 1px solid var(--bracket); }
+.bom-table tr.bom-total td {
+  padding-top: 14px; border-bottom: 0;
+  font-size: var(--size-bom-total); font-weight: 700;
+}
+.bom-table tr.bom-total td.line { color: var(--primary); }
+.bom-cta { margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Fabric spec grid */
+.fabric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.fabric-card {
+  display: flex; flex-direction: column; gap: 10px;
+  background: var(--ground); border: 1px solid var(--border); padding: 14px;
+}
+.fabric-card__media { aspect-ratio: 1 / 1; overflow: hidden; background: var(--surface-neutral); }
+.fabric-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.fabric-card__name {
+  font-family: var(--font-heading); font-size: 18px; color: var(--text-primary);
+  margin-top: 4px;
+}
+.fabric-card__specs {
+  display: flex; flex-direction: column; gap: 4px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
+  text-transform: uppercase; color: var(--text-secondary);
+}
+.fabric-card__specs > div { display: flex; justify-content: space-between; padding: 3px 0; }
+.fabric-card__specs > div span:last-child { color: var(--text-primary); }
+.fabric-card__specs [data-fabric-placeholder="true"] span:last-child {
+  color: var(--placeholder-accent); border-bottom: 1px dashed var(--placeholder-accent); padding-bottom: 1px;
+}
+.fabric-card__wash {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--primary);
+}
+
+/* Shop-by-category (carry-forward, lighter line-art) */
+.cat-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+.cat-tile {
+  display: flex; flex-direction: column; gap: 8px;
+  text-decoration: none; color: inherit; padding: 8px;
+  border: 1px solid var(--border);
+}
+.cat-tile__media { aspect-ratio: 4 / 5; background: var(--surface-neutral); overflow: hidden; }
+.cat-tile__media img { width: 100%; height: 100%; object-fit: cover; }
+.cat-tile h4 { color: var(--text-primary); font-size: 18px; }
+.cat-tile small {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-secondary);
+  display: block;
+}
+.cat-grid > :nth-child(1), .cat-grid > :nth-child(2) { grid-column: span 6; }
+.cat-grid > :nth-child(3), .cat-grid > :nth-child(4), .cat-grid > :nth-child(5) { grid-column: span 4; }
+.cat-grid > :nth-child(6), .cat-grid > :nth-child(7), .cat-grid > :nth-child(8) { grid-column: span 4; }
+
+/* Swatches band — with dimension annotation */
+.swatches-band {
+  display: grid; grid-template-columns: 7fr 5fr; gap: 0;
+  background: var(--surface-neutral);
+  padding: var(--bracket-gutter);
+  position: relative;
+}
+.swatches-band__media { aspect-ratio: 16 / 6; overflow: hidden; position: relative; }
+.swatches-band__media img { width: 100%; height: 100%; object-fit: cover; }
+.swatches-band__copy { padding: 40px; align-self: center; }
+.swatches-band__copy h3 { color: var(--text-primary); margin-bottom: 14px; }
+.swatches-band__dim {
+  position: absolute; left: 12px; bottom: 8px; right: 12px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-primary);
+}
+.swatches-band__dim::after {
+  content: ""; flex: 1; height: 1px; background: var(--text-primary);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--text-primary); color: #ffffff; padding: 64px 24px 32px;
+}
+.site-footer__inner {
+  max-width: var(--container-max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr) 1.4fr; gap: 32px;
+}
+.site-footer h5 {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.65); margin: 0 0 16px;
+}
+.site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.site-footer ul a { color: #ffffff; text-decoration: none; font-size: 14px; opacity: 0.9; }
+.site-footer ul a:hover { opacity: 1; text-decoration: underline; }
+.site-footer__subscribe { display: flex; flex-direction: column; gap: 12px; }
+.site-footer__subscribe input {
+  border: 0; border-bottom: 1px solid rgba(255,255,255,0.4); background: transparent; color: #ffffff;
+  padding: 8px 0; font-size: 14px;
+}
+.site-footer__subscribe button {
+  align-self: flex-start; background: var(--primary); color: #ffffff;
+  border: 0; padding: 10px 20px; font-weight: 700; font-size: 13px;
+  letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+}
+.site-footer__bottom {
+  margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);
+  display: flex; justify-content: space-between; font-size: 12px; opacity: 0.7;
+  max-width: var(--container-max); margin-left: auto; margin-right: auto;
+}
+
+.chat-widget {
+  position: fixed; right: 24px; bottom: 24px; z-index: 100;
+  background: var(--primary-dark); color: #ffffff; border: 0; padding: 12px 18px;
+  cursor: pointer; font-weight: 700; font-size: 13px; letter-spacing: 0.08em;
+  text-transform: uppercase; box-shadow: 0 4px 9px rgba(0,0,0,0.5);
+}
+.chat-widget:hover { background: var(--primary); }
+
+[data-placeholder="true"] { outline: 2px dashed var(--placeholder-accent); }
+
+/* Spec card SVG draws */
+.spec-svg__line { stroke: var(--spec-line); stroke-width: 1; fill: none; }
+.spec-svg__leader { stroke: var(--spec-leader); stroke-width: 1; fill: none; stroke-dasharray: 0; }
+.spec-svg__leader--placeholder { stroke: var(--placeholder-accent); stroke-dasharray: 3 3; }
+.spec-svg__tick { stroke: var(--spec-line); stroke-width: 1; }
+
+@keyframes leader-draw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+.spec-card .spec-svg__line, .spec-card .spec-svg__leader {
+  stroke-dasharray: 100; stroke-dashoffset: 100;
+  animation: leader-draw var(--dur-expressive) var(--ease) forwards;
+}
+.spec-card .spec-svg__line { animation-delay: 80ms; }
+.spec-card .spec-svg__leader { animation-delay: 200ms; }
+@media (prefers-reduced-motion: reduce) {
+  .spec-card .spec-svg__line, .spec-card .spec-svg__leader {
+    animation: none; stroke-dashoffset: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root { --section-padding-desktop: 48px; }
+  .hero__inner { grid-template-columns: 1fr; min-height: 420px; }
+  .spec-grid { grid-template-columns: 1fr; }
+  .bom-wrap { grid-template-columns: 1fr; }
+  .fabric-grid { grid-template-columns: repeat(2, 1fr); }
+  .swatches-band { grid-template-columns: 1fr; }
+  .site-footer__inner { grid-template-columns: repeat(2, 1fr); }
+  .audience-router { display: none; }
+  .cat-grid > * { grid-column: span 6 !important; }
+}
+@media (max-width: 640px) {
+  :root { --section-padding-desktop: 36px; }
+  h1 { font-size: 36px; }
+  .fabric-grid { grid-template-columns: 1fr; }
+  .cat-grid > * { grid-column: span 12 !important; }
+}
+</style>
+</head>
+<body>
+
+<aside data-section="promo-strip" data-intent="campaign" data-layout="dismissible-line" class="promo-strip" id="promo-strip">
+  <span><strong>The Spring Sale &mdash; 40% Off*</strong></span>
+  <span class="evergreen">Free Shipping &middot; 60-Day Home Trial &middot; Free Swatches</span>
+  <button class="dismiss" aria-label="Dismiss promo" onclick="document.getElementById('promo-strip').style.display='none'">&times;</button>
+</aside>
+
+<div data-section="trust-band" data-intent="trust" data-layout="full-width-line" data-items="5" class="trust-band">
+  <a href="/terms-and-conditions">Free Shipping</a>
+  <a href="/terms-and-conditions">60-Day Home Trial</a>
+  <a href="/fabric-swatch-guide">Free Swatches</a>
+  <a href="/quotes/guest/form">Quote Lookup</a>
+  <a href="/showroomlocator">Store Locator</a>
+</div>
+
+<header data-section="header" data-intent="navigate" data-layout="full-width-sticky-bracketed" data-items="8" class="site-header">
+  <div class="bracketed" style="--bracket-len: 14px;"><span class="bracket-tl"></span><span class="bracket-br"></span>
+    <div class="site-header__inner">
+      <a href="/" class="site-header__brand" aria-label="Lovesac home">
+        <img class="site-header__logo" src="https://www.lovesac.com/fragments/media_12b97b56fa135b5278adc87fa3cd5f7339158a1c2.svg?width=2000&format=webply&optimize=medium" alt="Lovesac">
+        <span class="placeholder-wordmark" data-placeholder="true" data-placeholder-type="other" data-placeholder-source="captured logo asset is icon-mark only (18×19 SVG); wordmark must be authored before production. Improvement #7."></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="audience-router">
+          <li><a href="/sactionals">SECTIONALS</a></li>
+          <li><a href="/snugg">COUCHES</a></li>
+          <li><a href="/pillowsac-accent-chair">CHAIRS</a></li>
+          <li><a href="/sacs">SACS</a></li>
+          <li><a href="/stealthtech-sound-charge-systems">STEALTHTECH</a></li>
+          <li><a href="/sactionals/accessories">ACCESSORIES</a></li>
+          <li><a href="/clearance">CLEARANCE</a></li>
+          <li><a href="/our-philosophy">OUR PHILOSOPHY</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__utility">
+        <button class="icon-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-6-6m2-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13 5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-8 2a2 2 0 1 1-4 0 2 2 0 0 1 4 0"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO: Spec sheet (scrim'd captured photo + inline-SVG exploded view) -->
+<section data-section="hero" data-intent="primary-action" data-layout="spec-sheet-scrim-svg" data-items="3" class="hero">
+  <div class="container">
+    <div class="bracketed hero__frame" style="--bracket-len: 22px;"><span class="bracket-tl"></span><span class="bracket-br"></span>
+      <div class="hero__photo">
+        <img src="https://www.lovesac.com/fragments/media_1324d87869e4f2c5f6d84c80ce949fb67d1f9775a.jpg?width=2000&format=webply&optimize=medium" alt="Sactional in a styled living room — dimmed by scrim, used as warmth-of-context layer beneath the line-art exploded-view diagram.">
+      </div>
+      <svg class="hero__svg-overlay" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <!-- Exploded-view line drawing of Sactional kit. 1px stroke. -->
+        <g class="spec-svg__line">
+          <!-- Seat block 1 -->
+          <rect x="700" y="200" width="140" height="100" />
+          <!-- Seat block 2 -->
+          <rect x="850" y="200" width="140" height="100" />
+          <!-- Side block (left) -->
+          <rect x="640" y="200" width="50" height="100" />
+          <!-- Side block (right) -->
+          <rect x="1000" y="200" width="50" height="100" />
+          <!-- Cover swatch -->
+          <rect x="780" y="120" width="60" height="60" />
+          <line x1="810" y1="180" x2="810" y2="200" />
+        </g>
+        <!-- Dimension lines -->
+        <g class="spec-svg__line">
+          <!-- horizontal width: 72" W -->
+          <line x1="700" y1="335" x2="990" y2="335" />
+          <line x1="700" y1="330" x2="700" y2="340" />
+          <line x1="990" y1="330" x2="990" y2="340" />
+          <!-- vertical depth: 35" D -->
+          <line x1="1075" y1="200" x2="1075" y2="300" />
+          <line x1="1070" y1="200" x2="1080" y2="200" />
+          <line x1="1070" y1="300" x2="1080" y2="300" />
+          <!-- vertical height callout: 32" H -->
+          <line x1="615" y1="200" x2="615" y2="300" />
+          <line x1="610" y1="200" x2="620" y2="200" />
+          <line x1="610" y1="300" x2="620" y2="300" />
+        </g>
+        <!-- Callout labels -->
+        <text class="dim-callout" x="845" y="350" text-anchor="middle">72&quot; W</text>
+        <text class="dim-callout" x="1085" y="254" text-anchor="start">35&quot; D</text>
+        <text class="dim-callout" x="605" y="254" text-anchor="end">32&quot; H</text>
+        <text class="dim-callout" x="810" y="115" text-anchor="middle">230 fabrics</text>
+        <!-- Leader from cover swatch up to label -->
+        <line class="spec-svg__leader" x1="810" y1="120" x2="810" y2="100" />
+        <line class="spec-svg__leader" x1="800" y1="100" x2="820" y2="100" />
+      </svg>
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <span class="eyebrow">Sactional &middot; Spec sheet</span>
+          <h1>Lovesac &mdash; Designed&nbsp;For&nbsp;Life&reg;</h1>
+          <p class="hero__sub">A Sectional designed to evolve with you. Documented to engineering precision since 2010 &mdash; same kit, same footprint, decade after decade.</p>
+          <div class="hero__ctas">
+            <a href="/sactionals/build" class="btn btn-primary">Configure Your Sactional</a>
+            <a href="/fabric-swatch-guide" class="btn btn-secondary">Order Free Swatches</a>
+          </div>
+          <ul class="hero__spec-list">
+            <li><span>72&quot; W &middot; 35&quot; D &middot; 32&quot; H per Seat</span></li>
+            <li><span data-weight-placeholder="true" style="color:var(--placeholder-accent);border-bottom:1px dashed var(--placeholder-accent);">[—] lb / Seat</span></li>
+            <li><span>230 fabrics &middot; machine-washable covers</span></li>
+          </ul>
+        </div>
+        <div class="hero__diagram-frame" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dimension divider 1 -->
+<div data-section="dimension-divider" data-intent="structural-spec" data-layout="full-width-dim-line" class="dim-divider">
+  <div class="container">
+    <span class="dim-divider__label">&mdash; 1280 px container &mdash;</span>
+    <span class="dim-divider__line"></span>
+  </div>
+</div>
+
+<!-- Photo-with-spec-overlay cards -->
+<section data-section="photo-spec-overlay" data-intent="documentation" data-layout="grid-3-bracketed-light" data-items="3">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">The kit, documented</span>
+        <h2>Three pieces. Real dimensions. Annotated.</h2>
+      </div>
+    </div>
+    <div class="spec-grid">
+
+      <article class="spec-card">
+        <div class="spec-card__media">
+          <img src="https://www.lovesac.com/fragments/media_1324d87869e4f2c5f6d84c80ce949fb67d1f9775a.jpg?width=2000&format=webply&optimize=medium" alt="Sactional seat module on a configured sectional in a styled living room.">
+          <svg class="spec-card__svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <line class="spec-svg__line" x1="60" y1="270" x2="340" y2="270" />
+            <line class="spec-svg__line" x1="60" y1="265" x2="60" y2="275" />
+            <line class="spec-svg__line" x1="340" y1="265" x2="340" y2="275" />
+            <line class="spec-svg__line" x1="370" y1="60" x2="370" y2="240" />
+            <line class="spec-svg__line" x1="365" y1="60" x2="375" y2="60" />
+            <line class="spec-svg__line" x1="365" y1="240" x2="375" y2="240" />
+            <text class="dim-callout" x="200" y="288" text-anchor="middle">72&quot; W</text>
+            <text class="dim-callout" x="380" y="156" text-anchor="start">35&quot; D</text>
+          </svg>
+        </div>
+        <div class="spec-card__caption">
+          <span class="spec-card__title">01 &middot; Seat</span>
+          <div class="spec-card__caption-row"><span>Width</span><span>72&quot;</span></div>
+          <div class="spec-card__caption-row"><span>Depth</span><span>35&quot;</span></div>
+          <div class="spec-card__caption-row"><span>Height</span><span>32&quot;</span></div>
+          <div class="spec-card__caption-row" data-weight-placeholder="true"><span>Weight</span><span>[—] lb</span></div>
+          <div class="spec-card__caption-row"><span>Variants</span><span>Standard &middot; Deep &middot; Reclining &middot; Storage</span></div>
+        </div>
+      </article>
+
+      <article class="spec-card">
+        <div class="spec-card__media">
+          <img src="https://www.lovesac.com/fragments/media_155723fa549e1fb746a23c9d5ff2dc73a7e5923fe.jpg?width=2000&format=webply&optimize=medium" alt="Person rearranging Sactional pieces — side / armrest piece being snapped on.">
+          <svg class="spec-card__svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <line class="spec-svg__line" x1="80" y1="270" x2="320" y2="270" />
+            <line class="spec-svg__line" x1="80" y1="265" x2="80" y2="275" />
+            <line class="spec-svg__line" x1="320" y1="265" x2="320" y2="275" />
+            <line class="spec-svg__leader spec-svg__leader--placeholder" x1="200" y1="60" x2="200" y2="120" />
+            <text class="dim-callout" x="200" y="288" text-anchor="middle">35&quot; W</text>
+            <text class="dim-callout" x="200" y="50" text-anchor="middle" fill="#c44a00">[—] H</text>
+          </svg>
+        </div>
+        <div class="spec-card__caption">
+          <span class="spec-card__title">02 &middot; Side</span>
+          <div class="spec-card__caption-row"><span>Width</span><span>35&quot;</span></div>
+          <div class="spec-card__caption-row" data-dim-placeholder="true"><span>Height</span><span>[—]&quot;</span></div>
+          <div class="spec-card__caption-row" data-dim-placeholder="true"><span>Depth</span><span>[—]&quot;</span></div>
+          <div class="spec-card__caption-row" data-weight-placeholder="true"><span>Weight</span><span>[—] lb</span></div>
+          <div class="spec-card__caption-row"><span>Variants</span><span>Armrest &middot; Wedge &middot; Lounger</span></div>
+        </div>
+      </article>
+
+      <article class="spec-card">
+        <div class="spec-card__media">
+          <img src="https://www.lovesac.com/fragments/media_15c6d404934aa7861a95f8b4020132ec96543aedf.jpg?width=750&format=jpg&optimize=medium" alt="Person changing the cover on a Sactional — one of 150+ washable covers.">
+          <svg class="spec-card__svg" viewBox="0 0 400 300" preserveAspectRatio="none">
+            <line class="spec-svg__line" x1="80" y1="270" x2="320" y2="270" />
+            <line class="spec-svg__line" x1="80" y1="265" x2="80" y2="275" />
+            <line class="spec-svg__line" x1="320" y1="265" x2="320" y2="275" />
+            <line class="spec-svg__leader" x1="200" y1="100" x2="320" y2="40" />
+            <text class="dim-callout" x="200" y="288" text-anchor="middle">Per Seat</text>
+            <text class="dim-callout" x="320" y="32" text-anchor="end">230 fabrics</text>
+          </svg>
+        </div>
+        <div class="spec-card__caption">
+          <span class="spec-card__title">03 &middot; Cover</span>
+          <div class="spec-card__caption-row"><span>Library</span><span>230 fabrics</span></div>
+          <div class="spec-card__caption-row"><span>Care</span><span>Machine-wash &middot; tumble-dry</span></div>
+          <div class="spec-card__caption-row" data-fabric-placeholder="true"><span>Weight</span><span>[—] oz/yd&sup2;</span></div>
+          <div class="spec-card__caption-row" data-fabric-placeholder="true"><span>Fiber</span><span>[—] %</span></div>
+          <div class="spec-card__caption-row"><span>Swap-time</span><span>~10 min</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Dimension divider 2 -->
+<div data-section="dimension-divider" data-intent="structural-spec" data-layout="full-width-dim-line" class="dim-divider">
+  <div class="container">
+    <span class="dim-divider__label">&mdash; 56 px section gutter &mdash;</span>
+    <span class="dim-divider__line"></span>
+  </div>
+</div>
+
+<!-- BOM pricing panel -->
+<section data-section="bom-pricing-panel" data-intent="commerce-spec" data-layout="line-itemed-tabular" data-items="3">
+  <div class="container">
+    <div class="bom-wrap">
+      <div class="bom-copy">
+        <span class="eyebrow">Bill of materials</span>
+        <h2>Configured. Itemised.</h2>
+        <p>Sactionals are priced by piece. The total is the sum of the math you can see &mdash; not a marketing round-number.</p>
+      </div>
+      <div class="bom-panel">
+        <span class="bracket-tl"></span><span class="bracket-br"></span>
+        <h3>Configuration &middot; 4-seat sectional, 2 sides, 4 covers</h3>
+        <table class="bom-table tabular">
+          <thead>
+            <tr>
+              <th class="qty">Qty</th>
+              <th>Item</th>
+              <th class="unit">Unit</th>
+              <th class="line">Line</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="qty">4</td><td>Seat</td><td class="unit">$895</td><td class="line">$3,580</td></tr>
+            <tr><td class="qty">2</td><td>Side</td><td class="unit">$695</td><td class="line">$1,390</td></tr>
+            <tr><td class="qty">4</td><td>Cover &middot; Vintage Blue Rained Chenille</td><td class="unit">$295</td><td class="line">$1,180</td></tr>
+            <tr class="bom-total"><td class="qty"></td><td>Total</td><td class="unit"></td><td class="line">$6,150</td></tr>
+          </tbody>
+        </table>
+        <div class="bom-cta">
+          <a href="/sactionals/build" class="btn btn-primary">Add to Configuration</a>
+          <a href="/fabric-swatch-guide" class="btn btn-secondary">Order Free Swatches</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dimension divider 3 -->
+<div data-section="dimension-divider" data-intent="structural-spec" data-layout="full-width-dim-line" class="dim-divider">
+  <div class="container">
+    <span class="dim-divider__label">&mdash; BOM &mdash;</span>
+    <span class="dim-divider__line"></span>
+  </div>
+</div>
+
+<!-- Fabric spec grid -->
+<section data-section="fabric-spec-grid" data-intent="material-spec" data-layout="grid-4-mono" data-items="4">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Fabrics, specified</span>
+        <h2>Four covers, four data sheets.</h2>
+      </div>
+    </div>
+    <div class="fabric-grid">
+
+      <article class="fabric-card">
+        <div class="fabric-card__media"><img src="https://www.lovesac.com/media/attribute/swatch/v/i/vintage_blue_rained_chenille_1.jpg?optimize=medium&width=12&dpr=2" alt="Vintage blue rained chenille Sactional cover swatch."></div>
+        <div class="fabric-card__name">Vintage Blue</div>
+        <div class="fabric-card__specs">
+          <div><span>Weave</span><span>Rained Chenille</span></div>
+          <div data-fabric-placeholder="true"><span>Weight</span><span>[—] oz/yd&sup2;</span></div>
+          <div data-fabric-placeholder="true"><span>Fiber</span><span>[—] %</span></div>
+          <div><span>Care</span><span class="fabric-card__wash">&#10003; Machine-wash</span></div>
+        </div>
+      </article>
+
+      <article class="fabric-card">
+        <div class="fabric-card__media"><img src="https://www.lovesac.com/media/attribute/swatch/m/i/midnight_navy_corded_velvet_1.jpg?optimize=medium&width=12&dpr=2" alt="Midnight navy corded velvet Sactional cover swatch."></div>
+        <div class="fabric-card__name">Midnight Navy</div>
+        <div class="fabric-card__specs">
+          <div><span>Weave</span><span>Corded Velvet</span></div>
+          <div data-fabric-placeholder="true"><span>Weight</span><span>[—] oz/yd&sup2;</span></div>
+          <div data-fabric-placeholder="true"><span>Fiber</span><span>[—] %</span></div>
+          <div><span>Care</span><span class="fabric-card__wash">&#10003; Machine-wash</span></div>
+        </div>
+      </article>
+
+      <article class="fabric-card">
+        <div class="fabric-card__media"><img src="https://www.lovesac.com/media/attribute/swatch/f/l/flagstone_brushedweave_1_.jpg?optimize=medium&width=12&dpr=2" alt="Flagstone brushed weave Sactional cover swatch."></div>
+        <div class="fabric-card__name">Flagstone</div>
+        <div class="fabric-card__specs">
+          <div><span>Weave</span><span>Brushed Weave</span></div>
+          <div data-fabric-placeholder="true"><span>Weight</span><span>[—] oz/yd&sup2;</span></div>
+          <div data-fabric-placeholder="true"><span>Fiber</span><span>[—] %</span></div>
+          <div><span>Care</span><span class="fabric-card__wash">&#10003; Machine-wash</span></div>
+        </div>
+      </article>
+
+      <article class="fabric-card">
+        <div class="fabric-card__media"><img src="https://www.lovesac.com/fragments/media_1f397d12724128dc802ceef80b81e4ded284ab42c.jpg?width=750&format=jpg&optimize=medium" alt="Assorted Sactional fabric swatches arranged on a flat surface."></div>
+        <div class="fabric-card__name">+ 227 more</div>
+        <div class="fabric-card__specs">
+          <div><span>Library</span><span>230 total</span></div>
+          <div><span>Order</span><span>Up to 8 free</span></div>
+          <div><span>Shipping</span><span>Flat &middot; Free</span></div>
+          <div><span>Care</span><span class="fabric-card__wash">&#10003; Machine-wash</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- Dimension divider 4 -->
+<div data-section="dimension-divider" data-intent="structural-spec" data-layout="full-width-dim-line" class="dim-divider dim-divider--placeholder">
+  <div class="container">
+    <span class="dim-divider__label">&mdash; 230 fabrics &middot; [—] lb / Seat &mdash;</span>
+    <span class="dim-divider__line"></span>
+  </div>
+</div>
+
+<!-- Shop by category (lighter line-art) -->
+<section data-section="shop-by-category" data-intent="audience-route" data-layout="grid-12col-6-4-3-spec" data-items="8">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Shop by category</span>
+        <h2>Eight ways into the system.</h2>
+      </div>
+    </div>
+    <div class="cat-grid">
+      <a href="/sactionals" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_1324d87869e4f2c5f6d84c80ce949fb67d1f9775a.jpg?width=2000&format=webply&optimize=medium" alt="Brown Sactional sectional in a sunlit den."></div>
+        <h4>Sactionals</h4><small>Modular sectional system</small>
+      </a>
+      <a href="/snugg" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_1e687f449527c20f7a54b055e7f09483d60f19df9.jpg?width=2000&format=webply&optimize=medium" alt="Family on a green Snugg couch."></div>
+        <h4>Snugg</h4><small>Compact sofa &middot; swept arms</small>
+      </a>
+      <a href="/sacs" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_1e08715f30f9f3c2267ebf1b543527e48e5109226.jpg?width=2000&format=webply&optimize=medium" alt="Mother and child relaxing in a Lovesac bean bag chair."></div>
+        <h4>Sacs</h4><small>The world&rsquo;s most comfortable seat</small>
+      </a>
+      <a href="/pillowsac-accent-chair" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_11e6c51749bdab39f4e7e4eb5b888b5a875b221a5.jpg?width=2000&format=webply&optimize=medium" alt="PillowSac chair and PillowSac chair Jr in a living space."></div>
+        <h4>PillowSac Chairs</h4><small>Customizable frame</small>
+      </a>
+      <a href="/sactionals/inserts" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_155723fa549e1fb746a23c9d5ff2dc73a7e5923fe.jpg?width=2000&format=webply&optimize=medium" alt="Person rearranging Sactional pieces."></div>
+        <h4>Seats &amp; Sides</h4><small>Add to your configuration</small>
+      </a>
+      <a href="/sactionals/covers" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_15c6d404934aa7861a95f8b4020132ec96543aedf.jpg?width=750&format=jpg&optimize=medium" alt="Person changing the cover on a Sactional couch."></div>
+        <h4>Sactionals Covers</h4><small>230 fabrics &middot; machine-wash</small>
+      </a>
+      <a href="/sac-bundle-collections" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_1dc7dcef6e6f0245c3d19fb5ee612e2968111b6e3.jpg?width=750&format=jpg&optimize=medium" alt="Woman relaxing in a Lovesac bean bag chair."></div>
+        <h4>Sac Bundles</h4><small>Inserts + covers, bundled</small>
+      </a>
+      <a href="/sacs/covers" class="cat-tile">
+        <div class="cat-tile__media"><img src="https://www.lovesac.com/fragments/media_106cb7ff197e9272f2ad6039289c81a5e7f96e0d5.jpg?width=750&format=jpg&optimize=medium" alt="Person changing a Sac chair cover."></div>
+        <h4>Sac Covers</h4><small>Swap &middot; refresh</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Swatches band — with dimension annotation -->
+<section data-section="swatches-band" data-intent="cross-promo" data-layout="full-width-band-bracketed-dim">
+  <div class="container">
+    <div class="bracketed swatches-band" style="--bracket-len: 20px;"><span class="bracket-tl"></span><span class="bracket-br"></span>
+      <div class="swatches-band__media">
+        <img src="https://www.lovesac.com/fragments/media_1f397d12724128dc802ceef80b81e4ded284ab42c.jpg?width=750&format=jpg&optimize=medium" alt="Free Lovesac fabric swatch samples in assorted colors and weaves.">
+        <div class="swatches-band__dim"><span>&mdash; up to 8 swatches &middot; flat-shipped &middot; free &mdash;</span></div>
+      </div>
+      <div class="swatches-band__copy">
+        <span class="eyebrow">Free Swatches</span>
+        <h3>Feel the fabric. Then read the spec.</h3>
+        <p style="margin: 14px 0 22px;">Order up to 8 free fabric samples. Shipped flat. Returned never.</p>
+        <a href="/fabric-swatch-guide" class="btn btn-primary">Order Free Swatches</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer data-section="footer" data-intent="navigate" data-layout="mega" class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="/help-center">Help Center</a></li>
+        <li><a href="/showroomlocator">Showroom Locator</a></li>
+        <li><a href="/quotes/guest/form">Quote Lookup</a></li>
+        <li><a href="/financing">Financing</a></li>
+        <li><a href="/fabric-swatch-guide">Free Swatches</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>#LovesacFamily</h5>
+      <ul>
+        <li><a href="/inspiration">Inspiration</a></li>
+        <li><a href="/customer-gallery">Customer Gallery</a></li>
+        <li><a href="/video-gallery">Video Gallery</a></li>
+        <li><a href="/online-catalog">Online Catalog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Our Company</h5>
+      <ul>
+        <li><a href="/about-us">About Us</a></li>
+        <li><a href="/our-philosophy">Our Philosophy</a></li>
+        <li><a href="/to-the-trade">To the Trade</a></li>
+        <li><a href="/careers">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="/sactionals">Sactionals</a></li>
+        <li><a href="/sacs">Sacs</a></li>
+        <li><a href="/snugg">Snugg</a></li>
+        <li><a href="/stealthtech-sound-charge-systems">StealthTech</a></li>
+      </ul>
+    </div>
+    <form class="site-footer__subscribe" action="#" method="get">
+      <h5>Keep Up With Us</h5>
+      <input type="email" name="email" placeholder="Your email" aria-label="Email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+  <div class="site-footer__bottom">
+    <span>&copy; Lovesac &mdash; Designed For Life&reg;</span>
+    <span>Privacy &middot; Terms</span>
+  </div>
+</footer>
+
+<button class="chat-widget" data-section="chat-widget" data-intent="support" data-layout="fixed-corner" aria-label="Open chat">CHAT</button>
+
+</body>
+</html>
