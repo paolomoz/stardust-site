@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 2,
+  "slug": "ups-uk",
+  "title": "UPS — United Kingdom · home redesign",
+  "tagline": "From marketing-furniture-on-top to the-tracker-IS-the-hero.",
+
+  "source": {
+    "url": "https://www.ups.com/gb/en/home",
+    "register": "brand",
+    "category": "logistics · global parcel carrier",
+    "extractedAt": "2026-05-03"
+  },
+
+  "direction": {
+    "phrase": "redesign the home page — analyse and suggest direction",
+    "movements": [
+      "density: ad-hoc → packed (48 / 36 / 24 px)",
+      "distinctiveness: familiar → distinctive (tracker leads, not hero photo)",
+      "IA priority: marketing-first hero → tool-first hero",
+      "CTA vocabulary: 3 fragmented verbs → 4 canonical (Track / Get a quote / Start shipping / Log in)",
+      "radius vocab: 8 distinct values → 3 (4 / 8 / 50%)",
+      "type scale: ad-hoc per template → modular ratio ~1.25",
+      "alt-text floor: 60% empty → 0% accidental empty above the fold",
+      "<h1> presence: empty (image-baked hero) → display H1 above the tracker"
+    ],
+    "seed": {
+      "input": "UPS — United Kingdom|2026-05-03",
+      "decade": "2025-now",
+      "craft": "web (tool-led)",
+      "register": "brand",
+      "groundFamily": "stark-white",
+      "pickedBy": "Mode A — brand-faithful pinning + density tier user-pick"
+    },
+    "fontDeck": {
+      "name": "brand-inherited",
+      "pickedBy": "user-constraint (Mode A pin)"
+    },
+    "palette": {
+      "name": "UPS GB inherited",
+      "source": "stardust/current/_brand-extraction.json",
+      "anchor": "#ffc400",
+      "pickedBy": "user-constraint (Mode A pin)",
+      "brandFaithfulInversions": [
+        "pure-white retention",
+        "hex format retention",
+        "radius vocabulary tighten (8 → 3 values)",
+        "type scale tighten (ad-hoc → modular 1.25)",
+        "shadow vocabulary tighten (3 → 2)"
+      ]
+    },
+    "antiToolbox": {
+      "hits": 0,
+      "justified": 0
+    }
+  },
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Tool-First Home",
+      "dominantDimension": "ground-family",
+      "thesis": "The Track / Quote / Ship / Billing tabs ARE the hero. Above the fold carries one display H1 (verb-led, pivoting per active tab), the tab strip, a 56px input, a single gold CTA, plus a captured-live photo on the right for warmth. Marketing offers, alerts (compressed to a header chip with pulse), and the cookie consent band live below or quietly at the edges. Treats return visitors looking up a tracking number as the headline use case — the dominant audience by frequency on a freight site.",
+      "proposedFile": "proposed-A.html",
+      "thumbnail": "thumbnail.png",
+      "isPrimary": true
+    }
+  ],
+
+  "current": {
+    "renderingFile": null,
+    "note": "Captured screenshot is preserved upstream of this sample (thumbnail.png shows the proposed redesign, not the current). The captured live home leads with an empty <h1>, image-baked hero, full-width red service-alerts strip, and the IEEPA tariff promo strip — pushing the Track/Quote/Ship/Billing tabs (the workhorse) to a secondary band. Roboto throughout. 60-85 CSS custom properties already on :root (multi-brand-aware token system covering UPS, UPS Store, UPS Healthcare)."
+  },
+
+  "createdAt": "2026-05-04",
+  "stardustVersion": "0.3.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0"
+}
