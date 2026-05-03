@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "slug": "jfk-airport",
+  "title": "JFK Airport",
+  "tagline": "NYC-flavoured gateway. Brand-faithful refresh: Sharp Grotesk + PANYNJ blue pinned, role renames carry the hierarchy. Five home-page approaches across IA, composition, type, data, and voice.",
+
+  "source": {
+    "url": "https://www.jfkairport.com/",
+    "register": "brand",
+    "category": "travel · airport · public infrastructure",
+    "extractedAt": "2026-05-03"
+  },
+
+  "direction": {
+    "phrase": "Direction B — NYC-flavoured gateway. Mode A: keep type and colors as is. Strategic and visual choices vary per axis-amplified variant.",
+    "movements": [
+      "register: brand (no change) — service-utility hybrid retained",
+      "expressive: restrained → committed — type and photography earn more space",
+      "distinctiveness: familiar → distinctive — escape municipal-modernism template silhouette",
+      "tone: institutional → warm — NYC sensibility, less procedural",
+      "audience: implicit → 5-way explicit routing — structural change, not visual",
+      "type-stack: pinned (Sharp Grotesk Semibold + Helvetica Now for PANYNJ)",
+      "palette: pinned (PANYNJ blue family + ground/ice/mint alts + advisory yellow + slate scale) with role renames"
+    ],
+    "seed": {
+      "input": "JFK Airport|2026-05-03",
+      "decade": "2025-now",
+      "craft": "civic-corporate gateway",
+      "register": "brand",
+      "groundFamily": "stark-white",
+      "pickedBy": "user-constraint (brand-faithful Mode A)"
+    },
+    "fontDeck": {
+      "name": "brand-inherited",
+      "value": "Sharp Grotesk Semibold (display) + Helvetica Now for PANYNJ (body)",
+      "pickedBy": "user-constraint"
+    },
+    "palette": {
+      "name": "PANYNJ brand-pinned",
+      "source": "inherited from stardust/current/_brand-extraction.json",
+      "anchor": "#011565",
+      "pickedBy": "user-constraint",
+      "brandFaithfulInversions": [
+        "panynj-blue narrowed to single primary action per surface (was: link + CTA + headline + active-tab)",
+        "panynj-deep-blue promoted to inline link color (was: CTA hover only)",
+        "ink promoted to headline + body (lets type weight + scale carry hierarchy)",
+        "Sharp Grotesk used ≥ 4× per home at ≥ 64px (was: hero-only display use)",
+        "explicit 5-way audience router in viewport one (was: 5 audiences share undifferentiated home)",
+        "full-bleed editorial photography at intended dims with descriptive alt (was: 12× oversampled thumbnails, no alt)",
+        "warm, direct, faintly editorial voice (was: civic-procedural)",
+        "broken silhouette on home; each IA pillar varies layout strategy (was: same skeleton on every page)"
+      ]
+    },
+    "antiToolbox": { "hits": 0, "justified": 0 }
+  },
+
+  "originalCritique": "The current site reads like infrastructure thinking it's an information system. Every cue is panynj-blue — links, CTAs, headlines, active tabs — so nothing leads. Sharp Grotesk Semibold is reserved for one 320px hero number while the rest of the page runs in body Helvetica, producing a flat type rhythm. Five distinct audiences (departing, arriving, picking up, connecting, visiting) share an undifferentiated home with five matching cards. Editorial photography of named program participants renders as 280×180 thumbnails. <strong>The brand has the type, colors, and photographs to do something distinctive — the page just hasn't asked them to.</strong> Five variants bracket different ways of asking.",
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Audience-routing + status sidekick",
+      "dominantDimension": "ia",
+      "thesis": "Five audiences as a first-viewport router; brand hero carries a status-feed sidekick (live security, AirTrain, departures count) overlaying the right edge. View Transitions morph audience tiles into task panels. The chosen direction — V1 axis fully iterated through delight, animate, typeset, colorize, overdrive, polish.",
+      "fix": "<strong>Five audiences as a first-viewport router; brand hero carries a status-feed sidekick.</strong> Live security, AirTrain status, and departures count overlay the right edge of the brand hero photograph as a 380px white card, freeing 340px of vertical real estate below. Audience tiles morph into full task panels via View Transitions API (graceful fallback on Firefox + reduced-motion). The IA shift carries the brand promise: the page recognises the visitor's intent before it asks them to choose.",
+      "proposedFile": "proposed-A.html",
+      "isPrimary": true
+    },
+    {
+      "id": "B",
+      "name": "Editorial NYC",
+      "dominantDimension": "composition",
+      "thesis": "Underused editorial photography brought up to scale. Quiet sticky toolbar replaces the header. Sharp Grotesk display headlines run at 80–120px. The hero is a full-bleed crop of a named NYC moment with a single sentence; flight search is a compact button right of the toolbar, not a panel.",
+      "fix": "<strong>Editorial photography brought up to scale.</strong> Quiet sticky toolbar (JFK lockup + 4 nav links + compact flight-search trigger) replaces the marketing header. Hero is a full-bleed crop of a named NYC moment paired with a single Sharp Grotesk sentence at 96px. Flight search is present but subordinate. Section rhythm follows magazine pacing — two long editorial blocks, audience routing as a typographic list, photography at intended dims.",
+      "proposedFile": "proposed-B.html"
+    },
+    {
+      "id": "C",
+      "name": "Wordmark-heroic",
+      "dominantDimension": "type",
+      "thesis": "Sharp Grotesk Semibold IS the brand. The captured 320px hero proves the family carries weight. Lean further: the wordmark JFK rendered at 240–360px, audience names set at 64–96px, body at 1.333 editorial ratio. Blue used once per fold. Composition follows type, not photography.",
+      "fix": "<strong>Sharp Grotesk Semibold becomes the brand surface.</strong> JFK wordmark renders at 240–360px above the fold; audience names at 64–96px; body at a 1.333 editorial ratio. Photography drops to a single supporting role. Blue restricted to one CTA per fold. The page reads as a typographic statement first, a transit-authority site second — appropriate for a brand whose strongest asset is the licensed display family.",
+      "proposedFile": "proposed-C.html"
+    },
+    {
+      "id": "D",
+      "name": "Live-ops board",
+      "dominantDimension": "data",
+      "thesis": "The strongest functional signal in the existing site is the real-time departures table on /flights. Bring it home. Mini status strip across the top (security wait, T5 pickup, AirTrain, departures count); main content is a live departures-board with terminal/airline/status, switchable to arrivals. The brand becomes operational, not promotional.",
+      "fix": "<strong>The departures board is the home page.</strong> Mini navy status strip across the top carries live system state in Sharp Grotesk monospace numerals. Main content is the existing /flights real-time board, brought up-front and switchable to arrivals. Audience routing collapses to a secondary toolbar. The brand reads as operational competence — what travellers actually need at the moment they arrive at the URL.",
+      "proposedFile": "proposed-D.html"
+    },
+    {
+      "id": "E",
+      "name": "Stories of New York",
+      "dominantDimension": "voice",
+      "thesis": "The captured editorial photography of named program participants (accessibility services, animal-relief areas, sunflower lanyard) is the trust signal the brand has been hiding. Lead with it. Hero is a full-bleed portrait with a quote. Audience routing follows. Each section carries a person's voice — what a New Yorker would say out loud.",
+      "fix": "<strong>The brand's strongest asset is the people in its photography.</strong> Hero is a full-bleed portrait of a named participant with a quote in 64px Sharp Grotesk. Audience routing follows below the fold rather than above. Each section opens with a person's voice — the warm, direct, faintly editorial register the captured copy gestures at but never commits to. Service utility remains accessible; the brand-recognition problem is the one being solved.",
+      "proposedFile": "proposed-E.html"
+    }
+  ],
+
+  "createdAt": "2026-05-03",
+  "stardustVersion": "0.3.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0",
+  "thumbnail": "thumbnail.png"
+}
