@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- D2 — L2 refined — same structure as L2 base, every micro-decision worked.
+  No new sections, no new features. Pure craft pass:
+    - typographic scale fixed; tabular numerals; text-wrap balance/pretty; hanging punctuation
+    - statement reworked as a real editorial paragraph with hairline signature
+    - nav hover: sliding Cherry left-rule (220ms ease-out-quart)
+    - hero caption anchored to a film-leader hairline header running across the photo
+    - headline rewritten as a clean italic couplet, drop the structurally-vague <b>
+    - "Today" pill dropped; featured item carries a 3px Cherry left rule instead
+    - lineup hover: Cherry hairline animates in from 0% → 100% width over 240ms
+    - bottom of sidebar reworked as a typographic plate, not a utility stack -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frescopa — Late Brew · L2 refined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Switzer:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --espresso:    #161311;
+  --ash:         #221E1A;
+  --ash-deep:    #0E0C0B;
+  --ash-warm:    #1C1814;          /* a half-step between espresso and ash, used for the booth ground */
+  --cream:       #F2EBDA;
+  --cream-mute:  #B8AE99;
+  --cream-quiet: #6F6657;          /* a tertiary muted tone, between rule and cream-mute */
+  --rule:        #3A332B;
+  --rule-soft:   #2A2520;          /* finer dividers within the sidebar */
+  --bay-dark:    #003744;
+  --cherry:      #E07952;
+  --cherry-deep: #B85F3D;
+  --roast:       #58181D;
+
+  --sans:  'Switzer', system-ui, sans-serif;
+  --serif: 'Spectral', Georgia, serif;
+
+  /* deliberate type scale — no more improvised sizes */
+  --t-10: 10px;
+  --t-11: 11px;
+  --t-12: 12px;
+  --t-13: 13px;
+  --t-14: 14px;
+  --t-15: 15px;
+  --t-17: 17px;
+  --t-19: 19px;
+  --t-22: 22px;
+  --t-26: 26px;
+  --t-32: 32px;
+  --t-44: 44px;
+
+  /* spacing scale */
+  --s-2: 2px; --s-4: 4px; --s-6: 6px; --s-8: 8px; --s-12: 12px; --s-14: 14px;
+  --s-16: 16px; --s-20: 20px; --s-24: 24px; --s-28: 28px; --s-32: 32px;
+  --s-40: 40px; --s-48: 48px; --s-56: 56px; --s-64: 64px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);   /* ease-out-quart */
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { hanging-punctuation: first allow-end last; }
+body {
+  background: var(--espresso);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: var(--t-15);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--cherry); outline-offset: 3px; }
+
+/* numerals consistently tabular wherever digits appear inline */
+.tnum, .price, .count, .stamp, .clock, .addr-line { font-variant-numeric: tabular-nums; }
+
+/* ===========================================================================
+   shell
+   =========================================================================== */
+.shell {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 100vh;
+}
+
+/* ===========================================================================
+   SIDEBAR
+   =========================================================================== */
+.aside {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  border-right: 1px solid var(--rule);
+  background: var(--ash-warm);
+  padding: var(--s-32) var(--s-28) var(--s-24) var(--s-28);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-32);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* — top: kicker + brand mark + statement — */
+.aside__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-28);
+}
+
+.kicker {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: var(--t-10);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-quiet);
+}
+.kicker .open {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-6);
+  color: var(--cherry);
+}
+.kicker .open::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cherry);
+}
+
+.brand {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: var(--t-26);
+  letter-spacing: 0.005em;
+  color: var(--cream);
+  line-height: 1;
+  margin-top: -4px;     /* optical alignment; the digital baseline reads slightly low otherwise */
+}
+.brand b { color: var(--cherry); font-weight: 600; }
+
+.statement {
+  font-family: var(--serif);
+  font-size: var(--t-19);
+  line-height: 1.45;
+  color: var(--cream);
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+.statement em {
+  font-style: italic;
+  color: var(--cream);
+}
+.statement p {
+  margin: 0;
+}
+.statement p + p {
+  margin-top: var(--s-12);
+  font-size: var(--t-15);
+  color: var(--cream-mute);
+  line-height: 1.6;
+  font-style: normal;
+}
+/* the hairline Cherry signature beneath the statement — a quiet brand mark, not a divider */
+.statement::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--cherry);
+  margin-top: var(--s-20);
+}
+
+/* — middle: nav, with deliberate vertical rhythm and a sliding left rule on hover — */
+.aside nav {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--s-16);
+}
+.aside nav .nav-h {
+  font-size: var(--t-10);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-quiet);
+  margin-bottom: var(--s-12);
+}
+.aside nav a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: var(--s-12);
+  padding: var(--s-8) var(--s-12) var(--s-8) var(--s-16);
+  font-family: var(--sans);
+  font-size: var(--t-14);
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  color: var(--cream);
+  border-radius: 1px;
+  transition: color 200ms var(--ease-out), background 200ms var(--ease-out);
+}
+/* the left-rule that slides in on hover — the navigation's signature affordance */
+.aside nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 14px;
+  background: var(--cherry);
+  transition: width 240ms var(--ease-out);
+}
+.aside nav a:hover {
+  color: var(--cream);
+  background: var(--ash-deep);
+}
+.aside nav a:hover::before { width: 4px; }
+.aside nav a:hover .count { color: var(--cherry); }
+.aside nav a[aria-current="page"]::before { width: 4px; background: var(--cream); }
+
+.aside nav a .count {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: var(--t-13);
+  font-weight: 400;
+  color: var(--cream-quiet);
+  letter-spacing: 0.005em;
+  transition: color 200ms var(--ease-out);
+}
+
+/* — bottom: typographic plate — address as the anchor, not a stack of util — */
+.aside__plate {
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--s-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-14);
+}
+.addr-line {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-17);
+  line-height: 1.35;
+  color: var(--cream);
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.addr-line b { font-style: normal; font-family: var(--sans); font-weight: 500; color: var(--cream-mute); font-size: var(--t-13); display: block; margin-top: var(--s-4); letter-spacing: 0.04em; }
+.contact {
+  font-family: var(--sans);
+  font-size: var(--t-13);
+  color: var(--cream-mute);
+  letter-spacing: 0.005em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.contact a { color: var(--cream-mute); }
+.contact a:hover { color: var(--cherry); }
+.util {
+  display: flex;
+  gap: var(--s-14);
+  font-family: var(--sans);
+  font-size: var(--t-10);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+}
+.util a { transition: color 200ms var(--ease-out); }
+.util a:hover { color: var(--cherry); }
+
+/* the small running footer of the sidebar — quiet, anchored to the very bottom */
+.aside__footnote {
+  margin-top: var(--s-8);
+  padding-top: var(--s-12);
+  border-top: 1px dotted var(--rule-soft);
+  font-family: var(--sans);
+  font-size: var(--t-10);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-quiet);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===========================================================================
+   MAIN
+   =========================================================================== */
+main { padding: 0; }
+
+.hero {
+  position: relative;
+  height: 80vh;
+  min-height: 540px;
+  background-image:
+    /* directional gradient for headline contrast */
+    linear-gradient(120deg, rgba(14,12,11,0.78) 0%, rgba(14,12,11,0.32) 50%, rgba(14,12,11,0) 100%),
+    /* subtle vignette to draw the eye inward without going heavy */
+    radial-gradient(ellipse 120% 90% at 35% 60%, rgba(14,12,11,0) 60%, rgba(14,12,11,0.45) 100%),
+    url("https://images.unsplash.com/photo-1497636577773-f1231844b336?w=1800&q=85&auto=format&fit=crop");
+  background-size: cover, cover, cover;
+  background-position: center, center, 30% center;
+  background-color: var(--ash-deep);
+}
+
+/* the hero stamp — anchored to a hairline rule running across the top of the photo */
+.hero__top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: var(--s-20) var(--s-32);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(242, 235, 218, 0.16);
+  font-family: var(--sans);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+}
+.hero__top .left { color: var(--cream); }
+.hero__top .right {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-15);
+  letter-spacing: 0.01em;
+  color: var(--cream-mute);
+  text-transform: none;
+}
+
+.hero__card {
+  position: absolute;
+  bottom: var(--s-64);
+  left: var(--s-56);
+  z-index: 6;
+  max-width: 640px;
+}
+.hero__overline {
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cherry);
+  margin-bottom: var(--s-20);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-12);
+}
+.hero__overline::after {
+  content: "";
+  width: 32px;
+  height: 1px;
+  background: var(--cherry);
+  display: inline-block;
+}
+
+/* the headline as a deliberate italic couplet — dropped the bold sub */
+.hero__h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  line-height: 1.05;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+  margin-bottom: var(--s-12);
+}
+.hero__h1 .second {
+  display: block;
+  margin-top: var(--s-6);
+  color: var(--cream-mute);
+  font-size: 0.78em;
+}
+.hero__h1 .second em {
+  color: var(--cream);
+  font-style: italic;
+}
+
+.hero__lede {
+  font-family: var(--serif);
+  font-size: var(--t-19);
+  line-height: 1.55;
+  color: var(--cream-mute);
+  margin-bottom: var(--s-32);
+  max-width: 38ch;
+  text-wrap: pretty;
+}
+
+.hero__cta-row {
+  display: flex;
+  gap: var(--s-24);
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.hero__cta-row a.cta {
+  font-size: var(--t-12);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  background: var(--cream);
+  padding: 14px 28px;
+  border-radius: 1px;
+  transition: background 240ms var(--ease-out), color 240ms var(--ease-out);
+}
+.hero__cta-row a.cta:hover { background: var(--cherry); color: var(--espresso); }
+.hero__cta-row a.alt {
+  font-size: var(--t-12);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  position: relative;
+  padding: 4px 0;
+}
+.hero__cta-row a.alt::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--cream);
+  transform-origin: right;
+  transition: transform 320ms var(--ease-out), background 200ms var(--ease-out);
+}
+.hero__cta-row a.alt:hover { color: var(--cherry); }
+.hero__cta-row a.alt:hover::after { background: var(--cherry); }
+
+/* ===========================================================================
+   LINEUP — refined typography + Cherry-hairline hover affordance
+   =========================================================================== */
+.lineup {
+  padding: var(--s-64) var(--s-56);
+}
+.lineup__head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--s-32);
+  margin-bottom: var(--s-32);
+  padding-bottom: var(--s-20);
+  border-bottom: 1px solid var(--rule);
+}
+.lineup__h-kicker {
+  font-family: var(--sans);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cherry);
+  margin-bottom: var(--s-8);
+}
+.lineup__head h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-32);
+  line-height: 1.1;
+  color: var(--cream);
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+.lineup__more {
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+  position: relative;
+  padding: 4px 0;
+  white-space: nowrap;
+  align-self: end;
+}
+.lineup__more::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--rule);
+  transition: background 200ms var(--ease-out);
+}
+.lineup__more:hover { color: var(--cherry); }
+.lineup__more:hover::after { background: var(--cherry); }
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule-soft);
+}
+.row .item {
+  background: var(--espresso);
+  padding: var(--s-28) var(--s-24) var(--s-24) var(--s-24);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 240px;
+  position: relative;
+  border-left: 3px solid transparent;        /* base for the featured-item Cherry left-rule */
+  transition: background 220ms var(--ease-out);
+}
+.row .item:hover { background: var(--ash); }
+/* the bottom hairline that animates in from 0% to 100% on hover — the lineup's signature */
+.row .item::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 1px;
+  width: 0;
+  background: var(--cherry);
+  transition: width 320ms var(--ease-out);
+}
+.row .item:hover::after { width: 100%; }
+
+/* featured item — replaces the "Today" pill with a quiet 3px Cherry left rule */
+.row .item.feat {
+  border-left-color: var(--cherry);
+}
+
+.row .item .id {
+  font-family: var(--sans);
+  font-size: var(--t-10);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cream-quiet);
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-8);
+  margin-bottom: var(--s-20);
+}
+.row .item .id .today {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--t-13);
+  text-transform: none;
+  letter-spacing: 0.005em;
+  color: var(--cherry);
+}
+.row .item .name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-26);
+  line-height: 1.1;
+  color: var(--cream);
+  letter-spacing: -0.005em;
+  margin-bottom: var(--s-8);
+  text-wrap: balance;
+}
+.row .item .desc {
+  font-size: var(--t-14);
+  color: var(--cream-mute);
+  line-height: 1.55;
+  margin-bottom: var(--s-20);
+  max-width: 32ch;
+  text-wrap: pretty;
+}
+.row .item .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: var(--t-13);
+  color: var(--cream-mute);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--s-12);
+}
+.row .item .meta .price {
+  font-family: var(--sans);
+  font-size: var(--t-15);
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 0.005em;
+}
+.row .item .meta .price .sym {
+  color: var(--cherry);
+  font-weight: 500;
+  margin-right: 1px;
+}
+
+/* small endline at the bottom of the page — quiet sign-off */
+.endline {
+  margin: 0 var(--s-56);
+  padding: var(--s-20) 0 var(--s-32) 0;
+  border-top: 1px solid var(--rule-soft);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-quiet);
+  flex-wrap: wrap;
+  gap: var(--s-16);
+}
+.endline em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--t-14);
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  text-transform: none;
+}
+
+/* ===========================================================================
+   responsive
+   =========================================================================== */
+@media (max-width: 1024px) {
+  .shell { grid-template-columns: 1fr; }
+  .aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--rule); padding: var(--s-24); gap: var(--s-24); }
+  .aside__top { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: var(--s-24); }
+  .aside__top > * { flex-basis: 100%; }
+  .aside nav { border-top: 0; padding-top: 0; flex-direction: row; flex-wrap: wrap; gap: var(--s-8) var(--s-16); }
+  .aside nav .nav-h { display: none; }
+  .aside nav a { padding: var(--s-4) var(--s-8) var(--s-4) var(--s-12); font-size: var(--t-13); }
+  .aside nav a .count { display: none; }
+  .aside__plate { border-top: 1px solid var(--rule-soft); padding-top: var(--s-16); }
+  .aside__footnote { display: none; }
+  .hero { height: 64vh; min-height: 420px; }
+  .hero__top { padding: var(--s-14) var(--s-20); }
+  .hero__card { left: var(--s-24); right: var(--s-24); bottom: var(--s-32); }
+  .lineup { padding: var(--s-48) var(--s-24); }
+  .row { grid-template-columns: 1fr; }
+  .endline { margin: 0 var(--s-24); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="aside" aria-label="Brand and navigation">
+
+    <div class="aside__top">
+
+      <p class="kicker">
+        <span>Counter no. 01</span>
+        <span class="open">Open · 4:12 a.m.</span>
+      </p>
+
+      <h1 class="brand">Frescopa<b>.</b></h1>
+
+      <div class="statement">
+        <p><em>Coffee for the early shift,</em> and the late one. Roasted in Lehi, Utah; pulled at the counter from four in the morning.</p>
+        <p>Three counters, in three states. A subscription, a quiz, and a list of things you can ask for at the bar.</p>
+      </div>
+
+    </div>
+
+    <nav aria-label="Primary">
+      <p class="nav-h">The catalogue</p>
+      <a href="/coffee" aria-current="page">Coffee <span class="count">32 in stock</span></a>
+      <a href="/tea">Tea <span class="count">9</span></a>
+      <a href="/machines">Machines <span class="count">14</span></a>
+      <a href="/accessories">Accessories <span class="count">22</span></a>
+      <a href="/locations">Locations <span class="count">3 counters</span></a>
+      <a href="/subscription">Subscription <span class="count">weekly</span></a>
+      <a href="/sustainability">Sustainability</a>
+    </nav>
+
+    <div class="aside__plate">
+
+      <p class="addr-line">
+        3900 Adobe Way
+        <b>Lehi, Utah · open at 4:00 a.m.</b>
+      </p>
+
+      <div class="contact">
+        <a href="mailto:info@frescopa.coffee">info@frescopa.coffee</a>
+        <span>(385) 345-0000</span>
+      </div>
+
+      <div class="util">
+        <a href="/search">Search</a>
+        <a href="/login">Sign in</a>
+        <a href="/cart">Cart</a>
+      </div>
+
+      <p class="aside__footnote">
+        <span>Shift no. 1 217</span>
+        <span>04 May 2026</span>
+      </p>
+
+    </div>
+
+  </aside>
+
+  <main>
+
+    <section class="hero" role="img" aria-label="An espresso shot pulling, photographed in low warm light">
+
+      <div class="hero__top">
+        <span class="left">Counter, Lehi · Station 01</span>
+        <span class="right"><em>brewed at 4:12 a.m.</em></span>
+      </div>
+
+      <div class="hero__card">
+        <p class="hero__overline">Tonight's pour</p>
+        <h2 class="hero__h1">
+          Coffee for the rest of the night,
+          <span class="second"><em>and</em> the start of the morning.</span>
+        </h2>
+        <p class="hero__lede">Roasts that lean dark, body that holds up to milk and to time, and a quiz that takes ninety seconds.</p>
+        <div class="hero__cta-row">
+          <a class="cta" href="/quiz">Take the quiz</a>
+          <a class="alt" href="/coffee">Browse coffee</a>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="lineup" aria-label="Tonight's roast lineup">
+
+      <header class="lineup__head">
+        <div>
+          <p class="lineup__h-kicker">The night-roast lineup</p>
+          <h2>Three coffees that hold up after midnight.</h2>
+        </div>
+        <a class="lineup__more" href="/coffee">All 32 coffees →</a>
+      </header>
+
+      <div class="row">
+        <a class="item feat" href="/coffee">
+          <div>
+            <p class="id">No. 01 · Dark<span class="today">today</span></p>
+            <h3 class="name">Adobe Way Blend</h3>
+            <p class="desc">Bittersweet chocolate, char, a long finish that takes milk well.</p>
+          </div>
+          <p class="meta">
+            <span>Whole bean · 12 oz</span>
+            <span class="price"><span class="sym">$</span>22</span>
+          </p>
+        </a>
+
+        <a class="item" href="/coffee">
+          <div>
+            <p class="id">No. 02 · Dark</p>
+            <h3 class="name">Lehi Late</h3>
+            <p class="desc">Smoke, walnut, treacle. Made for the second shift.</p>
+          </div>
+          <p class="meta">
+            <span>Whole bean · 12 oz</span>
+            <span class="price"><span class="sym">$</span>22</span>
+          </p>
+        </a>
+
+        <a class="item" href="/coffee">
+          <div>
+            <p class="id">No. 03 · Medium-Dark</p>
+            <h3 class="name">Bay Hill Espresso</h3>
+            <p class="desc">Pulled twelve seconds long. Cocoa, dried fig, balanced acidity.</p>
+          </div>
+          <p class="meta">
+            <span>Whole bean · 12 oz</span>
+            <span class="price"><span class="sym">$</span>24</span>
+          </p>
+        </a>
+      </div>
+
+    </section>
+
+    <p class="endline">
+      <em>Smiles, one cup at a time.</em>
+      <span>info@frescopa.coffee · (385) 345-0000</span>
+      <span>© Frescopa, Inc.</span>
+    </p>
+
+  </main>
+
+</div>
+
+</body>
+</html>

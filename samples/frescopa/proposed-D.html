@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- D2 — "Late Brew" — quick mock
+  Lane: dark, after-hours, intentional (Saint Frank specialty pages, Klim foundry, late-night editorial)
+  Strategy: drenched (Espresso ground 85%+ of surface; one Cherry highlight)
+  Move: tonal pivot — coffee as nocturnal companion (early-morning shift / late-night studio), opposite of "warm hospitality"
+  Risk: dark-coffee cliche; mitigated with off-axis composition + restrained color story (no neon, no "tech dark mode") -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frescopa — Late Brew (D2 mock)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Switzer:wght@300;400;500;600;700&family=Spectral:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --espresso: #161311;       /* page ground — warm-near-black, not pure */
+  --ash:      #221E1A;       /* secondary surface */
+  --ash-deep: #0E0C0B;       /* deepest layer */
+  --cream:    #F2EBDA;       /* type on dark */
+  --cream-mute: #B8AE99;     /* secondary type */
+  --rule:     #3A332B;       /* divider on dark */
+  --bay-dark: #003744;       /* deep brand teal */
+  --cherry:   #E07952;       /* the single warm highlight */
+  --roast:    #58181D;       /* pinned brand wine — used in product chip only */
+
+  --sans: 'Switzer', system-ui, sans-serif;
+  --serif: 'Spectral', Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--espresso);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--cherry); outline-offset: 3px; }
+
+/* nav — minimal, label register */
+.nav {
+  padding: 22px 40px;
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  align-items: center;
+  gap: 32px;
+  border-bottom: 1px solid var(--rule);
+  font-size: 13px;
+}
+.nav .brand {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+}
+.nav .brand b { color: var(--cherry); font-weight: 600; }
+.nav .links { display: flex; gap: 26px; flex-wrap: wrap; color: var(--cream-mute); }
+.nav .links a:hover { color: var(--cherry); }
+.nav .util { display: flex; gap: 18px; color: var(--cream-mute); font-size: 12px; }
+
+/* hero — off-axis composition: photo left 60%, copy right 40%; copy is small + airy.
+   the Single Strong Move: minimum text, maximum negative space. */
+.hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  min-height: 80vh;
+  align-items: stretch;
+}
+.hero__photo {
+  position: relative;
+  background-image:
+    linear-gradient(to right, rgba(22,19,17,0) 60%, rgba(22,19,17,0.85) 100%),
+    url("https://images.unsplash.com/photo-1497636577773-f1231844b336?w=1600&q=85&auto=format&fit=crop");
+  background-size: cover;
+  background-position: 30% center;
+  background-color: var(--ash-deep);
+}
+.hero__photo .timestamp {
+  position: absolute;
+  top: 36px;
+  left: 40px;
+  font-family: 'Spectral', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--cream-mute);
+  letter-spacing: 0.02em;
+}
+.hero__copy {
+  padding: 40px 56px 56px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--espresso);
+}
+.hero__overline {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cherry);
+  margin-bottom: 26px;
+}
+.hero__h1 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--cream);
+  margin-bottom: 22px;
+  max-width: 18ch;
+}
+.hero__h1 b {
+  font-style: normal;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.85em;
+  letter-spacing: -0.02em;
+  display: block;
+  color: var(--cream);
+  margin-top: 6px;
+}
+.hero__lede {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--cream-mute);
+  max-width: 36ch;
+  margin-bottom: 32px;
+}
+.hero__cta-row {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hero__cta-row a.cta {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--espresso);
+  background: var(--cream);
+  padding: 13px 22px;
+  border-radius: 1px;
+  transition: background 160ms;
+}
+.hero__cta-row a.cta:hover { background: var(--cherry); color: var(--espresso); }
+.hero__cta-row a.alt {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 4px;
+}
+.hero__cta-row a.alt:hover { border-bottom-color: var(--cherry); color: var(--cherry); }
+
+/* one supporting moment — a single inline product bar showing how the system extends */
+.lineup {
+  border-top: 1px solid var(--rule);
+  padding: 56px 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.lineup__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.lineup__head h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: var(--cream);
+  letter-spacing: -0.005em;
+}
+.lineup__head h2 b {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--cream-mute);
+  font-size: 0.7em;
+  display: block;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.lineup__head .more {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cherry);
+  border-bottom: 1px solid var(--cherry);
+  padding-bottom: 3px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.row .item {
+  background: var(--espresso);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  position: relative;
+}
+.row .item:hover { background: var(--ash); }
+.row .item .id {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-mute);
+}
+.row .item .name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.15;
+  color: var(--cream);
+  margin: 22px 0 8px;
+}
+.row .item .desc {
+  font-size: 13px;
+  color: var(--cream-mute);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.row .item .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--cream);
+}
+.row .item .meta .price { color: var(--cherry); font-weight: 600; letter-spacing: 0.02em; }
+.row .item.feat::before {
+  content: "Today";
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  background: var(--cherry);
+  color: var(--espresso);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  padding: 3px 7px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.foot {
+  padding: 28px 40px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--cream-mute);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero__photo { min-height: 320px; }
+  .hero__photo .timestamp { top: 20px; left: 24px; }
+  .hero__copy { padding: 40px 24px; }
+  .nav { grid-template-columns: 1fr auto; padding: 18px 24px; }
+  .nav .links { grid-column: 1 / -1; gap: 16px; font-size: 12px; }
+  .lineup { padding: 40px 24px; }
+  .row { grid-template-columns: repeat(2, 1fr); }
+  .foot { padding: 22px 24px; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <span class="brand">Frescopa<b>.</b></span>
+  <nav class="links" aria-label="Primary">
+    <a href="/coffee">Coffee</a>
+    <a href="/tea">Tea</a>
+    <a href="/machines">Machines</a>
+    <a href="/accessories">Accessories</a>
+    <a href="/locations">Locations</a>
+    <a href="/sustainability">Sustainability</a>
+  </nav>
+  <div class="util">
+    <a href="/search">Search</a>
+    <a href="/login">Sign in</a>
+    <a href="/cart">Cart</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero__photo" role="img" aria-label="An espresso shot pulling, photographed in low warm light">
+    <span class="timestamp">brewed at 4:12 a.m.</span>
+  </div>
+  <div class="hero__copy">
+    <p class="hero__overline">For the early shift &amp; the late one</p>
+    <h1 class="hero__h1">
+      Coffee, for the rest of the night.
+      <b>And the start of the morning.</b>
+    </h1>
+    <p class="hero__lede">Frescopa makes coffee for the hours nobody else is paying attention. Roasts that lean dark, body that holds up to milk and to time, and a quiz that takes ninety seconds.</p>
+    <div class="hero__cta-row">
+      <a class="cta" href="/quiz">Take the quiz</a>
+      <a class="alt" href="/coffee">Browse coffee</a>
+    </div>
+  </div>
+</section>
+
+<section class="lineup">
+  <div class="lineup__head">
+    <h2><b>The night roast lineup</b>Three coffees that hold up after midnight.</h2>
+    <a class="more" href="/coffee">All coffee →</a>
+  </div>
+  <div class="row">
+    <a class="item feat" href="/coffee">
+      <span class="id">No. 01 · Dark</span>
+      <p class="name">Adobe Way Blend</p>
+      <p class="desc">Bittersweet chocolate, char, a long finish that takes milk well.</p>
+      <span class="meta"><span>Whole bean · 12oz</span><span class="price">$22</span></span>
+    </a>
+    <a class="item" href="/coffee">
+      <span class="id">No. 02 · Dark</span>
+      <p class="name">Lehi Late</p>
+      <p class="desc">Smoke, walnut, treacle. Made for the second shift.</p>
+      <span class="meta"><span>Whole bean · 12oz</span><span class="price">$22</span></span>
+    </a>
+    <a class="item" href="/coffee">
+      <span class="id">No. 03 · Medium-Dark</span>
+      <p class="name">Bay Hill Espresso</p>
+      <p class="desc">Pulled twelve seconds long. Cocoa, dried fig, balanced acidity.</p>
+      <span class="meta"><span>Whole bean · 12oz</span><span class="price">$24</span></span>
+    </a>
+    <a class="item" href="/subscription">
+      <span class="id">Subscription · weekly</span>
+      <p class="name">MyBarista, weekly</p>
+      <p class="desc">Hand-selected coffees delivered each week. Skip, slow, or change roasts in a click.</p>
+      <span class="meta"><span>From $20 / week</span><span class="price">Start →</span></span>
+    </a>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>3900 Adobe Way, Lehi, Utah · open at 4:00 a.m.</span>
+  <span>info@frescopa.coffee</span>
+  <span>© Frescopa, Inc.</span>
+</footer>
+
+</body>
+</html>

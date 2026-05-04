@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "slug": "frescopa",
   "title": "Frescopa",
-  "tagline": "Stunning reskin of a white-label coffee retail demo. Variant B (\"Espresso Bar\") amplifies one captured trait — coffee-shop-as-third-place — by promoting the brand's pinned teal #00647D from accent to page substrate. Three views: the composed home, a focused typographic exploration of the hero H1, and a chromatic-stripe composition that breaks the canonical band silhouette with vertical splits, a diagonal cut, and photo plates that bridge section seams.",
+  "tagline": "Stunning reskin of a white-label coffee retail demo. Eight views explore two parallel directions. Variants A-C test the brand's pinned teal from accent to substrate (composed home, hero-typography exploration, chromatic-stripes-broken composition). Variants D-H test a tonal pivot to a committed dark mode — coffee for the early shift and the late one — first as the originating Late Brew direction (D), then as a craft-refined sidebar layout (E), then palette-swapped over three other brand grounds (F Refreshed, G Espresso Bar, H Amber).",
 
   "source": {
     "url": "https://frescopa.coffee/",
@@ -74,6 +74,46 @@
       "thesis": "A composition-led re-read of the home as a chromatic chord rather than a stack of equal-height bands. The page is built from full-bleed palette planes (Bay teal, Roast wine, Crema, Bay-Tint, Bay-Dark, sliced multi-color), but the rigid horizontal-stripe rhythm is broken four ways: the hero is a vertical split with the photo bridging into the next section, the subscription block is three edge-to-edge color columns of unequal width, locations uses a diagonal clip-path cut between Bay-Tint and a café photo, and the five product categories sit as vertical color planes with photographic top halves. Featured floats a Crema plate offset over a pour-over photograph. Free-stock photography (Unsplash) sits across all sections; three playful display fonts carry the type identity.",
       "fix": "<strong>Composition</strong> — the canonical hero-then-band silhouette is replaced by vertical splits, a diagonal-clipped cut, sliced color planes, and offset floating plates that overlap photographic backgrounds. <strong>Three playful display fonts</strong> — Fraunces (variable, opsz 144 + SOFT 100 + WONK 1) drives the hero at clamp ~96px with character-rich glyph alternates; Instrument Serif italic carries the second big-font moment at ~64px floating over the Featured photo; Caveat appears in two handwritten margin scribbles (subscription \"your weekly ritual ↗\", Featured \"bright + citrus ↘\"). <strong>Utility type</strong> — Spectral italic for editorial counterpoint, Bricolage Grotesque for labels, Hanken Grotesk for body, Martian Mono for catalog meta; chosen off the brand-register reflex-reject list. <strong>Photography</strong> — Unsplash free-stock imagery (latte top-down, barista delivery, café interior, espresso machine, beans, pods, pour-over, gift coffee bag) replaces extracted product imagery on this variant. <strong>Palette</strong> — Bay + Roast pinned; full chromatic deployment of Bay-Tint, Bay-Deep, Bay-Dark, Crema-Pale, Cherry, Tannin, Gilt across adjacent planes to make the substrate sing.",
       "proposedFile": "proposed-C.html"
+    },
+    {
+      "id": "D",
+      "name": "Late Brew",
+      "dominantDimension": "tone",
+      "thesis": "A tonal pivot away from \"warm hospitality\" toward \"coffee for the rest of the night, and the start of the morning.\" Committed dark mode: drenched Espresso ground covers 85%+ of surface, Cream Spectral italic carries the editorial register, Cherry coral as the only highlight (a small dot, a price symbol, a hover affordance). The hero is an off-axis 60/40 split — a single warm-lit espresso photograph on the left bridging into a typographic copy column on the right, with a 4:12 a.m. timestamp anchored on the photo. The originating direction that the L2 sub-variants then refine and palette-swap.",
+      "fix": "<strong>Tonal pivot</strong> — the brand voice shifts from broad-friendly retail to nocturnal-companion-of-the-early-shift; \"open at 4:00 a.m.\" becomes the operational signal. <strong>Drenched dark</strong> — Espresso #161311 ground replaces all white-label cream-and-coral cliches. <strong>Photography</strong> — a single dark-warm Unsplash espresso photograph replaces the extracted retail imagery. <strong>Type</strong> — Switzer (sans body + labels) + Spectral italic (editorial display); both off the brand-register reflex-reject list. <strong>Restraint</strong> — the second pinned brand color, Roast wine, sits in reserve for editorial moments; Bay-Dark teal appears as a small structural seam preserving brand-pin contract.",
+      "proposedFile": "proposed-D.html"
+    },
+    {
+      "id": "E",
+      "name": "Late Brew, sidebar refined",
+      "dominantDimension": "craft",
+      "thesis": "A pure craft pass on a sidebar+main composition derived from the Late Brew direction. No new sections, no new features — every micro-decision worked. Type scale formalized as CSS custom properties (10/11/12/13/14/15/17/19/22/26/32/44 px). Tabular numerals everywhere digits appear. Statement reworked as a real editorial paragraph with hairline brand signature. Nav with sliding Cherry left-rule on hover (240ms ease-out-quart). Hero caption anchored to a film-leader hairline header. Headline rewritten as a clean italic couplet (drop the structurally-vague <b>). \"Today\" pill replaced by a 3px Cherry left rule. Lineup hover: Cherry hairline animates from 0% to 100% width. Bottom of sidebar reworked as a typographic plate, not a utility stack.",
+      "fix": "<strong>Typographic system</strong> — formal scale tokens, tabular-nums on numerals, text-wrap balance/pretty, hanging punctuation. <strong>Sidebar craft</strong> — kicker line above the brand mark with a pulsing Cherry open-indicator dot; statement as a 2-paragraph editorial block with a 32px Cherry signature hairline; nav with sliding 4px Cherry left-rule on hover; bottom plate anchored by an italic Spectral address line plus a small dotted footnote rule carrying \"Shift no. · 04 May 2026\". <strong>Hero craft</strong> — hairline header running across the photo (\"Counter, Lehi · Station 01\" left, italic timestamp right); overline trailed by a 32px Cherry rule; CTAs with origin-right underline-ease (320ms ease-out-quart). <strong>Lineup craft</strong> — \"Today\" pill replaced by a 3px Cherry left-rule on the featured item plus an italic Spectral \"today\" prefix; price uses tabular numerals with a single Cherry $ glyph as the only accent; bottom-hairline-on-hover replaces background flash. <strong>System</strong> — ease-out-quart on every transition, prefers-reduced-motion query gates animations, two new tonal tokens (--ash-warm and --cream-quiet) for tertiary precision.",
+      "proposedFile": "proposed-E.html"
+    },
+    {
+      "id": "F",
+      "name": "Late Brew · Refreshed palette",
+      "dominantDimension": "ground-stark",
+      "thesis": "The refined L2 sidebar layout (E), palette-swapped to DESIGN-A.md's stark-white tokens. Steam #FFFFFF page ground, Crema-Pale #F7F6F4 sidebar, Espresso #1A1A1A body text, Bay teal as accent, Cherry coral as the warm highlight, Roast wine pinned for emphasis. The dark photographic header sits as an intentional contrast against the light page — a film-poster opening followed by a calm editorial body. Tests how the Late Brew composition reads on the brand's most retail-confident ground.",
+      "fix": "<strong>Pure palette swap</strong> — `:root` tokens remapped from D2's dark-mode values to DESIGN-A.md's brand-native role names; all layout CSS unchanged. <strong>Hero scope override</strong> — small `.hero` block redefines `--cream`, `--cream-mute`, and `--espresso` within hero context only, keeping overlay text and CTA cream-on-dark since the photo is dark in every palette. <strong>Sidebar tone</strong> — Crema-Pale alt-surface against Steam main; the slight tonal step replaces the dark-D2 ash-warm sidebar move. <strong>Hover palette</strong> — Bay-Tint #E5EFF2 as the nav-hover surface (was Ash-deep in D2).",
+      "proposedFile": "proposed-F.html"
+    },
+    {
+      "id": "G",
+      "name": "Late Brew · Espresso Bar palette",
+      "dominantDimension": "ground-substrate",
+      "thesis": "The refined L2 sidebar layout (E) with DESIGN-B.md's saturated-teal-as-substrate move applied. Bay teal #00647D promoted from accent to page ground, Bay-Dark #003744 as the deeper sidebar wall, Porcelain text, Tannin #C95942 replacing Cherry as the warm highlight (Cherry would feel monochrome on saturated teal), Roast wine pinned in reserve for editorial moments. The pinned brand teal IS the wall the brand lives against. Tests how the Late Brew composition reads when the brand's most defining color carries 60%+ of the page surface.",
+      "fix": "<strong>Pure palette swap</strong> — `:root` tokens remapped to B's substrate role-swap; all layout CSS unchanged. <strong>Substrate move</strong> — Bay teal as page ground covers the lineup section and the main pane; Bay-Dark as sidebar deepens the substrate by one step (espresso-bar wall pattern from DESIGN-B § 2). <strong>Highlight substitution</strong> — Tannin (deepened coral) replaces Cherry per DESIGN-B's drop-rule; the warm-accent slot is single-occupancy. <strong>Hero scope override</strong> — same as F; the dark photographic header keeps cream-on-dark overlay text via a localized token redefinition. <strong>Rule colors</strong> — Rule-on-Bay #4A8294 for primary dividers, computed deeper-teal for secondary.",
+      "proposedFile": "proposed-G.html"
+    },
+    {
+      "id": "H",
+      "name": "Late Brew · Amber palette",
+      "dominantDimension": "ground-warm",
+      "thesis": "The refined L2 sidebar layout (E) with the B-yellow fork's amber substrate. Amber #EBA439 promoted to page substrate, Porcelain-warm #FAF4E5 sidebar as a paper refuge against the saturated amber ground, deep ink #1F1208 as a body text that works on both grounds, Roast wine becomes the warm-deep highlight (Cherry on amber would feel monochrome), Bay teal preserved as the cool pin in nav-hover. Tests the most expressive ground in the library against the most-restrained sidebar layout.",
+      "fix": "<strong>Pure palette swap</strong> — `:root` tokens remapped to the B-yellow fork; all layout CSS unchanged. <strong>Sidebar adjustment</strong> — sidebar uses Porcelain-warm rather than darker-amber-brown to keep body text contrast reliable across both grounds (a single `--cream` value works on both Amber and Porcelain-warm at AA+). <strong>Highlight role swap</strong> — Roast wine takes the Cherry slot (warm-deep highlight on warm-bright substrate; preserves both pinned colors). <strong>Cool pin preserved</strong> — Bay teal #00647D appears in the nav-hover surface and as the focus-ring color, so the brand's two pinned colors both stay visible. <strong>Rule colors</strong> — Amber-Mid #C68A29 for primary dividers, lighter amber #DCB252 for secondary.",
+      "proposedFile": "proposed-H.html"
     }
   ],
 
