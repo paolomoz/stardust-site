@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         impeccable:craft
+  writtenAt:         2026-05-04T09:00:00Z
+  page:              block-library
+  pageUrl:           null (synthetic)
+  againstDirection:  stardust/direction.md (Active 2026-05-03T22:00:00Z, Mode A)
+  consumedBy:        stardust:prototype/critique
+  readArtifacts:
+    - stardust/prototypes/block-library-shape.md
+    - stardust/prototypes/home-proposed.html (canon — chrome + variant A/G + carousel + theme-section + delight motifs)
+    - stardust/prototypes/data-center-proposed.html (canon — hero-static + flow-4-step + use-case-50-50 + customer-story-grid + variant G architecture grid)
+    - DESIGN.md
+    - DESIGN.json
+    - stardust/direction.md
+    - stardust/current/pages/home.json
+    - stardust/current/pages/data-center.json
+    - stardust/current/pages/geforce-rtx-5090.json
+    - stardust/current/pages/shield.json
+    - stardust/current/pages/case-study-serve-robotics.json
+    - stardust/current/pages/glossary-generative-physical-ai.json
+    - stardust/current/pages/industries-healthcare.json
+    - stardust/current/pages/data-center-dgx-gb300.json
+    - stardust/current/pages/high-performance-computing.json
+  unsourcedContent:
+    - selector: 'section[data-block-sample="H3"] [data-placeholder="rtx-5090-spec-line"]'
+      type: spec-text
+      reason: 'RTX 5090 spec values (CUDA cores etc.) not in captured page JSON beyond starting price'
+      count: 1
+    - selector: 'section[data-block-sample="P1"] [data-placeholder^="stat-"]'
+      type: number
+      reason: 'KPI numerals — corpus did not capture quantitative content past 250-char snippet truncation'
+      count: 4
+    - selector: 'section[data-block-sample="P3"] td.em-dash'
+      type: spec-cell
+      reason: 'comparison table values — captured page lists 2 spec tables but not their cell content; em-dash convention rendered (NOT placeholder signature) per real product spec UX, as specified by the brief'
+      count: 6
+    - selector: 'section[data-block-sample="P4"] [data-placeholder="retailer-price"]'
+      type: price
+      reason: '5 retailer prices — corpus did not capture per-retailer prices (only the starting MSRP from product detail page)'
+      count: 5
+    - selector: 'section[data-block-sample="P4"] [data-placeholder="retailer-logo"]'
+      type: logo
+      reason: '5 retailer logos — no logo files in capture'
+      count: 5
+    - selector: 'section[data-block-sample="P6"] [data-placeholder="partner-logo"]'
+      type: logo
+      reason: '8 partner wall logos — no partner logo files in capture'
+      count: 8
+    - selector: 'section[data-block-sample="L1"] [data-placeholder="article-body"]'
+      type: copy
+      reason: 'L1 article body paragraphs not captured per H2 section; only H2 headings and metaDescription captured from glossary entry'
+      count: 2
+    - selector: 'section[data-block-sample="L2"] [data-placeholder="faq-answer"]'
+      type: copy
+      reason: 'FAQ answers not captured — only Q-style H2 headings'
+      count: 4
+    - selector: 'footer .footer-column li [data-placeholder="footer-link"]'
+      type: link
+      reason: 'per-column footer link items — column headings real, item lists not isolated in extraction'
+      count: 19
+    - selector: 'section[data-block-sample="L4"] [data-placeholder^="case-"]'
+      type: meta-field
+      reason: 'L4 case-study-meta — case-study-serve-robotics.json captures the H2 LABELS (Customer, Partner, Use Case, Products) but not the body values that follow them; only Customer is derivable from the page title. Industry / Use Case / Products / Partner all rendered as placeholders rather than invented from image filenames or general context.'
+      count: 4
+  briefDeviations:
+    - case: 'unsourcedContent[] additions beyond the brief-specified 6'
+      change: 'added L1 article-body paragraphs (2), L2 faq-answer bodies (4), P4 retailer logos (5) as additional placeholder cases'
+      reason: 'these are real unsourced content the v0 blocks needed to render; surfacing them in provenance gives the migrate phase complete visibility into all gaps. Brief-specified 6 are all present (H3 spec, P1 stats, P3 em-dash cells, P4 prices, P6 partner logos, footer 19 links). The rendered placeholders all use the F-002 visual signature.'
+    - case: 'P3 comparison cells use em-dash convention, not placeholder signature'
+      change: 'cells without captured values render bare em-dash glyphs without [data-placeholder] wrappers'
+      reason: 'per brief explicit instruction: "render em-dash for missing values per real product spec convention, NOT the F-002 signature"'
+  critique:
+    - ranAt: '2026-05-04T09:30:00Z'
+      mode: 'phase-2.5-mandatory'
+      detector:
+        ran: true
+        findings: 2
+        falsePositives: 2
+        notes: 'both detector findings are "overused-font" for Arial / Helvetica fallback — documented brand-faithful inversions per DESIGN.json#extensions.brand_faithful_inversions, NOT issues'
+      llmReview:
+        ran: true
+        findings: { P0: 3, P1: 3, P2: 5, P3: 4 }
+        verdict: 'aesthetic_coherence_score=7.5/10; would_an_observer_say_AI_made_this=no'
+        what_worked:
+          - '10 v0 blocks read as native to the system (mono eyebrow, hairline borders, sharp corners, sentence-case)'
+          - 'three-level wayfinding spine (library-index → tier-header → block-label) is legible at a glance'
+          - 'block-label scaffolding signature (left-stripe + mono meta) reliably reads as catalog scaffolding, not a content block'
+      resolution: 'all P0 + P1 fixed in-place'
+      P0_fixes:
+        - 'page-hero meta count corrected: 12/13 → 15/10'
+        - 'surface alternation in Chrome and Hero tiers: C1=W,C2=D,C3=W,C4=D and H1=D,H2=W,H3=D,H4=W (wrappers swapped; live samples inside still render at their canon dark/light)'
+        - 'page now has exactly one h1 (page-hero); H3 hero-product and L1 article-body sample h1s demoted to h2 with .hero-product-headline / .article-headline classes preserving display scale + block-label note'
+      P1_fixes:
+        - 'placeholder badge moved from absolute (top:100%) to inline-flow inline-block, with margin-bottom:22px reservation on the placeholder element so badges no longer collide with the next sibling row/heading'
+        - 'block-label now breaks out of .container via negative margin so it spans the same width as the rendered sample beneath it (matters for full-bleed samples H1/H2/H4/P7); label-id strip indented to maintain green-keyline alignment'
+        - 'long dark band (5 consecutive dark sections through tier-header-2 → H4) auto-resolved by the surface-alternation fix above'
+      P2_P3_unfixed_count: 9
+      P2_P3_notes: 'minor consistency / cognitive-load items deferred — itemized in critique JSON; no contract violations, no a11y blockers'
+  stardustVersion:   0.3.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Gensite block library: 25 layout primitives for composing NVIDIA on the fly, rendered in the approved Mode A brand-faithful direction.">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>Gensite Block Library | NVIDIA</title>
+<style>
+  :root {
+    /* Tokens (DESIGN.json — Mode A brand-faithful) */
+    --heading-font-family: 'NVIDIA-NALA', Arial, Helvetica, sans-serif;
+    --body-font-family:    'NVIDIA-NALA', Arial, Helvetica, sans-serif;
+    --mono-font-family:    'IBM Plex Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+    --heading-xxl: 61px;
+    --heading-xl:  39px;
+    --heading-lg:  25px;
+    --heading-md:  20px;
+    --body:        16px;
+    --body-sm:     13px;
+
+    --line-height-heading: 1.05;
+    --line-height-body:    1.5;
+
+    --color-bg:               #eeeeee;
+    --color-surface:          #ffffff;
+    --color-surface-dark:     #000000;
+    --color-surface-dark-alt: #111111;
+    --color-surface-soft:     #f7f7f7;
+    --color-fg:               #000000;
+    --color-fg-secondary:     #1a1a1a;
+    --color-fg-muted:         #666666;
+    --color-fg-on-dark:       #ffffff;
+    --color-fg-on-dark-muted: #cccccc;
+    --color-accent:           #76b900;
+    --color-accent-hover:     #6aa800;
+    --color-border:           #cccccc;
+    --color-border-dark:      rgba(255, 255, 255, 0.08);
+
+    --spacing-xxs: 4px;
+    --spacing-xs:  8px;
+    --spacing-sm:  16px;
+    --spacing-md:  24px;
+    --spacing-lg:  32px;
+    --spacing-xl:  48px;
+    --spacing-2xl: 64px;
+    --section-padding: 48px;
+    --max-width:       1280px;
+    --radius:          0px;
+    --radius-secondary: 2px;
+
+    --shadow-focus:   0 0 0 2px var(--color-accent);
+    --shadow-sticky:  0 2px 8px rgba(0, 0, 0, 0.16);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    line-height: var(--line-height-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  button { font-family: inherit; cursor: pointer; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--heading-font-family); font-weight: 700; margin: 0; }
+  h1 { font-size: var(--heading-xxl); line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-size: var(--heading-xl);  line-height: 1.15; }
+  h3 { font-size: var(--heading-lg);  line-height: 1.25; }
+  h4 { font-size: var(--heading-md);  line-height: 1.3;  }
+  p  { margin: 0; }
+  ul, ol { margin: 0; }
+
+  .container { max-width: var(--max-width); margin: 0 auto; padding-inline: var(--spacing-xl); }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+  /* Skip link (canon) */
+  .skip-link {
+    position: absolute; top: 0; left: 0;
+    background: var(--color-accent); color: var(--color-fg);
+    padding: 12px 18px;
+    font-family: var(--heading-font-family); font-weight: 700; font-size: 14px;
+    text-decoration: none; z-index: 1000;
+    transform: translateY(-100%);
+    transition: transform 150ms ease-out;
+  }
+  .skip-link:focus-visible { transform: translateY(0); outline: 2px solid var(--color-fg); outline-offset: -2px; }
+
+  /* Surfaces */
+  .theme-section { padding-block: var(--section-padding); }
+  .surface-white { background: var(--color-surface);      color: var(--color-fg); }
+  .surface-light { background: var(--color-bg);           color: var(--color-fg); }
+  .surface-dark  { background: var(--color-surface-dark); color: var(--color-fg-on-dark); }
+
+  /* Buttons (canon) */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-xs);
+    padding: 16px 24px; border: none; border-radius: var(--radius);
+    font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body-sm); line-height: 1;
+    text-decoration: none;
+    transition: background-color 150ms ease-out, color 150ms ease-out;
+  }
+  .btn:focus-visible { outline: none; box-shadow: var(--shadow-focus), 0 0 0 4px var(--color-surface-dark); }
+  .btn-primary { background: var(--color-accent); color: var(--color-fg); }
+  .btn-primary:hover { background: var(--color-accent-hover); }
+  .btn-secondary { background: var(--color-surface-dark); color: var(--color-fg-on-dark); }
+  .surface-dark .btn-secondary { background: transparent; color: var(--color-fg-on-dark); box-shadow: inset 0 0 0 1px var(--color-fg-on-dark); }
+  .surface-dark .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+  /* Header (canon — verbatim from home) */
+  .site-header { background: var(--color-surface-dark); color: var(--color-fg-on-dark); position: sticky; top: 0; z-index: 100; }
+  .site-header-inner { display: flex; align-items: center; height: 64px; padding-inline: var(--spacing-md); gap: var(--spacing-lg); }
+  .site-logo { color: var(--color-accent); font-weight: 700; font-size: 18px; letter-spacing: 0.04em; font-family: var(--heading-font-family); flex-shrink: 0; }
+  .site-nav { display: flex; gap: var(--spacing-md); flex: 1; }
+  .site-nav a { color: var(--color-fg-on-dark); font-weight: 700; font-size: var(--body-sm); padding: 22px 0; display: inline-flex; align-items: center; gap: 4px; border-bottom: 2px solid transparent; transition: border-color 150ms ease-out; }
+  .site-nav a:hover, .site-nav a:focus-visible { border-bottom-color: var(--color-accent); outline: none; }
+  .site-nav .caret { width: 8px; height: 8px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg) translateY(-2px); opacity: 0.7; }
+  .site-utility { display: flex; gap: 4px; align-items: center; }
+  .icon-btn { background: transparent; color: var(--color-fg-on-dark); border: none; padding: 12px; min-width: 44px; min-height: 44px; font-size: var(--body-sm); font-weight: 400; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; }
+  .icon-btn:hover { color: var(--color-accent); }
+  .icon-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .icon-btn .ic { font-size: 18px; line-height: 1; }
+  .locale-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
+
+  /* Geo banner (canon) */
+  .geo-banner { background: var(--color-surface-dark-alt); color: var(--color-fg-on-dark); padding: 12px var(--spacing-md); display: flex; align-items: center; justify-content: center; gap: var(--spacing-md); font-size: var(--body-sm); border-top: 1px solid var(--color-border-dark); }
+  .geo-banner-text { color: var(--color-fg-on-dark-muted); }
+  .geo-banner-cta { color: var(--color-accent); font-weight: 700; }
+  .geo-banner-cta:hover { text-decoration: underline; }
+  .geo-banner-dismiss { margin-left: auto; background: transparent; color: var(--color-fg-on-dark-muted); border: none; padding: 4px 8px; font-size: 18px; line-height: 1; }
+  .geo-banner-dismiss:hover { color: var(--color-fg-on-dark); }
+
+  /* ── Page hero (block-library specific) ───────────────────────────────── */
+  .page-hero { padding-block: var(--spacing-2xl) var(--spacing-2xl); }
+  .page-hero-eyebrow {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+  }
+  .page-hero h1 {
+    font-size: 49px;            /* scale step between Headline 39 and Display 61 */
+    line-height: 1.1;
+    text-wrap: balance;
+    color: var(--color-fg-on-dark);
+    margin-bottom: var(--spacing-md);
+    max-width: 24ch;
+  }
+  .page-hero-subhead {
+    font-size: var(--heading-md);
+    line-height: 1.5;
+    color: var(--color-fg-on-dark-muted);
+    max-width: 65ch;
+    margin-bottom: var(--spacing-lg);
+  }
+  .page-hero-meta {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-on-dark-muted);
+    letter-spacing: 0.04em;
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+  .page-hero-meta span { white-space: nowrap; }
+  .page-hero-meta strong { color: var(--color-fg-on-dark); font-weight: 700; }
+
+  /* ── Library index ────────────────────────────────────────────────────── */
+  .library-index { padding-block: var(--spacing-xl); border-bottom: 1px solid var(--color-border); }
+  .library-index-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-md);
+  }
+  .library-index-tier h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--body);
+    font-weight: 700;
+    letter-spacing: 0;
+    color: var(--color-fg);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--color-fg);
+  }
+  .library-index-tier ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .library-index-tier li { display: flex; align-items: baseline; gap: var(--spacing-xs); }
+  .library-index-tier .lib-id {
+    font-family: var(--mono-font-family);
+    font-size: 11px;
+    color: var(--color-accent);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    width: 24px;
+  }
+  .library-index-tier a {
+    font-size: var(--body-sm);
+    color: var(--color-fg-secondary);
+    transition: color 150ms ease-out;
+  }
+  .library-index-tier a:hover { color: var(--color-accent); }
+  .library-index-tier .lib-status {
+    font-family: var(--mono-font-family);
+    font-size: 9px;
+    color: var(--color-fg-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* Library index intentionally non-sticky — scrolls away with the page so it
+     doesn't compete with content for vertical real estate. */
+
+  /* ── Tier headers ─────────────────────────────────────────────────────── */
+  .tier-header { padding-block: var(--spacing-2xl); }
+  .tier-header-enum {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-sm);
+  }
+  .tier-header h2 {
+    font-size: var(--heading-xl);
+    color: inherit;
+    margin-bottom: var(--spacing-sm);
+    text-wrap: balance;
+  }
+  .tier-header-purpose {
+    font-size: var(--heading-md);
+    line-height: 1.5;
+    max-width: 65ch;
+    color: var(--color-fg-secondary);
+  }
+  .surface-dark .tier-header-purpose { color: var(--color-fg-on-dark-muted); }
+
+  /* ── Block-label card (scaffolding signature — visually distinct) ──────
+     The label always renders edge-to-edge across the .block-sample-wrap so
+     its width matches the rendered sample beneath it (samples like H1, H2,
+     H4, P7 break out to full bleed, and the label following them does too). */
+  .block-label {
+    display: flex;
+    align-items: stretch;
+    min-height: 64px;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface-soft);
+    font-family: var(--mono-font-family);
+    font-size: 12px;
+    color: var(--color-fg-secondary);
+    margin-block: var(--spacing-lg) 0;
+  }
+  /* Break label out of container padding so it spans the full wrap width.
+     Container padding is var(--spacing-xl) at desktop, var(--spacing-md) at <1024px. */
+  .block-sample-wrap > .container > .block-label {
+    margin-inline: calc(-1 * var(--spacing-xl));
+  }
+  @media (max-width: 1024px) {
+    .block-sample-wrap > .container > .block-label {
+      margin-inline: calc(-1 * var(--spacing-md));
+    }
+  }
+  /* Indent the label-id strip back to container width so the green keyline
+     still aligns with the sample's content edge */
+  .block-sample-wrap > .container > .block-label > .block-label-id {
+    margin-inline-start: var(--spacing-xl);
+  }
+  @media (max-width: 1024px) {
+    .block-sample-wrap > .container > .block-label > .block-label-id {
+      margin-inline-start: var(--spacing-md);
+    }
+  }
+  .surface-dark + .block-sample-wrap .block-label,
+  .surface-dark .block-label,
+  .block-sample-wrap.surface-dark > .block-label {
+    background: var(--color-surface-dark-alt);
+    color: var(--color-fg-on-dark-muted);
+    border-top-color: var(--color-border-dark);
+    border-bottom-color: var(--color-border-dark);
+  }
+  .block-label-id {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 var(--spacing-md);
+    border-left: 2px solid var(--color-accent);
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-fg);
+    background: rgba(0,0,0,0.04);
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+  .block-sample-wrap.surface-dark > .block-label .block-label-id,
+  .surface-dark .block-label .block-label-id {
+    color: var(--color-fg-on-dark);
+    background: rgba(255,255,255,0.04);
+  }
+  .block-label-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    flex: 1;
+    line-height: 1.4;
+  }
+  .block-label-meta span { display: inline-flex; align-items: center; }
+  .block-label-meta span + span::before {
+    content: '·';
+    margin-right: var(--spacing-md);
+    color: var(--color-fg-muted);
+  }
+  .block-label-meta .ml-status { font-weight: 700; }
+  .block-label-meta .ml-status[data-status="built"] { color: var(--color-accent); }
+  .block-label-meta .ml-status[data-status="v0"]    { font-style: italic; opacity: 0.7; }
+  .block-label-meta .ml-status[data-status="v0"]::before { content: '·  '; opacity: 0.5; }
+  .block-label-meta .ml-source {
+    font-family: var(--mono-font-family);
+    color: var(--color-fg-muted);
+  }
+  .block-sample-wrap.surface-dark > .block-label .ml-source { color: var(--color-fg-on-dark-muted); }
+
+  /* "Pointer" arrow card for chrome blocks (C1, C2, C3) — replaces sample render */
+  .block-pointer {
+    padding: var(--spacing-lg) var(--spacing-md);
+    background: var(--color-surface-soft);
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--mono-font-family);
+    color: var(--color-fg-secondary);
+    font-size: var(--body-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  .block-pointer .arrow {
+    color: var(--color-accent);
+    font-family: var(--mono-font-family);
+    font-weight: 700;
+  }
+
+  /* ── Placeholder rendering ──────────────────────────────────────────────
+     Visual highlight (dashed outline + badge) removed per user request.
+     Empty placeholders render their data-shape attribute as text so layout
+     reads cleanly; tracking remains in _provenance.unsourcedContent[]. */
+  span[data-placeholder]:empty::before {
+    content: attr(data-shape);
+    color: inherit;
+  }
+
+  /* ── HERO CAROUSEL (canon — lifted verbatim from home-proposed.html) ──── */
+  .hero-carousel {
+    position: relative;
+    background: var(--color-surface-dark);
+    color: var(--color-fg-on-dark);
+    height: 770px;
+    overflow: hidden;
+  }
+  .hero-slides { position: absolute; inset: 0 0 var(--hero-switcher-h, 130px) 0; }
+  .hero-slide { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 600ms ease-out; }
+  .hero-slide.is-active { opacity: 1; pointer-events: auto; }
+  .hero-photo { position: absolute; top: 0; right: 0; height: 100%; width: auto; max-width: none; object-fit: cover; object-position: right center; display: block; }
+  picture.hero-photo { display: contents; }
+  picture.hero-photo img { position: absolute; top: 0; right: 0; height: 100%; width: auto; max-width: none; object-fit: cover; object-position: right center; display: block; }
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0) 100%); }
+  .hero-inner { position: absolute; inset: 0; max-width: var(--max-width); margin: 0 auto; padding: 96px var(--spacing-xl) 0 var(--spacing-xl); pointer-events: none; }
+  .hero-content { pointer-events: auto; max-width: 480px; display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .hero-eyebrow { color: var(--color-bg); font-family: var(--heading-font-family); font-size: 25px; font-weight: 700; line-height: 1.25; margin: 0; }
+  .hero-headline { color: var(--color-fg-on-dark); font-size: 49px; font-weight: 700; line-height: 1.1; text-wrap: balance; margin: 0; }
+  .hero-description { color: var(--color-fg-on-dark-muted); font-size: 16px; font-weight: 400; line-height: 1.5; margin: 0; max-width: 44ch; }
+  .hero-cta-row { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-sm); }
+  .hero-cta-row .btn { padding: 14px 22px; font-size: 16px; }
+  .hero-switcher { position: absolute; left: 0; right: 0; bottom: 0; height: var(--hero-switcher-h, 130px); background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.85) 100%); display: flex; align-items: stretch; z-index: 4; }
+  .hero-switcher-inner { max-width: var(--max-width); margin: 0 auto; width: 100%; padding: 0 var(--spacing-xl); display: flex; align-items: stretch; gap: 0; position: relative; }
+  .hero-tabs { display: flex; flex: 1; gap: 0; align-items: stretch; }
+  .hero-tab { flex: 1; appearance: none; background: transparent; border: none; padding: 22px var(--spacing-sm) 16px var(--spacing-sm); color: var(--color-fg-on-dark-muted); text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 6px; position: relative; transition: color 150ms ease-out; border-top: 2px solid rgba(255,255,255,0.18); min-width: 0; }
+  .hero-tab:hover { color: var(--color-fg-on-dark); }
+  .hero-tab:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+  .hero-tab.is-active { color: var(--color-fg-on-dark); }
+  .hero-tab-progress { position: absolute; top: -2px; left: 0; right: 0; height: 2px; background: var(--color-accent); transform: scaleX(0); transform-origin: left center; }
+  .hero-tab.is-active .hero-tab-progress { animation: hero-progress 7000ms linear forwards; }
+  .hero-carousel.is-paused .hero-tab.is-active .hero-tab-progress { animation-play-state: paused; }
+  @keyframes hero-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .hero-tab-eyebrow { font-family: var(--heading-font-family); font-size: 14px; font-weight: 700; opacity: 0.85; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hero-tab-title { font-family: var(--heading-font-family); font-size: 13px; font-weight: 400; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .hero-pause { appearance: none; background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--color-fg-on-dark); border-radius: var(--radius); width: 44px; height: 44px; font-size: 14px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; align-self: center; margin-left: var(--spacing-md); flex-shrink: 0; cursor: pointer; }
+  .hero-pause:hover { background: rgba(255,255,255,0.08); }
+  .hero-pause:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .hero-countdown { font-family: var(--mono-font-family); font-size: 11px; color: var(--color-fg-on-dark-muted); letter-spacing: 0.12em; text-transform: uppercase; align-self: center; margin-left: var(--spacing-sm); flex-shrink: 0; user-select: none; }
+  .hero-carousel.is-paused .hero-countdown { color: var(--color-accent); }
+  .hero-hint { position: absolute; bottom: calc(var(--hero-switcher-h, 130px) + 20px); right: var(--spacing-xl); font-family: var(--mono-font-family); font-size: 10px; letter-spacing: 0.12em; color: var(--color-fg-on-dark-muted); background: rgba(0,0,0,0.55); padding: 6px 10px; opacity: 0; pointer-events: none; transition: opacity 200ms ease-out; z-index: 5; }
+  .hero-carousel:focus-within .hero-hint { opacity: 0.85; }
+
+  /* ── HERO STATIC (canon — lifted from data-center-proposed.html) ─────── */
+  .hero-static { position: relative; background: var(--color-surface-dark); color: var(--color-fg-on-dark); height: 640px; overflow: hidden; }
+
+  /* ── Theme header / quicklinks / arrows / carousel (canon) ───────────── */
+  .theme-header { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+  .theme-header h2 { text-wrap: balance; margin: 0; }
+  .surface-dark .theme-header h2 { color: var(--color-fg-on-dark); }
+  .theme-description { font-family: var(--body-font-family); font-size: 16px; line-height: 1.55; color: var(--color-fg-secondary); max-width: 80ch; margin: 0 0 var(--spacing-md); }
+  .surface-dark .theme-description { color: var(--color-fg-on-dark-muted); }
+  .theme-quicklinks { display: flex; align-items: baseline; gap: var(--spacing-md); padding: var(--spacing-sm) 0 var(--spacing-md); margin-bottom: var(--spacing-lg); border-bottom: 1px solid var(--color-border); }
+  .surface-dark .theme-quicklinks { border-bottom-color: var(--color-border-dark); }
+  .quicklinks-label { font-family: var(--heading-font-family); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-fg-muted); flex-shrink: 0; padding-top: 2px; }
+  .surface-dark .quicklinks-label { color: var(--color-fg-on-dark-muted); }
+  .quicklinks-row { display: flex; flex-wrap: wrap; gap: 4px var(--spacing-sm); flex: 1; }
+  .quicklink { font-family: var(--heading-font-family); font-weight: 700; font-size: 13px; color: var(--color-fg); text-decoration: none; padding: 6px 0; border-bottom: 1px solid transparent; transition: border-color 150ms ease-out, color 150ms ease-out; position: relative; }
+  .quicklink:not(:last-child)::after { content: ''; position: absolute; right: calc(-1 * var(--spacing-sm) / 2 - 1px); top: 50%; transform: translateY(-50%); width: 1px; height: 12px; background: var(--color-border); }
+  .surface-dark .quicklink { color: var(--color-fg-on-dark); }
+  .surface-dark .quicklink:not(:last-child)::after { background: var(--color-border-dark); }
+  .quicklink:hover { color: var(--color-accent); }
+  .quicklink:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: var(--radius); }
+
+  .theme-arrows { display: flex; gap: var(--spacing-xs); flex-shrink: 0; }
+  .theme-arrow { appearance: none; width: 44px; height: 44px; background: transparent; border: 1px solid var(--color-border); color: var(--color-fg); border-radius: var(--radius); font-size: 22px; font-weight: 400; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out; }
+  .theme-arrow:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .theme-arrow:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .surface-dark .theme-arrow { border-color: var(--color-border-dark); color: var(--color-fg-on-dark); }
+  .surface-dark .theme-arrow:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+  .theme-carousel { overflow: hidden; margin-inline: 0; }
+  .theme-carousel-track { display: flex; gap: var(--spacing-md); overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 0; scrollbar-width: none; }
+  .theme-carousel-track::-webkit-scrollbar { display: none; }
+  .variant-G .theme-carousel-track { gap: var(--spacing-sm); }
+
+  /* Tile A (canon) */
+  .tile-a, .tile-g { scroll-snap-align: start; text-decoration: none; transition: transform 150ms ease-out; position: relative; isolation: isolate; }
+  .tile-a:focus-visible, .tile-g:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+  .variant-A .tile-a { flex: 0 0 calc((100% - 2 * var(--spacing-md)) / 3); }
+  .tile-a { aspect-ratio: 16 / 11; overflow: hidden; background: var(--color-surface-dark); color: var(--color-fg-on-dark); display: block; }
+  .tile-a img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 200ms ease-out; }
+  .tile-a:hover img { transform: scale(1.03); }
+  .tile-a-band { position: absolute; left: 0; right: 28%; bottom: 0; padding: 18px 22px; background: rgba(0,0,0,0.82); }
+  .tile-a-eyebrow { font-family: var(--heading-font-family); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 6px; }
+  .tile-a h3 { font-size: 20px; line-height: 1.22; color: var(--color-fg-on-dark); margin: 0; text-wrap: balance; }
+  .tile-a-cta { display: inline-block; margin-top: 10px; font-family: var(--heading-font-family); font-weight: 700; font-size: 12px; color: var(--color-fg-on-dark); }
+  .tile-a-cta::after { content: ' →'; color: var(--color-accent); margin-left: 4px; }
+
+  /* Tile G (canon) */
+  .variant-G .tile-g { flex: 0 0 calc((100% - 3 * var(--spacing-sm)) / 4); }
+  .tile-g { display: grid; grid-template-columns: 110px 1fr; background: var(--color-surface); color: var(--color-fg); border: 1px solid var(--color-border); min-height: 144px; }
+  .surface-dark .tile-g { background: transparent; color: var(--color-fg-on-dark); border-color: var(--color-border-dark); }
+  .tile-g-photo { width: 110px; height: 100%; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .tile-g-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 200ms ease-out; }
+  .tile-g:hover .tile-g-photo img { transform: scale(1.04); }
+  .tile-g-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .tile-g-eyebrow { font-family: var(--heading-font-family); font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-fg-muted); }
+  .surface-dark .tile-g-eyebrow { color: var(--color-fg-on-dark-muted); }
+  .tile-g h3 { font-size: 16px; line-height: 1.3; margin: 0; }
+  .tile-g-cta { margin-top: auto; font-family: var(--heading-font-family); font-weight: 700; font-size: 11px; color: inherit; transition: color 150ms ease-out; }
+  .tile-g-cta::after { content: ' →'; color: var(--color-accent); margin-left: 3px; }
+  .tile-g:hover .tile-g-cta { color: var(--color-accent); }
+
+  .tile-a::after, .tile-g::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--color-accent); transform: scaleX(0); transform-origin: left center; transition: transform 350ms cubic-bezier(0.22,1,0.36,1); z-index: 3; pointer-events: none; }
+  .tile-a:hover::after, .tile-g:hover::after { transform: scaleX(1); }
+
+  /* ── Audience-card-grid (S4 — text-only variant, canon-style) ────────── */
+  .audience-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-md); }
+  .audience-card {
+    display: flex; flex-direction: column; gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background: transparent;
+    color: var(--color-fg-on-dark);
+    border: 1px solid var(--color-border-dark);
+    text-decoration: none;
+    transition: border-color 150ms ease-out, background 150ms ease-out;
+  }
+  .audience-card:hover { border-color: var(--color-accent); background: rgba(118,185,0,0.03); }
+  .audience-card:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+  .audience-card h3 { font-size: var(--heading-md); line-height: 1.2; }
+  .audience-card p { font-size: var(--body-sm); color: var(--color-fg-on-dark-muted); flex: 1; }
+  .audience-card-cta { font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body-sm); color: var(--color-accent); }
+  .audience-card-cta::after { content: ' →'; }
+
+  /* ── Flow-4-step (canon — lifted from data-center) ───────────────────── */
+  .flow-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .flow-grid::before { content: ''; position: absolute; left: var(--spacing-md); right: var(--spacing-md); top: calc(var(--spacing-md) + 8px); height: 1px; background: var(--color-border-dark); z-index: 0; }
+  .flow-step { position: relative; padding: 0 var(--spacing-md); }
+  .flow-step-link { display: block; color: inherit; text-decoration: none; padding: var(--spacing-md) 0; transition: transform 150ms ease-out; }
+  .flow-step-link:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .flow-step-number { font-family: var(--mono-font-family); font-size: 14px; letter-spacing: 0.12em; color: var(--color-accent); display: inline-block; margin-bottom: var(--spacing-md); background: var(--color-surface-dark); padding-right: 8px; position: relative; z-index: 1; }
+  .flow-step-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--color-surface-dark-alt); margin-bottom: var(--spacing-md); }
+  .flow-step-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 250ms ease-out; }
+  .flow-step-link:hover .flow-step-photo img { transform: scale(1.03); }
+  .flow-step-title { font-size: 25px; font-weight: 700; line-height: 1.2; color: var(--color-fg-on-dark); margin: 0; transition: color 150ms ease-out; }
+  .flow-step-link:hover .flow-step-title { color: var(--color-accent); }
+
+  /* ── Use-case 50/50 (canon — lifted from data-center) ────────────────── */
+  .use-cases-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+  .use-case { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: center; }
+  .use-case-right .use-case-photo { order: 2; }
+  .use-case-right .use-case-body { order: 1; }
+  .use-case-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .use-case-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease-out; }
+  .use-case:hover .use-case-photo img { transform: scale(1.02); }
+  .use-case-body { display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .use-case-body h2 { font-size: var(--heading-xl); font-weight: 700; line-height: 1.15; color: var(--color-fg); text-wrap: balance; margin: 0; }
+  .surface-dark .use-case-body h2 { color: var(--color-fg-on-dark); }
+  .use-case-description { color: var(--color-fg-secondary); font-size: 16px; line-height: 1.55; max-width: 56ch; }
+  .surface-dark .use-case-description { color: var(--color-fg-on-dark-muted); }
+  .use-case-body .btn { align-self: flex-start; }
+
+  /* ── Architecture spec block (P2 — full-bleed 5/7 split) ─────────────── */
+  .arch-block { display: grid; grid-template-columns: 5fr 7fr; gap: var(--spacing-2xl); align-items: center; }
+  .arch-block-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .arch-block-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .arch-block-body h3 { font-size: var(--heading-xl); margin-bottom: var(--spacing-md); text-wrap: balance; }
+  .arch-block-specs { list-style: none; padding: 0; margin: 0 0 var(--spacing-lg); display: flex; flex-direction: column; gap: var(--spacing-xs); border-top: 1px solid var(--color-border); padding-top: var(--spacing-md); }
+  .arch-block-specs li { display: flex; gap: var(--spacing-md); font-size: var(--body); padding: var(--spacing-xs) 0; border-bottom: 1px solid var(--color-border); }
+  .arch-block-specs .spec-label { font-family: var(--mono-font-family); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-fg-muted); flex: 0 0 30%; }
+  .arch-block-specs .spec-value { color: var(--color-fg); font-weight: 700; }
+
+  /* ── Cta band (canon) ────────────────────────────────────────────────── */
+  .cta-band { background: var(--color-surface-dark); color: var(--color-fg-on-dark); text-align: center; padding-block: var(--spacing-2xl); }
+  .cta-band h2 { color: var(--color-fg-on-dark); margin-bottom: var(--spacing-lg); }
+
+  /* ════════════════════════════════════════════════════════════════════════
+     V0 BLOCKS — designed inside the brand
+     ════════════════════════════════════════════════════════════════════════ */
+
+  /* C4 — breadcrumbs */
+  .breadcrumbs { padding-block: var(--spacing-md); }
+  .breadcrumbs-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-xs); }
+  .breadcrumbs-list li { display: inline-flex; align-items: center; gap: var(--spacing-xs); }
+  .breadcrumbs-list a {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg-secondary);
+    text-decoration: none;
+    transition: color 150ms ease-out;
+  }
+  .breadcrumbs-list a:hover { color: var(--color-accent); }
+  .breadcrumbs-list .sep { font-family: var(--mono-font-family); color: var(--color-fg-muted); font-size: var(--body-sm); }
+  .breadcrumbs-list [aria-current="page"] {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-fg);
+    font-weight: 700;
+  }
+
+  /* H3 — hero-product */
+  .hero-product { position: relative; min-height: 560px; padding-block: var(--spacing-2xl); display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: center; }
+  .hero-product-content { display: flex; flex-direction: column; gap: var(--spacing-md); max-width: 44ch; }
+  .hero-product-eyebrow {
+    font-family: var(--heading-font-family);
+    font-size: var(--body-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+  }
+  .hero-product .hero-product-headline {
+    font-size: var(--heading-xxl);
+    color: var(--color-fg-on-dark);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+  .hero-product-spec {
+    font-family: var(--mono-font-family);
+    font-size: var(--body);
+    color: var(--color-fg-on-dark-muted);
+    letter-spacing: 0.04em;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--color-border-dark);
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+  .hero-product-price {
+    font-family: var(--mono-font-family);
+    font-size: var(--heading-md);
+    color: var(--color-fg-on-dark);
+    font-weight: 700;
+  }
+  .hero-product-cta-row { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-sm); }
+  .hero-product-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .hero-product-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* H4 — hero-video */
+  .hero-video { position: relative; height: 600px; overflow: hidden; background: var(--color-surface-dark); }
+  .hero-video-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+  .hero-video-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.85) 100%); }
+  .hero-video-content { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: var(--spacing-xl) var(--spacing-xl); max-width: var(--max-width); margin: 0 auto; color: var(--color-fg-on-dark); }
+  .hero-video h2 { font-size: var(--heading-xxl); line-height: 1.05; max-width: 16ch; text-wrap: balance; color: var(--color-fg-on-dark); }
+  .hero-video-play-row { display: flex; align-items: center; gap: var(--spacing-md); }
+  .hero-video-play {
+    width: 64px; height: 64px;
+    background: var(--color-accent); color: var(--color-fg);
+    border: none; border-radius: var(--radius);
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 150ms ease-out;
+  }
+  .hero-video-play:hover { background: var(--color-accent-hover); }
+  .hero-video-play:focus-visible { outline: none; box-shadow: var(--shadow-focus), 0 0 0 4px var(--color-surface-dark); }
+  .hero-video-play svg { width: 24px; height: 24px; fill: currentColor; }
+  .hero-video-duration {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-fg-on-dark);
+    display: inline-flex; align-items: center; gap: var(--spacing-xs);
+  }
+  .hero-video-duration svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* P1 — stats-row */
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-sm); }
+  .stat-tile {
+    padding: var(--spacing-lg) var(--spacing-md);
+    border: 1px solid var(--color-border-dark);
+    background: transparent;
+    color: var(--color-fg-on-dark);
+    display: flex; flex-direction: column; gap: var(--spacing-xs);
+  }
+  .stat-number {
+    font-family: var(--heading-font-family);
+    font-size: 49px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-fg-on-dark);
+    display: inline-block;
+  }
+  .stat-unit {
+    font-family: var(--mono-font-family);
+    font-size: var(--body-sm);
+    color: var(--color-accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .stat-label {
+    font-size: var(--body-sm);
+    color: var(--color-fg-on-dark-muted);
+    line-height: 1.4;
+    margin-top: var(--spacing-xs);
+  }
+
+  /* P3 — comparison-table */
+  .comparison-table-wrap { overflow-x: auto; border: 1px solid var(--color-border-dark); }
+  .comparison-table { width: 100%; border-collapse: collapse; color: var(--color-fg-on-dark); }
+  .comparison-table th, .comparison-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-size: var(--body-sm);
+    border-bottom: 1px solid var(--color-border-dark);
+    vertical-align: top;
+  }
+  .comparison-table thead th {
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: var(--body);
+    background: var(--color-surface-dark-alt);
+    border-bottom: 2px solid var(--color-accent);
+  }
+  .comparison-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+  .comparison-table .row-label {
+    font-family: var(--mono-font-family);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-fg-on-dark-muted);
+    width: 25%;
+  }
+  .comparison-table .cell-num { font-family: var(--mono-font-family); }
+  .comparison-table .em-dash { color: var(--color-fg-muted); }
+
+  /* P4 — buy-options-list */
+  .buy-options { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+  .buy-option {
+    display: grid;
+    grid-template-columns: 80px 1fr 140px 160px;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .buy-option:last-child { border-bottom: none; }
+  .buy-option-logo {
+    width: 64px; height: 32px;
+    background: var(--color-surface-soft);
+  }
+  .buy-option-name { font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body); color: var(--color-fg); }
+  .buy-option-price { font-family: var(--mono-font-family); font-weight: 700; font-size: var(--body); color: var(--color-fg); text-align: right; }
+  .buy-option .btn { padding: 12px 18px; font-size: var(--body-sm); }
+
+  /* P6 — logo-strip */
+  .logo-strip-wrap { padding-block: var(--spacing-md); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+  .logo-strip { display: grid; grid-template-columns: repeat(8, 1fr); gap: var(--spacing-md); align-items: center; }
+  .partner-logo {
+    height: 48px;
+    background: var(--color-surface-soft);
+    filter: grayscale(1);
+  }
+
+  /* L1 — article-body */
+  .article-body { max-width: 65ch; margin: 0 auto; padding-block: var(--spacing-md); }
+  .article-body .article-headline { font-size: var(--heading-xl); margin-bottom: var(--spacing-md); line-height: 1.15; text-wrap: balance; }
+  .article-body .breadcrumbs { padding-block: 0 var(--spacing-md); }
+  .article-body .lead { font-size: var(--heading-md); line-height: 1.5; color: var(--color-fg-secondary); margin-bottom: var(--spacing-lg); }
+  .article-body h3 { font-size: var(--heading-lg); margin-block: var(--spacing-xl) var(--spacing-sm); }
+  .article-body p { font-size: var(--body); line-height: 1.6; margin-bottom: var(--spacing-md); }
+  .article-related {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+  }
+  .article-related h3 {
+    font-family: var(--mono-font-family);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-fg-muted);
+    font-weight: 400;
+    margin-bottom: var(--spacing-sm);
+  }
+  .article-related ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--spacing-xs); }
+  .article-related a { color: var(--color-fg); font-weight: 700; }
+  .article-related a:hover { color: var(--color-accent); }
+  .article-related a::after { content: ' →'; color: var(--color-accent); }
+
+  /* L2 — faq-accordion */
+  .faq-list { list-style: none; padding: 0; margin: 0; }
+  .faq-list details {
+    border-bottom: 1px solid var(--color-border-dark);
+    padding-block: var(--spacing-md);
+  }
+  .faq-list details:first-of-type { border-top: 1px solid var(--color-border-dark); }
+  .faq-list summary {
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: var(--heading-md);
+    color: var(--color-fg-on-dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding-block: var(--spacing-xs);
+  }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after {
+    content: '+';
+    font-family: var(--mono-font-family);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--color-accent);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .faq-list details[open] summary::after { content: '−'; }
+  .faq-list summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+  .faq-answer {
+    margin-top: var(--spacing-sm);
+    color: var(--color-fg-on-dark-muted);
+    font-size: var(--body);
+    line-height: 1.6;
+    max-width: 65ch;
+  }
+
+  /* L4 — case-study-meta */
+  .case-meta { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--spacing-md); padding-block: var(--spacing-lg); border-top: 1px solid var(--color-border-dark); border-bottom: 1px solid var(--color-border-dark); }
+  .case-meta-item { display: flex; flex-direction: column; gap: var(--spacing-xs); }
+  .case-meta-label {
+    font-family: var(--mono-font-family);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-accent);
+  }
+  .case-meta-value {
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    font-size: var(--body);
+    color: var(--color-fg-on-dark);
+    line-height: 1.3;
+  }
+  .case-excerpt {
+    font-size: var(--heading-md);
+    line-height: 1.5;
+    color: var(--color-fg-on-dark);
+    max-width: 65ch;
+    margin: var(--spacing-lg) 0;
+  }
+
+  /* ── Footer (canon — verbatim from home) ─────────────────────────────── */
+  .site-footer { background: var(--color-surface-dark); color: var(--color-fg-on-dark); padding: var(--spacing-2xl) 0 var(--spacing-md); border-top: 1px solid var(--color-border-dark); }
+  .footer-columns { display: grid; grid-template-columns: repeat(4, 1fr) 1.5fr; gap: var(--spacing-xl); }
+  .footer-column h3 { font-size: var(--body); font-weight: 700; color: var(--color-fg-on-dark); margin-bottom: var(--spacing-md); }
+  .footer-column h3::before { content: none; }
+  .footer-column ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--spacing-xs); }
+  .footer-column a { color: var(--color-fg-on-dark-muted); font-size: var(--body-sm); transition: color 150ms ease-out; }
+  .footer-column a:hover { color: var(--color-fg-on-dark); }
+  .footer-subscribe { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+  .footer-subscribe p { color: var(--color-fg-on-dark-muted); font-size: var(--body-sm); line-height: 1.5; }
+  .footer-subscribe form { display: flex; gap: 0; }
+  .footer-subscribe input { flex: 1; background: var(--color-surface); color: var(--color-fg); padding: 12px 16px; border: 1px solid var(--color-border); border-radius: var(--radius); font-family: inherit; font-size: var(--body-sm); outline: none; transition: border-color 150ms; min-width: 0; }
+  .footer-subscribe input:focus-visible { border-color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
+  .footer-subscribe button { background: var(--color-accent); color: var(--color-fg); padding: 12px 20px; border: none; font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body-sm); border-radius: var(--radius); }
+  .footer-subscribe button:hover { background: var(--color-accent-hover); }
+  .footer-bottom { margin-top: var(--spacing-2xl); padding-top: var(--spacing-md); border-top: 1px solid var(--color-border-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md); }
+  .footer-legal { display: flex; gap: var(--spacing-md); font-size: 12px; color: var(--color-fg-on-dark-muted); flex-wrap: wrap; }
+  .footer-legal a:hover { color: var(--color-fg-on-dark); }
+  .footer-copyright { font-size: 12px; color: var(--color-fg-on-dark-muted); }
+  .footer-social { display: flex; gap: 4px; }
+
+  /* Footer link placeholders render the data-shape attribute as the link label */
+  .footer-column li [data-placeholder="footer-link"] {
+    display: block;
+    padding: 2px 0;
+    font-size: var(--body-sm);
+    color: var(--color-fg-on-dark-muted);
+  }
+  .footer-column li [data-placeholder="footer-link"]::before {
+    content: attr(data-shape);
+  }
+
+  /* ── Section enumeration on theme/cta sections only (canon delight) ─── */
+  main { counter-reset: section-counter; }
+
+  /* ── Responsive ──────────────────────────────────────────────────────── */
+  @media (max-width: 1023px) {
+    :root { --section-padding: 36px; }
+    .container, .hero-inner { padding-inline: var(--spacing-md); }
+    .library-index-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .audience-grid { grid-template-columns: repeat(2, 1fr); }
+    .arch-block { grid-template-columns: 1fr; gap: var(--spacing-md); }
+    .case-meta { grid-template-columns: repeat(2, 1fr); }
+    .logo-strip { grid-template-columns: repeat(4, 1fr); }
+    .hero-product { grid-template-columns: 1fr; min-height: auto; }
+    .hero-product .hero-product-headline { font-size: var(--heading-xl); }
+    .footer-columns { grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+    .variant-A .tile-a { flex: 0 0 calc((100% - var(--spacing-md)) / 2); }
+    .variant-G .tile-g { flex: 0 0 calc((100% - 2 * var(--spacing-sm)) / 3); }
+    .flow-grid { grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); }
+    .use-case { grid-template-columns: 1fr; gap: var(--spacing-md); }
+    .use-case-right .use-case-photo, .use-case-right .use-case-body { order: initial; }
+    .hero-headline { font-size: 39px; }
+    .hero-eyebrow { font-size: 20px; }
+    .theme-header h2 { font-size: 32px; }
+    .page-hero h1 { font-size: 39px; }
+    .buy-option { grid-template-columns: 64px 1fr 100px 120px; }
+  }
+  @media (max-width: 639px) {
+    :root { --section-padding: 24px; --hero-switcher-h: 96px; }
+    .site-nav { display: none; }
+    .site-utility .icon-btn:not(.menu-toggle) { display: none; }
+    .geo-banner { flex-wrap: wrap; padding: 8px var(--spacing-sm); font-size: 12px; }
+    .library-index-grid { grid-template-columns: 1fr; }
+    .library-index { position: static; }
+    .stats-row { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .case-meta { grid-template-columns: 1fr; }
+    .logo-strip { grid-template-columns: repeat(2, 1fr); }
+    .footer-columns { grid-template-columns: repeat(2, 1fr); }
+    .hero-carousel { height: 600px; }
+    .hero-static { height: 540px; }
+    .hero-video { height: 480px; }
+    .hero-inner { padding: 56px var(--spacing-md) 0; }
+    .hero-headline { font-size: 25px; line-height: 1.15; }
+    .hero-eyebrow { font-size: 16px; }
+    .hero-description { font-size: 13px; max-width: 100%; }
+    .hero-content { max-width: 100%; }
+    .hero-photo { width: 100%; right: auto; left: 0; }
+    .hero-scrim { background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.95) 100%); }
+    .hero-tabs .hero-tab:not(.is-active) { flex: 0 0 auto; padding: 18px 6px 12px; }
+    .hero-tabs .hero-tab:not(.is-active) .hero-tab-title { display: none; }
+    .hero-tabs .hero-tab:not(.is-active) .hero-tab-eyebrow { font-size: 0; width: 8px; height: 8px; background: rgba(255,255,255,0.3); }
+    .theme-header h2 { font-size: 28px; }
+    .variant-A .tile-a { flex: 0 0 100%; }
+    .variant-G .tile-g { flex: 0 0 calc((100% - var(--spacing-sm)) / 2); }
+    .flow-grid { grid-template-columns: 1fr; }
+    .comparison-table th:first-child, .comparison-table td:first-child {
+      position: sticky; left: 0; background: var(--color-surface-dark);
+    }
+    .buy-option { grid-template-columns: 1fr; gap: var(--spacing-xs); }
+    .buy-option-price { text-align: left; }
+    .hero-video h2 { font-size: 39px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<header class="site-header" data-section="header" data-intent="navigate" data-layout="full-width-dark" role="banner">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo" aria-label="NVIDIA home">NVIDIA</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/products/">Products <span class="caret" aria-hidden="true"></span></a>
+      <a href="/solutions/">Solutions <span class="caret" aria-hidden="true"></span></a>
+      <a href="/industries/">Industries <span class="caret" aria-hidden="true"></span></a>
+      <a href="/for-you/">For You <span class="caret" aria-hidden="true"></span></a>
+      <a href="/explore/">Explore <span class="caret" aria-hidden="true"></span></a>
+    </nav>
+    <div class="site-utility">
+      <button class="icon-btn" type="button" aria-label="Search"><span class="ic" aria-hidden="true">⌕</span></button>
+      <button class="icon-btn" type="button" aria-label="Region: English (United States)"><span class="locale-tag" aria-hidden="true">EN-US</span></button>
+      <button class="icon-btn" type="button" aria-label="Account"><span class="ic" aria-hidden="true">◯</span></button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu"><span class="ic" aria-hidden="true">≡</span></button>
+    </div>
+  </div>
+</header>
+
+<aside class="geo-banner" data-section="geo-locator" data-intent="locale-routing" data-layout="full-width-thin" data-demo="true" role="complementary" aria-label="Region suggestion">
+  <span class="geo-banner-text">It looks like you're in Italy. Visit your local NVIDIA site for region-specific content.</span>
+  <a href="https://www.nvidia.com/it-it/" class="geo-banner-cta">Continue to nvidia.com/it-it →</a>
+  <button class="geo-banner-dismiss" type="button" aria-label="Dismiss">×</button>
+</aside>
+
+<main id="main-content">
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     PAGE HERO
+     ════════════════════════════════════════════════════════════════════════ -->
+<section class="page-hero surface-dark" data-section="page-hero" data-intent="reference-doc-intro" data-layout="left-aligned-meta-strip">
+  <div class="container">
+    <p class="page-hero-eyebrow">Gensite block library</p>
+    <h1>25 layout primitives for composing NVIDIA on the fly</h1>
+    <p class="page-hero-subhead">A vocabulary an LLM picks from to assemble pages that respond to user intent. Built inside the approved Mode A brand-faithful direction.</p>
+    <p class="page-hero-meta">
+      <span><strong>25</strong> blocks</span>
+      <span><strong>5</strong> tiers</span>
+      <span><strong>15</strong> built</span>
+      <span><strong>10</strong> v0 drafts</span>
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     LIBRARY INDEX
+     ════════════════════════════════════════════════════════════════════════ -->
+<nav class="library-index surface-white" data-section="library-index" data-intent="navigate-within-page" data-layout="grid-5-tiers" aria-label="Block library index">
+  <div class="container">
+    <div class="library-index-grid">
+      <div class="library-index-tier">
+        <h2>Tier 1 · Chrome</h2>
+        <ul>
+          <li><span class="lib-id">C1</span><a href="#block-C1">header</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">C2</span><a href="#block-C2">footer</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">C3</span><a href="#block-C3">geo-locator-banner</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">C4</span><a href="#block-C4">breadcrumbs</a><span class="lib-status">v0</span></li>
+        </ul>
+      </div>
+      <div class="library-index-tier">
+        <h2>Tier 2 · Hero</h2>
+        <ul>
+          <li><span class="lib-id">H1</span><a href="#block-H1">hero-static</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">H2</span><a href="#block-H2">hero-carousel</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">H3</span><a href="#block-H3">hero-product</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">H4</span><a href="#block-H4">hero-video</a><span class="lib-status">v0</span></li>
+        </ul>
+      </div>
+      <div class="library-index-tier">
+        <h2>Tier 3 · Story</h2>
+        <ul>
+          <li><span class="lib-id">S1</span><a href="#block-S1">story-grid</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">S2</span><a href="#block-S2">story-carousel</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">S3</span><a href="#block-S3">theme-section</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">S4</span><a href="#block-S4">audience-card-grid</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">S5</span><a href="#block-S5">platform-tile-grid</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">S6</span><a href="#block-S6">flow-4-step</a><span class="lib-status">built</span></li>
+        </ul>
+      </div>
+      <div class="library-index-tier">
+        <h2>Tier 4 · Proof</h2>
+        <ul>
+          <li><span class="lib-id">P1</span><a href="#block-P1">stats-row</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">P2</span><a href="#block-P2">architecture-spec</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">P3</span><a href="#block-P3">comparison-table</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">P4</span><a href="#block-P4">buy-options-list</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">P5</span><a href="#block-P5">customer-story-grid</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">P6</span><a href="#block-P6">logo-strip</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">P7</span><a href="#block-P7">cta-band</a><span class="lib-status">built</span></li>
+        </ul>
+      </div>
+      <div class="library-index-tier">
+        <h2>Tier 5 · Long-form</h2>
+        <ul>
+          <li><span class="lib-id">L1</span><a href="#block-L1">article-body</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">L2</span><a href="#block-L2">faq-accordion</a><span class="lib-status">v0</span></li>
+          <li><span class="lib-id">L3</span><a href="#block-L3">use-case-50-50</a><span class="lib-status">built</span></li>
+          <li><span class="lib-id">L4</span><a href="#block-L4">case-study-meta</a><span class="lib-status">v0</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     TIER 1 — CHROME
+     ════════════════════════════════════════════════════════════════════════ -->
+<section class="tier-header surface-dark" data-section="tier-header" data-tier="1" data-intent="catalog-section">
+  <div class="container">
+    <p class="tier-header-enum">/ 01</p>
+    <h2>Tier 1 · Chrome</h2>
+    <p class="tier-header-purpose">Always-on framing. The gensite assumes these on every page; the LLM does not select them as content blocks.</p>
+  </div>
+</section>
+
+<!-- C1 — header (live render is at top of page) -->
+<section class="block-sample-wrap surface-white" data-block-sample="C1" data-block-id="C1" data-status="built" data-intent="catalog-sample" data-layout="full-width-dark">
+  <div class="container">
+    <div class="block-label" data-block-label="C1" data-status="built" data-source="home-proposed.html">
+      <span class="block-label-id">C1</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Persistent global navigation</span>
+        <span class="ml-shape">Logo · 5-tab nav · utilities</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home-proposed.html</span>
+      </div>
+    </div>
+    <div class="block-pointer">
+      <span class="arrow">↑</span>
+      <span>See at top of page (live render is the page header).</span>
+    </div>
+  </div>
+</section>
+
+<!-- C2 — footer (live render is at bottom of page) -->
+<section class="block-sample-wrap surface-dark" data-block-sample="C2" data-block-id="C2" data-status="built" data-intent="catalog-sample" data-layout="mega-9col">
+  <div class="container">
+    <div class="block-label" data-block-label="C2" data-status="built" data-source="home-proposed.html">
+      <span class="block-label-id">C2</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Mega-footer with subscribe</span>
+        <span class="ml-shape">5-column links · subscribe form · legal</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home-proposed.html</span>
+      </div>
+    </div>
+    <div class="block-pointer">
+      <span class="arrow">↓</span>
+      <span>See at bottom of page (live render is the page footer).</span>
+    </div>
+  </div>
+</section>
+
+<!-- C3 — geo-locator-banner (live render is above page header) -->
+<section class="block-sample-wrap surface-white" data-block-sample="C3" data-block-id="C3" data-status="built" data-intent="catalog-sample" data-layout="full-width-thin">
+  <div class="container">
+    <div class="block-label" data-block-label="C3" data-status="built" data-source="home-proposed.html">
+      <span class="block-label-id">C3</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">IP-based locale routing offer</span>
+        <span class="ml-shape">Detected-locale text · CTA · dismiss</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home-proposed.html</span>
+      </div>
+    </div>
+    <div class="block-pointer">
+      <span class="arrow">↑</span>
+      <span>See thin band above the page header (live render is the geo-locator banner).</span>
+    </div>
+  </div>
+</section>
+
+<!-- C4 — breadcrumbs (v0) -->
+<section class="block-sample-wrap surface-dark" data-block-sample="C4" data-block-id="C4" data-status="v0" data-intent="catalog-sample" data-layout="hairline-row">
+  <div class="container">
+    <div class="block-label" data-block-label="C4" data-status="v0" data-source="case-study-serve-robotics.json">
+      <span class="block-label-id">C4</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Hierarchy + return path</span>
+        <span class="ml-shape">Mono links · › separator · current-page bold</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: case-study-serve-robotics.json</span>
+      </div>
+    </div>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol class="breadcrumbs-list">
+        <li><a href="https://www.nvidia.com/en-us/case-studies/">Customer Stories</a></li>
+        <li><span class="sep" aria-hidden="true">›</span></li>
+        <li><a href="https://www.nvidia.com/en-us/industries/robotics/">Robotics</a></li>
+        <li><span class="sep" aria-hidden="true">›</span></li>
+        <li><span aria-current="page">Serve Robotics</span></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     TIER 2 — HERO
+     ════════════════════════════════════════════════════════════════════════ -->
+<section class="tier-header surface-dark" data-section="tier-header" data-tier="2" data-intent="catalog-section">
+  <div class="container">
+    <p class="tier-header-enum">/ 02</p>
+    <h2>Tier 2 · Hero</h2>
+    <p class="tier-header-purpose">The opening section. Gensite picks one per page based on content shape and user intent.</p>
+  </div>
+</section>
+
+<!-- H1 — hero-static (built) -->
+<section class="block-sample-wrap surface-dark" data-block-sample="H1" data-block-id="H1" data-status="built" data-intent="catalog-sample" data-layout="single-slide-fullbleed">
+  <div class="container">
+    <div class="block-label" data-block-label="H1" data-status="built" data-source="data-center.json">
+      <span class="block-label-id">H1</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Single-slide announcement hero</span>
+        <span class="ml-shape">Right photo · scrim · eyebrow + H1 + sub + CTA</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: data-center.json</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-static surface-dark">
+    <img class="hero-photo" src="https://www.nvidia.com/content/dam/en-zz/solutions/data-center/home/data-center-bm-lg580-glass-d@2x.jpg" alt="" loading="lazy" decoding="async">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Data Center Solutions</p>
+        <h2 class="hero-headline">Data Centers for the Era of AI Reasoning</h2>
+        <p class="hero-description">Revolutionize the data center for AI with NVIDIA’s comprehensive accelerated computing platform, built on cutting-edge GPU, CPU, and networking tech.</p>
+        <div class="hero-cta-row">
+          <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/enterprise/data-center/?limit=15">Browse NVIDIA Marketplace</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- H2 — hero-carousel (built — verbatim from home canon) -->
+<section class="block-sample-wrap surface-white" data-block-sample="H2" data-block-id="H2" data-status="built" data-intent="catalog-sample" data-layout="carousel-fullbleed-autoadvance">
+  <div class="container">
+    <div class="block-label" data-block-label="H2" data-status="built" data-source="home.json">
+      <span class="block-label-id">H2</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">6-slide editorial carousel</span>
+        <span class="ml-shape">Auto-advance · pause control · countdown · text-tab switcher</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home.json</span>
+      </div>
+    </div>
+  </div>
+  <section class="hero-carousel" data-section="hero" data-intent="primary-announcements" data-layout="carousel-fullbleed-autoadvance" data-items="6" aria-roledescription="carousel" aria-label="Featured announcements" id="block-H2-carousel">
+    <div class="hero-slides">
+      <article class="hero-slide is-active" role="tabpanel" aria-roledescription="slide" id="hl-slide-0" aria-labelledby="hl-tab-0">
+        <picture class="hero-photo"><img src="https://www.nvidia.com/content/dam/en-zz/nvidiaweb/homepage/mfg/nemotron-3-nano-omni-corp-blog-wmfg-offset-d@2x.jpg" alt="" loading="lazy" decoding="async"></picture>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-inner"><div class="hero-content">
+          <p class="hero-eyebrow">Artificial Intelligence</p>
+          <h2 class="hero-headline">New Model Announced: NVIDIA Nemotron 3 Omni</h2>
+          <p class="hero-description">Open multimodal NVIDIA Nemotron™ 3 Omni model to power sub-agents in enterprise systems with video, audio, image, and text reasoning.</p>
+          <div class="hero-cta-row"><a class="btn btn-primary" href="https://blogs.nvidia.com/blog/nemotron-3-nano-omni-multimodal-ai-agents/">Try Now</a></div>
+        </div></div>
+      </article>
+      <article class="hero-slide" role="tabpanel" aria-roledescription="slide" id="hl-slide-1" aria-labelledby="hl-tab-1">
+        <picture class="hero-photo"><img src="https://www.nvidia.com/content/dam/en-zz/nvidiaweb/homepage/mfg/openai-codex-agents-wmfg-multi-img-d@2x.jpg" alt="" loading="lazy" decoding="async"></picture>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-inner"><div class="hero-content">
+          <p class="hero-eyebrow">Agentic AI</p>
+          <h2 class="hero-headline">At NVIDIA, Teams Scale Human Ingenuity With OpenAI Codex Agents</h2>
+          <p class="hero-description">Trained and served on NVIDIA GB200 NVL72 systems, GPT-5.5 delivers the sustained performance required for execution-heavy, multi-step work.</p>
+          <div class="hero-cta-row"><a class="btn btn-primary" href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/">Learn More</a></div>
+        </div></div>
+      </article>
+      <article class="hero-slide" role="tabpanel" aria-roledescription="slide" id="hl-slide-2" aria-labelledby="hl-tab-2">
+        <picture class="hero-photo"><img src="https://www.nvidia.com/content/dam/en-zz/nvidiaweb/homepage/mfg/nvidia-and-google-cloud-wmfg-multi-img-d@2x.jpg" alt="" loading="lazy" decoding="async"></picture>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-inner"><div class="hero-content">
+          <p class="hero-eyebrow">Data Center</p>
+          <h2 class="hero-headline">NVIDIA and Google Cloud Power AI Breakthroughs</h2>
+          <p class="hero-description">NVIDIA Vera Rubin-powered A5X instances scaling up to nearly 1M Rubin GPUs, Gemini on Google Distributed Cloud, and NVIDIA Nemotron and NeMo integrated with Gemini Enterprise Agent Platform.</p>
+          <div class="hero-cta-row"><a class="btn btn-primary" href="https://blogs.nvidia.com/blog/google-cloud-agentic-physical-ai-factories/">Learn More</a></div>
+        </div></div>
+      </article>
+      <article class="hero-slide" role="tabpanel" aria-roledescription="slide" id="hl-slide-3" aria-labelledby="hl-tab-3">
+        <picture class="hero-photo"><img src="https://www.nvidia.com/content/dam/en-zz/nvidiaweb/homepage/mfg/nvidia-me-adobe-summit-annoucement-wmfg-glass-d@2x.jpg" alt="" loading="lazy" decoding="async"></picture>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-inner"><div class="hero-content">
+          <p class="hero-eyebrow">Artificial Intelligence</p>
+          <h2 class="hero-headline">Adobe Unlocks Breakthrough Creative Intelligence With NVIDIA and WPP</h2>
+          <p class="hero-description">Creative AI agents, secured by the NVIDIA OpenShell™ runtime, generate on-brand content, transforming how brands create, personalize, and activate content.</p>
+          <div class="hero-cta-row"><a class="btn btn-primary" href="https://blogs.nvidia.com/blog/adobe-ai-agents-nvidia-wpp/">Learn More</a></div>
+        </div></div>
+      </article>
+      <article class="hero-slide" role="tabpanel" aria-roledescription="slide" id="hl-slide-4" aria-labelledby="hl-tab-4">
+        <picture class="hero-photo"><img src="https://www.nvidia.com/content/dam/en-zz/nvidiaweb/homepage/mfg/tco-agentic-blog-wmfg-offset-d@2x.jpg" alt="" loading="lazy" decoding="async"></picture>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-inner"><div class="hero-content">
+          <p class="hero-eyebrow">Artificial Intelligence</p>
+          <h2 class="hero-headline">NVIDIA Delivers the Lowest Token Cost</h2>
+          <p class="hero-description">Cost per token is the key metric for inference TCO, and NVIDIA Blackwell leads on the metric that matters.</p>
+          <div class="hero-cta-row"><a class="btn btn-primary" href="https://blogs.nvidia.com/blog/lowest-token-cost-ai-factories">Learn More</a></div>
+        </div></div>
+      </article>
+      <article class="hero-slide" role="tabpanel" aria-roledescription="slide" id="hl-slide-5" aria-labelledby="hl-tab-5">
+        <picture class="hero-photo"><img src="https://www.nvidia.com/content/dam/en-zz/nvidiaweb/homepage/mfg/nvidia-ising-wmfg-offset-d@2x.jpg" alt="" loading="lazy" decoding="async"></picture>
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-inner"><div class="hero-content">
+          <p class="hero-eyebrow">Artificial Intelligence</p>
+          <h2 class="hero-headline">Introducing NVIDIA Ising</h2>
+          <p class="hero-description">NVIDIA launches the world’s first open source AI model family to accelerate the path to useful quantum computers for researchers and enterprises.</p>
+          <div class="hero-cta-row"><a class="btn btn-primary" href="https://nvidianews.nvidia.com/news/nvidia-launches-ising-the-worlds-first-open-ai-models-to-accelerate-the-path-to-useful-quantum-computers">Learn More</a></div>
+        </div></div>
+      </article>
+    </div>
+    <span class="hero-hint" aria-hidden="true">← → TO NAVIGATE</span>
+    <div class="hero-switcher">
+      <div class="hero-switcher-inner">
+        <div class="hero-tabs" role="tablist" aria-label="Choose featured story">
+          <button class="hero-tab is-active" type="button" id="hl-tab-0" role="tab" aria-selected="true" aria-controls="hl-slide-0" tabindex="0"><span class="hero-tab-progress" aria-hidden="true"></span><span class="hero-tab-eyebrow">Artificial Intelligence</span><span class="hero-tab-title">New Model Announced: NVIDIA Nemotron 3 Omni</span></button>
+          <button class="hero-tab" type="button" id="hl-tab-1" role="tab" aria-selected="false" aria-controls="hl-slide-1" tabindex="-1"><span class="hero-tab-progress" aria-hidden="true"></span><span class="hero-tab-eyebrow">Agentic AI</span><span class="hero-tab-title">At NVIDIA, Teams Scale Human Ingenuity With OpenAI Codex Agents</span></button>
+          <button class="hero-tab" type="button" id="hl-tab-2" role="tab" aria-selected="false" aria-controls="hl-slide-2" tabindex="-1"><span class="hero-tab-progress" aria-hidden="true"></span><span class="hero-tab-eyebrow">Data Center</span><span class="hero-tab-title">NVIDIA and Google Cloud Power AI Breakthroughs</span></button>
+          <button class="hero-tab" type="button" id="hl-tab-3" role="tab" aria-selected="false" aria-controls="hl-slide-3" tabindex="-1"><span class="hero-tab-progress" aria-hidden="true"></span><span class="hero-tab-eyebrow">Artificial Intelligence</span><span class="hero-tab-title">Adobe Unlocks Breakthrough Creative Intelligence With NVIDIA and WPP</span></button>
+          <button class="hero-tab" type="button" id="hl-tab-4" role="tab" aria-selected="false" aria-controls="hl-slide-4" tabindex="-1"><span class="hero-tab-progress" aria-hidden="true"></span><span class="hero-tab-eyebrow">Artificial Intelligence</span><span class="hero-tab-title">NVIDIA Delivers the Lowest Token Cost</span></button>
+          <button class="hero-tab" type="button" id="hl-tab-5" role="tab" aria-selected="false" aria-controls="hl-slide-5" tabindex="-1"><span class="hero-tab-progress" aria-hidden="true"></span><span class="hero-tab-eyebrow">Artificial Intelligence</span><span class="hero-tab-title">Introducing NVIDIA Ising</span></button>
+        </div>
+        <button class="hero-pause" type="button" aria-pressed="false" aria-label="Pause carousel autoplay">⏸</button>
+        <span class="hero-countdown" aria-live="off" aria-hidden="true">AUTOPLAY · 7<span class="hero-countdown-unit">s</span></span>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- H3 — hero-product (v0) -->
+<section class="block-sample-wrap surface-dark" data-block-sample="H3" data-block-id="H3" data-status="v0" data-intent="catalog-sample" data-layout="split-photo-spec-cta">
+  <div class="container">
+    <div class="block-label" data-block-label="H3" data-status="v0" data-source="geforce-rtx-5090.json">
+      <span class="block-label-id">H3</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Single-product launch hero</span>
+        <span class="ml-shape">Eyebrow + H1 + spec line + price + dual CTA + product photo (renders as h1 in production; demoted to h2 in this catalog so the page outline is well-formed)</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: geforce-rtx-5090.json</span>
+      </div>
+    </div>
+    <div class="hero-product">
+      <div class="hero-product-content">
+        <p class="hero-product-eyebrow">GeForce RTX™ 50 Series</p>
+        <h2 class="hero-product-headline">GeForce RTX 5090</h2>
+        <p class="hero-product-price">Starting at $1,999</p>
+        <p class="hero-product-spec" data-placeholder="rtx-5090-spec-line">32GB GDDR7 · 21,760 CUDA Cores · 4th-Gen RT Cores</p>
+        <div class="hero-product-cta-row">
+          <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/?locale=en-us&page=">See Buying Options</a>
+          <a class="btn btn-secondary" href="https://www.nvidia.com/en-us/geforce/graphics-cards/compare/#50-series">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-product-photo">
+        <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/graphic-cards/50-series/rtx-5090/geforce-rtx-5090-bm-xl770-d@2x.jpg" alt="GeForce RTX 5090" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- H4 — hero-video (v0) -->
+<section class="block-sample-wrap surface-white" data-block-sample="H4" data-block-id="H4" data-status="v0" data-intent="catalog-sample" data-layout="featured-video-fullbleed">
+  <div class="container">
+    <div class="block-label" data-block-label="H4" data-status="v0" data-source="shield.json">
+      <span class="block-label-id">H4</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Video-led brand hero</span>
+        <span class="ml-shape">Full-bleed poster · headline overlay · play + duration affordance</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: shield.json</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-video" role="region" aria-label="Featured video">
+    <img class="hero-video-poster" src="https://www.nvidia.com/content/dam/en/shield/products/home/shield-transform-your-television-2560x770-d@2x.jpeg" alt="NVIDIA SHIELD streaming" loading="lazy" decoding="async">
+    <div class="hero-video-overlay" aria-hidden="true"></div>
+    <div class="hero-video-content">
+      <h2>Stream the future to your TV</h2>
+      <div class="hero-video-play-row">
+        <button class="hero-video-play" type="button" aria-label="Play video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <span class="hero-video-duration">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm.5 5h-1v6l5 3 .5-.866L12.5 12V7z"/></svg>
+          Featured · Play
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     TIER 3 — STORY / DISCOVERY
+     ════════════════════════════════════════════════════════════════════════ -->
+<section class="tier-header surface-white" data-section="tier-header" data-tier="3" data-intent="catalog-section">
+  <div class="container">
+    <p class="tier-header-enum">/ 03</p>
+    <h2>Tier 3 · Story / discovery</h2>
+    <p class="tier-header-purpose">The bulk of NVIDIA’s content surface. Composable: a page may use 3–8 of these in sequence.</p>
+  </div>
+</section>
+
+<!-- S1 — story-grid (built — variant A 3-up) -->
+<section class="block-sample-wrap surface-white theme-section variant-A" data-block-sample="S1" data-block-id="S1" data-status="built" data-intent="catalog-sample" data-layout="grid-3-editorial">
+  <div class="container">
+    <div class="block-label" data-block-label="S1" data-status="built" data-source="home.json">
+      <span class="block-label-id">S1</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">3-up editorial story grid</span>
+        <span class="ml-shape">Variant A wide-card · photo + dark band + title</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home.json (industries cluster)</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>Industries</h3></div>
+    <div class="theme-carousel">
+      <div class="theme-carousel-track" style="overflow:visible;">
+        <a href="https://www.nvidia.com/en-us/industries/healthcare-life-sciences/" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/industries/healthcare/ai-healthcare-life-sciences-multi-img-lg580-d@2x.jpg" alt="Healthcare and Life Sciences" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <div class="tile-a-eyebrow">Industries</div>
+            <h3>AI for Healthcare and Life Sciences</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="https://www.nvidia.com/en-us/solutions/autonomous-vehicles/" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/serve-robotics/serve-robotics-customer-story-bm-lg580-glass-d@2x.jpg" alt="Robotics" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <div class="tile-a-eyebrow">Industries</div>
+            <h3>Autonomous and Physical AI</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="https://www.nvidia.com/en-us/data-center/" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/solutions/data-center/home/data-center-bm-lg580-glass-d@2x.jpg" alt="Data Center" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <div class="tile-a-eyebrow">Industries</div>
+            <h3>Data Center and Cloud Computing</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2 — story-carousel (built — variant A 8-tile carousel from home.json AI cluster) -->
+<section class="block-sample-wrap surface-dark theme-section variant-A" data-block-sample="S2" data-block-id="S2" data-status="built" data-intent="catalog-sample" data-layout="carousel-3up">
+  <div class="container">
+    <div class="block-label" data-block-label="S2" data-status="built" data-source="home.json">
+      <span class="block-label-id">S2</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Horizontally scrolling story carousel</span>
+        <span class="ml-shape">Variant A · arrows · scroll-snap · 3 visible</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home.json (AI cluster)</span>
+      </div>
+    </div>
+    <div class="theme-header">
+      <h3>Artificial Intelligence</h3>
+      <div class="theme-arrows" role="group" aria-label="AI carousel controls">
+        <button type="button" class="theme-arrow theme-arrow-prev" aria-label="Previous" aria-controls="block-S2-track">‹</button>
+        <button type="button" class="theme-arrow theme-arrow-next" aria-label="Next" aria-controls="block-S2-track">›</button>
+      </div>
+    </div>
+    <nav class="theme-quicklinks" aria-label="AI quick links">
+      <span class="quicklinks-label">Quick Links</span>
+      <div class="quicklinks-row">
+        <a class="quicklink" href="https://www.nvidia.com/en-us/ai-data-science/">Overview</a><a class="quicklink" href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/data-analytics/">Data Analytics</a><a class="quicklink" href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/machine-learning/">Machine Learning</a><a class="quicklink" href="https://developer.nvidia.com/nvidia-merlin">Recommender Systems</a><a class="quicklink" href="https://www.nvidia.com/en-us/ai-data-science/products/riva/">Speech AI</a>
+      </div>
+    </nav>
+    <div class="theme-carousel">
+      <div class="theme-carousel-track" id="block-S2-track" role="region" aria-roledescription="carousel" aria-label="AI stories">
+        <a href="https://developer.nvidia.com/blog/nvidia-nemotron-3-nano-omni-powers-multimodal-agent-reasoning-in-a-single-efficient-open-model/" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1722277565106_c.coreimg.100.410.jpeg/1777390632384/nemotron3-nano-tech-blog-sfg.jpeg" alt="NVIDIA Nemotron 3 Omni" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>NVIDIA Nemotron 3 Omni: Open Multimodal Model</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/nemotron-3-nano-omni-multimodal-ai-agents/" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1722277565106_c_1801676144.coreimg.100.410.jpeg/1777390632402/nemotron-3-nano-omni-corp-blog-sfg.jpeg" alt="Introducing NVIDIA Nemotron 3 Omni" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>Introducing NVIDIA Nemotron 3 Omni</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1760642695091.coreimg.100.410.jpeg/1777390632431/openai-codex-agents-sfg.jpeg" alt="OpenAI Codex Agents" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>At NVIDIA, Teams Scale Human Ingenuity With OpenAI Codex Agents</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/adobe-ai-agents-nvidia-wpp/" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1691512647007.coreimg.100.410.jpeg/1777390632449/nvidia-me-adobe-summit-annoucement-sfg-2x.jpeg" alt="Adobe with NVIDIA and WPP" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>Adobe Unlocks Breakthrough Creative Intelligence With NVIDIA and WPP</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-launches-ising-the-worlds-first-open-ai-models-to-accelerate-the-path-to-useful-quantum-computers" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1722277565106.coreimg.100.410.jpeg/1777390632467/nvidia-ising-sfg.jpeg" alt="NVIDIA Ising" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>Introducing NVIDIA Ising</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-t-mobile-and-partners-integrate-physical-ai-applications-on-ai-ran-ready-infrastructure" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1669196241041.coreimg.100.410.jpeg/1777390632496/edge-ai-agents-ai-ran-sfg.jpeg" alt="T-Mobile Edge AI" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>NVIDIA, T-Mobile and Partners Enable Edge AI Agents on AI-RAN</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/secure-autonomous-ai-agents-openshell" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1669196231595.coreimg.100.410.jpeg/1777390632533/new-nemoclaw-sfg.jpeg" alt="OpenShell autonomous agents" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>Make Autonomous Agents More Secure by Design With NVIDIA OpenShell</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-launches-nemotron-coalition-of-leading-global-ai-labs-to-advance-open-frontier-models" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374/item_1669196231595_c_431732407.coreimg.100.410.jpeg/1777390632570/nemotron-coalition-sfg.jpeg" alt="Nemotron Coalition" loading="lazy" decoding="async">
+          <div class="tile-a-band"><div class="tile-a-eyebrow">Artificial Intelligence</div><h3>Building the Future Together: Meet the Nemotron Coalition</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 — theme-section (built — full Data Center & Cloud cluster) -->
+<section class="block-sample-wrap surface-white theme-section variant-G" data-block-sample="S3" data-block-id="S3" data-status="built" data-intent="catalog-sample" data-layout="theme-cluster-composed">
+  <div class="container">
+    <div class="block-label" data-block-label="S3" data-status="built" data-source="home.json">
+      <span class="block-label-id">S3</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Composed theme cluster (S2 + S5 framing)</span>
+        <span class="ml-shape">H2 + body + Quick Links + 3 visible carousel tiles</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home.json (Data Center cluster)</span>
+      </div>
+    </div>
+    <div class="theme-header">
+      <h3>Data Center and Cloud Computing</h3>
+      <div class="theme-arrows" role="group" aria-label="DC carousel controls">
+        <button type="button" class="theme-arrow theme-arrow-prev" aria-label="Previous" aria-controls="block-S3-track">‹</button>
+        <button type="button" class="theme-arrow theme-arrow-next" aria-label="Next" aria-controls="block-S3-track">›</button>
+      </div>
+    </div>
+    <p class="theme-description">From the cloud to the office to the data center to the edge, NVIDIA provides solutions that deliver breakthrough performance on enterprise AI and HPC workloads at any scale, driving business decisions and the future of computing.</p>
+    <nav class="theme-quicklinks" aria-label="Data Center quick links">
+      <span class="quicklinks-label">Quick Links</span>
+      <div class="quicklinks-row">
+        <a class="quicklink" href="https://www.nvidia.com/en-us/data-center/">Overview</a><a class="quicklink" href="https://www.nvidia.com/en-us/data-center/dgx-platform/">DGX Platform</a><a class="quicklink" href="https://www.nvidia.com/en-us/data-center/hgx/">HGX</a><a class="quicklink" href="https://www.nvidia.com/en-us/data-center/dgx-cloud/">DGX Cloud</a><a class="quicklink" href="https://www.nvidia.com/en-us/networking/">Networking</a><a class="quicklink" href="https://www.nvidia.com/en-us/networking/products/bluefield/">BlueField</a>
+      </div>
+    </nav>
+    <div class="theme-carousel">
+      <div class="theme-carousel-track" id="block-S3-track" role="region" aria-roledescription="carousel" aria-label="Data Center stories">
+        <a href="https://blogs.nvidia.com/blog/google-cloud-agentic-physical-ai-factories/" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/item_1678809496331.coreimg.100.410.jpeg/1777390635704/nvidia-and-google-cloud-sfg.jpeg" alt="Google Cloud" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">Data Center</span><h3>NVIDIA and Google Cloud Power AI Breakthroughs</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://www.googlecloudevents.com/next-vegas/session-library" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/item_1678851189000.coreimg.100.410.jpeg/1777390635722/nvidia-google-cloud-next-sfg.jpeg" alt="Google Cloud Next" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">Data Center</span><h3>Join NVIDIA at Google Cloud Next</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://developer.nvidia.com/blog/nvidia-extreme-co-design-delivers-new-mlperf-inference-records/" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/item_1678779645907.coreimg.100.410.jpeg/1777390635752/mlperf-inference-gb300-nvl72-sfg.jpeg" alt="MLPerf records" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">Data Center</span><h3>NVIDIA Extreme Co-Design Delivers New MLPerf Inference Records</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-launches-vera-cpu-purpose-built-for-agentic-ai" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/nv_teaser_copy.coreimg.100.410.jpeg/1777390635811/nvidia-cpu-vera-rack-sfg-2x.jpeg" alt="NVIDIA Vera CPU" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">Data Center</span><h3>NVIDIA Launches Vera CPU, Purpose-Built for Agentic AI</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4 — audience-card-grid (built — text-only) -->
+<section class="block-sample-wrap surface-dark theme-section" data-block-sample="S4" data-block-id="S4" data-status="built" data-intent="catalog-sample" data-layout="grid-5-audience">
+  <div class="container">
+    <div class="block-label" data-block-label="S4" data-status="built" data-source="home.json">
+      <span class="block-label-id">S4</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">5-up audience routing grid</span>
+        <span class="ml-shape">Title + 1-line subcopy + ghost CTA per card</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home.json (5-tab nav vocabulary)</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>For who you are</h3></div>
+    <div class="audience-grid">
+      <a class="audience-card" href="/for-you/">
+        <h3>For You</h3>
+        <p>Personalized entry point into the NVIDIA platform.</p>
+        <span class="audience-card-cta">Explore</span>
+      </a>
+      <a class="audience-card" href="https://www.nvidia.com/en-us/geforce/">
+        <h3>Gamers</h3>
+        <p>GeForce RTX graphics cards, laptops, and DLSS technologies.</p>
+        <span class="audience-card-cta">Explore</span>
+      </a>
+      <a class="audience-card" href="https://www.nvidia.com/en-us/studio/">
+        <h3>Creators</h3>
+        <p>NVIDIA Studio drivers and RTX-accelerated creative apps.</p>
+        <span class="audience-card-cta">Explore</span>
+      </a>
+      <a class="audience-card" href="https://developer.nvidia.com/">
+        <h3>Developers</h3>
+        <p>CUDA, AI libraries, NGC, training, and reference architectures.</p>
+        <span class="audience-card-cta">Explore</span>
+      </a>
+      <a class="audience-card" href="https://www.nvidia.com/en-us/solutions/">
+        <h3>Enterprise</h3>
+        <p>AI factory infrastructure, NVIDIA AI Enterprise, and DGX Cloud.</p>
+        <span class="audience-card-cta">Explore</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- S5 — platform-tile-grid (built — variant G 4-up x2) -->
+<section class="block-sample-wrap surface-white theme-section variant-G" data-block-sample="S5" data-block-id="S5" data-status="built" data-intent="catalog-sample" data-layout="grid-4-text-led">
+  <div class="container">
+    <div class="block-label" data-block-label="S5" data-status="built" data-source="home.json">
+      <span class="block-label-id">S5</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Platform / product wall</span>
+        <span class="ml-shape">Variant G stacked-pair · 110px photo + title + ghost CTA</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: home.json (HPC platform cluster)</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>Platforms</h3></div>
+    <div class="theme-carousel">
+      <div class="theme-carousel-track" style="overflow:visible;">
+        <a href="https://blogs.nvidia.com/blog/gtc-2026-news/#cuda" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/item_1715357004595.coreimg.100.410.jpeg/1777390633412/cuda-kv-1920x1080.jpeg" alt="CUDA" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>20 Years of CUDA: Honoring the Architects of Progress</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/gtc-2026-news/#cuest" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/item_1706106769086.coreimg.100.410.jpeg/1777390633432/nvidia-cuda-cuest-1920x1080.jpeg" alt="cuEST" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>Announcing NVIDIA cuEST for Semiconductor Design</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/nvidia-earth-2-open-models/" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/nv_teaser_copy.coreimg.100.410.jpeg/1777390633465/hpc-earth-2-model-sfg.jpeg" alt="Earth-2" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>NVIDIA Launches Earth-2 Family of Open Models</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/sc25-new-science-systems-worldwide/" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/nv_teaser_copy_copy_.coreimg.100.410.jpeg/1777390633531/hpc-sc25-corp-blog-sfg.jpeg" alt="80 New Science Systems" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>NVIDIA Accelerates AI for Over 80 New Science Systems Worldwide</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://blogs.nvidia.com/blog/ai-science-materials-discovery-sc25/" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/item_1678778522015.coreimg.100.410.jpeg/1777390633588/hpc-sc25-alchemi-sfg.jpeg" alt="Materials Discovery" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>NVIDIA Enables Scientific Breakthroughs for Materials Discovery</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-and-riken-advance-japans-scientific-frontiers-with-new-supercomputers-for-ai-and-quantum-computing" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/nv_teaser_copy_20067.coreimg.100.410.jpeg/1777390633635/riken-sfg-multi-image-1920x1080.jpeg" alt="RIKEN" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>NVIDIA and RIKEN Advance Japan’s Scientific Frontiers</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/scientific-supercomputing-centers-nvqlink-grace-blackwell-quantum-processors" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/item_1730558280916.coreimg.100.410.jpeg/1777390633698/sc25-nvqlink-sfg.jpeg" alt="NVQLink" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>World’s Leading Scientific Supercomputing Centers Adopt NVQLink</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+        <a href="https://nvidianews.nvidia.com/news/nvidia-nvqlink-quantum-gpu-computing" class="tile-g">
+          <div class="tile-g-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/nv_carousel_10568374_662431768/item_1731658011588.coreimg.100.410.jpeg/1777390633715/nvqlink-ari.jpeg" alt="NVQLink quantum" loading="lazy" decoding="async"></div>
+          <div class="tile-g-body"><span class="tile-g-eyebrow">HPC</span><h3>NVIDIA Announces NVQLink for Quantum-GPU Computing</h3><span class="tile-g-cta">Learn more</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S6 — flow-4-step (built — verbatim from data-center canon) -->
+<section class="block-sample-wrap surface-dark theme-section" data-block-sample="S6" data-block-id="S6" data-status="built" data-intent="catalog-sample" data-layout="flow-4-step">
+  <div class="container">
+    <div class="block-label" data-block-label="S6" data-status="built" data-source="data-center.json">
+      <span class="block-label-id">S6</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Sequenced 4-step flow</span>
+        <span class="ml-shape">Mono / NN numbers + 1px hairline track + photo + title</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: data-center.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>From Development to Deployment</h3></div>
+    <ol class="flow-grid">
+      <li class="flow-step">
+        <a href="/en-us/data-center/cloud-computing/" class="flow-step-link">
+          <span class="flow-step-number">/ 01</span>
+          <div class="flow-step-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser.coreimg.svg/1773658156492/m48-virtual-pc-cloud-computer.svg" alt="Cloud" loading="lazy" decoding="async"></div>
+          <h3 class="flow-step-title">From the Cloud</h3>
+        </a>
+      </li>
+      <li class="flow-step">
+        <a href="/en-us/design-visualization/quadro-rtx/" class="flow-step-link">
+          <span class="flow-step-number">/ 02</span>
+          <div class="flow-step-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser_1709725053.coreimg.svg/1773658156523/m48-building-office.svg" alt="Office" loading="lazy" decoding="async"></div>
+          <h3 class="flow-step-title">To the Office</h3>
+        </a>
+      </li>
+      <li class="flow-step">
+        <a href="/en-us/data-center/" class="flow-step-link">
+          <span class="flow-step-number">/ 03</span>
+          <div class="flow-step-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser_1620446715.coreimg.svg/1773658156554/m48-server-network.svg" alt="Data center" loading="lazy" decoding="async"></div>
+          <h3 class="flow-step-title">To the Data Center</h3>
+        </a>
+      </li>
+      <li class="flow-step">
+        <a href="/en-us/edge-computing/" class="flow-step-link">
+          <span class="flow-step-number">/ 04</span>
+          <div class="flow-step-photo"><img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser_1256775757.coreimg.svg/1773658156584/m48-edge-computing.svg" alt="Edge" loading="lazy" decoding="async"></div>
+          <h3 class="flow-step-title">To the Edge</h3>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     TIER 4 — PROOF / CONVERSION
+     ════════════════════════════════════════════════════════════════════════ -->
+<section class="tier-header surface-white" data-section="tier-header" data-tier="4" data-intent="catalog-section">
+  <div class="container">
+    <p class="tier-header-enum">/ 04</p>
+    <h2>Tier 4 · Proof / conversion</h2>
+    <p class="tier-header-purpose">Trust signals, conversion handoffs, technical breakdowns. Lower frequency than Tier 3 but heavily weighted on product-detail pages.</p>
+  </div>
+</section>
+
+<!-- P1 — stats-row (v0) -->
+<section class="block-sample-wrap surface-dark theme-section" data-block-sample="P1" data-block-id="P1" data-status="v0" data-intent="catalog-sample" data-layout="grid-4-stat-tiles">
+  <div class="container">
+    <div class="block-label" data-block-label="P1" data-status="v0" data-source="high-performance-computing.json">
+      <span class="block-label-id">P1</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">4-up KPI numerals</span>
+        <span class="ml-shape">Big number (49px) + mono unit + label</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: high-performance-computing.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>[Section heading]</h3></div>
+    <div class="stats-row">
+      <div class="stat-tile">
+        <span class="stat-number" data-placeholder="stat-1-value">00.0×</span>
+        <span class="stat-unit" data-placeholder="stat-1-unit">[unit]</span>
+        <span class="stat-label" data-placeholder="stat-1-label">[KPI label]</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-number" data-placeholder="stat-2-value">000+</span>
+        <span class="stat-unit" data-placeholder="stat-2-unit">[unit]</span>
+        <span class="stat-label" data-placeholder="stat-2-label">[KPI label]</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-number" data-placeholder="stat-3-value">00</span>
+        <span class="stat-unit" data-placeholder="stat-3-unit">[unit]</span>
+        <span class="stat-label" data-placeholder="stat-3-label">[KPI label]</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-number" data-placeholder="stat-4-value">00.0%</span>
+        <span class="stat-unit" data-placeholder="stat-4-unit">[unit]</span>
+        <span class="stat-label" data-placeholder="stat-4-label">[KPI label]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P2 — architecture-spec (built — full-bleed 5/7 split) -->
+<section class="block-sample-wrap surface-white theme-section" data-block-sample="P2" data-block-id="P2" data-status="built" data-intent="catalog-sample" data-layout="arch-block-5-7">
+  <div class="container">
+    <div class="block-label" data-block-label="P2" data-status="built" data-source="data-center.json">
+      <span class="block-label-id">P2</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Single architecture deep-link tile</span>
+        <span class="ml-shape">5/7 split · photo + H3 + spec list + ghost CTA</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: data-center.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>Full-Stack Infrastructure</h3></div>
+    <article class="arch-block">
+      <div class="arch-block-photo">
+        <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_47982766/nv_container/nv_teaser.coreimg.100.1070.jpeg/1773658155840/datacenter-solutions-blackwell-ari-1920x1080.jpeg" alt="NVIDIA Blackwell GPU Architecture" loading="lazy" decoding="async">
+      </div>
+      <div class="arch-block-body">
+        <h3>NVIDIA Blackwell GPU Architecture</h3>
+        <ul class="arch-block-specs">
+          <li><span class="spec-label">Class</span><span class="spec-value">Data Center GPU</span></li>
+          <li><span class="spec-label">Generation</span><span class="spec-value">Blackwell</span></li>
+          <li><span class="spec-label">Workload</span><span class="spec-value">AI training, inference, HPC</span></li>
+          <li><span class="spec-label">Pairs With</span><span class="spec-value">Grace CPU, BlueField DPU, Spectrum-X</span></li>
+        </ul>
+        <a class="btn btn-secondary" href="/en-us/data-center/blackwell-architecture/">Learn More</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- P3 — comparison-table (v0) -->
+<section class="block-sample-wrap surface-dark theme-section" data-block-sample="P3" data-block-id="P3" data-status="v0" data-intent="catalog-sample" data-layout="comparison-table">
+  <div class="container">
+    <div class="block-label" data-block-label="P3" data-status="v0" data-source="data-center-dgx-gb300.json">
+      <span class="block-label-id">P3</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">N-way product spec comparison</span>
+        <span class="ml-shape">Sticky first column · hairline cells · alternating tint · mono numerals</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: data-center-dgx-gb300.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>NVIDIA DGX generations</h3></div>
+    <div class="comparison-table-wrap">
+      <table class="comparison-table" aria-label="DGX product comparison">
+        <thead>
+          <tr>
+            <th scope="col">Specification</th>
+            <th scope="col">DGX-1</th>
+            <th scope="col">DGX-2</th>
+            <th scope="col">DGX GB300</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="row-label">CPU</th>
+            <td class="cell-num">2× Intel Xeon</td>
+            <td class="cell-num">2× Intel Xeon Platinum</td>
+            <td class="cell-num">NVIDIA Grace</td>
+          </tr>
+          <tr>
+            <th scope="row" class="row-label">GPU</th>
+            <td class="cell-num">8× Tesla V100</td>
+            <td class="cell-num">16× Tesla V100</td>
+            <td class="cell-num">Grace Blackwell Ultra Superchips</td>
+          </tr>
+          <tr>
+            <th scope="row" class="row-label">Memory</th>
+            <td class="cell-num em-dash">—</td>
+            <td class="cell-num em-dash">—</td>
+            <td class="cell-num em-dash">—</td>
+          </tr>
+          <tr>
+            <th scope="row" class="row-label">Power</th>
+            <td class="cell-num em-dash">—</td>
+            <td class="cell-num em-dash">—</td>
+            <td class="cell-num em-dash">—</td>
+          </tr>
+          <tr>
+            <th scope="row" class="row-label">Form factor</th>
+            <td class="cell-num">3U server</td>
+            <td class="cell-num">10U server</td>
+            <td class="cell-num">Rack-scale system</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- P4 — buy-options-list (v0) -->
+<section class="block-sample-wrap surface-white theme-section" data-block-sample="P4" data-block-id="P4" data-status="v0" data-intent="catalog-sample" data-layout="retailer-list">
+  <div class="container">
+    <div class="block-label" data-block-label="P4" data-status="v0" data-source="geforce-rtx-5090.json">
+      <span class="block-label-id">P4</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Retailer-routing buy list</span>
+        <span class="ml-shape">5 rows · logo + name + price + Buy CTA</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: geforce-rtx-5090.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>See buying options · GeForce RTX 5090</h3></div>
+    <ul class="buy-options">
+      <li class="buy-option">
+        <div class="buy-option-logo" data-placeholder="retailer-logo" aria-label="Amazon logo placeholder"></div>
+        <div class="buy-option-name">Amazon</div>
+        <div class="buy-option-price" data-placeholder="retailer-price">$1,999</div>
+        <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/?locale=en-us&page=">Buy →</a>
+      </li>
+      <li class="buy-option">
+        <div class="buy-option-logo" data-placeholder="retailer-logo" aria-label="Best Buy logo placeholder"></div>
+        <div class="buy-option-name">Best Buy</div>
+        <div class="buy-option-price" data-placeholder="retailer-price">$1,999</div>
+        <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/?locale=en-us&page=">Buy →</a>
+      </li>
+      <li class="buy-option">
+        <div class="buy-option-logo" data-placeholder="retailer-logo" aria-label="Newegg logo placeholder"></div>
+        <div class="buy-option-name">Newegg</div>
+        <div class="buy-option-price" data-placeholder="retailer-price">$1,999</div>
+        <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/?locale=en-us&page=">Buy →</a>
+      </li>
+      <li class="buy-option">
+        <div class="buy-option-logo" data-placeholder="retailer-logo" aria-label="B&amp;H logo placeholder"></div>
+        <div class="buy-option-name">B&amp;H</div>
+        <div class="buy-option-price" data-placeholder="retailer-price">$1,999</div>
+        <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/?locale=en-us&page=">Buy →</a>
+      </li>
+      <li class="buy-option">
+        <div class="buy-option-logo" data-placeholder="retailer-logo" aria-label="Micro Center logo placeholder"></div>
+        <div class="buy-option-name">Micro Center</div>
+        <div class="buy-option-price" data-placeholder="retailer-price">$1,999</div>
+        <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/consumer/graphics-cards/?locale=en-us&page=">Buy →</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- P5 — customer-story-card-grid (built — variant A 3-up) -->
+<section class="block-sample-wrap surface-dark theme-section variant-A" data-block-sample="P5" data-block-id="P5" data-status="built" data-intent="catalog-sample" data-layout="grid-3-customer-stories">
+  <div class="container">
+    <div class="block-label" data-block-label="P5" data-status="built" data-source="data-center.json">
+      <span class="block-label-id">P5</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">3-up customer story tiles</span>
+        <span class="ml-shape">Variant A · photo + dark band + customer name in title</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: data-center.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>Customer Stories</h3></div>
+    <div class="theme-carousel">
+      <div class="theme-carousel-track" style="overflow:visible;">
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/designing-the-lab-of-the-future-for-transcripta-bio-new/customer-transcripta-og.jpg" alt="Transcripta Bio" loading="lazy" decoding="async">
+          <div class="tile-a-band"><h3>Designing the Lab of the Future for Transcripta Bio</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/leidos-uses-ai-agents-to-improve-disaster-response/leidos-customer-story-og.jpg" alt="Leidos" loading="lazy" decoding="async">
+          <div class="tile-a-band"><h3>Leidos Uses AI Agents to Cut Response Times and Boost Coordination in Disaster Scenarios</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/parkhill/parkhill-customer-story-og.jpg" alt="Parkhill" loading="lazy" decoding="async">
+          <div class="tile-a-band"><h3>Future Proofing infrastructure for Architectural Design and Remote Collaboration</h3><span class="tile-a-cta">Learn more</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P6 — logo-strip (v0) -->
+<section class="block-sample-wrap surface-white theme-section" data-block-sample="P6" data-block-id="P6" data-status="v0" data-intent="catalog-sample" data-layout="logo-strip-8">
+  <div class="container">
+    <div class="block-label" data-block-label="P6" data-status="v0" data-source="industries-healthcare.json">
+      <span class="block-label-id">P6</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Partner / customer logo wall</span>
+        <span class="ml-shape">8 logos · monochrome grayscale · hairline above + below</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: industries-healthcare.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>Trusted by leading partners</h3></div>
+    <div class="logo-strip-wrap">
+      <div class="logo-strip">
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 1 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 2 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 3 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 4 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 5 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 6 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 7 placeholder"></div>
+        <div class="partner-logo" data-placeholder="partner-logo" aria-label="Partner logo 8 placeholder"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P7 — cta-band (built) -->
+<section class="block-sample-wrap surface-dark" data-block-sample="P7" data-block-id="P7" data-status="built" data-intent="catalog-sample" data-layout="centered-single-cta">
+  <div class="container">
+    <div class="block-label" data-block-label="P7" data-status="built" data-source="data-center.json">
+      <span class="block-label-id">P7</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Conversion handoff band</span>
+        <span class="ml-shape">Centered H2 + single primary CTA · dark ground</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: data-center.json + home.json</span>
+      </div>
+    </div>
+  </div>
+  <section class="cta-band">
+    <div class="container">
+      <h2>Ready to get started?</h2>
+      <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/enterprise/data-center/?limit=15">Browse NVIDIA Marketplace</a>
+    </div>
+  </section>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════════
+     TIER 5 — LONG-FORM, ENGAGEMENT
+     ════════════════════════════════════════════════════════════════════════ -->
+<section class="tier-header surface-white" data-section="tier-header" data-tier="5" data-intent="catalog-section">
+  <div class="container">
+    <p class="tier-header-enum">/ 05</p>
+    <h2>Tier 5 · Long-form, engagement</h2>
+    <p class="tier-header-purpose">Article-style and structured content blocks for the long tail — glossary entries, case studies, FAQ pages, use-case features.</p>
+  </div>
+</section>
+
+<!-- L1 — article-body (v0) -->
+<section class="block-sample-wrap surface-white theme-section" data-block-sample="L1" data-block-id="L1" data-status="v0" data-intent="catalog-sample" data-layout="article-shell-65ch">
+  <div class="container">
+    <div class="block-label" data-block-label="L1" data-status="v0" data-source="glossary-generative-physical-ai.json">
+      <span class="block-label-id">L1</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Long-form article shell</span>
+        <span class="ml-shape">Breadcrumb + H1 + lead + 2× H2 sections + related-links (heading levels demoted h1→h2 / h2→h3 in this catalog so the page outline is well-formed; in production these are h1 / h2)</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: glossary-generative-physical-ai.json</span>
+      </div>
+    </div>
+    <article class="article-body">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol class="breadcrumbs-list">
+          <li><a href="https://www.nvidia.com/en-us/glossary/">Glossary</a></li>
+          <li><span class="sep" aria-hidden="true">›</span></li>
+          <li><span aria-current="page">Generative Physical AI</span></li>
+        </ol>
+      </nav>
+      <h2 class="article-headline">What is Physical AI?</h2>
+      <p class="lead">Physical AI enables autonomous machines to perceive, understand, and perform complex actions in the real (physical) world.</p>
+      <h3>Why Is Physical AI Important?</h3>
+      <p data-placeholder="article-body">Body paragraph for this H2 not captured in extract; will resolve at migrate from the glossary entry source.</p>
+      <h3>How Does Physical AI Work?</h3>
+      <p data-placeholder="article-body">Body paragraph for this H2 not captured in extract; will resolve at migrate from the glossary entry source.</p>
+      <div class="article-related">
+        <h3>Related</h3>
+        <ul>
+          <li><a href="https://developer.nvidia.com/isaac/sim">Isaac Sim · Robotics simulation</a></li>
+          <li><a href="https://www.nvidia.com/en-us/omniverse/">NVIDIA Omniverse · USD-based world building</a></li>
+          <li><a href="https://www.nvidia.com/en-us/glossary/">Glossary · all terms</a></li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- L2 — faq-accordion (v0) -->
+<section class="block-sample-wrap surface-dark theme-section" data-block-sample="L2" data-block-id="L2" data-status="v0" data-intent="catalog-sample" data-layout="faq-accordion-native">
+  <div class="container">
+    <div class="block-label" data-block-label="L2" data-status="v0" data-source="glossary-generative-physical-ai.json">
+      <span class="block-label-id">L2</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Native &lt;details&gt; FAQ accordion</span>
+        <span class="ml-shape">No JS · hairline divider · mono +/− toggle right</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: glossary-generative-physical-ai.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>Frequently asked: Physical AI</h3></div>
+    <div class="faq-list">
+      <details>
+        <summary>Why Is Physical AI Important?</summary>
+        <p class="faq-answer" data-placeholder="faq-answer">Answer body for this question not captured in extract; will resolve at migrate from the glossary entry source.</p>
+      </details>
+      <details>
+        <summary>How Does Physical AI Work?</summary>
+        <p class="faq-answer" data-placeholder="faq-answer">Answer body for this question not captured in extract; will resolve at migrate from the glossary entry source.</p>
+      </details>
+      <details>
+        <summary>What’s the Role of Synthetic Data in Developing Physical AI?</summary>
+        <p class="faq-answer" data-placeholder="faq-answer">Answer body for this question not captured in extract; will resolve at migrate from the glossary entry source.</p>
+      </details>
+      <details>
+        <summary>What’s the Role of Reinforcement Learning in Physical AI?</summary>
+        <p class="faq-answer" data-placeholder="faq-answer">Answer body for this question not captured in extract; will resolve at migrate from the glossary entry source.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- L3 — use-case-50-50 (built — verbatim from data-center canon) -->
+<section class="block-sample-wrap surface-white theme-section" data-block-sample="L3" data-block-id="L3" data-status="built" data-intent="catalog-sample" data-layout="50-50-stack">
+  <div class="container">
+    <div class="block-label" data-block-label="L3" data-status="built" data-source="data-center.json">
+      <span class="block-label-id">L3</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">50/50 use case feature</span>
+        <span class="ml-shape">Photo + H2 + body + ghost CTA · alternates image side across instances</span>
+        <span class="ml-status" data-status="built">built</span>
+        <span class="ml-source">source: data-center.json (Catalog Enrichment)</span>
+      </div>
+    </div>
+    <ol class="use-cases-list">
+      <li class="use-case use-case-left">
+        <div class="use-case-photo">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/use-cases/catalogue-enrichment/catalog-enrichment-sfg.jpg" alt="Catalog Enrichment" loading="lazy" decoding="async">
+        </div>
+        <div class="use-case-body">
+          <h2>Catalog Enrichment</h2>
+          <p class="use-case-description">AI-powered catalog enrichment automatically generates rich product attributes, images, and copy at scale, helping retailers expand SKU coverage and improve discoverability across digital storefronts.</p>
+          <a class="btn btn-secondary" href="/en-us/use-cases/catalog-enrichment/">Learn More</a>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- L4 — case-study-meta (v0) -->
+<section class="block-sample-wrap surface-dark theme-section" data-block-sample="L4" data-block-id="L4" data-status="v0" data-intent="catalog-sample" data-layout="case-meta-strip">
+  <div class="container">
+    <div class="block-label" data-block-label="L4" data-status="v0" data-source="case-study-serve-robotics.json">
+      <span class="block-label-id">L4</span>
+      <div class="block-label-meta">
+        <span class="ml-purpose">Case-study fielded meta strip</span>
+        <span class="ml-shape">5-col mono labels + values · excerpt · Read full CTA</span>
+        <span class="ml-status" data-status="v0">v0</span>
+        <span class="ml-source">source: case-study-serve-robotics.json</span>
+      </div>
+    </div>
+    <div class="theme-header"><h3>How Serve Robotics Achieved 99.8% Success for Last-Mile Autonomous Delivery</h3></div>
+    <dl class="case-meta">
+      <div class="case-meta-item">
+        <dt class="case-meta-label">Customer</dt>
+        <dd class="case-meta-value">Serve Robotics</dd>
+      </div>
+      <div class="case-meta-item">
+        <dt class="case-meta-label">Industry</dt>
+        <dd class="case-meta-value"><span data-placeholder="case-industry"></span></dd>
+      </div>
+      <div class="case-meta-item">
+        <dt class="case-meta-label">Use Case</dt>
+        <dd class="case-meta-value"><span data-placeholder="case-use-case"></span></dd>
+      </div>
+      <div class="case-meta-item">
+        <dt class="case-meta-label">Products Used</dt>
+        <dd class="case-meta-value"><span data-placeholder="case-products"></span></dd>
+      </div>
+      <div class="case-meta-item">
+        <dt class="case-meta-label">Partner</dt>
+        <dd class="case-meta-value"><span data-placeholder="case-partner"></span></dd>
+      </div>
+    </dl>
+    <p class="case-excerpt">Serve Robotics is pioneering autonomous sidewalk delivery with physical AI-powered robots — navigating complex urban environments with compact, high-performance compute for all-day use.</p>
+    <a class="btn btn-secondary" href="https://www.nvidia.com/en-us/case-studies/serve-robotics/">Read full case study →</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="navigate" data-layout="mega-9col" role="contentinfo">
+  <div class="container">
+    <div class="footer-columns">
+      <div class="footer-column"><h3>Company Information</h3><ul>
+        <li><span data-placeholder="footer-link" data-shape="About NVIDIA"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Careers"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Investors"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Sustainability"></span></li>
+      </ul></div>
+      <div class="footer-column"><h3>Products</h3><ul>
+        <li><span data-placeholder="footer-link" data-shape="GeForce"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Data Center"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Networking"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Studio"></span></li>
+      </ul></div>
+      <div class="footer-column"><h3>Industries &amp; Solutions</h3><ul>
+        <li><span data-placeholder="footer-link" data-shape="Healthcare"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Automotive"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Manufacturing"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Telecom"></span></li>
+      </ul></div>
+      <div class="footer-column"><h3>Resources</h3><ul>
+        <li><span data-placeholder="footer-link" data-shape="Newsroom"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="NVIDIA Partner Network"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Developer"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Training"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Documentation"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Glossary"></span></li>
+        <li><span data-placeholder="footer-link" data-shape="Support"></span></li>
+      </ul></div>
+      <!-- Footer link total: 19 items across 4 columns (4+4+4+7) — matches brief unsourcedContent[].count for footer links -->
+      <div class="footer-column footer-subscribe">
+        <h3>Sign Up for NVIDIA News</h3>
+        <p>Get the latest NVIDIA announcements, product news, and stories from across the platform.</p>
+        <form action="https://www.nvidia.com/en-us/preferences/email-signup/" method="post">
+          <label for="footer-email" class="visually-hidden">Email address</label>
+          <input id="footer-email" type="email" name="email" placeholder="Email Address" required autocomplete="email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copyright">© 2026 NVIDIA Corporation</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Manage Cookies</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+      </div>
+      <div class="footer-social" aria-label="NVIDIA on social media">
+        <a class="icon-btn" href="#" aria-label="LinkedIn">in</a>
+        <a class="icon-btn" href="#" aria-label="X / Twitter">𝕏</a>
+        <a class="icon-btn" href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // HERO CAROUSEL — auto-advance with WCAG 2.2.2 pause control (canon — adapted to block-H2-carousel id)
+  (function() {
+    var hero = document.getElementById('block-H2-carousel');
+    if (!hero) return;
+    var slides = hero.querySelectorAll('.hero-slide');
+    var tabs = hero.querySelectorAll('.hero-tab');
+    var pauseBtn = hero.querySelector('.hero-pause');
+    var ADVANCE_MS = 7000;
+    var current = 0, timer = null, userPaused = false;
+    function show(idx) {
+      slides.forEach(function(s, i) { s.classList.toggle('is-active', i === idx); });
+      tabs.forEach(function(t, i) {
+        t.classList.toggle('is-active', i === idx);
+        t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+        t.setAttribute('tabindex', i === idx ? '0' : '-1');
+      });
+      var activeTab = tabs[idx];
+      if (activeTab) {
+        var progress = activeTab.querySelector('.hero-tab-progress');
+        if (progress) { progress.style.animation = 'none'; progress.offsetHeight; progress.style.animation = ''; }
+      }
+      current = idx;
+    }
+    function next() { show((current + 1) % slides.length); }
+    function start() { if (userPaused) return; stop(); timer = setInterval(next, ADVANCE_MS); hero.classList.remove('is-paused'); }
+    function stop()  { if (timer) { clearInterval(timer); timer = null; } hero.classList.add('is-paused'); }
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', function() { if (!userPaused) start(); });
+    hero.addEventListener('focusin', stop);
+    hero.addEventListener('focusout', function(e) { if (!hero.contains(e.relatedTarget) && !userPaused) start(); });
+    tabs.forEach(function(t, i) {
+      t.addEventListener('click', function() { show(i); start(); });
+      t.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); var n = (i + 1) % slides.length; show(n); tabs[n].focus(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); var n = (i - 1 + slides.length) % slides.length; show(n); tabs[n].focus(); }
+      });
+    });
+    pauseBtn.addEventListener('click', function() {
+      userPaused = !userPaused;
+      if (userPaused) { stop(); pauseBtn.setAttribute('aria-pressed', 'true'); pauseBtn.setAttribute('aria-label', 'Resume carousel autoplay'); pauseBtn.textContent = '▶'; }
+      else { start(); pauseBtn.setAttribute('aria-pressed', 'false'); pauseBtn.setAttribute('aria-label', 'Pause carousel autoplay'); pauseBtn.textContent = '⏸'; }
+    });
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      userPaused = true; pauseBtn.setAttribute('aria-pressed', 'true'); pauseBtn.setAttribute('aria-label', 'Resume carousel autoplay'); pauseBtn.textContent = '▶'; stop();
+    } else { start(); }
+  })();
+
+  // THEME CAROUSELS — scroll-snap horizontal scrollers (canon)
+  (function() {
+    document.querySelectorAll('.theme-carousel').forEach(function(carousel) {
+      var section = carousel.closest('section');
+      if (!section) return;
+      var track = carousel.querySelector('.theme-carousel-track');
+      var prev = section.querySelector('.theme-arrow-prev');
+      var next = section.querySelector('.theme-arrow-next');
+      if (!track || !prev || !next) return;
+      function pageWidth() { return track.clientWidth; }
+      prev.addEventListener('click', function() { track.scrollBy({ left: -pageWidth(), behavior: 'smooth' }); });
+      next.addEventListener('click', function() { track.scrollBy({ left:  pageWidth(), behavior: 'smooth' }); });
+      track.setAttribute('tabindex', '0');
+      track.addEventListener('keydown', function(e) {
+        switch (e.key) {
+          case 'ArrowLeft':  e.preventDefault(); track.scrollBy({ left: -pageWidth(), behavior: 'smooth' }); break;
+          case 'ArrowRight': e.preventDefault(); track.scrollBy({ left:  pageWidth(), behavior: 'smooth' }); break;
+          case 'Home':       e.preventDefault(); track.scrollTo({ left: 0, behavior: 'smooth' }); break;
+          case 'End':        e.preventDefault(); track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' }); break;
+        }
+      });
+      function updateArrowState() {
+        var max = track.scrollWidth - track.clientWidth - 4;
+        prev.disabled = track.scrollLeft <= 4;
+        next.disabled = track.scrollLeft >= max;
+      }
+      track.addEventListener('scroll', updateArrowState, { passive: true });
+      window.addEventListener('resize', updateArrowState);
+      updateArrowState();
+    });
+  })();
+
+  // Hero countdown sync with pause state
+  (function() {
+    var hero = document.getElementById('block-H2-carousel');
+    if (!hero) return;
+    var countdown = hero.querySelector('.hero-countdown');
+    if (!countdown) return;
+    var remaining = 7, ticker = null;
+    function paint(secs) {
+      var pre = hero.classList.contains('is-paused') ? 'PAUSED · ' : 'AUTOPLAY · ';
+      countdown.firstChild.textContent = pre + secs;
+    }
+    function start() { stop(); remaining = 7; paint(remaining); ticker = setInterval(function() { remaining = remaining > 1 ? remaining - 1 : 7; paint(remaining); }, 1000); }
+    function stop()  { if (ticker) { clearInterval(ticker); ticker = null; } paint(remaining); }
+    var lastPaused = false;
+    setInterval(function() {
+      var paused = hero.classList.contains('is-paused');
+      if (paused !== lastPaused) { lastPaused = paused; if (paused) stop(); else start(); }
+    }, 200);
+    setTimeout(function() { if (!hero.classList.contains('is-paused')) start(); else paint(remaining); }, 100);
+  })();
+
+  // Dev console greeting (canon)
+  (function() {
+    if (typeof console === 'undefined' || !console.log) return;
+    var brand = '#76b900', black = '#000';
+    var bigStyle = 'background:' + black + ';color:' + brand + ';font-weight:700;font-size:14px;padding:10px 14px;letter-spacing:0.04em;font-family:Arial,sans-serif;';
+    var smStyle = 'color:#666;font-size:12px;padding:8px 0;font-family:Menlo,monospace;line-height:1.5;';
+    console.log('%cNVIDIA · gensite block library', bigStyle);
+    console.log('%c25 layout primitives, rendered at full size, in the approved Mode A direction.\nReference doc for the LLM intent-to-layout pipeline + the developer building the impl.', smStyle);
+  })();
+</script>
+</body>
+</html>

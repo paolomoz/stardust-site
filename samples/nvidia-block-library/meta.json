@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "slug": "nvidia-block-library",
+  "title": "NVIDIA — block library",
+  "tagline": "Synthetic catalog page (no live nvidia.com source). Composes the 25-block layout vocabulary used by the gensite intent-to-layout pipeline into one continuous reference, every block at full size, in context, against the approved Mode A brand-faithful tokens.",
+
+  "source": {
+    "url": null,
+    "register": "brand",
+    "category": "AI · GPU · accelerated computing",
+    "extractedAt": "2026-05-03",
+    "synthetic": true,
+    "syntheticNote": "No live source. Page is composed from the 25 blocks in stardust/blocks-catalog.md, sourced against captured corpus content from 40 nvidia.com/en-us/ pages."
+  },
+
+  "direction": {
+    "phrase": "follow the current NVIDIA design and apply improvements that preserve the current design principles",
+    "movements": [
+      "purpose: developer + LLM reference for the gensite block vocabulary",
+      "composition: every block rendered at full size, in context, with a label card carrying ID + purpose + content shape + status + source page",
+      "tokens: inherited from approved home canon (Mode A brand-faithful)",
+      "two-surface alternation: D-W-D-W between blocks so the cadence reads"
+    ],
+    "seed": {
+      "input": "NVIDIA|2026-05-03",
+      "decade": "2025-now",
+      "craft": "brand-inherited",
+      "register": "brand",
+      "groundFamily": "stark-white AND stark-black",
+      "pickedBy": "inherited (Mode A, from approved home canon)"
+    },
+    "fontDeck": {
+      "name": "brand-inherited",
+      "value": "NVIDIA-NALA, Arial, Helvetica, sans-serif",
+      "pickedBy": "user-constraint"
+    },
+    "palette": {
+      "name": "NVIDIA brand-pinned",
+      "source": "inherited from stardust/current/_brand-extraction.json",
+      "anchor": "#76b900",
+      "pickedBy": "user-constraint",
+      "brandFaithfulInversions": [
+        "pure-white #ffffff retained",
+        "pure-black #000000 retained",
+        "hex format retained",
+        "sharp 0px corners retained",
+        "NVIDIA green #76b900 retained as single CTA accent"
+      ]
+    },
+    "antiToolbox": { "hits": 0, "justified": 0 }
+  },
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Block catalog",
+      "dominantDimension": "ia",
+      "thesis": "One continuous scroll exposing all 25 blocks (Tier 1 chrome → Tier 5 long-form) in render order. Each block preceded by a small label card so the developer or the LLM running the intent-to-layout pipeline can map ID → visual sample without leaving the page. Status flag distinguishes 'built' (lifted from approved canon) from 'v0' (first draft).",
+      "proposedFile": "proposed-A.html",
+      "isPrimary": true
+    }
+  ],
+
+  "createdAt": "2026-05-04",
+  "stardustVersion": "0.3.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         stardust:prototype (canon: home-proposed.html)
+  writtenAt:         2026-05-04T03:30:00Z
+  page:              data-center
+  pageUrl:           https://www.nvidia.com/en-us/data-center/
+  proposedFile:     ./data-center-proposed.html
+  againstDirection: stardust/direction.md (Active 2026-05-03T22:00:00Z)
+  pageShapeBrief:    stardust/prototypes/data-center-shape.md
+  canonReference:    stardust/prototypes/home-proposed.html (approved 2026-05-04T02:15Z)
+  readArtifacts:
+    - stardust/current/pages/data-center.json
+    - DESIGN.md
+    - DESIGN.json
+    - stardust/direction.md
+    - stardust/prototypes/data-center-shape.md
+    - stardust/prototypes/home-proposed.html (chrome + variant A/G + delight motifs reused)
+  imageReuseContract: '20+ captured images reused at semantic positions; 2 placeholder photos in the Unified Platform section (Space Computing, Orchestrated to Perfection — captured headings only, no per-tile photos in extract)'
+  newPatterns:
+    - hero-static (single slide; reuses hero photo + scrim composition without carousel mechanics)
+    - feature-2up (large 2-up editorial cards for Unified Platform)
+    - flow-4-step (horizontal 4-step flow with mono "/ NN" step numbers + 1px hairline connectors)
+    - use-case-50-50 (full-bleed image left/right + text block opposite, alternating sides)
+  unsourcedContent:
+    - selector: 'section[data-section="unified-platform"] .feature-tile-photo-empty'
+      type: photo
+      reason: 'Space Computing + Orchestrated to Perfection feature photos; captured headings only, no per-tile photos in extract'
+      count: 2
+    - selector: 'section[data-section="use-cases"] .use-case-description[data-placeholder]'
+      type: copy
+      reason: 'use-case body paragraphs not captured per tile; the captured page has title + photo + brief landing-page intro only'
+      count: 3
+    - selector: 'footer .footer-column li [data-placeholder="footer-link"]'
+      type: link
+      reason: 'per-column footer link lists; column headings real, item lists not isolated in extraction'
+      count: 19
+  iaPriorityCompliance:
+    - signal: audience-routing (5-tab nav)
+      preserved: true
+      note: 'site-header reused verbatim from home canon'
+    - signal: commercial-conversion
+      preserved: true
+      note: 'hero CTA + cta-band CTA both link to NVIDIA Marketplace (real captured destination)'
+    - signal: geo-locale-routing
+      preserved: true
+      note: 'geo-locator banner reused verbatim from home canon'
+  stardustVersion:   0.3.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Revolutionize the data center for AI with NVIDIA’s comprehensive accelerated computing platform, built on cutting-edge GPU, CPU, and networking tech.">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>Data Centers Built for Advanced AI Reasoning | NVIDIA</title>
+<style>
+  /* ── Tokens (inherited from DESIGN.md, identical to home canon) ──────────── */
+  :root {
+    --heading-font-family: 'NVIDIA-NALA', Arial, Helvetica, sans-serif;
+    --body-font-family:    'NVIDIA-NALA', Arial, Helvetica, sans-serif;
+    --heading-xxl: 61px; --heading-xl: 39px; --heading-lg: 25px; --heading-md: 20px;
+    --body: 16px; --body-sm: 13px;
+    --line-height-heading: 1.05; --line-height-body: 1.5;
+    --color-bg: #eeeeee; --color-surface: #ffffff;
+    --color-surface-dark: #000000; --color-surface-dark-alt: #111111;
+    --color-fg: #000000; --color-fg-secondary: #1a1a1a; --color-fg-muted: #666666;
+    --color-fg-on-dark: #ffffff; --color-fg-on-dark-muted: #cccccc;
+    --color-accent: #76b900; --color-accent-hover: #6aa800;
+    --color-border: #cccccc; --color-border-dark: rgba(255, 255, 255, 0.08);
+    --spacing-xxs: 4px; --spacing-xs: 8px; --spacing-sm: 16px; --spacing-md: 24px;
+    --spacing-lg: 32px; --spacing-xl: 48px; --spacing-2xl: 64px;
+    --section-padding: 48px; --max-width: 1280px;
+    --radius: 0px; --radius-secondary: 2px;
+    --shadow-focus: 0 0 0 2px var(--color-accent);
+    --shadow-sticky: 0 2px 8px rgba(0, 0, 0, 0.16);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--body-font-family); font-size: var(--body); line-height: var(--line-height-body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; max-width: 100%; }
+  button { font-family: inherit; cursor: pointer; }
+  h1, h2, h3, h4 { font-family: var(--heading-font-family); font-weight: 700; margin: 0; }
+  h1 { font-size: var(--heading-xxl); line-height: 1.05; letter-spacing: -0.01em; }
+  h2 { font-size: var(--heading-xl);  line-height: 1.15; }
+  h3 { font-size: var(--heading-lg);  line-height: 1.25; }
+  p  { margin: 0; }
+
+  .container { max-width: var(--max-width); margin: 0 auto; padding-inline: var(--spacing-xl); }
+  .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+  /* Skip link */
+  .skip-link { position: absolute; top: 0; left: 0; background: var(--color-accent); color: var(--color-fg); padding: 12px 18px; font-family: var(--heading-font-family); font-weight: 700; font-size: 14px; text-decoration: none; z-index: 1000; transform: translateY(-100%); transition: transform 150ms ease-out; }
+  .skip-link:focus-visible { transform: translateY(0); outline: 2px solid var(--color-fg); outline-offset: -2px; }
+
+  /* Surfaces */
+  .theme-section { padding-block: var(--section-padding); }
+  .surface-white { background: var(--color-surface); color: var(--color-fg); }
+  .surface-dark  { background: var(--color-surface-dark); color: var(--color-fg-on-dark); }
+
+  /* Buttons (canon) */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-xs); padding: 16px 24px; border: none; border-radius: var(--radius); font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body-sm); line-height: 1; text-decoration: none; transition: background-color 150ms ease-out, color 150ms ease-out; }
+  .btn:focus-visible { outline: none; box-shadow: var(--shadow-focus), 0 0 0 4px var(--color-surface-dark); }
+  .btn-primary { background: var(--color-accent); color: var(--color-fg); }
+  .btn-primary:hover { background: var(--color-accent-hover); }
+  .btn-secondary { background: var(--color-surface-dark); color: var(--color-fg-on-dark); }
+  .surface-dark .btn-secondary { background: transparent; color: var(--color-fg-on-dark); box-shadow: inset 0 0 0 1px var(--color-fg-on-dark); }
+  .surface-dark .btn-secondary:hover { background: rgba(255,255,255,0.08); }
+
+  /* Header (canon — verbatim from home) */
+  .site-header { background: var(--color-surface-dark); color: var(--color-fg-on-dark); position: sticky; top: 0; z-index: 100; }
+  .site-header-inner { display: flex; align-items: center; height: 64px; padding-inline: var(--spacing-md); gap: var(--spacing-lg); }
+  .site-logo { color: var(--color-accent); font-weight: 700; font-size: 18px; letter-spacing: 0.04em; font-family: var(--heading-font-family); flex-shrink: 0; }
+  .site-nav { display: flex; gap: var(--spacing-md); flex: 1; }
+  .site-nav a { color: var(--color-fg-on-dark); font-weight: 700; font-size: var(--body-sm); padding: 22px 0; display: inline-flex; align-items: center; gap: 4px; border-bottom: 2px solid transparent; transition: border-color 150ms ease-out; }
+  .site-nav a:hover, .site-nav a:focus-visible { border-bottom-color: var(--color-accent); outline: none; }
+  .site-nav .caret { width: 8px; height: 8px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg) translateY(-2px); opacity: 0.7; }
+  .site-utility { display: flex; gap: 4px; align-items: center; }
+  .icon-btn { background: transparent; color: var(--color-fg-on-dark); border: none; padding: 12px; min-width: 44px; min-height: 44px; font-size: var(--body-sm); font-weight: 400; border-radius: var(--radius); display: inline-flex; align-items: center; justify-content: center; }
+  .icon-btn:hover { color: var(--color-accent); }
+  .icon-btn:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .icon-btn .ic { font-size: 18px; line-height: 1; }
+  .locale-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; }
+
+  /* Geo banner (canon) */
+  .geo-banner { background: var(--color-surface-dark-alt); color: var(--color-fg-on-dark); padding: 12px var(--spacing-md); display: flex; align-items: center; justify-content: center; gap: var(--spacing-md); font-size: var(--body-sm); border-top: 1px solid var(--color-border-dark); }
+  .geo-banner-text { color: var(--color-fg-on-dark-muted); }
+  .geo-banner-cta { color: var(--color-accent); font-weight: 700; }
+  .geo-banner-cta:hover { text-decoration: underline; }
+  .geo-banner-dismiss { margin-left: auto; background: transparent; color: var(--color-fg-on-dark-muted); border: none; padding: 4px 8px; font-size: 18px; line-height: 1; }
+  .geo-banner-dismiss:hover { color: var(--color-fg-on-dark); }
+
+  /* ── HERO STATIC (NEW pattern — single slide) ─────────────────────────── */
+  .hero-static { position: relative; background: var(--color-surface-dark); color: var(--color-fg-on-dark); height: 640px; overflow: hidden; }
+  .hero-photo { position: absolute; top: 0; right: 0; height: 100%; width: auto; max-width: none; object-fit: cover; object-position: right center; display: block; }
+  .hero-photo-placeholder { width: 100%; background: var(--color-surface-dark-alt); }
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0) 100%); }
+  .hero-inner { position: absolute; inset: 0; max-width: var(--max-width); margin: 0 auto; padding: 96px var(--spacing-xl) 0; pointer-events: none; }
+  .hero-content { pointer-events: auto; max-width: 480px; display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .hero-eyebrow { color: var(--color-bg); font-family: var(--heading-font-family); font-size: 25px; font-weight: 700; line-height: 1.25; margin: 0; }
+  .hero-headline { color: var(--color-fg-on-dark); font-size: 49px; font-weight: 700; line-height: 1.1; text-wrap: balance; margin: 0; }
+  .hero-description { color: var(--color-fg-on-dark-muted); font-size: 16px; font-weight: 400; line-height: 1.5; margin: 0; max-width: 44ch; }
+  .hero-cta-row { display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-sm); }
+  .hero-cta-row .btn { padding: 14px 22px; font-size: 16px; }
+
+  /* Theme header (canon) */
+  .theme-header { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--spacing-md); margin-bottom: var(--spacing-md); }
+  .theme-header h2 { text-wrap: balance; margin: 0; }
+  .surface-dark .theme-header h2 { color: var(--color-fg-on-dark); }
+  /* Mono section enumeration (canon — / 01 / 02 / ... above each H2) */
+  main { counter-reset: section-counter; }
+  .theme-section, .hero-static { counter-increment: section-counter; }
+  .theme-header h2 { position: relative; }
+  .theme-header h2::before { content: '/ ' counter(section-counter, decimal-leading-zero); display: block; font-family: 'SF Mono', Consolas, Menlo, monospace; font-size: 11px; font-weight: 400; letter-spacing: 0.12em; color: var(--color-accent); margin-bottom: 8px; }
+
+  /* Theme description + Quick Links (canon) */
+  .theme-description { font-family: var(--body-font-family); font-size: 16px; line-height: 1.55; color: var(--color-fg-secondary); max-width: 80ch; margin: 0 0 var(--spacing-md); }
+  .surface-dark .theme-description { color: var(--color-fg-on-dark-muted); }
+  .theme-quicklinks { display: flex; align-items: baseline; gap: var(--spacing-md); padding: var(--spacing-sm) 0 var(--spacing-md); margin-bottom: var(--spacing-lg); border-bottom: 1px solid var(--color-border); }
+  .surface-dark .theme-quicklinks { border-bottom-color: var(--color-border-dark); }
+  .quicklinks-label { font-family: var(--heading-font-family); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-fg-muted); flex-shrink: 0; padding-top: 2px; }
+  .surface-dark .quicklinks-label { color: var(--color-fg-on-dark-muted); }
+  .quicklinks-row { display: flex; flex-wrap: wrap; gap: 4px var(--spacing-sm); flex: 1; }
+  .quicklink { font-family: var(--heading-font-family); font-weight: 700; font-size: 13px; color: var(--color-fg); text-decoration: none; padding: 6px 0; transition: color 150ms ease-out; position: relative; }
+  .quicklink:not(:last-child)::after { content: ''; position: absolute; right: calc(-1 * var(--spacing-sm) / 2 - 1px); top: 50%; transform: translateY(-50%); width: 1px; height: 12px; background: var(--color-border); }
+  .surface-dark .quicklink { color: var(--color-fg-on-dark); }
+  .surface-dark .quicklink:not(:last-child)::after { background: var(--color-border-dark); }
+  .quicklink:hover { color: var(--color-accent); }
+  .quicklink:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+  /* Theme arrows (canon) */
+  .theme-arrows { display: flex; gap: var(--spacing-xs); flex-shrink: 0; }
+  .theme-arrow { appearance: none; width: 44px; height: 44px; background: transparent; border: 1px solid var(--color-border); color: var(--color-fg); border-radius: var(--radius); font-size: 22px; font-weight: 400; line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: background 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out; }
+  .theme-arrow:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .theme-arrow:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .surface-dark .theme-arrow { border-color: var(--color-border-dark); color: var(--color-fg-on-dark); }
+  .surface-dark .theme-arrow:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+  /* Theme carousel (canon — used by Latest News only) */
+  .theme-carousel { overflow: hidden; margin-inline: 0; }
+  .theme-carousel-track { display: flex; gap: var(--spacing-md); overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 0; scrollbar-width: none; }
+  .theme-carousel-track::-webkit-scrollbar { display: none; }
+
+  /* Tile shared base */
+  .tile-a, .tile-g { scroll-snap-align: start; text-decoration: none; transition: transform 150ms ease-out; position: relative; isolation: isolate; }
+  .tile-a:focus-visible, .tile-g:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+  /* Tile A — Editorial Wide-Card (canon) */
+  .variant-A .tile-a { flex: 0 0 calc((100% - 2 * var(--spacing-md)) / 3); }
+  .tile-a { aspect-ratio: 16 / 11; overflow: hidden; background: var(--color-surface-dark); color: var(--color-fg-on-dark); display: block; }
+  .tile-a img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 200ms ease-out; }
+  .tile-a:hover img { transform: scale(1.03); }
+  .tile-a-photo-empty { position: absolute; inset: 0; background: var(--color-surface-dark-alt); border-bottom: 1px solid var(--color-border-dark); }
+  .tile-a-band { position: absolute; left: 0; right: 28%; bottom: 0; padding: 18px 22px; background: rgba(0, 0, 0, 0.82); }
+  .tile-a h3 { font-size: 20px; line-height: 1.22; color: var(--color-fg-on-dark); margin: 0; text-wrap: balance; }
+  .tile-a-cta { display: inline-block; margin-top: 10px; font-family: var(--heading-font-family); font-weight: 700; font-size: 12px; color: var(--color-fg-on-dark); }
+  .tile-a-cta::after { content: ' →'; color: var(--color-accent); margin-left: 4px; }
+
+  /* Tile G — Stacked-Pair (canon) */
+  .variant-G .tile-g { flex: 0 0 calc((100% - 3 * var(--spacing-sm)) / 4); }
+  .tile-g { display: grid; grid-template-columns: 110px 1fr; background: var(--color-surface); color: var(--color-fg); border: 1px solid var(--color-border); min-height: 144px; }
+  .surface-dark .tile-g { background: transparent; color: var(--color-fg-on-dark); border-color: var(--color-border-dark); }
+  .tile-g-photo { width: 110px; height: 100%; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .tile-g-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 200ms ease-out; }
+  .tile-g:hover .tile-g-photo img { transform: scale(1.04); }
+  .tile-g-photo-empty { width: 100%; height: 100%; background: var(--color-surface-dark-alt); }
+  .tile-g-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .tile-g h3 { font-size: 16px; line-height: 1.3; margin: 0; }
+  .tile-g-cta { margin-top: auto; font-family: var(--heading-font-family); font-weight: 700; font-size: 11px; color: inherit; transition: color 150ms ease-out; }
+  .tile-g-cta::after { content: ' →'; color: var(--color-accent); margin-left: 3px; }
+  .tile-g:hover .tile-g-cta { color: var(--color-accent); }
+
+  /* Tile scan-line on hover (canon delight) */
+  .tile-a::after, .tile-g::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--color-accent); transform: scaleX(0); transform-origin: left center; transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); z-index: 3; pointer-events: none; }
+  .tile-a:hover::after, .tile-g:hover::after { transform: scaleX(1); }
+
+  /* ── Section-specific grids ──────────────────────────────────────────── */
+
+  /* Section 4: Unified Platform — 2-up feature tiles (NEW pattern) */
+  .feature-2up-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); }
+  .feature-tile { display: block; background: var(--color-surface); color: var(--color-fg); text-decoration: none; transition: transform 150ms ease-out; position: relative; isolation: isolate; }
+  .feature-tile:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+  .feature-tile-photo { aspect-ratio: 16/9; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .feature-tile-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 200ms ease-out; }
+  .feature-tile:hover .feature-tile-photo img { transform: scale(1.02); }
+  .feature-tile-photo-empty,
+  .tile-a-photo-empty,
+  .tile-g-photo-empty,
+  .flow-step-photo-empty {
+    width: 100%; height: 100%;
+    background: var(--color-surface-dark-alt);
+    outline: 1px dashed var(--color-accent);
+    outline-offset: -1px;
+    position: relative;
+  }
+  .feature-tile-photo-empty::before,
+  .tile-a-photo-empty::before,
+  .tile-g-photo-empty::before,
+  .flow-step-photo-empty::before {
+    content: 'PLACEHOLDER · photo';
+    position: absolute; top: 8px; left: 8px;
+    font-family: 'SF Mono', Consolas, Menlo, monospace;
+    font-size: 9px; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--color-accent);
+    background: rgba(0, 0, 0, 0.85);
+    padding: 4px 8px;
+  }
+  .feature-tile-body { padding: var(--spacing-lg) var(--spacing-md); }
+  .feature-tile h3 { font-size: 25px; font-weight: 700; line-height: 1.2; text-wrap: balance; margin-bottom: var(--spacing-sm); }
+  .feature-tile-cta { font-family: var(--heading-font-family); font-weight: 700; font-size: 13px; color: var(--color-fg); }
+  .feature-tile-cta::after { content: ' →'; color: var(--color-accent); margin-left: 4px; }
+  .feature-tile::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--color-accent); transform: scaleX(0); transform-origin: left center; transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .feature-tile:hover::after { transform: scaleX(1); }
+
+  /* Section 5: Infrastructure — 4-up text-led grid (variant G layout) */
+  .infrastructure-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-sm); }
+
+  /* Section 6: Workloads — 3-up grid (variant A, 2 rows) */
+  .workloads-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); }
+
+  /* Section 7: Flow — 4-step horizontal (NEW pattern) */
+  /* Single horizontal hairline runs across all 4 steps at the step-number row level — engineering "flow track" */
+  .flow-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+  .flow-grid::before { content: ''; position: absolute; left: var(--spacing-md); right: var(--spacing-md); top: calc(var(--spacing-md) + 8px); height: 1px; background: var(--color-border-dark); z-index: 0; }
+  .flow-step { position: relative; padding: 0 var(--spacing-md); }
+  .flow-step-link { display: block; color: inherit; text-decoration: none; padding: var(--spacing-md) 0; transition: transform 150ms ease-out; }
+  .flow-step-link:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .flow-step-number { font-family: 'SF Mono', Consolas, Menlo, monospace; font-size: 14px; letter-spacing: 0.12em; color: var(--color-accent); display: inline-block; margin-bottom: var(--spacing-md); background: var(--color-surface-dark); padding-right: 8px; position: relative; z-index: 1; }
+  .flow-step-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--color-surface-dark-alt); margin-bottom: var(--spacing-md); }
+  .flow-step-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 250ms ease-out; }
+  .flow-step-link:hover .flow-step-photo img { transform: scale(1.03); }
+  .flow-step-photo-empty { width: 100%; height: 100%; background: var(--color-surface-dark-alt); }
+  .flow-step-title { font-size: 25px; font-weight: 700; line-height: 1.2; color: var(--color-fg-on-dark); margin: 0; transition: color 150ms ease-out; }
+  .flow-step-link:hover .flow-step-title { color: var(--color-accent); }
+
+  /* Section 9: Use Cases — 50/50 stack (NEW pattern) */
+  .use-cases-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--spacing-2xl); }
+  .use-case { display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl); align-items: center; }
+  .use-case-right { grid-template-columns: 1fr 1fr; }
+  .use-case-right .use-case-photo { order: 2; }
+  .use-case-right .use-case-body { order: 1; }
+  .use-case-photo { aspect-ratio: 4/3; overflow: hidden; background: var(--color-surface-dark-alt); }
+  .use-case-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease-out; }
+  .use-case:hover .use-case-photo img { transform: scale(1.02); }
+  .use-case-photo-empty { width: 100%; height: 100%; background: var(--color-surface-dark-alt); }
+  .use-case-body { display: flex; flex-direction: column; gap: var(--spacing-md); }
+  .use-case-body h2 { font-size: var(--heading-xl); font-weight: 700; line-height: 1.15; color: var(--color-fg-on-dark); text-wrap: balance; margin: 0; }
+  /* No section enumeration on use-case h2s — they're feature blocks, not section headings */
+  .use-case-body h2::before { content: none; }
+  .use-case-description { color: var(--color-fg-on-dark-muted); font-size: 16px; line-height: 1.55; max-width: 56ch; }
+  .use-case-description[data-placeholder] { font-style: italic; padding: 12px 16px; outline: 1px dashed var(--color-accent); outline-offset: -1px; position: relative; }
+  .use-case-description[data-placeholder]::before { content: 'PLACEHOLDER'; position: absolute; top: -8px; left: 8px; font-family: 'SF Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; color: var(--color-accent); background: var(--color-surface-dark); padding: 2px 6px; }
+  .use-case-body .btn { align-self: flex-start; }
+
+  /* Section 10: Customer Stories — 3-up grid (variant A) */
+  .stories-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--spacing-md); }
+
+  /* CTA band (canon) */
+  .cta-band { background: var(--color-surface-dark); color: var(--color-fg-on-dark); text-align: center; padding-block: var(--spacing-2xl); }
+  .cta-band h2 { color: var(--color-fg-on-dark); margin-bottom: var(--spacing-lg); }
+
+  /* Footer (canon — verbatim from home) */
+  .site-footer { background: var(--color-surface-dark); color: var(--color-fg-on-dark); padding: var(--spacing-2xl) 0 var(--spacing-md); border-top: 1px solid var(--color-border-dark); }
+  .footer-columns { display: grid; grid-template-columns: repeat(4, 1fr) 1.5fr; gap: var(--spacing-xl); }
+  .footer-column h3 { font-size: var(--body); font-weight: 700; color: var(--color-fg-on-dark); margin-bottom: var(--spacing-md); }
+  .footer-column h3::before { content: none; }  /* no section enumeration on footer columns */
+  .footer-column ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--spacing-xs); }
+  .footer-column a { color: var(--color-fg-on-dark-muted); font-size: var(--body-sm); transition: color 150ms ease-out; }
+  .footer-column a:hover { color: var(--color-fg-on-dark); }
+  .footer-subscribe { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+  .footer-subscribe p { color: var(--color-fg-on-dark-muted); font-size: var(--body-sm); line-height: 1.5; }
+  .footer-subscribe form { display: flex; gap: 0; }
+  .footer-subscribe input { flex: 1; background: var(--color-surface); color: var(--color-fg); padding: 12px 16px; border: 1px solid var(--color-border); border-radius: var(--radius); font-family: inherit; font-size: var(--body-sm); outline: none; transition: border-color 150ms; min-width: 0; }
+  .footer-subscribe input:focus-visible { border-color: var(--color-accent); box-shadow: inset 0 0 0 1px var(--color-accent); }
+  .footer-subscribe button { background: var(--color-accent); color: var(--color-fg); padding: 12px 20px; border: none; font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body-sm); border-radius: var(--radius); }
+  .footer-subscribe button:hover { background: var(--color-accent-hover); }
+  .footer-bottom { margin-top: var(--spacing-2xl); padding-top: var(--spacing-md); border-top: 1px solid var(--color-border-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--spacing-md); }
+  .footer-legal { display: flex; gap: var(--spacing-md); font-size: 12px; color: var(--color-fg-on-dark-muted); flex-wrap: wrap; }
+  .footer-legal a:hover { color: var(--color-fg-on-dark); }
+  .footer-copyright { font-size: 12px; color: var(--color-fg-on-dark-muted); }
+  .footer-social { display: flex; gap: 4px; }
+  .footer-column li [data-placeholder] { display: block; padding: 4px 8px 4px 92px; min-height: 22px; font-size: var(--body-sm); color: var(--color-fg-on-dark-muted); position: relative; outline: 1px dashed var(--color-accent); outline-offset: -1px; }
+  .footer-column li [data-placeholder]::before { content: 'PLACEHOLDER'; position: absolute; top: 4px; left: 8px; font-family: 'SF Mono', Consolas, Menlo, monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.06em; color: var(--color-accent); }
+  .footer-column li [data-placeholder]::after { content: attr(data-shape); }
+
+  /* Scroll-driven section reveal (canon delight) */
+  .theme-section.reveal-init, .hero-static.reveal-init { opacity: 0; transform: translateY(16px); transition: opacity 700ms cubic-bezier(0.22,1,0.36,1), transform 700ms cubic-bezier(0.22,1,0.36,1); will-change: opacity, transform; }
+  .theme-section.reveal-in, .hero-static.reveal-in { opacity: 1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 1023px) {
+    :root { --section-padding: 36px; }
+    .container, .hero-inner { padding-inline: var(--spacing-md); }
+    .hero-headline { font-size: 39px; }
+    .hero-eyebrow { font-size: 20px; }
+    .feature-2up-grid { grid-template-columns: 1fr; }
+    .infrastructure-grid { grid-template-columns: repeat(2, 1fr); }
+    .workloads-grid { grid-template-columns: repeat(2, 1fr); }
+    .flow-grid { grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); }
+    .flow-step:not(:last-child)::after { display: none; }
+    .stories-grid { grid-template-columns: repeat(2, 1fr); }
+    .use-case { grid-template-columns: 1fr; gap: var(--spacing-md); }
+    .use-case-right .use-case-photo, .use-case-right .use-case-body { order: initial; }
+    .footer-columns { grid-template-columns: repeat(3, 1fr); gap: var(--spacing-lg); }
+    .theme-header h2 { font-size: 32px; }
+    .variant-A .tile-a { flex-basis: 320px; }
+  }
+  @media (max-width: 639px) {
+    :root { --section-padding: 24px; }
+    .site-nav { display: none; }
+    .site-utility .icon-btn:not(.menu-toggle) { display: none; }
+    .geo-banner { flex-wrap: wrap; padding: 8px var(--spacing-sm); font-size: 12px; }
+    .hero-static { height: 600px; }
+    .hero-inner { padding: 56px var(--spacing-md) 0; }
+    .hero-headline { font-size: 25px; line-height: 1.15; }
+    .hero-eyebrow { font-size: 16px; }
+    .hero-description { font-size: 13px; max-width: 100%; }
+    .hero-content { max-width: 100%; }
+    .hero-photo { width: 100%; right: auto; left: 0; }
+    .hero-scrim { background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,0.95) 100%); }
+    .infrastructure-grid { grid-template-columns: 1fr; }
+    .workloads-grid { grid-template-columns: 1fr; }
+    .flow-grid { grid-template-columns: 1fr; }
+    .stories-grid { grid-template-columns: 1fr; }
+    .footer-columns { grid-template-columns: repeat(2, 1fr); }
+    .theme-header h2 { font-size: 28px; }
+    .variant-A .tile-a { flex-basis: 280px; min-width: 280px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .theme-section.reveal-init, .hero-static.reveal-init { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+<noscript><style>.theme-section, .hero-static { opacity: 1 !important; transform: none !important; }</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header" data-section="header" data-intent="navigate" data-layout="full-width-dark" role="banner">
+  <div class="site-header-inner">
+    <a href="/" class="site-logo" aria-label="NVIDIA home">NVIDIA</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/products/">Products <span class="caret" aria-hidden="true"></span></a>
+      <a href="/solutions/">Solutions <span class="caret" aria-hidden="true"></span></a>
+      <a href="/industries/">Industries <span class="caret" aria-hidden="true"></span></a>
+      <a href="/for-you/">For You <span class="caret" aria-hidden="true"></span></a>
+      <a href="/explore/">Explore <span class="caret" aria-hidden="true"></span></a>
+    </nav>
+    <div class="site-utility">
+      <button class="icon-btn" type="button" aria-label="Search"><span class="ic" aria-hidden="true">⌕</span></button>
+      <button class="icon-btn" type="button" aria-label="Region: English (United States)"><span class="locale-tag" aria-hidden="true">EN-US</span></button>
+      <button class="icon-btn" type="button" aria-label="Account"><span class="ic" aria-hidden="true">◯</span></button>
+      <button class="icon-btn menu-toggle" type="button" aria-label="Menu"><span class="ic" aria-hidden="true">≡</span></button>
+    </div>
+  </div>
+</header>
+
+<aside class="geo-banner" data-section="geo-locator" data-intent="locale-routing" data-layout="full-width-thin" data-demo="true" role="complementary" aria-label="Region suggestion">
+  <span class="geo-banner-text">It looks like you're in Italy. Visit your local NVIDIA site for region-specific content.</span>
+  <a href="https://www.nvidia.com/it-it/data-center/" class="geo-banner-cta">Continue to nvidia.com/it-it →</a>
+  <button class="geo-banner-dismiss" type="button" aria-label="Dismiss">×</button>
+</aside>
+
+<main id="main">
+
+
+<section class="hero-static surface-dark"
+         data-section="hero"
+         data-intent="primary-announcement"
+         data-layout="single-slide-fullbleed"
+         id="hero">
+  <img class="hero-photo" src="https://www.nvidia.com/content/dam/en-zz/solutions/data-center/home/data-center-bm-lg580-glass-d@2x.jpg" alt="" loading="eager" fetchpriority="high" decoding="async">
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Data Center Solutions</p>
+      <h1 class="hero-headline">Data Centers for the Era of AI Reasoning</h1>
+      <p class="hero-description">Revolutionize the data center for AI with NVIDIA’s comprehensive accelerated computing platform, built on cutting-edge GPU, CPU, and networking tech.</p>
+      <div class="hero-cta-row">
+        <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/enterprise/data-center/?limit=15">Browse NVIDIA Marketplace</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="theme-section surface-white"
+         data-section="unified-platform"
+         data-intent="feature-cluster"
+         data-layout="grid-2-feature"
+         data-items="2">
+  <div class="container">
+    <div class="theme-header">
+      <h2>The NVIDIA Unified Platform</h2>
+    </div>
+    <div class="feature-2up-grid">
+      
+        <a href="#" class="feature-tile">
+          <div class="feature-tile-photo">
+            <div class="feature-tile-photo-empty" aria-hidden="true"></div>
+          </div>
+          <div class="feature-tile-body">
+            <h3>NVIDIA Launches Space Computing to Boost AI Into Orbit</h3>
+            <span class="feature-tile-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="feature-tile">
+          <div class="feature-tile-photo">
+            <div class="feature-tile-photo-empty" aria-hidden="true"></div>
+          </div>
+          <div class="feature-tile-body">
+            <h3>NVIDIA in the Data Center—Orchestrated to Perfection</h3>
+            <span class="feature-tile-cta">Learn more</span>
+          </div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<section class="theme-section variant-G surface-dark"
+         data-section="infrastructure"
+         data-intent="architecture-grid"
+         data-layout="grid-4-text-led"
+         data-items="4"
+         data-variant="G">
+  <div class="container">
+    <div class="theme-header">
+      <h2>Full-Stack Data Center Infrastructure</h2>
+    </div>
+    <div class="infrastructure-grid">
+      
+        <a href="/en-us/data-center/blackwell-architecture/" class="tile-g">
+          <div class="tile-g-photo">
+            <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_47982766/nv_container/nv_teaser.coreimg.100.1070.jpeg/1773658155840/datacenter-solutions-blackwell-ari-1920x1080.jpeg" alt="NVIDIA Blackwell GPU Architecture" loading="lazy" decoding="async">
+          </div>
+          <div class="tile-g-body">
+            <h3>NVIDIA Blackwell GPU Architecture</h3>
+            <span class="tile-g-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="/en-us/data-center/grace-cpu/" class="tile-g">
+          <div class="tile-g-photo">
+            <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_47982766/nv_container/nv_teaser_92447962.coreimg.100.1070.jpeg/1773658155872/datacenter-solutions-grace-ari-1920x1080.jpeg" alt="NVIDIA Grace CPU Architecture" loading="lazy" decoding="async">
+          </div>
+          <div class="tile-g-body">
+            <h3>NVIDIA Grace CPU Architecture</h3>
+            <span class="tile-g-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="/en-us/networking/products/data-processing-unit/" class="tile-g">
+          <div class="tile-g-photo">
+            <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_47982766/nv_container/nv_teaser_141207558.coreimg.100.1070.jpeg/1773658155903/datacenter-solutions-bluefield-ari-1920x1080.jpeg" alt="NVIDIA BlueField DPU Architecture" loading="lazy" decoding="async">
+          </div>
+          <div class="tile-g-body">
+            <h3>NVIDIA BlueField DPU Architecture</h3>
+            <span class="tile-g-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="/en-us/networking/spectrumx/" class="tile-g">
+          <div class="tile-g-photo">
+            <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_47982766/nv_container/nv_teaser_1955531864.coreimg.100.1070.jpeg/1773658155934/datacenter-solutions-spectrum-x-ari-1920x1080.jpeg" alt="NVIDIA Spectrum-X Networking Architecture" loading="lazy" decoding="async">
+          </div>
+          <div class="tile-g-body">
+            <h3>NVIDIA Spectrum-X Networking Architecture</h3>
+            <span class="tile-g-cta">Learn more</span>
+          </div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<section class="theme-section variant-A surface-white"
+         data-section="workloads"
+         data-intent="capability-cluster"
+         data-layout="grid-3-up-2-rows"
+         data-items="6"
+         data-variant="A">
+  <div class="container">
+    <div class="theme-header">
+      <h2>Accelerating Data Center Workloads for Enterprises</h2>
+    </div>
+    <div class="workloads-grid">
+      
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_1190252902/nv_container/nv_teaser_2014214983.coreimg.100.850.jpeg/1773658156245/datacenter-workloads-hpc-ari-1920x1080.jpeg" alt="Accelerated Workflows for Superior Performance" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Accelerated Workflows for Superior Performance</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_1190252902/nv_container/nv_teaser_179764649.coreimg.100.850.jpeg/1773658156274/datacenter-workloads-rendering-ari-1920x1080.jpeg" alt="Faster, More Accurate Full-Stack AI Inference" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Faster, More Accurate Full-Stack AI Inference</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_1190252902/nv_container/nv_teaser_605452010.coreimg.100.850.jpeg/1773658156303/datacenter-workloads-virtualization-ari-1920x1080.jpeg" alt="Customize and Deploy Pretrained Foundation Models" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Customize and Deploy Pretrained Foundation Models</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <div class="tile-a-photo-empty" aria-hidden="true"></div>
+          <div class="tile-a-band">
+            <h3>Fueling the Advancement of Science in the Data Center</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <div class="tile-a-photo-empty" aria-hidden="true"></div>
+          <div class="tile-a-band">
+            <h3>Realistic Designs and Simulations at Unrivaled Speed</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <div class="tile-a-photo-empty" aria-hidden="true"></div>
+          <div class="tile-a-band">
+            <h3>Simplify the Management of Virtualized Data Centers</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<section class="theme-section surface-dark"
+         data-section="deployment-flow"
+         data-intent="flow-diagram"
+         data-layout="flow-4-step"
+         data-items="4">
+  <div class="container">
+    <div class="theme-header">
+      <h2>From Development to Deployment</h2>
+    </div>
+    <ol class="flow-grid">
+      
+        <li class="flow-step">
+          <a href="/en-us/data-center/cloud-computing/" class="flow-step-link">
+            <span class="flow-step-number">/ 01</span>
+            <div class="flow-step-photo">
+              <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser.coreimg.svg/1773658156492/m48-virtual-pc-cloud-computer.svg" alt="From the Cloud" loading="lazy" decoding="async">
+            </div>
+            <h3 class="flow-step-title">From the Cloud</h3>
+          </a>
+        </li>
+        <li class="flow-step">
+          <a href="/en-us/design-visualization/quadro-rtx/" class="flow-step-link">
+            <span class="flow-step-number">/ 02</span>
+            <div class="flow-step-photo">
+              <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser_1709725053.coreimg.svg/1773658156523/m48-building-office.svg" alt="To the Office" loading="lazy" decoding="async">
+            </div>
+            <h3 class="flow-step-title">To the Office</h3>
+          </a>
+        </li>
+        <li class="flow-step">
+          <a href="/en-us/data-center/" class="flow-step-link">
+            <span class="flow-step-number">/ 03</span>
+            <div class="flow-step-photo">
+              <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser_1620446715.coreimg.svg/1773658156554/m48-server-network.svg" alt="To the Data Center" loading="lazy" decoding="async">
+            </div>
+            <h3 class="flow-step-title">To the Data Center</h3>
+          </a>
+        </li>
+        <li class="flow-step">
+          <a href="/en-us/edge-computing/" class="flow-step-link">
+            <span class="flow-step-number">/ 04</span>
+            <div class="flow-step-photo">
+              <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/data-center/home/_jcr_content/root/responsivegrid/nv_container_961368180/nv_container/nv_teaser_1256775757.coreimg.svg/1773658156584/m48-edge-computing.svg" alt="To the Edge" loading="lazy" decoding="async">
+            </div>
+            <h3 class="flow-step-title">To the Edge</h3>
+          </a>
+        </li>
+    </ol>
+  </div>
+</section>
+
+<section class="theme-section variant-A surface-white"
+         data-section="latest-news"
+         data-intent="theme-cluster"
+         data-layout="carousel-3up"
+         data-items="3"
+         data-variant="A">
+  <div class="container">
+    <div class="theme-header">
+      <h2>The Latest in Data Centers</h2>
+      <div class="theme-arrows" role="group" aria-label="The Latest in Data Centers carousel controls">
+        <button type="button" class="theme-arrow theme-arrow-prev" aria-label="Previous" aria-controls="latest-news-track">‹</button>
+        <button type="button" class="theme-arrow theme-arrow-next" aria-label="Next" aria-controls="latest-news-track">›</button>
+      </div>
+    </div>
+    <p class="theme-description">From the cloud to the office to the data center to the edge, NVIDIA provides solutions that deliver breakthrough performance on enterprise AI and HPC workloads at any scale.</p>
+    <nav class="theme-quicklinks" aria-label="The Latest in Data Centers quick links">
+      <span class="quicklinks-label">Quick Links</span>
+      <div class="quicklinks-row">
+        <a class="quicklink" href="/en-us/data-center/">Overview</a><a class="quicklink" href="/en-us/data-center/blackwell-architecture/">Blackwell GPU</a><a class="quicklink" href="/en-us/data-center/grace-cpu/">Grace CPU</a><a class="quicklink" href="/en-us/networking/products/data-processing-unit/">BlueField DPU</a><a class="quicklink" href="/en-us/networking/spectrumx/">Spectrum-X</a><a class="quicklink" href="/en-us/data-center/dgx-platform/">DGX Platform</a><a class="quicklink" href="/en-us/data-center/hgx/">HGX</a><a class="quicklink" href="/en-us/data-center/dgx-cloud/">DGX Cloud</a>
+      </div>
+    </nav>
+    <div class="theme-carousel" data-carousel="latest-news">
+      <div class="theme-carousel-track" id="latest-news-track" role="region" aria-roledescription="carousel" aria-label="The Latest in Data Centers stories">
+        
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/item_1678809496331.coreimg.100.850.jpeg/1777390635704/nvidia-and-google-cloud-sfg.jpeg" alt="NVIDIA and Google Cloud Power AI Breakthroughs" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>NVIDIA and Google Cloud Power AI Breakthroughs</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/item_1678851189000.coreimg.100.850.jpeg/1777390635722/nvidia-google-cloud-next-sfg.jpeg" alt="Join NVIDIA at Google Cloud Next" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Join NVIDIA at Google Cloud Next</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/nvidiaGDC/us/en_US/home/_jcr_content/root/responsivegrid/Copy%20of%20Copy%20of%20nv_carousel_10568374/item_1678779645907.coreimg.100.850.jpeg/1777390635752/mlperf-inference-gb300-nvl72-sfg.jpeg" alt="NVIDIA Extreme Co-Design Delivers New MLPerf Inference Records" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>NVIDIA Extreme Co-Design Delivers New MLPerf Inference Records</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="theme-section surface-dark"
+         data-section="use-cases"
+         data-intent="use-case-features"
+         data-layout="50-50-stack"
+         data-items="3">
+  <div class="container">
+    <ol class="use-cases-list">
+      
+        <li class="use-case use-case-left">
+          <div class="use-case-photo">
+            <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/use-cases/catalogue-enrichment/catalog-enrichment-sfg.jpg" alt="Catalog Enrichment" loading="lazy" decoding="async">
+          </div>
+          <div class="use-case-body">
+            <h2>Catalog Enrichment</h2>
+            <p class="use-case-description" data-placeholder="use-case-description">Body paragraph for this use case is not captured in extract; resolve at migrate from the use-case landing page.</p>
+            <a class="btn btn-secondary" href="/en-us/use-cases/catalog-enrichment/">Learn More</a>
+          </div>
+        </li>
+        <li class="use-case use-case-right">
+          <div class="use-case-photo">
+            <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/use-cases/ai-shopping-assistants-omnichannel-retail/ai-shopping-assistants-uc-1920-1080.jpg" alt="AI Shopping Assistants for Omnichannel Retail" loading="lazy" decoding="async">
+          </div>
+          <div class="use-case-body">
+            <h2>AI Shopping Assistants for Omnichannel Retail</h2>
+            <p class="use-case-description" data-placeholder="use-case-description">Body paragraph for this use case is not captured in extract; resolve at migrate from the use-case landing page.</p>
+            <a class="btn btn-secondary" href="/en-us/use-cases/ai-shopping-assistants/">Learn More</a>
+          </div>
+        </li>
+        <li class="use-case use-case-left">
+          <div class="use-case-photo">
+            <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/use-cases/operational-technology-security/nvidia-use-case-operational-technology-cybersecurity-sfg.jpg" alt="Operational Technology Cybersecurity" loading="lazy" decoding="async">
+          </div>
+          <div class="use-case-body">
+            <h2>Operational Technology Cybersecurity</h2>
+            <p class="use-case-description" data-placeholder="use-case-description">Body paragraph for this use case is not captured in extract; resolve at migrate from the use-case landing page.</p>
+            <a class="btn btn-secondary" href="/en-us/use-cases/ot-cybersecurity/">Learn More</a>
+          </div>
+        </li>
+    </ol>
+  </div>
+</section>
+
+<section class="theme-section variant-A surface-white"
+         data-section="customer-stories"
+         data-intent="testimony"
+         data-layout="grid-3"
+         data-items="3"
+         data-variant="A">
+  <div class="container">
+    <div class="theme-header">
+      <h2>Customer Stories</h2>
+    </div>
+    <div class="stories-grid">
+      
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/designing-the-lab-of-the-future-for-transcripta-bio-new/customer-transcripta-og.jpg" alt="Designing the Lab of the Future for Transcripta Bio" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Designing the Lab of the Future for Transcripta Bio</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/leidos-uses-ai-agents-to-improve-disaster-response/leidos-customer-story-og.jpg" alt="Leidos Uses AI Agents to Cut Response Times and Boost Coordination in Disaster Scenarios" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Leidos Uses AI Agents to Cut Response Times and Boost Coordination in Disaster Scenarios</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+        <a href="#" class="tile-a">
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/case-studies/parkhill/parkhill-customer-story-og.jpg" alt="Future Proofing infrastructure for Architectural Design and Remote Collaboration" loading="lazy" decoding="async">
+          <div class="tile-a-band">
+            <h3>Future Proofing infrastructure for Architectural Design and Remote Collaboration</h3>
+            <span class="tile-a-cta">Learn more</span>
+          </div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" data-section="cta-band" data-intent="conversion-handoff" data-layout="centered-single-cta">
+  <div class="container">
+    <h2>Ready to get started?</h2>
+    <a class="btn btn-primary" href="https://marketplace.nvidia.com/en-us/enterprise/data-center/?limit=15">Browse NVIDIA Marketplace</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="navigate" data-layout="mega-9col" role="contentinfo">
+  <div class="container">
+    <div class="footer-columns">
+      <div class="footer-column"><h3>Company Information</h3><ul>
+        <li><span data-placeholder data-shape="About NVIDIA"></span></li>
+        <li><span data-placeholder data-shape="Careers"></span></li>
+        <li><span data-placeholder data-shape="Investors"></span></li>
+        <li><span data-placeholder data-shape="Sustainability"></span></li>
+      </ul></div>
+      <div class="footer-column"><h3>Products</h3><ul>
+        <li><span data-placeholder data-shape="GeForce"></span></li>
+        <li><span data-placeholder data-shape="Data Center"></span></li>
+        <li><span data-placeholder data-shape="Networking"></span></li>
+        <li><span data-placeholder data-shape="Studio"></span></li>
+      </ul></div>
+      <div class="footer-column"><h3>Industries &amp; Solutions</h3><ul>
+        <li><span data-placeholder data-shape="Healthcare"></span></li>
+        <li><span data-placeholder data-shape="Automotive"></span></li>
+        <li><span data-placeholder data-shape="Manufacturing"></span></li>
+        <li><span data-placeholder data-shape="Telecom"></span></li>
+      </ul></div>
+      <div class="footer-column"><h3>Resources</h3><ul>
+        <li><span data-placeholder data-shape="Newsroom"></span></li>
+        <li><span data-placeholder data-shape="NVIDIA Partner Network"></span></li>
+        <li><span data-placeholder data-shape="Developer"></span></li>
+        <li><span data-placeholder data-shape="Training"></span></li>
+      </ul></div>
+      <div class="footer-column footer-subscribe">
+        <h3>Sign Up for NVIDIA News</h3>
+        <p>Get the latest NVIDIA announcements, product news, and stories from across the platform.</p>
+        <form action="https://www.nvidia.com/en-us/preferences/email-signup/" method="post">
+          <label for="footer-email" class="visually-hidden">Email address</label>
+          <input id="footer-email" type="email" name="email" placeholder="Email Address" required autocomplete="email">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copyright">© 2026 NVIDIA Corporation</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Manage Cookies</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+      </div>
+      <div class="footer-social" aria-label="NVIDIA on social media">
+        <a class="icon-btn" href="#" aria-label="LinkedIn">in</a>
+        <a class="icon-btn" href="#" aria-label="X / Twitter">𝕏</a>
+        <a class="icon-btn" href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-driven section reveal (canon delight)
+  (function() {
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var sections = document.querySelectorAll('.theme-section, .hero-static');
+    sections.forEach(function(s) { s.classList.add('reveal-init'); });
+    if (reduced || !('IntersectionObserver' in window)) {
+      sections.forEach(function(s) { s.classList.add('reveal-in'); });
+      return;
+    }
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal-in');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    sections.forEach(function(s) { obs.observe(s); });
+  })();
+
+  // Theme carousel arrows + keyboard nav (canon)
+  (function() {
+    document.querySelectorAll('.theme-section').forEach(function(section) {
+      var track = section.querySelector('.theme-carousel-track');
+      var prev = section.querySelector('.theme-arrow-prev');
+      var next = section.querySelector('.theme-arrow-next');
+      if (!track || !prev || !next) return;
+      function pageWidth() { return track.clientWidth; }
+      prev.addEventListener('click', function() { track.scrollBy({ left: -pageWidth(), behavior: 'smooth' }); });
+      next.addEventListener('click', function() { track.scrollBy({ left:  pageWidth(), behavior: 'smooth' }); });
+      track.setAttribute('tabindex', '0');
+      track.addEventListener('keydown', function(e) {
+        switch (e.key) {
+          case 'ArrowLeft':  e.preventDefault(); track.scrollBy({ left: -pageWidth(), behavior: 'smooth' }); break;
+          case 'ArrowRight': e.preventDefault(); track.scrollBy({ left:  pageWidth(), behavior: 'smooth' }); break;
+          case 'Home':       e.preventDefault(); track.scrollTo({ left: 0, behavior: 'smooth' }); break;
+          case 'End':        e.preventDefault(); track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' }); break;
+        }
+      });
+      function updateArrowState() {
+        var max = track.scrollWidth - track.clientWidth - 4;
+        prev.disabled = track.scrollLeft <= 4;
+        next.disabled = track.scrollLeft >= max;
+      }
+      track.addEventListener('scroll', updateArrowState, { passive: true });
+      window.addEventListener('resize', updateArrowState);
+      updateArrowState();
+    });
+  })();
+
+  // Dev console greeting (canon delight)
+  (function() {
+    if (typeof console === 'undefined' || !console.log) return;
+    var brand = '#76b900';
+    var bigStyle = 'background:#000;color:' + brand + ';font-weight:700;font-size:14px;padding:10px 14px;letter-spacing:0.04em;font-family:Arial,sans-serif;';
+    var smStyle = 'color:#666;font-size:12px;padding:8px 0;font-family:Menlo,monospace;line-height:1.5;';
+    console.log('%cNVIDIA · accelerated computing', bigStyle);
+    console.log(
+      '%cBuilt with NVIDIA-NALA + NVIDIA green (#76b900).\n' +
+      'Engineering this site? See careers at https://www.nvidia.com/en-us/about-nvidia/careers/',
+      smStyle
+    );
+  })();
+</script>
+</body>
+</html>
