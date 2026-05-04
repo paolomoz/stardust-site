@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "slug": "frescopa",
   "title": "Frescopa",
-  "tagline": "Stunning reskin of a white-label coffee retail demo. Variant B (\"Espresso Bar\") amplifies one captured trait — coffee-shop-as-third-place — by promoting the brand's pinned teal #00647D from accent to page substrate. Two views: the composed home, plus a focused typographic exploration of the hero H1.",
+  "tagline": "Stunning reskin of a white-label coffee retail demo. Variant B (\"Espresso Bar\") amplifies one captured trait — coffee-shop-as-third-place — by promoting the brand's pinned teal #00647D from accent to page substrate. Three views: the composed home, a focused typographic exploration of the hero H1, and a chromatic-stripe composition that breaks the canonical band silhouette with vertical splits, a diagonal cut, and photo plates that bridge section seams.",
 
   "source": {
     "url": "https://frescopa.coffee/",
@@ -66,6 +66,14 @@
       "thesis": "Focused typographic study of the variant B hero H1, isolated from the full-page craft round-trip. Three explorations sit side-by-side against the same Bay substrate: editorial-italic (Fraunces 900 italic), brutalist-condensed (Big Shoulders Display 900), and type-collage (mixed Space Grotesk / Cormorant). Intent: push distinctiveness from distinctive → singular without tripping the brand-register anti-toolbox (no stencil display, no rotated stamps, no censor bars, no sticker collages).",
       "fix": "<strong>Three hero treatments</strong>, one substrate. <strong>1 · Editorial italic</strong> — Fraunces 900 italic at 144 opsz, clamp(3.5rem, 10vw, 8rem); the move that landed in the composed home. <strong>2 · Brutalist condensed</strong> — Big Shoulders Display 900 at very tight tracking, all-caps; the highest-distinctiveness option, closest to singular. <strong>3 · Type-collage</strong> — Space Grotesk weight-mix with a Cormorant italic accent word; a quieter route that still differentiates the hero from chrome. Each treatment holds a type ratio ≥ 1.5, well above the brand-register 1.25 floor.",
       "proposedFile": "proposed-B.html"
+    },
+    {
+      "id": "C",
+      "name": "Chromatic Stripes (Broken)",
+      "dominantDimension": "composition",
+      "thesis": "A composition-led re-read of the home as a chromatic chord rather than a stack of equal-height bands. The page is built from full-bleed palette planes — Bay teal, Roast wine, Crema, Bay-Tint, Bay-Dark, sliced multi-color — but the rigid horizontal-stripe rhythm is broken: the hero is a vertical split with the photo bridging into the next section, the subscription block is three edge-to-edge color columns of unequal width, locations uses a diagonal clip-path cut between Bay-Tint and a café photo, the five product categories are sliced into vertical color planes with rotated serif labels, and Featured floats a Crema plate offset over a pour-over photograph. Free-stock photography (Unsplash) sits across all sections; three playful display fonts carry the type identity.",
+      "fix": "<strong>Composition</strong> — the canonical hero-then-band silhouette is replaced by a mix of vertical splits, a diagonal-clipped cut, sliced color planes, and offset floating plates that overlap photographic backgrounds. <strong>Three playful display fonts</strong> — Fraunces (variable, opsz 144 + SOFT 100 + WONK 1) drives the hero at clamp ~96px with character-rich glyph alternates; Instrument Serif italic carries the second big-font moment at ~64px floating over the Featured photo; Caveat appears in three handwritten margin scribbles (hero \"just four\", subscription \"your weekly ritual ↗\", Featured \"bright + citrus ↘\"). <strong>Photography</strong> — Unsplash free-stock imagery (latte top-down, barista delivery, café interior, espresso machine, beans, pods, pour-over, gift coffee bag) replaces extracted product imagery on this variant. <strong>Palette</strong> — Bay + Roast pinned; full chromatic deployment of Bay-Tint, Bay-Deep, Bay-Dark, Crema-Pale, Cherry, Tannin, Gilt across adjacent planes to make the substrate sing.",
+      "proposedFile": "proposed-C.html"
     }
   ],
 

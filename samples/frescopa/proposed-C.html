@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:prototype (creative-direction follow-on, v3)
+  writtenAt:        2026-05-04
+  page:             home
+  variant:          C2-typeplay (v3 of C2-bands → C2-broken → this)
+  parentDirection:  stardust/direction.md (palette family — A and B colors composed; Bay + Roast pinned)
+  brief:            v3 of C2 — keep broken-stripe layout, scale the hero up, add one big secondary moment, introduce 3 playful display fonts
+  playfulFonts:     (1) Fraunces — variable serif, SOFT+WONK axes engaged for hero h1 character; (2) Instrument Serif — high-contrast editorial italic for the secondary big moment (featured); (3) Caveat — handwritten margin scribbles, used max 3 instances
+  utilityFonts:     Cormorant Garamond italic, Space Grotesk, IBM Plex Sans, Martian Mono — kept from previous version, not counted as playful
+  bigFontMoves:     hero h1 caps at ~96px (clamp 3rem, 8vw, 6rem) with WONK on; featured h2 caps at ~64px Instrument Serif italic floating over the photo
+  imageSources:     Unsplash CDN (free-to-use)
+  unsourcedContent: []
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frescopa — Coffee, Tea & Accessories</title>
+<meta name="description" content="Experience the bright, citrusy notes and smooth finish of Morning Muse Light Roast. A perfect start to any day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --steam:        #FFFFFF;
+  --crema-pale:   #F7F6F4;
+  --bay-tint:     #E5EFF2;
+  --bay:          #00647D;
+  --bay-deep:     #004E63;
+  --bay-dark:     #003744;
+  --roast:        #58181D;
+  --roast-deep:   #3F1015;
+  --espresso:     #1A1A1A;
+  --text-mute:    #5C5249;
+  --cherry:       #DC6E52;
+  --cherry-deep:  #B85033;
+  --tannin:       #C95942;
+  --gilt:         #E5B560;
+  --stoneware:    #E8E1D5;
+  --rule:         #D8CFC0;
+
+  /* === playful display trio === */
+  --display:    'Fraunces', 'DM Serif Display', Georgia, serif;        /* hero h1 — wonky variable serif */
+  --editorial:  'Instrument Serif', 'Cormorant Garamond', Georgia, serif; /* featured big moment */
+  --hand:       'Caveat', cursive;                                      /* margin scribbles */
+
+  /* === utility families === */
+  --italic:   'Cormorant Garamond', Georgia, serif;
+  --geom:     'Space Grotesk', system-ui, sans-serif;
+  --sans:     'IBM Plex Sans', system-ui, sans-serif;
+  --mono:     'Martian Mono', 'JetBrains Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: var(--bay-tint); color: var(--espresso); }
+body {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+
+/* Fraunces — engage the variable axes for character. SOFT (round corners), WONK (alternate glyph forms). */
+.fraunces-wonk {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-feature-settings: "ss01" 1, "ss02" 1;        /* swashy alternate forms */
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* === marquee === */
+.marquee {
+  background: var(--roast);
+  color: var(--steam);
+  padding: 9px 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.marquee a { color: var(--gilt); text-decoration: none; border-bottom: 1px solid var(--gilt); }
+.marquee a:hover { color: var(--steam); border-bottom-color: var(--steam); }
+
+/* === nav === */
+nav.top {
+  background: var(--bay-tint);
+  padding: 22px 32px;
+  display: grid;
+  grid-template-columns: 220px 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+nav.top img { height: 26px; }
+nav.top .links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-family: var(--geom);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+nav.top .links a {
+  color: var(--bay-deep);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+}
+nav.top .links a:hover { border-bottom-color: var(--cherry); color: var(--roast); }
+nav.top .util {
+  display: flex;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bay-deep);
+}
+nav.top .util a { color: inherit; text-decoration: none; }
+nav.top .util a:hover { color: var(--roast); }
+
+/* ============================================================
+   HERO — vertical split with the big Fraunces wonky title.
+   the title now BREAKS OUT of the copy column and overlays the
+   photo column, so the typography becomes the bridge.
+   ============================================================ */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: stretch;
+  background: var(--bay);
+  color: var(--steam);
+  min-height: 620px;
+}
+.hero__copy {
+  padding: 84px 0 84px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 4;
+}
+.hero__overline {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gilt);
+  margin-bottom: 22px;
+}
+/* the BIG hero title — Fraunces wonky.
+   spans wider than the copy column to puncture into the photo. */
+.hero__h1 {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-weight: 420;
+  font-size: clamp(3rem, 8vw, 6rem);            /* up to ~96px desktop */
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin-bottom: 26px;
+  width: 130%;                                   /* extends past the column edge */
+  position: relative;
+  z-index: 5;
+}
+.hero__h1 .word-italic {
+  font-style: italic;
+  font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
+  color: var(--gilt);
+}
+.hero__h1 .word-tag {
+  font-family: var(--hand);
+  font-weight: 600;
+  font-size: 0.5em;
+  color: var(--cherry);
+  display: inline-block;
+  transform: translateY(-0.55em) rotate(-4deg);
+  margin: 0 0.05em;
+  letter-spacing: 0;
+}
+.hero__lede {
+  font-family: var(--italic);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--bay-tint);
+  max-width: 38ch;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.hero__row {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+.hero__row a.cta {
+  font-family: var(--geom);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--steam);
+  color: var(--bay-deep);
+  text-decoration: none;
+  padding: 13px 24px;
+  border-radius: 2px;
+  transition: background 120ms;
+}
+.hero__row a.cta:hover { background: var(--gilt); color: var(--roast); }
+.hero__row a.ghost {
+  font-family: var(--geom);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bay-tint);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--bay-tint);
+  padding-bottom: 4px;
+}
+.hero__row a.ghost:hover { color: var(--gilt); border-bottom-color: var(--gilt); }
+.hero__steps {
+  margin-top: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bay-tint);
+  opacity: 0.7;
+}
+.hero__photo {
+  position: relative;
+  background-image:
+    linear-gradient(180deg, rgba(0,55,68,0) 60%, rgba(0,55,68,0.18) 100%),
+    url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&q=80&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: -80px;
+  z-index: 2;
+}
+.hero__photo::after {
+  content: "01 · QUIZ";
+  position: absolute;
+  bottom: 88px;
+  right: 32px;
+  background: var(--tannin);
+  color: var(--steam);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  padding: 10px 16px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   SUBSCRIPTION — 3 vertical columns, edge-to-edge.
+   ============================================================ */
+.subscription {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 1.05fr;
+  align-items: stretch;
+  position: relative;
+  min-height: 380px;
+}
+.sub__col {
+  padding: 64px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sub__heading { background: var(--roast); color: var(--steam); }
+.sub__heading .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gilt);
+  margin-bottom: 22px;
+}
+.sub__heading h2 {
+  font-family: var(--italic);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  max-width: 14ch;
+}
+.sub__heading h2 b {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-style: normal;
+  font-weight: 400;
+  display: block;
+  color: var(--gilt);
+  font-size: 1.2em;
+  letter-spacing: -0.025em;
+  margin-top: 4px;
+}
+.sub__photo {
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.1) 100%),
+    url("https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=1200&q=80&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  position: relative;
+}
+.sub__photo .caption {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  background: var(--steam);
+  color: var(--roast);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+}
+.sub__photo::after {
+  content: "Subscription · weekly";
+  position: absolute;
+  top: 22px;
+  right: -1px;
+  background: var(--tannin);
+  color: var(--steam);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  z-index: 4;
+}
+.sub__body { background: var(--crema-pale); color: var(--espresso); position: relative; }
+.sub__body p {
+  font-family: var(--italic);
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--espresso);
+  margin-bottom: 18px;
+}
+.sub__body a {
+  font-family: var(--geom);
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bay-deep);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--bay);
+  padding-bottom: 4px;
+  width: max-content;
+}
+.sub__body a:hover { color: var(--roast); border-bottom-color: var(--cherry); }
+/* a small Caveat scribble in the body column margin (instance #2 of 3) */
+.sub__scribble {
+  position: absolute;
+  bottom: 28px;
+  right: 28px;
+  font-family: var(--hand);
+  font-size: 22px;
+  color: var(--cherry-deep);
+  transform: rotate(-3deg);
+  line-height: 1.1;
+  text-align: right;
+}
+
+/* ============================================================
+   LOCATIONS — diagonal-cut band
+   ============================================================ */
+.locations {
+  position: relative;
+  background: var(--bay-tint);
+  padding: 0;
+  overflow: hidden;
+}
+.loc__cut {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 440px;
+  align-items: stretch;
+  position: relative;
+}
+.loc__copy {
+  padding: 72px 56px;
+  background: var(--bay-tint);
+  position: relative;
+  z-index: 2;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 80px) 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.loc__copy .num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bay-deep);
+  margin-bottom: 18px;
+}
+.loc__copy h2 {
+  font-family: var(--italic);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  line-height: 1.15;
+  color: var(--bay-deep);
+  margin-bottom: 22px;
+  letter-spacing: -0.005em;
+}
+.loc__copy h2 b {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-style: normal;
+  font-weight: 420;
+  color: var(--roast);
+  letter-spacing: -0.025em;
+  font-size: 1.15em;
+}
+.loc__copy form {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  border-bottom: 2px solid var(--bay);
+  padding-bottom: 8px;
+  max-width: 460px;
+}
+.loc__copy form label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bay);
+  white-space: nowrap;
+}
+.loc__copy form input {
+  flex: 1;
+  font-family: var(--editorial);
+  font-size: 1.5rem;
+  background: transparent;
+  border: 0;
+  color: var(--roast);
+  outline: none;
+}
+.loc__copy form input::placeholder { color: var(--rule); font-style: italic; }
+.loc__copy form button {
+  font-family: var(--geom);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--steam);
+  background: var(--bay);
+  border: 0;
+  padding: 11px 22px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.loc__copy form button:hover { background: var(--bay-deep); }
+.loc__photo {
+  background-image:
+    linear-gradient(135deg, rgba(0,100,125,0.0) 60%, rgba(0,100,125,0.18) 100%),
+    url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  clip-path: polygon(80px 0, 100% 0, 100% 100%, 0 100%);
+  margin-left: -80px;
+}
+.loc__photo .caption {
+  position: absolute;
+  bottom: 22px;
+  right: 24px;
+  background: var(--roast);
+  color: var(--gilt);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+}
+
+/* ============================================================
+   CATEGORIES — sliced strip with photographic top halves
+   ============================================================ */
+.cats {
+  background: var(--bay-tint);
+  padding: 64px 0 0 0;
+  position: relative;
+}
+.cats__head {
+  padding: 0 56px 28px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.cats__head h2 {
+  font-family: var(--italic);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 2.4vw, 1.95rem);
+  line-height: 1.15;
+  color: var(--roast);
+  letter-spacing: -0.005em;
+}
+.cats__head h2 b {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-style: normal;
+  font-weight: 420;
+  color: var(--bay-deep);
+  letter-spacing: -0.025em;
+  font-size: 1.15em;
+}
+.cats__head .num {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bay-deep);
+  opacity: 0.7;
+}
+.slices {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  height: 460px;
+  border-top: 1px solid var(--rule);
+}
+.slice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px 22px;
+  text-decoration: none;
+  overflow: hidden;
+  border-right: 1px solid rgba(255,255,255,0.18);
+  transition: filter 200ms;
+}
+.slice:last-child { border-right: 0; }
+.slice:hover { filter: brightness(1.08) saturate(1.05); }
+.slice .photo {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(0.85);
+}
+.slice .photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.24) 100%);
+}
+.slice .meta {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steam);
+  opacity: 0.85;
+  z-index: 2;
+}
+.slice .label {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 96, 'SOFT' 50, 'WONK' 0;
+  font-weight: 420;
+  font-size: clamp(1.4rem, 1.95vw, 1.85rem);
+  line-height: 1.0;
+  color: var(--steam);
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+}
+.slice .arrow {
+  position: relative;
+  z-index: 2;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--steam);
+  opacity: 0.85;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.slice.s1 { background: var(--bay-deep); }
+.slice.s1 .photo { background-image: url("https://images.unsplash.com/photo-1571909758193-3e60d5cc8c64?w=900&q=80&auto=format&fit=crop"); }
+.slice.s2 { background: var(--cherry); }
+.slice.s2 .label, .slice.s2 .meta, .slice.s2 .arrow { color: var(--roast); opacity: 1; }
+.slice.s2 .photo { background-image: url("https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=900&q=80&auto=format&fit=crop"); }
+.slice.s3 { background: var(--roast); }
+.slice.s3 .photo { background-image: url("https://images.unsplash.com/photo-1610632380989-680fe40816c6?w=900&q=80&auto=format&fit=crop"); }
+.slice.s4 { background: var(--gilt); }
+.slice.s4 .label, .slice.s4 .meta, .slice.s4 .arrow { color: var(--roast); opacity: 1; }
+.slice.s4 .photo { background-image: url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80&auto=format&fit=crop"); }
+.slice.s5 { background: var(--bay); }
+.slice.s5 .photo { background-image: url("https://images.unsplash.com/photo-1497636577773-f1231844b336?w=900&q=80&auto=format&fit=crop"); }
+
+/* ============================================================
+   FEATURED — the SECOND big-font moment.
+   the headline is set in Instrument Serif italic, BIG, and
+   OVERLAYS the photographic background. the floating Crema-Pale
+   plate now holds only the supporting copy + CTA.
+   ============================================================ */
+.featured {
+  position: relative;
+  background: var(--bay-tint);
+  padding: 64px 0 0 0;
+}
+.featured__hero {
+  position: relative;
+  height: 600px;
+  background-image:
+    linear-gradient(90deg, rgba(0,55,68,0.55) 0%, rgba(0,55,68,0.22) 55%, rgba(0,55,68,0) 100%),
+    url("https://images.unsplash.com/photo-1442550528053-c431ecb55509?w=1600&q=80&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bay-dark);
+}
+.featured__num {
+  position: absolute;
+  top: 28px;
+  left: 56px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gilt);
+}
+/* the BIG editorial headline — Instrument Serif italic */
+.featured__headline {
+  position: absolute;
+  top: 64px;
+  left: 56px;
+  right: 30%;
+  font-family: var(--editorial);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.25rem, 5.2vw, 4rem);    /* up to ~64px */
+  line-height: 1.0;
+  color: var(--steam);
+  letter-spacing: -0.015em;
+  z-index: 4;
+}
+.featured__headline em {
+  font-style: italic;
+  color: var(--gilt);
+}
+.featured__headline span.swash {
+  font-style: italic;
+  color: var(--cherry);
+  font-feature-settings: "swsh" 1;
+}
+.featured__plate {
+  position: absolute;
+  bottom: -64px;
+  right: 56px;
+  width: min(420px, 80vw);
+  background: var(--crema-pale);
+  color: var(--espresso);
+  padding: 32px 32px 28px 32px;
+  z-index: 5;
+  box-shadow: 0 24px 48px rgba(0, 30, 40, 0.28);
+}
+.featured__plate::before {
+  content: "Morning Muse · Light Roast";
+  position: absolute;
+  top: -16px;
+  left: -1px;
+  background: var(--tannin);
+  color: var(--steam);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 7px 12px;
+}
+.featured__plate p {
+  font-family: var(--italic);
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: var(--espresso);
+  margin-bottom: 16px;
+}
+.featured__plate a {
+  font-family: var(--geom);
+  font-weight: 500;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bay-deep);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--bay);
+  padding-bottom: 4px;
+}
+.featured__plate a:hover { color: var(--roast); border-bottom-color: var(--cherry); }
+/* a small Caveat scribble pointing from the photo to the plate (instance #3 of 3) */
+.featured__scribble {
+  position: absolute;
+  bottom: 56px;
+  left: 50%;
+  transform: rotate(-4deg);
+  font-family: var(--hand);
+  font-size: 24px;
+  color: var(--gilt);
+  z-index: 6;
+}
+.featured__spacer { height: 88px; background: var(--bay-tint); }
+
+/* ============================================================
+   REWARDS — Bay-Dark stripe with photo plate jutting up
+   ============================================================ */
+.rewards {
+  position: relative;
+  background: var(--bay-dark);
+  color: var(--steam);
+  padding: 72px 56px 72px 56px;
+}
+.rewards__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gilt);
+  margin-bottom: 18px;
+}
+.rewards__row {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 56px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+.rewards__row h2 {
+  font-family: var(--italic);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 2.05rem);
+  line-height: 1.15;
+  color: var(--gilt);
+  letter-spacing: -0.005em;
+  margin-bottom: 12px;
+}
+.rewards__row h2 b {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-style: normal;
+  font-weight: 420;
+  display: block;
+  color: var(--steam);
+  letter-spacing: -0.025em;
+  font-size: 1.2em;
+}
+.rewards__row p {
+  font-family: var(--italic);
+  font-size: 1.15rem;
+  color: var(--bay-tint);
+  max-width: 56ch;
+  line-height: 1.5;
+}
+.rewards__row a.go {
+  display: inline-block;
+  margin-top: 22px;
+  font-family: var(--geom);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--gilt);
+  color: var(--roast);
+  text-decoration: none;
+  padding: 14px 26px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.rewards__row a.go:hover { background: var(--steam); }
+.rewards__plate {
+  position: relative;
+  height: 320px;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(0,0,0,0.22) 100%),
+    url("https://images.unsplash.com/photo-1559525839-8f75109aef96?w=900&q=80&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  margin-top: -136px;
+  margin-bottom: -64px;
+}
+.rewards__plate::after {
+  content: "Gift cards available";
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  background: var(--steam);
+  color: var(--roast);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 7px 11px;
+}
+
+/* === footer === */
+footer {
+  background: var(--bay);
+  color: var(--bay-tint);
+  padding: 56px 64px 24px 64px;
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.foot-grid img { height: 26px; margin-bottom: 16px; filter: brightness(0) invert(1); }
+.foot-grid p.tag {
+  font-family: var(--editorial);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--steam);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.foot-grid p { font-size: 13.5px; line-height: 1.7; }
+.foot-grid a { color: var(--bay-tint); text-decoration: none; }
+.foot-grid a:hover { color: var(--gilt); }
+.foot-col h6 {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gilt);
+  margin-bottom: 12px;
+}
+.foot-col a { display: block; padding: 4px 0; font-size: 13.5px; }
+.foot-rule {
+  margin: 36px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(229,239,242,0.25);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--bay-tint);
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1280px;
+}
+.foot-rule a { color: var(--bay-tint); text-decoration: none; }
+.foot-rule a:hover { color: var(--gilt); }
+
+/* ===== responsive ===== */
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero__copy { padding: 56px 32px; }
+  .hero__h1 { width: 100%; }
+  .hero__photo { min-height: 320px; margin-bottom: 0; }
+  .hero__photo::after { bottom: 18px; right: 18px; }
+
+  .subscription { grid-template-columns: 1fr; }
+  .sub__col { padding: 48px 32px; }
+  .sub__photo { min-height: 280px; }
+  .sub__scribble { display: none; }
+
+  .loc__cut { grid-template-columns: 1fr; min-height: auto; }
+  .loc__copy, .loc__photo { clip-path: none; margin-left: 0; }
+  .loc__copy { padding: 48px 32px; }
+  .loc__photo { min-height: 240px; }
+
+  .cats__head { padding: 0 32px 24px; }
+  .slices { height: 380px; }
+  .slice { padding: 18px 14px; }
+
+  .featured__hero { height: 460px; }
+  .featured__num, .featured__headline { left: 32px; }
+  .featured__headline { right: 32px; }
+  .featured__plate { right: 32px; left: 32px; width: auto; padding: 26px 22px; }
+  .featured__scribble { display: none; }
+  .featured__spacer { height: 64px; }
+
+  .rewards { padding: 56px 32px; }
+  .rewards__row { grid-template-columns: 1fr; gap: 24px; }
+  .rewards__plate { margin-top: 0; height: 220px; }
+
+  footer { padding: 40px 32px 20px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 720px) {
+  nav.top { grid-template-columns: 1fr auto; }
+  nav.top .links { grid-column: 1 / -1; gap: 16px; font-size: 12px; }
+  .slices { grid-template-columns: repeat(5, 1fr); height: 280px; }
+  .slice .label { font-size: 0.95rem; }
+  .foot-grid { grid-template-columns: 1fr; }
+  .foot-rule { flex-direction: column; }
+  .hero__h1 { font-size: clamp(2.5rem, 11vw, 4rem); }
+  .featured__headline { font-size: clamp(1.75rem, 7vw, 2.5rem); }
+}
+</style>
+</head>
+<body>
+
+<div class="marquee" role="region" aria-label="Promotion">
+  <span>No. 04 · LATE SPRING</span>
+  <span>Free shipping from $35 &amp; free coffee samples · code <strong>FRESCOPA</strong> · <a href="/coffee">Shop now</a></span>
+  <span>Lehi, Utah</span>
+</div>
+
+<nav class="top" role="navigation" aria-label="Primary">
+  <a href="/" aria-label="Frescopa, home"><img src="assets/logo.svg" alt="Frescopa"></a>
+  <div class="links">
+    <a href="/coffee">Coffee</a>
+    <a href="/tea">Tea</a>
+    <a href="/machines">Machines</a>
+    <a href="/accessories">Accessories</a>
+    <a href="/locations">Locations</a>
+    <a href="/sustainability">Sustainability</a>
+  </div>
+  <div class="util" aria-label="Utility">
+    <a href="/search">Search</a>
+    <a href="/login">Sign in</a>
+    <a href="/cart">Cart 00</a>
+  </div>
+</nav>
+
+<main>
+
+  <section class="hero" data-section="hero">
+    <div class="hero__copy">
+      <p class="hero__overline">MyBarista · four questions, your roast</p>
+      <h1 class="hero__h1">
+        Your perfect coffee is <span class="word-italic">four&nbsp;questions</span> <span class="word-tag">just&nbsp;four</span>away.
+      </h1>
+      <p class="hero__lede">Strength, milk, mood, ritual. Ninety seconds of questions and the roasts that match are lined up for you.</p>
+      <div class="hero__row">
+        <a class="cta" href="/quiz">Start the quiz</a>
+        <a class="ghost" href="/coffee">Browse coffee →</a>
+      </div>
+      <p class="hero__steps">01—02—03—04</p>
+    </div>
+    <div class="hero__photo" role="img" aria-label="A latte with foam art, photographed top-down"></div>
+  </section>
+
+  <section class="subscription" data-section="subscription-pitch">
+    <div class="sub__col sub__heading">
+      <p class="num">02 · subscription</p>
+      <h2>Fall in love<b>with coffee.</b></h2>
+    </div>
+    <div class="sub__col sub__photo" role="img" aria-label="A barista preparing a coffee delivery">
+      <span class="caption">Hand-selected · weekly</span>
+    </div>
+    <div class="sub__col sub__body">
+      <p>With a MyBarista subscription, you get hand-selected coffees delivered right to your door each week. Skip, slow down, or change roasts in a click.</p>
+      <a href="/subscription">Learn about MyBarista →</a>
+      <span class="sub__scribble" aria-hidden="true">your weekly<br>ritual ↗</span>
+    </div>
+  </section>
+
+  <section class="locations" data-section="locations-finder">
+    <div class="loc__cut">
+      <div class="loc__copy">
+        <p class="num">03 · locations</p>
+        <h2>Try a new roast at a <b>Frescopa near you.</b></h2>
+        <form action="/locations" method="get" role="search">
+          <label for="zip2">Find</label>
+          <input id="zip2" type="search" name="q" placeholder="ZIP, city, or state">
+          <button type="submit">Go</button>
+        </form>
+      </div>
+      <div class="loc__photo" role="img" aria-label="Inside a coffee shop with light streaming through the window">
+        <span class="caption">63 cafés · find one</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cats" data-section="shop-categories">
+    <div class="cats__head">
+      <h2>Shop all Frescopa <b>products.</b></h2>
+      <span class="num">04 · catalogue</span>
+    </div>
+    <div class="slices">
+      <a class="slice s1" href="/machines">
+        <div class="photo" role="img" aria-label="An espresso machine"></div>
+        <span class="meta">i.</span>
+        <span class="label">Coffee Machines</span>
+        <span class="arrow">Shop ↘</span>
+      </a>
+      <a class="slice s2" href="/coffee">
+        <div class="photo" role="img" aria-label="Roasted coffee beans"></div>
+        <span class="meta">ii.</span>
+        <span class="label">Bagged Coffee</span>
+        <span class="arrow">Shop ↘</span>
+      </a>
+      <a class="slice s3" href="/coffee">
+        <div class="photo" role="img" aria-label="Single-serve coffee pods"></div>
+        <span class="meta">iii.</span>
+        <span class="label">Coffee Pods</span>
+        <span class="arrow">Shop ↘</span>
+      </a>
+      <a class="slice s4" href="/coffee">
+        <div class="photo" role="img" aria-label="A latte with foam art"></div>
+        <span class="meta">iv.</span>
+        <span class="label">Bundles</span>
+        <span class="arrow">Shop ↘</span>
+      </a>
+      <a class="slice s5" href="/accessories">
+        <div class="photo" role="img" aria-label="An espresso shot pulling"></div>
+        <span class="meta">v.</span>
+        <span class="label">Accessories</span>
+        <span class="arrow">Shop ↘</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="featured" data-section="featured-coffee">
+    <div class="featured__hero" role="img" aria-label="A close-up of a pour-over coffee being made">
+      <span class="featured__num">05 · featured</span>
+      <h2 class="featured__headline">
+        Elevate <em>your</em> coffee <em>game.</em>
+      </h2>
+      <span class="featured__scribble" aria-hidden="true">bright + citrus ↘</span>
+      <div class="featured__plate">
+        <p>Experience the bright, citrusy notes and smooth finish of Morning Muse Light Roast. A perfect start to any day.</p>
+        <a href="/coffee">Shop coffee →</a>
+      </div>
+    </div>
+    <div class="featured__spacer" aria-hidden="true"></div>
+  </section>
+
+  <section class="rewards" data-section="rewards-cta-band">
+    <div class="rewards__row">
+      <div>
+        <p class="rewards__num">06 · rewards</p>
+        <h2><em>Rewards waiting —</em><b>claim them now.</b></h2>
+        <p>Surprise your loved ones with the ultimate coffee experience. Our gift cards are the perfect way to share the joy of Frescopa.</p>
+        <a class="go" href="/signup">Claim rewards</a>
+      </div>
+      <div class="rewards__plate" role="img" aria-label="A bag of Frescopa coffee with a hand-tied gift ribbon"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="foot-grid">
+    <div>
+      <img src="assets/logo.svg" alt="Frescopa">
+      <p class="tag">Smiles one cup at a time.</p>
+      <p>3900 Adobe Way, Lehi, UT 84043</p>
+      <p><a href="mailto:info@frescopa.coffee">info@frescopa.coffee</a></p>
+      <p>(385) 345-0000</p>
+    </div>
+    <div class="foot-col">
+      <h6>Machines</h6>
+      <a href="/machines">Espresso Machines</a>
+      <a href="/machines">Frescopa Major</a>
+      <a href="/machines">Frescopa Minor</a>
+      <a href="/machines">Autodrip</a>
+      <a href="/machines">Coffee Grinders</a>
+    </div>
+    <div class="foot-col">
+      <h6>Coffee</h6>
+      <a href="/coffee">Bagged Coffee</a>
+      <a href="/coffee">Coffee Pods</a>
+      <a href="/locations">Find a Retailer</a>
+      <a href="/business.html">Frescopa Affiliate</a>
+    </div>
+    <div class="foot-col">
+      <h6>Tea</h6>
+      <a href="/tea">Loose Leaf</a>
+      <a href="/tea">Pods</a>
+      <a href="/tea">Bundles</a>
+    </div>
+    <div class="foot-col">
+      <h6>About</h6>
+      <a href="/about-us">About Us</a>
+      <a href="/locations">Find a Retailer</a>
+      <a href="/business.html">Frescopa Enterprise</a>
+      <a href="/sustainability">Sustainability</a>
+      <a href="/blog">Blog</a>
+    </div>
+  </div>
+  <div class="foot-rule">
+    <span>© Frescopa, Inc. All rights reserved.</span>
+    <span>
+      <a href="/terms">Terms</a> ·
+      <a href="/privacy">Privacy</a> ·
+      <a href="/cookies">Cookies</a> ·
+      <a href="/diversity">Diversity &amp; Inclusion</a> ·
+      <a href="/social-responsibility">Social Responsibility</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
