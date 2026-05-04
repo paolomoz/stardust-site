@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 2,
+  "slug": "nvidia",
+  "title": "NVIDIA",
+  "tagline": "Brand-faithful Mode A refresh of nvidia.com/en-us/. Type and palette pinned to the captured surface; improvements target structural and system gaps. Three variants share one direction across two real pages and one synthetic block catalog.",
+
+  "source": {
+    "url": "https://www.nvidia.com/en-us/",
+    "register": "brand",
+    "category": "AI · GPU · accelerated computing",
+    "extractedAt": "2026-05-03"
+  },
+
+  "direction": {
+    "phrase": "follow the current NVIDIA design and apply improvements that preserve the current design principles",
+    "movements": [
+      "brand-faithful: palette + type pinned to captured surface",
+      "audience: 5 tracks preserved (gamer / enterprise / developer / creator / industry-buyer)",
+      "density: packed (48/36/24px section padding desktop/tablet/mobile)",
+      "mega-menu: eager render → lazy-load on hover (~85% smaller initial payload)",
+      "hero: 8-slide auto-rotating carousel → 1 anchor slide + 4-tile rail",
+      "site-wide: real semantic landmarks, single visible H1 per page, 8-verb CTA closed list, modular major-third type scale"
+    ],
+    "seed": {
+      "input": "NVIDIA|2026-05-03",
+      "decade": "2025-now",
+      "craft": "brand-inherited (Mode A skips standard roll)",
+      "register": "brand",
+      "groundFamily": "stark-white AND stark-black (both retained, brand-faithful)",
+      "pickedBy": "user-constraint (brand-faithful)"
+    },
+    "fontDeck": {
+      "name": "brand-inherited",
+      "value": "NVIDIA-NALA, Arial, Helvetica, sans-serif",
+      "pickedBy": "user-constraint"
+    },
+    "palette": {
+      "name": "NVIDIA brand-pinned",
+      "source": "inherited from stardust/current/_brand-extraction.json",
+      "anchor": "#76b900",
+      "pickedBy": "user-constraint",
+      "brandFaithfulInversions": [
+        "pure-white #ffffff retained",
+        "pure-black #000000 retained",
+        "hex format retained",
+        "sharp 0px corners retained",
+        "saturated NVIDIA green #76b900 retained as single CTA accent"
+      ]
+    },
+    "antiToolbox": { "hits": 2, "justified": 2 }
+  },
+
+  "originalCritique": "The brand surface is genuinely distinctive — sharp 0px corners, single-accent NVIDIA green, two-surface dark/light alternation, sentence-case headings, proper-noun product naming. But the captured site runs an 8-slide auto-rotating hero where every slide claims lead-story status; the page H1 is a hidden 15px scaffold while the visible 48px headline is an H2; <strong>0 &lt;main&gt; and 0 &lt;footer&gt; landmarks</strong> on home; 9 distinct CTA verbs across one page (six clustering in the same see-more bucket); a 440-card mega-menu eager-rendered into every page's initial HTML (~85% of paint-blocking DOM is hidden navigation); and an ad-hoc 12-ratio type scale across pages. The strongest assets — the brand mannerism, the audience-track IA, the news-density home — are present but never composed against a system.",
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Home",
+      "dominantDimension": "structure",
+      "thesis": "Brand-faithful refresh of the news/announcement home. Same palette, type, and sharp-corner mannerism verbatim. The page gets the structural and accessibility floor it was missing: real landmarks, single visible H1, one anchor + 4-tile hero rail instead of an 8-slide carousel, 8-verb CTA list, lazy-loaded mega-menu.",
+      "fix": "<strong>Structural floor</strong> — wrap content in &lt;main&gt;, footer in &lt;footer&gt;, single visible H1 per page (the carousel headline becomes H1; the hidden 15px scaffold is removed). <strong>Hero rest</strong> — 8-slide auto-rotating carousel becomes 1 anchor slide + 4-tile 'more from NVIDIA' rail; no auto-rotation (also fixes WCAG 2.2.2). <strong>Voice consolidation</strong> — 9 CTA verbs on one page collapsed to the canonical 8-verb taxonomy (Try Now, Learn More, See Buying Options, Subscribe, Get Started, Talk to an Expert, Contact, Play). <strong>Mega-menu lazy-load</strong> — initial HTML ships only the 5 tab labels + skeleton; tile content loads on hover from a static JSON. ~85% smaller initial DOM. The brand mannerism survives verbatim — the page just earns the system underneath it.",
+      "proposedFile": "proposed-A.html",
+      "isPrimary": true
+    },
+    {
+      "id": "B",
+      "name": "Data center",
+      "dominantDimension": "ia",
+      "thesis": "Same chrome and brand surface as the approved home, applied to a product/solution landing page. Static photo hero replaces the carousel; architecture grid lands in one consistent text-led variant; news rail and customer-stories rail use distinct tile variants so the cadence stays clean. New flow-step and use-case 50/50 patterns introduced for content shapes home doesn't have.",
+      "fix": "<strong>Reuse the approved chrome</strong> — header, geo-banner, footer lift verbatim from home. <strong>Static hero</strong> — single full-bleed photo, eyebrow + H1 + lead + primary CTA, no auto-rotation. <strong>Consistent grid cadence</strong> — architecture row uses one text-led variant for all four tiles; news rail and customer-stories rail use distinct tile variants so the rhythm reads. <strong>New patterns</strong> — flow-4-step (mono step numbers, hairline connectors) for the Cloud → Office → Data Center → Edge sequence; use-case 50/50 (full-bleed image + text-block, alternating sides) for the three workload features. <strong>Same site-wide gains</strong> as home: real landmarks, single visible H1, 8-verb CTA list, lazy mega-menu.",
+      "proposedFile": "proposed-B.html"
+    },
+    {
+      "id": "C",
+      "name": "Block library",
+      "dominantDimension": "system",
+      "thesis": "Synthetic catalog page (no live nvidia.com source). One continuous scroll exposing all 25 blocks (Tier 1 chrome → Tier 5 long-form) in render order, every block at full size, in context, against the approved Mode A tokens. Each block preceded by a label card carrying ID + purpose + content shape + status + source page, so a developer building the implementation or an LLM running the intent-to-layout pipeline can map ID → visual sample without leaving the page.",
+      "proposedFile": "proposed-C.html"
+    }
+  ],
+
+  "createdAt": "2026-05-04",
+  "stardustVersion": "0.3.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0"
+}
