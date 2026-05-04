@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
 <!-- stardust:provenance
-  writtenBy:        stardust:prototype (creative-direction follow-on, v3)
+  writtenBy:        stardust:prototype (creative-direction follow-on, v4-polished)
   writtenAt:        2026-05-04
   page:             home
-  variant:          C2-typeplay (v3 of C2-bands → C2-broken → this)
+  variant:          C2-typeplay (v4 — polished by impeccable critique + audit pass)
   parentDirection:  stardust/direction.md (palette family — A and B colors composed; Bay + Roast pinned)
-  brief:            v3 of C2 — keep broken-stripe layout, scale the hero up, add one big secondary moment, introduce 3 playful display fonts
-  playfulFonts:     (1) Fraunces — variable serif, SOFT+WONK axes engaged for hero h1 character; (2) Instrument Serif — high-contrast editorial italic for the secondary big moment (featured); (3) Caveat — handwritten margin scribbles, used max 3 instances
-  utilityFonts:     Cormorant Garamond italic, Space Grotesk, IBM Plex Sans, Martian Mono — kept from previous version, not counted as playful
+  brief:            v4 of C2 — broken-stripe layout, big hero in Fraunces with WONK, second big moment in Instrument Serif italic, playful trio of display fonts
+  playfulFonts:     (1) Fraunces — variable serif, SOFT+WONK axes engaged for hero h1 character; (2) Instrument Serif — high-contrast editorial italic for the secondary big moment (featured); (3) Caveat — handwritten margin scribbles (2 instances after polish: subscription + featured)
+  utilityFonts:     Spectral italic + Bricolage Grotesque labels + Hanken Grotesk body + Martian Mono catalog — replaced Cormorant + Space Grotesk + IBM Plex Sans which were on the brand-register reflex-reject list
   bigFontMoves:     hero h1 caps at ~96px (clamp 3rem, 8vw, 6rem) with WONK on; featured h2 caps at ~64px Instrument Serif italic floating over the photo
   imageSources:     Unsplash CDN (free-to-use)
+  polishPass:       fixed broken hero h1 grammar; added :focus-visible rings; bumped tiny-text to ≥12px; switched all-caps marquee body to mixed case; replaced "63 cafés" fabrication; removed em dashes in chrome; tightened featured italic emphasis to one word; dropped Roman-numeral slice numerators; switched footer h6 column titles to non-h tags; added prefers-reduced-motion query; added text-shadow halo to featured Caveat scribble for guaranteed photo-overlay contrast
   unsourcedContent: []
 -->
 <meta charset="UTF-8">
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;600&family=Spectral:ital,wght@0,400;0,500;1,400;1,500&family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Hanken+Grotesk:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --steam:        #FFFFFF;
@@ -41,15 +42,15 @@
   --stoneware:    #E8E1D5;
   --rule:         #D8CFC0;
 
-  /* === playful display trio === */
-  --display:    'Fraunces', 'DM Serif Display', Georgia, serif;        /* hero h1 — wonky variable serif */
-  --editorial:  'Instrument Serif', 'Cormorant Garamond', Georgia, serif; /* featured big moment */
-  --hand:       'Caveat', cursive;                                      /* margin scribbles */
+  /* === playful display trio (user-locked) === */
+  --display:    'Fraunces', Georgia, serif;                       /* hero h1, wonky axes engaged */
+  --editorial:  'Instrument Serif', 'Spectral', Georgia, serif;   /* featured big moment */
+  --hand:       'Caveat', cursive;                                /* margin scribble — single instance */
 
-  /* === utility families === */
-  --italic:   'Cormorant Garamond', Georgia, serif;
-  --geom:     'Space Grotesk', system-ui, sans-serif;
-  --sans:     'IBM Plex Sans', system-ui, sans-serif;
+  /* === utility families (post-polish — off the brand-register reflex-reject list) === */
+  --italic:   'Spectral', Georgia, serif;                         /* slab-transitional italic counterpoint */
+  --geom:     'Bricolage Grotesque', system-ui, sans-serif;       /* labels, geometric, variable axes */
+  --sans:     'Hanken Grotesk', system-ui, sans-serif;            /* body */
   --mono:     'Martian Mono', 'JetBrains Mono', Menlo, monospace;
 }
 
@@ -65,30 +66,36 @@ body {
 
 img { display: block; max-width: 100%; }
 
-/* Fraunces — engage the variable axes for character. SOFT (round corners), WONK (alternate glyph forms). */
-.fraunces-wonk {
-  font-family: var(--display);
-  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-  font-feature-settings: "ss01" 1, "ss02" 1;        /* swashy alternate forms */
-  font-weight: 400;
-  letter-spacing: -0.02em;
+/* keyboard focus ring — visible across every interactive element, brand-tinted */
+:focus-visible {
+  outline: 2px solid var(--gilt);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-/* === marquee === */
+/* === marquee — labels in caps, promo line in mixed case === */
 .marquee {
   background: var(--roast);
   color: var(--steam);
-  padding: 9px 32px;
+  padding: 10px 32px;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   display: flex;
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
 }
-.marquee a { color: var(--gilt); text-decoration: none; border-bottom: 1px solid var(--gilt); }
+.marquee .label {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.marquee a {
+  color: var(--gilt);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gilt);
+  padding-bottom: 1px;
+}
 .marquee a:hover { color: var(--steam); border-bottom-color: var(--steam); }
 
 /* === nav === */
@@ -122,7 +129,7 @@ nav.top .util {
   display: flex;
   gap: 16px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--bay-deep);
@@ -154,10 +161,10 @@ nav.top .util a:hover { color: var(--roast); }
 }
 .hero__overline {
   font-family: var(--mono);
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gilt);
+  color: var(--bay-tint);                        /* AA on Bay (~6.4:1) — gilt failed at ~3.1:1 */
   margin-bottom: 22px;
 }
 /* the BIG hero title — Fraunces wonky.
@@ -166,28 +173,18 @@ nav.top .util a:hover { color: var(--roast); }
   font-family: var(--display);
   font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
   font-weight: 420;
-  font-size: clamp(3rem, 8vw, 6rem);            /* up to ~96px desktop */
+  font-size: clamp(3rem, 8vw, 6rem);             /* up to ~96px desktop */
   line-height: 0.95;
   letter-spacing: -0.025em;
-  margin-bottom: 26px;
-  width: 130%;                                   /* extends past the column edge */
+  margin-bottom: 28px;
+  width: 115%;                                   /* moderate overflow into the photo column */
   position: relative;
   z-index: 5;
 }
 .hero__h1 .word-italic {
   font-style: italic;
   font-variation-settings: 'opsz' 144, 'SOFT' 60, 'WONK' 1;
-  color: var(--gilt);
-}
-.hero__h1 .word-tag {
-  font-family: var(--hand);
-  font-weight: 600;
-  font-size: 0.5em;
-  color: var(--cherry);
-  display: inline-block;
-  transform: translateY(-0.55em) rotate(-4deg);
-  margin: 0 0.05em;
-  letter-spacing: 0;
+  color: var(--gilt);                            /* large display — passes AA Large at ~3.8:1 */
 }
 .hero__lede {
   font-family: var(--italic);
@@ -454,6 +451,11 @@ nav.top .util a:hover { color: var(--roast); }
   border: 0;
   color: var(--roast);
   outline: none;
+  padding: 4px 6px;
+}
+.loc__copy form input:focus-visible {
+  outline: 2px solid var(--cherry-deep);
+  outline-offset: 2px;
 }
 .loc__copy form input::placeholder { color: var(--rule); font-style: italic; }
 .loc__copy form button {
@@ -568,23 +570,11 @@ nav.top .util a:hover { color: var(--roast); }
   inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.24) 100%);
 }
-.slice .meta {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--steam);
-  opacity: 0.85;
-  z-index: 2;
-}
 .slice .label {
   font-family: var(--display);
   font-variation-settings: 'opsz' 96, 'SOFT' 50, 'WONK' 0;
   font-weight: 420;
-  font-size: clamp(1.4rem, 1.95vw, 1.85rem);
+  font-size: clamp(1.4rem, 1.95vw, 1.95rem);
   line-height: 1.0;
   color: var(--steam);
   letter-spacing: -0.02em;
@@ -594,7 +584,7 @@ nav.top .util a:hover { color: var(--roast); }
 .slice .arrow {
   position: relative;
   z-index: 2;
-  margin-top: 10px;
+  margin-top: 12px;
   font-family: var(--mono);
   font-size: 12px;
   color: var(--steam);
@@ -605,12 +595,12 @@ nav.top .util a:hover { color: var(--roast); }
 .slice.s1 { background: var(--bay-deep); }
 .slice.s1 .photo { background-image: url("https://images.unsplash.com/photo-1571909758193-3e60d5cc8c64?w=900&q=80&auto=format&fit=crop"); }
 .slice.s2 { background: var(--cherry); }
-.slice.s2 .label, .slice.s2 .meta, .slice.s2 .arrow { color: var(--roast); opacity: 1; }
+.slice.s2 .label, .slice.s2 .arrow { color: var(--roast); opacity: 1; }
 .slice.s2 .photo { background-image: url("https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=900&q=80&auto=format&fit=crop"); }
 .slice.s3 { background: var(--roast); }
 .slice.s3 .photo { background-image: url("https://images.unsplash.com/photo-1610632380989-680fe40816c6?w=900&q=80&auto=format&fit=crop"); }
 .slice.s4 { background: var(--gilt); }
-.slice.s4 .label, .slice.s4 .meta, .slice.s4 .arrow { color: var(--roast); opacity: 1; }
+.slice.s4 .label, .slice.s4 .arrow { color: var(--roast); opacity: 1; }
 .slice.s4 .photo { background-image: url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80&auto=format&fit=crop"); }
 .slice.s5 { background: var(--bay); }
 .slice.s5 .photo { background-image: url("https://images.unsplash.com/photo-1497636577773-f1231844b336?w=900&q=80&auto=format&fit=crop"); }
@@ -713,15 +703,17 @@ nav.top .util a:hover { color: var(--roast); }
   padding-bottom: 4px;
 }
 .featured__plate a:hover { color: var(--roast); border-bottom-color: var(--cherry); }
-/* a small Caveat scribble pointing from the photo to the plate (instance #3 of 3) */
+/* a small Caveat scribble pointing from the photo to the plate.
+   text-shadow gives the scribble a guaranteed-contrast halo against any photo region. */
 .featured__scribble {
   position: absolute;
   bottom: 56px;
-  left: 50%;
+  left: 48%;
   transform: rotate(-4deg);
   font-family: var(--hand);
-  font-size: 24px;
+  font-size: 26px;
   color: var(--gilt);
+  text-shadow: 0 1px 8px rgba(0, 30, 40, 0.7);
   z-index: 6;
 }
 .featured__spacer { height: 88px; background: var(--bay-tint); }
@@ -842,19 +834,19 @@ footer {
   line-height: 1.2;
   margin-bottom: 14px;
 }
-.foot-grid p { font-size: 13.5px; line-height: 1.7; }
+.foot-grid p { font-size: 14px; line-height: 1.7; }
 .foot-grid a { color: var(--bay-tint); text-decoration: none; }
 .foot-grid a:hover { color: var(--gilt); }
-.foot-col h6 {
+.foot-col-h {
   font-family: var(--mono);
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gilt);
   margin-bottom: 12px;
 }
-.foot-col a { display: block; padding: 4px 0; font-size: 13.5px; }
+.foot-col a { display: block; padding: 4px 0; font-size: 14px; }
 .foot-rule {
   margin: 36px auto 0;
   padding-top: 16px;
@@ -862,8 +854,8 @@ footer {
   display: flex;
   justify-content: space-between;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   color: var(--bay-tint);
   flex-wrap: wrap;
   gap: 16px;
@@ -918,14 +910,22 @@ footer {
   .hero__h1 { font-size: clamp(2.5rem, 11vw, 4rem); }
   .featured__headline { font-size: clamp(1.75rem, 7vw, 2.5rem); }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
 </style>
 </head>
 <body>
 
 <div class="marquee" role="region" aria-label="Promotion">
-  <span>No. 04 · LATE SPRING</span>
-  <span>Free shipping from $35 &amp; free coffee samples · code <strong>FRESCOPA</strong> · <a href="/coffee">Shop now</a></span>
-  <span>Lehi, Utah</span>
+  <span class="label">No. 04 · Late spring</span>
+  <span>Free shipping from $35 and free coffee samples with code <strong>FRESCOPA</strong>. <a href="/coffee">Shop now</a></span>
+  <span class="label">Lehi, Utah</span>
 </div>
 
 <nav class="top" role="navigation" aria-label="Primary">
@@ -949,16 +949,16 @@ footer {
 
   <section class="hero" data-section="hero">
     <div class="hero__copy">
-      <p class="hero__overline">MyBarista · four questions, your roast</p>
+      <p class="hero__overline">MyBarista coffee quiz</p>
       <h1 class="hero__h1">
-        Your perfect coffee is <span class="word-italic">four&nbsp;questions</span> <span class="word-tag">just&nbsp;four</span>away.
+        Your perfect coffee is <span class="word-italic">four&nbsp;questions</span> away.
       </h1>
-      <p class="hero__lede">Strength, milk, mood, ritual. Ninety seconds of questions and the roasts that match are lined up for you.</p>
+      <p class="hero__lede">Strength, milk, mood, ritual. Ninety seconds of questions, and the roasts that match are lined up for you.</p>
       <div class="hero__row">
         <a class="cta" href="/quiz">Start the quiz</a>
         <a class="ghost" href="/coffee">Browse coffee →</a>
       </div>
-      <p class="hero__steps">01—02—03—04</p>
+      <p class="hero__steps">Step 01 · 02 · 03 · 04</p>
     </div>
     <div class="hero__photo" role="img" aria-label="A latte with foam art, photographed top-down"></div>
   </section>
@@ -966,7 +966,7 @@ footer {
   <section class="subscription" data-section="subscription-pitch">
     <div class="sub__col sub__heading">
       <p class="num">02 · subscription</p>
-      <h2>Fall in love<b>with coffee.</b></h2>
+      <h2>Fall in love <b>with coffee.</b></h2>
     </div>
     <div class="sub__col sub__photo" role="img" aria-label="A barista preparing a coffee delivery">
       <span class="caption">Hand-selected · weekly</span>
@@ -990,7 +990,7 @@ footer {
         </form>
       </div>
       <div class="loc__photo" role="img" aria-label="Inside a coffee shop with light streaming through the window">
-        <span class="caption">63 cafés · find one</span>
+        <span class="caption">Find one near you</span>
       </div>
     </div>
   </section>
@@ -1003,31 +1003,26 @@ footer {
     <div class="slices">
       <a class="slice s1" href="/machines">
         <div class="photo" role="img" aria-label="An espresso machine"></div>
-        <span class="meta">i.</span>
         <span class="label">Coffee Machines</span>
         <span class="arrow">Shop ↘</span>
       </a>
       <a class="slice s2" href="/coffee">
         <div class="photo" role="img" aria-label="Roasted coffee beans"></div>
-        <span class="meta">ii.</span>
         <span class="label">Bagged Coffee</span>
         <span class="arrow">Shop ↘</span>
       </a>
       <a class="slice s3" href="/coffee">
         <div class="photo" role="img" aria-label="Single-serve coffee pods"></div>
-        <span class="meta">iii.</span>
         <span class="label">Coffee Pods</span>
         <span class="arrow">Shop ↘</span>
       </a>
       <a class="slice s4" href="/coffee">
         <div class="photo" role="img" aria-label="A latte with foam art"></div>
-        <span class="meta">iv.</span>
         <span class="label">Bundles</span>
         <span class="arrow">Shop ↘</span>
       </a>
       <a class="slice s5" href="/accessories">
         <div class="photo" role="img" aria-label="An espresso shot pulling"></div>
-        <span class="meta">v.</span>
         <span class="label">Accessories</span>
         <span class="arrow">Shop ↘</span>
       </a>
@@ -1038,7 +1033,7 @@ footer {
     <div class="featured__hero" role="img" aria-label="A close-up of a pour-over coffee being made">
       <span class="featured__num">05 · featured</span>
       <h2 class="featured__headline">
-        Elevate <em>your</em> coffee <em>game.</em>
+        <em>Elevate</em> your coffee game.
       </h2>
       <span class="featured__scribble" aria-hidden="true">bright + citrus ↘</span>
       <div class="featured__plate">
@@ -1053,7 +1048,7 @@ footer {
     <div class="rewards__row">
       <div>
         <p class="rewards__num">06 · rewards</p>
-        <h2><em>Rewards waiting —</em><b>claim them now.</b></h2>
+        <h2><em>Rewards waiting.</em><b>Claim them now.</b></h2>
         <p>Surprise your loved ones with the ultimate coffee experience. Our gift cards are the perfect way to share the joy of Frescopa.</p>
         <a class="go" href="/signup">Claim rewards</a>
       </div>
@@ -1073,7 +1068,7 @@ footer {
       <p>(385) 345-0000</p>
     </div>
     <div class="foot-col">
-      <h6>Machines</h6>
+      <p class="foot-col-h">Machines</p>
       <a href="/machines">Espresso Machines</a>
       <a href="/machines">Frescopa Major</a>
       <a href="/machines">Frescopa Minor</a>
@@ -1081,20 +1076,20 @@ footer {
       <a href="/machines">Coffee Grinders</a>
     </div>
     <div class="foot-col">
-      <h6>Coffee</h6>
+      <p class="foot-col-h">Coffee</p>
       <a href="/coffee">Bagged Coffee</a>
       <a href="/coffee">Coffee Pods</a>
       <a href="/locations">Find a Retailer</a>
       <a href="/business.html">Frescopa Affiliate</a>
     </div>
     <div class="foot-col">
-      <h6>Tea</h6>
+      <p class="foot-col-h">Tea</p>
       <a href="/tea">Loose Leaf</a>
       <a href="/tea">Pods</a>
       <a href="/tea">Bundles</a>
     </div>
     <div class="foot-col">
-      <h6>About</h6>
+      <p class="foot-col-h">About</p>
       <a href="/about-us">About Us</a>
       <a href="/locations">Find a Retailer</a>
       <a href="/business.html">Frescopa Enterprise</a>
