@@ -4,6 +4,8 @@
   "title": "NVIDIA",
   "tagline": "Brand-faithful Mode A refresh of nvidia.com/en-us/. Type and palette pinned to the captured surface; improvements target structural and system gaps. Three variants share one direction across two real pages and one synthetic block catalog.",
 
+  "thumbnail": "logo.png",
+
   "source": {
     "url": "https://www.nvidia.com/en-us/",
     "register": "brand",
