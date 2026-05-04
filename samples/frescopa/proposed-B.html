@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:prototype/iterate (chat-driven, path 2)
+  renderedVia:      stardust-direct (focused typographic exploration; no full-page craft round-trip)
+  writtenAt:        2026-04-30T14:30:00Z
+  page:             home (variant B hero, isolated)
+  parent:           ./home-B-proposed.html
+  intent:           "make the hero H1 more unique — bigger font and/or different font OK"
+  axisMovement:     distinctiveness: distinctive → singular; type-treatment from baseline (Space Grotesk 500 ~40-61px) toward expressive display
+  readArtifacts:
+    - stardust/prototypes/home-B-proposed.html
+    - DESIGN-B.md, DESIGN-B.json
+    - stardust/prototypes/home-B-shape.md
+    - stardust/current/assets/media/hero-B-generated.png
+  variantsExplored: 3 (editorial-italic / brutalist-condensed / type-collage)
+  divergenceCheck:  no anti-toolbox hits introduced (no stencil display, no rotated stamps, no censor bars, no sticker collages); type ratio per variant ≥ 1.5 (well above brand-register 1.25 floor)
+  stardustVersion:  0.2.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frescopa · Variant B · Hero typography explorations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,144,300..900;1,144,400..900&family=Space+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500..700;1,500..700&family=Big+Shoulders+Display:wght@500;700;900&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Inherited from DESIGN-B.json */
+  --color-bay: #00647D;
+  --color-bay-deep: #004658;
+  --color-bay-dark: #003744;
+  --color-porcelain: #F2F2F0;
+  --color-steam: #FFFFFF;
+  --color-roast: #58181D;
+  --color-tannin: #C95942;
+  --color-gilt: #E5B560;
+  --color-text-on-bay: #F2F2F0;
+  --color-text-on-bay-mute: #A8C3CD;
+
+  --section-padding: 64px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background: var(--color-bay-dark);
+  color: var(--color-text-on-bay);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--color-text-on-bay); text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* === Compare nav === */
+.compare-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--color-bay-dark);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.compare-nav .brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic; font-weight: 600;
+  color: var(--color-steam);
+  font-size: 18px;
+  margin-right: auto;
+}
+.compare-nav .brand .accent { color: var(--color-tannin); }
+.compare-nav a.jump {
+  color: rgba(255,255,255,0.7);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 12px;
+  border-radius: 2px;
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background .15s, color .15s;
+}
+.compare-nav a.jump:hover { background: rgba(255,255,255,0.1); color: var(--color-steam); }
+
+/* === Hero shells (shared across variants) === */
+.hero {
+  position: relative;
+  background-color: var(--color-bay);
+  background-image:
+    linear-gradient(90deg, rgba(0, 55, 68, 0.65) 0%, rgba(0, 70, 88, 0.35) 35%, rgba(0, 70, 88, 0.05) 65%, rgba(0, 70, 88, 0) 90%),
+    url('assets/media/hero-B-generated.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: calc(var(--section-padding) * 1.75) clamp(24px, 5vw, 80px);
+  min-height: 720px;
+  display: flex; align-items: center;
+}
+.hero .container { width: 100%; max-width: none; margin: 0; }
+.hero .content {
+  max-width: 720px;
+  position: relative;
+  z-index: 1;
+}
+.hero .eyebrow {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-tannin);
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--color-tannin);
+  margin-bottom: 24px;
+}
+.hero .subhead {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  line-height: 1.3;
+  color: var(--color-porcelain);
+  margin-bottom: 40px;
+  max-width: 50ch;
+}
+.hero .ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero .btn {
+  display: inline-block;
+  padding: 14px 32px;
+  border-radius: 2px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 0;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.hero .btn-primary {
+  background: var(--color-steam);
+  color: var(--color-bay-deep);
+}
+.hero .btn-primary:hover { background: var(--color-porcelain); }
+.hero .btn-secondary {
+  background: transparent;
+  color: var(--color-text-on-bay);
+  border: 1px solid var(--color-text-on-bay);
+}
+.hero .btn-secondary:hover { background: var(--color-bay-deep); }
+
+/* === Variant LABEL band === */
+.variant-label {
+  background: var(--color-bay-dark);
+  color: var(--color-porcelain);
+  padding: 32px 48px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 32px;
+  align-items: baseline;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.variant-label .num {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.9;
+  color: var(--color-tannin);
+}
+.variant-label .name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.2;
+  color: var(--color-steam);
+  margin-bottom: 8px;
+  display: block;
+}
+.variant-label .desc {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.125rem;
+  color: var(--color-text-on-bay-mute);
+  line-height: 1.4;
+  max-width: 60ch;
+}
+.variant-label .meta {
+  font-family: 'JetBrains Mono', Menlo, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-on-bay-mute);
+  text-align: right;
+  line-height: 1.6;
+}
+.variant-label .meta strong {
+  color: var(--color-gilt);
+  font-weight: 500;
+  display: block;
+}
+@media (max-width: 720px) {
+  .variant-label { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
+  .variant-label .meta { text-align: left; }
+}
+
+/* === VARIANT 1: Editorial Italic — Fraunces heavy italic === */
+.hero-v1 .h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--color-steam);
+  margin-bottom: 24px;
+  text-shadow: 0 4px 32px rgba(0, 30, 38, 0.35);
+}
+.hero-v1 .h1 em {
+  font-style: italic;
+  color: var(--color-gilt);
+  font-weight: 900;
+}
+
+/* === VARIANT 2: Brutalist Condensed — Big Shoulders Display Black === */
+.hero-v2 .h1 {
+  font-family: 'Big Shoulders Display', 'Inter Tight', sans-serif;
+  font-weight: 900;
+  font-size: clamp(5rem, 16vw, 13rem);
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-steam);
+  margin-bottom: 32px;
+  text-shadow: 0 4px 32px rgba(0, 30, 38, 0.4);
+}
+.hero-v2 .h1 .accent-row {
+  color: var(--color-gilt);
+}
+.hero-v2 .h1 .punct {
+  color: var(--color-tannin);
+  font-weight: 900;
+}
+
+/* === VARIANT 3: Type Collage — mixed treatments === */
+.hero-v3 .h1 {
+  position: relative;
+  display: block;
+  color: var(--color-steam);
+  margin-bottom: 32px;
+  line-height: 1;
+}
+.hero-v3 .h1 .word-find {
+  display: inline-block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-size: clamp(4.5rem, 12vw, 9.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--color-gilt);
+  text-shadow: 0 4px 32px rgba(0, 30, 38, 0.35);
+}
+.hero-v3 .h1 .row-2 {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--color-porcelain);
+  margin-top: -8px;
+  margin-bottom: -8px;
+  padding-left: clamp(16px, 3vw, 32px);
+}
+.hero-v3 .h1 .word-in {
+  font-family: 'Caveat', cursive;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--color-tannin);
+  font-style: normal;
+  display: inline-block;
+  transform: translateY(-4px) rotate(-3deg);
+  margin: 0 12px;
+}
+.hero-v3 .h1 .row-3 {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(12px, 2vw, 24px);
+  margin-top: 4px;
+}
+.hero-v3 .h1 .numeral {
+  display: inline-block;
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  font-size: clamp(6rem, 18vw, 14rem);
+  line-height: 0.85;
+  color: var(--color-tannin);
+  text-shadow: 0 4px 32px rgba(0, 30, 38, 0.35);
+  margin-right: 8px;
+}
+.hero-v3 .h1 .word-questions {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.5vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-steam);
+}
+
+/* Shared baseline header for context */
+.context-header {
+  background: var(--color-bay-dark);
+  padding: 56px 32px 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.context-header .eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', Menlo, monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gilt);
+  margin-bottom: 16px;
+}
+.context-header h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: var(--color-steam);
+  margin-bottom: 12px;
+}
+.context-header p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-text-on-bay-mute);
+  max-width: 64ch;
+  margin: 0 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<nav class="compare-nav">
+  <span class="brand"><em>Frescopa</em> <span class="accent">· hero typography study</span></span>
+  <a href="#v1" class="jump">1 · Editorial italic</a>
+  <a href="#v2" class="jump">2 · Brutalist condensed</a>
+  <a href="#v3" class="jump">3 · Type collage</a>
+  <a href="./home-B-proposed.html" class="jump" target="_blank">↗ Back to B baseline</a>
+</nav>
+
+<header class="context-header">
+  <span class="eyebrow">Variant B · home · hero H1 · iteration</span>
+  <h1>Three typographic moves, same substrate.</h1>
+  <p>All three variants share the saturated-teal Bay ground, the espresso-bar hero photograph, the Tannin eyebrow, the italic Cormorant subhead, and the dual CTAs. Only the H1 changes — sizing, family, and treatment — to test how far the hero can push toward singular before it stops feeling like Frescopa.</p>
+</header>
+
+<!-- VARIANT 1: Editorial Italic -->
+<section id="v1" data-section="hero" data-variant="editorial-italic" data-layout="full-bleed" data-media="image" class="hero hero-v1">
+  <div class="container">
+    <div class="content">
+      <span class="eyebrow">MyBarista coffee quiz</span>
+      <h1 class="h1">Find your <em>perfect</em> coffee in four questions.</h1>
+      <p class="subhead">Four questions, your roast.</p>
+      <div class="ctas">
+        <a href="/quiz" class="btn btn-primary">Take the quiz</a>
+        <a href="/coffee" class="btn btn-secondary">Browse coffee</a>
+      </div>
+    </div>
+  </div>
+</section>
+<aside class="variant-label">
+  <span class="num">01</span>
+  <div>
+    <span class="name">Editorial italic</span>
+    <p class="desc">Fraunces 900 italic at the heaviest optical size, slow line-height, one word in Gilt to break the wall of white. Reads like a Kinfolk cover or a record liner — confident, slightly aristocratic, unmistakably editorial.</p>
+  </div>
+  <div class="meta">
+    <strong>Fraunces 900 italic · 144 opsz</strong>
+    clamp(3.5rem, 10vw, 8rem)<br>
+    line-height 0.9<br>
+    one accent word in Gilt<br>
+    type ratio vs body: 8.0
+  </div>
+</aside>
+
+<!-- VARIANT 2: Brutalist Condensed -->
+<section id="v2" data-section="hero" data-variant="brutalist-condensed" data-layout="full-bleed" data-media="image" class="hero hero-v2">
+  <div class="container">
+    <div class="content">
+      <span class="eyebrow">MyBarista coffee quiz</span>
+      <h1 class="h1">FIND YOUR<br><span class="accent-row">PERFECT COFFEE</span><br>IN FOUR QUESTIONS<span class="punct">.</span></h1>
+      <p class="subhead">Four questions, your roast.</p>
+      <div class="ctas">
+        <a href="/quiz" class="btn btn-primary">Take the quiz</a>
+        <a href="/coffee" class="btn btn-secondary">Browse coffee</a>
+      </div>
+    </div>
+  </div>
+</section>
+<aside class="variant-label">
+  <span class="num">02</span>
+  <div>
+    <span class="name">Brutalist condensed</span>
+    <p class="desc">Big Shoulders Display Black at extreme size, all-caps, four-line stack. The middle row in Gilt and the period in Tannin punctuation-as-graphic. Reads like a 1960s Italian espresso poster or a Helvetica-era department-store display — urgent, authoritative, visually loud without being cheap.</p>
+  </div>
+  <div class="meta">
+    <strong>Big Shoulders Display 900</strong>
+    clamp(5rem, 16vw, 13rem)<br>
+    line-height 0.85<br>
+    one accent line in Gilt<br>
+    Tannin period as glyph<br>
+    type ratio vs body: 13.0
+  </div>
+</aside>
+
+<!-- VARIANT 3: Type Collage -->
+<section id="v3" data-section="hero" data-variant="type-collage" data-layout="full-bleed" data-media="image" class="hero hero-v3">
+  <div class="container">
+    <div class="content">
+      <span class="eyebrow">MyBarista coffee quiz</span>
+      <h1 class="h1">
+        <span class="word-find">Find</span>
+        <span class="row-2">your perfect coffee</span>
+        <span class="row-3">
+          <span class="word-in">in</span>
+          <span class="numeral">4</span>
+          <span class="word-questions">questions.</span>
+        </span>
+      </h1>
+      <p class="subhead">Four questions, your roast.</p>
+      <div class="ctas">
+        <a href="/quiz" class="btn btn-primary">Take the quiz</a>
+        <a href="/coffee" class="btn btn-secondary">Browse coffee</a>
+      </div>
+    </div>
+  </div>
+</section>
+<aside class="variant-label">
+  <span class="num">03</span>
+  <div>
+    <span class="name">Type collage</span>
+    <p class="desc">Four typographic voices in one headline: "Find" in oversized Fraunces italic Gilt, "your perfect coffee" in Cormorant editorial, "in" in tilted Caveat hand-script Tannin, the numeral "4" in giant Fraunces Tannin, "questions." in Space Grotesk weight-700. Reads like an art-direction-led editorial spread — multi-voice, illustrated, confident enough to fragment the message.</p>
+  </div>
+  <div class="meta">
+    <strong>Fraunces + Cormorant + Caveat + Space Grotesk</strong>
+    4 type voices in one H1<br>
+    "Find" up to 9.5rem<br>
+    "4" up to 14rem (Tannin)<br>
+    Caveat tilted -3°<br>
+    type ratio vs body: 14.0
+  </div>
+</aside>
+
+<footer style="background: var(--color-bay-dark); padding: 56px 32px; border-top: 1px solid rgba(255,255,255,0.10); text-align: center;">
+  <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--color-text-on-bay-mute); max-width: 60ch; margin: 0 auto 16px;">
+    Pick one to land in <code style="font-family: 'JetBrains Mono', Menlo, monospace; font-size: 0.85em; color: var(--color-gilt); background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 2px;">home-B-proposed.html</code>, or describe a hybrid (e.g. "v1's italic with v3's Caveat 'in'"), or push further (e.g. "v2 but with the type set vertically").
+  </p>
+  <p style="font-family: 'JetBrains Mono', Menlo, monospace; font-size: 0.75rem; letter-spacing: 0.04em; color: var(--color-text-on-bay-mute);">stardust:prototype/iterate · variant B hero typography study · 2026-04-30</p>
+</footer>
+
+</body>
+</html>

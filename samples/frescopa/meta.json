@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 2,
+  "slug": "frescopa",
+  "title": "Frescopa",
+  "tagline": "Stunning reskin of a white-label coffee retail demo. Variant B (\"Espresso Bar\") amplifies one captured trait — coffee-shop-as-third-place — by promoting the brand's pinned teal #00647D from accent to page substrate. Two views: the composed home, plus a focused typographic exploration of the hero H1.",
+
+  "source": {
+    "url": "https://frescopa.coffee/",
+    "register": "brand",
+    "category": "coffee retail · D2C · subscription · B2B",
+    "extractedAt": "2026-04-30"
+  },
+
+  "direction": {
+    "phrase": "Stunning reskin of frescopa.coffee — pin teal #00647D + wine #58181D, reuse images except home banner backgrounds, two parallel directions (B = barninela-led + bluebottle + marinacafe)",
+    "movements": [
+      "register: brand (unchanged)",
+      "expressive: restrained → committed",
+      "distinctiveness: familiar → distinctive (variant B saturated-substrate move pushes toward singular)",
+      "tone: refined modern-geometric specialty coffee",
+      "ground: saturated teal Bay #00647D as page substrate (escapes cream-default-reflex)",
+      "type: bauhaus-functional (Space Grotesk) + Cormorant Garamond editorial off-deck + IBM Plex Sans body off-deck"
+    ],
+    "seed": {
+      "input": "Frescopa|2026-04-30",
+      "decade": "2025-now",
+      "craft": "modern-geometric specialty",
+      "register": "brand",
+      "groundFamily": "saturated (Bay #00647D)",
+      "pickedBy": "user-constraint (variant B amplification: barninela-led + bluebottle + marinacafe anchors)"
+    },
+    "fontDeck": {
+      "name": "bauhaus-functional",
+      "value": "Space Grotesk + Cormorant Garamond (editorial) + IBM Plex Sans (body) + Fraunces (hero italic, off-deck)",
+      "pickedBy": "anchor-reference"
+    },
+    "palette": {
+      "name": "Frescopa Espresso Bar — Bay-as-substrate",
+      "anchor": "#00647D",
+      "pickedBy": "user-constraint (pinned)",
+      "brandFaithfulInversions": [
+        "Bay teal #00647D pinned (promoted from accent → ground)",
+        "Roast wine #58181D pinned",
+        "cream / maroon / amber dropped",
+        "Tannin #C95942 + Gilt #E5B560 added as warm counterpoints"
+      ]
+    }
+  },
+
+  "originalCritique": "Frescopa reads as a white-label coffee retail demo — generic-friendly, multi-audience (B2C primary, B2B secondary, editorial supporting) but without a point of view. The brand has assets it doesn't deploy: a pinned teal #00647D and wine #58181D that sit as small accents on a cream page; a coffee-shop-as-third-place register implied by the locations / subscription / blog tracks but never expressed in the surface. The home banner photography is generic stock; type is undifferentiated; the hero H1 is set in the same display family as everything else, so the page never declares its lead. The IA, the audience tracks, the editorial layer, and the legacy product imagery are all worth keeping — what's missing is a substrate that commits to a tone.",
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Home",
+      "dominantDimension": "ground",
+      "thesis": "Variant B target — \"Frescopa, Espresso Bar.\" The pinned teal #00647D moves from accent to full page substrate; the brand's third-place register becomes the wall color of the site. Bauhaus-functional type stack (Space Grotesk + IBM Plex Sans) carries body and chrome; Cormorant Garamond and an off-deck Fraunces 900 italic carry editorial and hero display. Generated hero photography (deep-teal-wall composition with espresso cup on walnut counter) replaces the captured banner; legacy product imagery is preserved.",
+      "fix": "<strong>Saturated substrate</strong> — Bay #00647D promoted from CTA accent to page ground; the under-deployed teal becomes the brand's wall color. <strong>Hero photography</strong> — generated 16:9 deep-teal-wall composition replaces the white-label banner, with directional gradient scrim preserving typographic identity. <strong>Hero H1 typographic move</strong> — Fraunces 900 italic at 144 opsz carries the lead headline; \"perfect\" rendered in Gilt as accent break. <strong>Type stack</strong> — Space Grotesk for chrome and titles, Cormorant Garamond for editorial, IBM Plex Sans for body — a major-third (1.25) scale across the page. <strong>Palette discipline</strong> — Roast #58181D pinned for editorial weight; Tannin and Gilt as warm counterpoints; cream / amber / maroon dropped.",
+      "proposedFile": "proposed-A.html",
+      "isPrimary": true
+    },
+    {
+      "id": "B",
+      "name": "Hero typography explorations",
+      "dominantDimension": "type",
+      "thesis": "Focused typographic study of the variant B hero H1, isolated from the full-page craft round-trip. Three explorations sit side-by-side against the same Bay substrate: editorial-italic (Fraunces 900 italic), brutalist-condensed (Big Shoulders Display 900), and type-collage (mixed Space Grotesk / Cormorant). Intent: push distinctiveness from distinctive → singular without tripping the brand-register anti-toolbox (no stencil display, no rotated stamps, no censor bars, no sticker collages).",
+      "fix": "<strong>Three hero treatments</strong>, one substrate. <strong>1 · Editorial italic</strong> — Fraunces 900 italic at 144 opsz, clamp(3.5rem, 10vw, 8rem); the move that landed in the composed home. <strong>2 · Brutalist condensed</strong> — Big Shoulders Display 900 at very tight tracking, all-caps; the highest-distinctiveness option, closest to singular. <strong>3 · Type-collage</strong> — Space Grotesk weight-mix with a Cormorant italic accent word; a quieter route that still differentiates the hero from chrome. Each treatment holds a type ratio ≥ 1.5, well above the brand-register 1.25 floor.",
+      "proposedFile": "proposed-B.html"
+    }
+  ],
+
+  "createdAt": "2026-05-04",
+  "stardustVersion": "0.2.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0"
+}
