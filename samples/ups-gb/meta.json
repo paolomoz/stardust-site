@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 2,
+  "slug": "ups-gb",
+  "title": "UPS GB",
+  "tagline": "Tool-first home: tracker leads the first viewport, marketing folds below. Brand-faithful refresh at packed density (48px).",
+
+  "source": {
+    "url": "https://www.ups.com/gb/en/home",
+    "register": "brand",
+    "category": "logistics / parcel shipping",
+    "extractedAt": "2026-05-03"
+  },
+
+  "direction": {
+    "phrase": "Direction A — tool-first home at density tier C (packed, 48px desktop). Brand-faithful (Mode A, signal-strong).",
+    "movements": [
+      "IA priority: marketing-first hero → tool-first hero (tracker leads)",
+      "density: ad-hoc → packed (48 / 36 / 24 px)",
+      "CTA vocabulary: fragmented → canonical (Track / Get a quote / Start shipping / Log in)",
+      "radius vocabulary: 8 values → 3 (4 / 8 / 50%)",
+      "type scale: ad-hoc → modular ratio ~1.25 anchored on body 16px",
+      "alt-text floor: 60% empty → 0% accidental empty above the fold",
+      "<h1> presence: empty → display H1 above the tracking strip"
+    ],
+    "seed": {
+      "input": "UPS GB|2026-05-03",
+      "decade": "2025-now",
+      "craft": "web",
+      "register": "brand",
+      "groundFamily": "stark-white (#fff, brand-faithful override)",
+      "pickedBy": "rolled (decade/craft), brand-faithful pin (register/ground/font/palette)"
+    },
+    "fontDeck": {
+      "name": "brand-inherited",
+      "value": "Roboto (heading + body); IBM Plex Sans scoped to /healthcare/ only",
+      "pickedBy": "user-constraint"
+    },
+    "palette": {
+      "name": "UPS brand-pinned",
+      "source": "inherited from stardust/current/_brand-extraction.json",
+      "anchor": "#ffb500",
+      "pickedBy": "user-constraint",
+      "brandFaithfulInversions": [
+        "9-color captured set retained",
+        "UPS gold + warm-grey + alert + healthcare-blue retained"
+      ]
+    },
+    "antiToolbox": { "hits": 0, "justified": 0 }
+  },
+
+  "originalCritique": "The captured home is marketing-first with the tracker buried mid-page, despite return-visitor traffic dominated by tracking-number lookups. <strong>The IA fights the audience.</strong> Compounding this: empty H1, ~60% empty alt above the fold, 8 distinct radius values, ad-hoc type scale, and a fragmented CTA vocabulary (Get Started + Start Shipping + Ship & Save) that obscures the four canonical tasks.",
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "Tool-first home",
+      "dominantDimension": "ia",
+      "thesis": "Invert the dominant first-viewport surface: the tracker leads, marketing folds below. Brand-faithful palette, type, and logo retained. Density packs to 48px desktop. CTA vocabulary canonicalises to four task verbs.",
+      "fix": "<strong>The tracker leads the first viewport.</strong> The captured `<input name=\"tracknum\">` form becomes the hero, with a display H1 above it for SEO/a11y/brand-statement floor. Marketing surfaces fold below the workhorse. Four canonical CTAs (Track / Get a quote / Start shipping / Log in) replace the fragmented Get Started / Start Shipping / Ship & Save trio. Radius vocabulary collapses from 8 values to 3 (4 / 8 / 50%); type scale snaps to a modular 1.25 ratio anchored on body 16px. Crisis affordance preserved as a header-pinned chip + drawer.",
+      "proposedFile": "proposed-A.html",
+      "isPrimary": true
+    }
+  ],
+
+  "createdAt": "2026-05-04",
+  "stardustVersion": "0.3.0",
+  "submittedBy": "paolomoz",
+  "license": "Apache-2.0",
+  "thumbnail": "logo.svg"
+}
