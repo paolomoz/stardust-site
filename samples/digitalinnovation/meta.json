@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "slug": "digitalinnovation",
+  "title": "Digital Innovation — Microsoft Azure for Partners",
+  "tagline": "Re-parenting digitalinnovation.com from a 2014-era Microsoft skin to The Channel Company brand. Mode A with brand-source override: palette + type pinned to thechannelco.com (an external surface, not the captured site); layout, density, voice, and motion authored fresh.",
+
+  "thumbnail": "thumbnail.png",
+
+  "source": {
+    "url": "https://www.digitalinnovation.com/",
+    "register": "brand",
+    "category": "B2B · channel publication · Microsoft Azure partner content",
+    "extractedAt": "2026-05-04"
+  },
+
+  "direction": {
+    "phrase": "redesign digitalinnovation.com to look modern, competent, and aligned with thechannelco brand — inherit color + typography only (Lato, #ed1c24 red, #003049 dark blue). Build everything else fresh. Keep the dual-brand TCC + Microsoft Azure lockup.",
+    "movements": [
+      "expressive: restrained → committed",
+      "distinctiveness: familiar → distinctive",
+      "tone: serious (pinned)",
+      "density: balanced (default; multi-audience hard floor 40–64px sectionPadding)",
+      "audience: ISV + SI Azure partners (preserved)",
+      "constraint: Mode A with brand-source override — palette/type from external surface (thechannelco.com), not from _brand-extraction.json"
+    ],
+    "seed": {
+      "input": "DigitalInnovation|2026-05-04",
+      "decade": "2025-now",
+      "craft": "editorial-modern (rolled, consistent with content-publication site)",
+      "register": "brand",
+      "groundFamily": "stark-white",
+      "pickedBy": "anchor-reference: thechannelco.com"
+    },
+    "fontDeck": {
+      "name": "brand-inherited (Lato)",
+      "value": "Lato, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+      "secondary": "Lora (italic only — drop cap + pull-quote)",
+      "pickedBy": "user-constraint (brand-source override)"
+    },
+    "palette": {
+      "name": "TCC palette (brand-source override)",
+      "source": "https://www.thechannelco.com/styles/styles.css",
+      "anchor": "#ed1c24",
+      "pickedBy": "user-constraint",
+      "brandFaithfulInversions": [
+        "captured palette inverted: Microsoft #2a446f blue + #eaf5fb light-blue ground → TCC #ed1c24 red + #003049 dark-blue + #ffffff ground",
+        "captured family inverted: SegoeUI → Lato",
+        "italic-Lora secondary face introduced for drop cap + pull-quote (single tonal-break face)"
+      ]
+    },
+    "antiToolbox": { "hits": 7, "justified": 7 }
+  },
+
+  "originalCritique": "The site is published BY The Channel Company (header lockup, footer line) but its visual identity (Segoe UI body at 14px, Microsoft-blue #2a446f headings, light-blue page bg #eaf5fb, Bootstrap 3 defaults) reads as Microsoft, not as TCC. The TCC wordmark is a small image in the corner. H2 weight oscillates between 300 and 700 within the same page. H3 reuses H2's 21px size. ~12 elements have any border-radius (4px Bootstrap default), 2 have a shadow. The home composition is a 2014-era Drupal portal pattern: sponsor strip + dual-logo + horizontal nav consume the entire first viewport before any content begins, then a slider hero, then a two-column 'Featured News + Video' main+rail. Visually clean but generic — interchangeable with hundreds of similar partner sites from 2014–2020.",
+
+  "variants": [
+    {
+      "id": "A",
+      "name": "The Wire",
+      "dominantDimension": "structure",
+      "thesis": "Editorial-publication treatment of the Azure partner news channel. The chrome shifts from Microsoft-skin to TCC-anchored within the captured IA: dual-brand lockup preserved in the first 100px; sponsor strip thinned to a TCC-blue masthead band; 6 category routes preserved verbatim. Above that floor, every section is composed: asymmetric 12-col hero with an interactive dot-grid background (push-away pointer effect, blue→red on hover, IntersectionObserver-paused); diagonal-clip-path audience-router splitting ISV/SI on TCC-blue + white halves with a -22°-skewed red edge; Latest news inverted to TCC dark blue with a 6px red top rule, rendered as a numbered editorial list with italic-Lora drop cap on the lead and oversized inline pull-quotes on items 02 and 04; a mixed-treatment topic bento (animated CSS-mesh shader on the AI tile, italic-Lora latest-headline previews on the wide Azure & Partner Offers tiles, big-number stats with delta pills on the small Migration / Events / Apps tiles); a pull-quote band asymmetrically indented to the right column.",
+      "fix": "<strong>Dual-brand lockup preserved</strong> — TCC wordmark + Microsoft Azure subtitle in the first 100px every page; sponsor copy collapsed into a thin TCC-blue masthead. <strong>Hero re-composed</strong> — asymmetric 12-col grid (content cols 1–7, mini-TOC 'In this issue' at cols 10–12, photo strip on the right 38% with a 4px red left edge) replacing the 2014-era slider. <strong>Interactive dot grid</strong> — canvas-based pointer-driven dot grid as ambient texture, capped alpha 0.14 at rest for readability, 30px lattice, 150px force radius, 0.18 ease, IntersectionObserver pause. <strong>Audience routing as IA priority</strong> — diagonal-split full-width band immediately below the hero; ISV (TCC-blue half) and SI (white half) tracks on a -22°-skewed red edge. <strong>Latest news as editorial publication</strong> — section ground inverted to TCC dark blue with a 6px red top rule (echoing the audience-router's red edge turned 90°); numbered list (01–06) with hairline rules; lead's first paragraph carries an 84px italic-Lora drop cap in TCC red; items 02 and 04 swap their dek for a 24px italic-Lora pull-quote with a 3px red rule; a 220px sticky right-rail 'editor's pick / trending / contributor' marginalia column breaks the symmetric column. <strong>Mixed-treatment topic bento</strong> — AI tile (1×2 tall) gets an animated CSS-mesh shader (two blurred radial blobs on 22s/28s loops + 36s slow conic + SVG-noise grain overlay + 'Live' pill); wide tiles (Azure 2×1, Partner Offers 2×1) carry latest-headline previews in italic Lora; small tiles (Migration, Events, Apps) carry big tabular numerals with '+N/mo' delta pills. <strong>Pull-quote band</strong> — heavily right-indented (cols 5–12) with an 'In partners' words' sidenote at cols 1–3. <strong>Resource CTA</strong> — full-bleed dark band with a soft red radial glow upper-right + primary red CTA. <strong>Footer</strong> — 5-col canvas grid, 'Powered by The Channel Company. Content sponsored by Microsoft.' verbatim. <strong>Type system</strong> — Lato everywhere, modular 1.25 scale, display capped at 48px (committed-axis discipline), italic-Lora as the only second face (drop cap + pull-quote band). <strong>All motion respects prefers-reduced-motion.</strong>",
+      "proposedFile": "proposed-A.html",
+      "thumbnail": "thumbnail.png",
+      "isPrimary": true
+    }
+  ],
+
+  "current": {
+    "renderingFile": null,
+    "note": "No standalone current.html — the original site is reachable at the source URL above; a captured-state brand review sits in the project at stardust/current/brand-review.html (not published)."
+  },
+
+  "iaPriorities": [
+    {
+      "signal": "audience-routing",
+      "evidence": "captured site exposes /resources/isv-partners and /resources/si-partners as distinct partner tracks; PRODUCT.md identifies ISV + SI as the two primary audiences",
+      "preserveAs": "first-viewport on home; one-click reachable on every page"
+    },
+    {
+      "signal": "publisher-and-sponsor-provenance",
+      "evidence": "captured site header carries dual-brand TCC + Microsoft Azure lockup; footer line 'Powered by The Channel Company. Content sponsored by Microsoft.'",
+      "preserveAs": "header lockup in first-100px of every page; footer line preserved verbatim"
+    },
+    {
+      "signal": "category-led-IA",
+      "evidence": "captured site exposes 6 category routes: /blog/ai, /blog/apps, /blog/azure, /blog/events, /blog/migration, /blog/partner-offers",
+      "preserveAs": "category nav reachable from every page"
+    }
+  ],
+
+  "unsourcedContent": [
+    "audience-router-copy",
+    "hero-lead-adapted",
+    "pull-quote-copy",
+    "topic-tile-counts",
+    "marginalia-notes",
+    "resource-cta-copy"
+  ],
+
+  "extras": {
+    "iterationDepth": "9 home versions + 5 component-level explorations (audience router, hero background, topic mosaic, news section ground, additive enhancements)",
+    "feedback": "../../../migrate-digitalinnovation/stardust/dogfood-feedback.md (also at /notes/dogfood-digitalinnovation-findings-2026-05-04.md upstream)",
+    "buildLog": "9 versions: v1 cards baseline → v2 big-type editorial → v3 capped type + asymmetric → v4 diagonal split router → v5 interactive dot grid → v6 readable dots + diagonal fade + accent stripe → v7 mixed-treatment bento → v8 dark-blue news inverted + 6px red top rule → v9 italic-Lora drop cap + inline pull-quotes"
+  }
+}
