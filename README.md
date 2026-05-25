@@ -2,13 +2,12 @@
 
 Marketing site for [Stardust](https://github.com/adobe/skills/tree/main/plugins/stardust) — the design-phase toolkit. Built on [impeccable](https://impeccable.style/).
 
-Live at **https://paolomoz.github.io/stardust-site/**.
+Live at **https://stardust.style/**.
 
 ## Pages
 
 - `/` — home
-- `/docs/` — docs hub (Install)
-- `/docs/getting-started/` — installation walkthrough
+- `/docs/` — install + getting-started (combined)
 - `/docs/commands/` — command reference
 
 ## Local preview
@@ -23,4 +22,4 @@ Then open `http://localhost:8000/`.
 
 ## Deploy
 
-`.github/workflows/pages.yml` rewrites absolute paths to `/stardust-site/...` at build time so they resolve under the project-page subpath, then uploads as a Pages artifact. To enable: **Settings → Pages → Source: GitHub Actions**.
+`.github/workflows/pages.yml` rsyncs the site into a Pages artifact and uploads it. The `CNAME` file pins the custom domain (`stardust.style`). To enable: **Settings → Pages → Source: GitHub Actions**, then **Custom domain: stardust.style**.
