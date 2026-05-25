@@ -11,7 +11,7 @@
   stash:            home-C-stash-2026-04-30T1100.html (iter 1)
   againstDirection: stardust/direction.md (Active 2026-04-30)
   shapeBrief:       stardust/prototypes/home-shape.md
-  stardustVersion:  0.3.0
+  stardustVersion:  0.10.0
   designSystem:     DESIGN.md, DESIGN.json
   notes:
     - White-label before/after: generic CSS wireframe placeholders. User to replace with real assets.
@@ -20,6 +20,7 @@
     - "Built on impeccable" reference removed.
     - Section 03 replaced: "The AI-facing brand" (was "See it in action").
     - Footer restructured to editorial colophon style.
+    - 2026-05-25: bumped to plugin 0.10.0; added /stardust:uplift one-shot quickstart in hero.
 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -198,6 +199,24 @@
   .seed-display .seed { color: var(--amber-light); background: rgba(232,185,94,0.08); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(232,185,94,0.2); }
 
   .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; }
+
+  .quickstart {
+    margin-top: 28px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    font: 500 13px/1.5 var(--mono); color: var(--dust-50);
+  }
+  .quickstart .qs-lbl {
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--dust-30);
+  }
+  .quickstart .qs-cmd {
+    color: var(--dust); background: rgba(232,185,94,0.08);
+    border: 1px solid rgba(232,185,94,0.2); border-radius: 6px;
+    padding: 7px 12px; letter-spacing: 0.04em;
+  }
+  .quickstart .qs-cmd .qs-prompt { color: var(--amber); margin-right: 8px; }
+  .quickstart .qs-cmd .qs-arg { color: var(--amber-light); }
+  .quickstart .qs-desc { color: var(--dust-50); font: italic 400 13px/1.4 var(--display); letter-spacing: 0; }
+
   .ds-btn {
     font: 600 14px/1 var(--text); letter-spacing: -0.005em;
     padding: 14px 24px; border-radius: 8px; border: 0; cursor: pointer;
@@ -480,6 +499,12 @@
     <div class="cta-row">
       <a class="ds-btn ds-btn--primary" href="/docs/">Install in two minutes <span class="arrow">›</span></a>
       <a class="ds-btn ds-btn--secondary" href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">View on GitHub <span class="arrow">›</span></a>
+    </div>
+
+    <div class="quickstart" role="note">
+      <span class="qs-lbl">One-shot</span>
+      <code class="qs-cmd"><span class="qs-prompt">›</span>/stardust:uplift <span class="qs-arg">&lt;url&gt;</span></code>
+      <span class="qs-desc">three presales variants. one URL. no setup.</span>
     </div>
   </div>
 </header>

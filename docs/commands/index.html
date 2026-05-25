@@ -4,22 +4,26 @@
 <!-- stardust:provenance
   writtenBy:        impeccable:craft (via stardust:prototype)
   writtenAt:        2026-04-30
+  updatedAt:        2026-05-25
   page:             docs-commands
   variant:          single (sub-page, not multi-variant)
   layout:           inherits docs-B (split sidebar + main, full-width footer)
   abstractionLevel: impeccable.style/tutorials — second-person, intent-driven
                     (reference shape: terser than getting-started)
   contentSources:
-    - skills/extract/SKILL.md (Inputs, Outputs)
-    - skills/direct/SKILL.md (Inputs, Outputs)
-    - skills/prototype/SKILL.md (Inputs, Outputs)
-    - skills/migrate/SKILL.md (Inputs, Outputs)
-  stardustVersion:  0.3.0
+    - skills/uplift/SKILL.md            (Inputs, Outputs) — added 0.10.0
+    - skills/extract/SKILL.md           (Inputs, Outputs)
+    - skills/distill/SKILL.md           (Inputs, Outputs) — added 0.8.0
+    - skills/direct/SKILL.md            (Inputs, Outputs)
+    - skills/prototype/SKILL.md         (Inputs, Outputs) — --cinematic flag added 0.9.0
+    - skills/prepare-migration/SKILL.md (Inputs, Outputs)
+    - skills/migrate/SKILL.md           (Inputs, Outputs)
+  stardustVersion:  0.10.0
 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Commands · Stardust</title>
-<meta name="description" content="The four Stardust sub-commands: extract, direct, prototype, migrate. Inputs, flags, and what each writes." />
+<meta name="description" content="Every Stardust sub-command: uplift, extract, distill, direct, prototype, prepare-migration, migrate. Inputs, flags, and what each writes." />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://paolomoz.github.io/stardust-site/docs/commands/" />
@@ -30,7 +34,7 @@
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Commands · Stardust" />
-<meta name="twitter:description" content="The four Stardust sub-commands: extract, direct, prototype, migrate. Inputs, flags, and what each writes." />
+<meta name="twitter:description" content="Every Stardust sub-command: uplift, extract, distill, direct, prototype, prepare-migration, migrate. Inputs, flags, and what each writes." />
 <meta name="twitter:image" content="https://paolomoz.github.io/stardust-site/og-image.jpg" />
 <style>
   :root {
@@ -214,6 +218,33 @@
   section.cmd:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
   section.cmd h2 { margin-top: 0; }
 
+  /* ADDENDUM — subordinate section inside a command */
+  .cmd-addendum {
+    margin-top: 56px;
+    padding: 28px 28px 24px;
+    background: rgba(232,185,94,0.06);
+    border-left: 3px solid var(--amber-deep);
+    border-radius: 0 12px 12px 0;
+    max-width: 64ch;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .cmd-addendum .addendum-lbl {
+    font: 500 10px/1 var(--mono);
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--amber-deep);
+    display: block; margin-bottom: 10px;
+  }
+  .cmd-addendum .addendum-h {
+    font-family: var(--mono); font-weight: 600;
+    font-size: 22px; line-height: 1.1; letter-spacing: -0.01em;
+    color: var(--deep-ink);
+    margin: 0 0 12px;
+    text-transform: none;
+  }
+  .cmd-addendum .addendum-h .slash { color: var(--amber-deep); }
+  .cmd-addendum h3 { margin-top: 22px; }
+  .cmd-addendum .callout { margin-top: 18px; background: transparent; border-left-color: var(--amber-deep); padding-left: 14px; }
+
   /* NAV */
   nav.nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -242,20 +273,30 @@
     position: absolute;
     top: 0; bottom: 0; left: 0;
     width: var(--sidebar-w);
-    background: var(--ink-deep);
-    border-right: 1px solid rgba(245,240,230,0.06);
+    background: var(--ink);
     z-index: 0;
+    pointer-events: none;
+  }
+  /* Sidebar amber side-borders on a top layer (matches /docs/). */
+  .layout::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: var(--sidebar-w);
+    border-left: 1px solid var(--amber);
+    border-right: 1px solid var(--amber);
+    z-index: 3;
     pointer-events: none;
   }
 
   /* SIDEBAR */
   aside.sidebar {
-    background: var(--ink-deep);
+    background: transparent;
     color: var(--dust);
     padding: 56px 28px 32px;
     position: sticky; top: var(--nav-h); align-self: start;
     max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
-    z-index: 1;
+    z-index: 2;
   }
   .sidebar .lbl {
     font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
@@ -330,8 +371,8 @@
 
   @media (max-width: 880px) {
     .layout { grid-template-columns: 1fr; }
-    .layout::before { display: none; }
-    aside.sidebar { position: static; max-height: none; padding: 32px var(--pad); }
+    .layout::before, .layout::after { display: none; }
+    aside.sidebar { background: var(--ink); position: static; max-height: none; padding: 32px var(--pad); }
     .sidebar nav.side a { padding: 9px 12px; }
     main.main { padding: 48px var(--pad) 64px; }
     .toc ol { grid-template-columns: 1fr; }
@@ -375,14 +416,9 @@
       <span>Stardust · Docs</span>
     </div>
 
-    <span class="lbl">Get started</span>
+    <span class="lbl">Docs</span>
     <nav class="side">
-      <a href="/docs/"><span>Install</span><span class="num">·</span></a>
-    </nav>
-
-    <span class="lbl">Guides</span>
-    <nav class="side">
-      <a href="/docs/getting-started/"><span>Getting started</span><span class="num">01</span></a>
+      <a href="/docs/"><span>Get started</span><span class="num">01</span></a>
       <a href="/docs/commands/" aria-current="page"><span>Commands</span><span class="num">02</span></a>
     </nav>
 
@@ -400,7 +436,7 @@
     <h1>Every sub-command,<br><span class="ital">named.</span></h1>
 
     <p style="font: 400 19px/1.5 var(--display); color: rgba(26,31,56,0.72); letter-spacing: -0.008em; max-width: 56ch; margin-bottom: 8px;">
-      Reference for the four Stardust sub-commands. Inputs, common flags, and the artifacts each one writes.
+      Reference for the Stardust sub-commands. Inputs, common flags, and the artifacts each one writes.
     </p>
 
     <div class="callout" style="margin-top: 32px;">
@@ -423,16 +459,62 @@
     <div class="toc">
       <span class="lbl">On this page</span>
       <ol>
+        <li><a href="#uplift"><span>/stardust:uplift</span><span class="step">shortcut</span></a></li>
         <li><a href="#extract"><span>/stardust:extract</span><span class="step">01</span></a></li>
         <li><a href="#direct"><span>/stardust:direct</span><span class="step">02</span></a></li>
         <li><a href="#prototype"><span>/stardust:prototype</span><span class="step">03</span></a></li>
         <li><a href="#migrate"><span>/stardust:migrate</span><span class="step">04</span></a></li>
+        <li><a href="#distill"><span>/stardust:distill</span><span class="step">optional</span></a></li>
       </ol>
     </div>
 
     <p style="margin-top: 32px;">
-      The four commands run in order — <code>extract</code> describes the current state, <code>direct</code> resolves a target, <code>prototype</code> renders proposed redesigns, <code>migrate</code> ships deployable HTML. Each writes its own artifacts under <code>stardust/</code>; the next reads them. You can run them in order, or jump in at any point.
+      The main flow is four commands in order — <code>extract</code> describes the current state, <code>direct</code> resolves a target, <code>prototype</code> renders proposed redesigns, <code>migrate</code> ships deployable HTML. Each writes its own artifacts under <code>stardust/</code>; the next reads them. You can run them in order, or jump in at any point. For a presales pitch deck, the <code>uplift</code> shortcut collapses extract → direct → three variants into one command. The optional <code>distill</code> step turns user-provided design samples into a brief that <code>direct</code> reads as anchor references.
     </p>
+
+    <!-- ============ UPLIFT ============ -->
+    <section class="cmd" id="uplift">
+      <h2><span class="slash">/</span><span class="name">stardust:uplift</span></h2>
+
+      <p class="cmd-lede">One URL in. Three presales-quality redesign variants out. Collapses <code>extract → direct → prototype × 3</code> into one opinionated command — every variability axis is picked from the captured brand surface rather than asked. Variant C is always cinematic.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:uplift <span class="arg">&lt;url&gt;</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>&lt;url&gt;</dt>
+        <dd>Required. The page to redesign. Defaults to the homepage when the URL has no path.</dd>
+
+        <dt>--page &lt;slug&gt;</dt>
+        <dd>Override the slug if the URL points elsewhere or you want a different surface.</dd>
+
+        <dt>--cinematic-register &lt;name&gt;</dt>
+        <dd>Override the auto-picked register for variant C. One of <code>arrival</code>, <code>kinetic-display</code>, <code>live-systems</code>, <code>editorial</code>, <code>kinetic-grid</code>. Records <code>registerSource: "user-override"</code> in C's provenance.</dd>
+
+        <dt>--two-variants</dt>
+        <dd>Render only A and C (skip B). Useful when the brand surface is thin and a forced three-way differentiation would produce a weak middle.</dd>
+      </dl>
+
+      <h3>Writes</h3>
+      <ul class="writes">
+        <li><code>stardust/uplift-improvements.md</code> <span class="desc">five specific captured-site weaknesses — load-bearing for variant A</span></li>
+        <li><code>stardust/uplift-questions.md</code> <span class="desc">"what if…" candidate walk with disqualifications</span></li>
+        <li><code>stardust/direction.md</code> <span class="desc">resolved direction + three variant declarations</span></li>
+        <li><code>stardust/prototypes/&lt;slug&gt;-{A,B,C}-proposed.html</code> <span class="desc">three rendered variants</span></li>
+        <li><code>stardust/prototypes/&lt;slug&gt;-C-cinematic.html</code> <span class="desc">cinematic variant C</span></li>
+        <li><code>DESIGN-{A,B,C}.{md,json}</code> <span class="desc">per-variant design specs at project root</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:uplift https://example.com
+<span class="prompt">›</span>/stardust:uplift https://example.com/about --cinematic-register editorial
+<span class="prompt">›</span>/stardust:uplift https://example.com --two-variants <span class="comment"># thin surface</span></pre>
+
+      <div class="callout">
+        <p><strong>The three-variant role contract is non-negotiable.</strong> A is "tomorrow's version of the site you have today." B is "what if we amplified <em>&lt;captured trait&gt;</em>?" C is "what if motion was part of the identity?" Uplift refuses to ship three weak variants — if the brand surface can't differentiate three, it drops to two automatically.</p>
+      </div>
+    </section>
 
     <!-- ============ EXTRACT ============ -->
     <section class="cmd" id="extract">
@@ -541,18 +623,27 @@
 
         <dt>--no-critique</dt>
         <dd>Skip the automatic post-render critique pass. Default behaviour gates <code>prototyped</code> status on P0/P1 findings.</dd>
+
+        <dt>--cinematic</dt>
+        <dd>Layer a cinematic motion register on top of the static prototype. Register is read from <code>DESIGN.json.extensions.motion.register</code> (written by <code>direct</code>); falls back to the auto-selection heuristic if absent. Output is <code>&lt;slug&gt;-cinematic.html</code>, alongside the static <code>&lt;slug&gt;-proposed.html</code> — never replacing it.</dd>
+
+        <dt>--cinematic=&lt;register&gt;</dt>
+        <dd>Same as <code>--cinematic</code> but forces a specific register: <code>arrival</code>, <code>kinetic-display</code>, <code>live-systems</code>, <code>editorial</code>, or <code>kinetic-grid</code>. Recorded as <code>registerSource: "user-override"</code> so reviewers can spot when direction's heuristic was bypassed.</dd>
       </dl>
 
       <h3>Writes</h3>
       <ul class="writes">
         <li><code>stardust/prototypes/&lt;slug&gt;-shape.md</code> <span class="desc">per-page composition brief</span></li>
         <li><code>stardust/prototypes/&lt;slug&gt;-proposed.html</code> <span class="desc">the proposed redesign</span></li>
+        <li><code>stardust/prototypes/&lt;slug&gt;-cinematic.html</code> <span class="desc">cinematic overlay (when <code>--cinematic</code> is set)</span></li>
         <li><code>stardust/prototypes/&lt;slug&gt;.html</code> <span class="desc">before/after viewer</span></li>
         <li><code>stardust/state.json</code> <span class="desc">page status: directed → prototyped</span></li>
       </ul>
 
       <h3>Example</h3>
       <pre class="code"><span class="prompt">›</span>/stardust:prototype home
+<span class="prompt">›</span>/stardust:prototype home --cinematic
+<span class="prompt">›</span>/stardust:prototype home --cinematic=editorial
 <span class="prompt">›</span>/stardust:prototype <span class="comment"># every directed page</span></pre>
     </section>
 
@@ -596,6 +687,87 @@
       <h3>Example</h3>
       <pre class="code"><span class="prompt">›</span>/stardust:migrate home
 <span class="prompt">›</span>/stardust:migrate <span class="comment"># whole site</span></pre>
+
+      <!-- ─── Addendum: prepare-migration ─── -->
+      <div class="cmd-addendum" id="prepare-migration">
+        <span class="addendum-lbl">Addendum</span>
+        <h3 class="addendum-h"><span class="slash">/</span>stardust:prepare-migration</h3>
+
+        <p class="cmd-lede">Before <code>migrate</code> can run at scale, the project needs a typed-page catalog, a module catalog, canon, and downloaded assets. <code>prepare-migration</code> orchestrates that cascade. It runs <code>extract --prep</code>, <code>direct --prep</code>, <code>prototype --prep</code>, and an assets-prep phase in sequence, with confirmation gates between phases.</p>
+
+        <h3>Syntax</h3>
+        <pre class="code"><span class="prompt">›</span>/stardust:prepare-migration [flags]</pre>
+
+        <h3>Flags</h3>
+        <dl class="spec">
+          <dt>--from &lt;phase&gt;</dt>
+          <dd>Resume the cascade from a specific phase. Values: <code>extract</code>, <code>direct</code>, <code>prototype</code>, <code>assets</code>. Default starts from the earliest incomplete phase.</dd>
+
+          <dt>--skip-confirm</dt>
+          <dd>Skip the per-phase confirmation gates. Useful for re-runs where the catalog is already settled.</dd>
+
+          <dt>--canon-from &lt;slug&gt;</dt>
+          <dd>Override the default canon-author (which is <code>home</code>). Forwarded to <code>prototype --prep</code> when that phase runs.</dd>
+        </dl>
+
+        <h3>Writes</h3>
+        <ul class="writes">
+          <li><code>state.json.pages[].type</code> <span class="desc">page typing — set by extract --prep</span></li>
+          <li><code>DESIGN.json.extensions.modules[]</code> <span class="desc">module catalog — confirmed by direct --prep</span></li>
+          <li><code>DESIGN.json.extensions.colorReservations[]</code> <span class="desc">color reservations — by direct --prep</span></li>
+          <li><code>stardust/canon/</code> <span class="desc">header, footer, css, modules — by prototype --prep</span></li>
+          <li><code>stardust/migrated/assets/favicon-*</code> <span class="desc">favicon variants — by assets prep</span></li>
+          <li><code>stardust/migrated/assets/fonts/</code> <span class="desc">downloaded webfont files — by assets prep</span></li>
+        </ul>
+
+        <h3>Example</h3>
+        <pre class="code"><span class="prompt">›</span>/stardust:prepare-migration
+<span class="prompt">›</span>/stardust:prepare-migration --from prototype --canon-from about</pre>
+
+        <div class="callout">
+          <p><strong>Why the two-step boundary?</strong> The split between <code>prepare-migration</code> and <code>migrate</code> is intentional. It makes "I'm committing to migrate this site" a conscious gesture and keeps idempotency obvious — re-running prep resumes from the earliest incomplete phase without re-doing settled work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DISTILL (optional addition) ============ -->
+    <section class="cmd" id="distill">
+      <h2><span class="slash">/</span><span class="name">stardust:distill</span> <span style="font: 500 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,31,56,0.45); margin-left: 14px; vertical-align: middle;">— optional</span></h2>
+
+      <p class="cmd-lede">Optional pre-extract step. Read a directory of user-provided design samples — static HTML mocks plus a manifest of live URLs — and produce a structured trait matrix + narrative brief that <code>direct</code> reads as anchor references. Use when the redesign direction has been pre-set by an art director and arrives as a folder of references.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:distill <span class="arg">[samples-dir]</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>[samples-dir]</dt>
+        <dd>Optional positional. Defaults to <code>samples/</code>. Expects a directory containing <code>static/&lt;sample&gt;/</code> subdirs and/or a <code>live/urls.json</code> manifest.</dd>
+
+        <dt>--from-static</dt>
+        <dd>Distill only static samples; skip live fetching.</dd>
+
+        <dt>--from-live</dt>
+        <dd>Distill only live samples; skip static parsing.</dd>
+
+        <dt>--cap &lt;N&gt;</dt>
+        <dd>Cap live URLs to fetch. Default 8 — enough to triangulate a visual language without burning budget on near-duplicates.</dd>
+
+        <dt>--refresh</dt>
+        <dd>Re-fetch and re-parse every sample even when cached snapshots exist.</dd>
+      </dl>
+
+      <h3>Writes</h3>
+      <ul class="writes">
+        <li><code>samples/SAMPLES.md</code> <span class="desc">narrative vocabulary brief — direct reads this under Mode B</span></li>
+        <li><code>samples/trait-matrix.json</code> <span class="desc">per-sample + cross-sample design tokens</span></li>
+        <li><code>samples/live/snapshots/</code> <span class="desc">cached DOM + screenshots from live URLs</span></li>
+        <li><code>stardust/state.json</code> <span class="desc">adds <code>samples.distilledAt</code> + inventory</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:distill <span class="comment"># defaults to ./samples/</span>
+<span class="prompt">›</span>/stardust:distill samples/q2-refresh --cap 12</pre>
     </section>
 
   </main>

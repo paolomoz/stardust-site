@@ -4,28 +4,32 @@
 <!-- stardust:provenance
   writtenBy:        impeccable:craft (via stardust:prototype)
   writtenAt:        2026-04-30
-  page:             docs
-  variant:          B — Split (sidebar nav + main column)
-  againstDirection: stardust/direction.md (Active 2026-04-30)
-  shapeBrief:       stardust/prototypes/docs-shape.md
-  stardustVersion:  0.3.0
-  designSystem:     DESIGN.md, DESIGN.json
+  updatedAt:        2026-05-25
+  page:             docs (combined install + getting-started)
+  variant:          single (sub-page, not multi-variant)
+  layout:           inherits docs-B (split sidebar + main, full-width footer)
+  abstractionLevel: impeccable.style/tutorials — second-person, intent-driven
+  stardustVersion:  0.10.0
+  notes:
+    - 2026-05-25: merged the standalone install page into this guide so a
+                  visitor lands on the first action directly. /docs/getting-started/
+                  is removed.
 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Stardust · Get started</title>
-<meta name="description" content="The design-phase toolkit, end to end. Install, run, iterate, ship." />
+<title>Get started · Stardust</title>
+<meta name="description" content="Install Stardust and run your first redesign — from any URL to deployable HTML in under 30 minutes." />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://paolomoz.github.io/stardust-site/docs/" />
-<meta property="og:title" content="Stardust · Get started" />
-<meta property="og:description" content="The design-phase toolkit, end to end. Install, run, iterate, ship." />
+<meta property="og:title" content="Get started · Stardust" />
+<meta property="og:description" content="Install Stardust and run your first redesign — from any URL to deployable HTML in under 30 minutes." />
 <meta property="og:image" content="https://paolomoz.github.io/stardust-site/og-image.jpg" />
 <meta property="og:image:width" content="1280" />
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Stardust · Get started" />
-<meta name="twitter:description" content="The design-phase toolkit, end to end. Install, run, iterate, ship." />
+<meta name="twitter:title" content="Get started · Stardust" />
+<meta name="twitter:description" content="Install Stardust and run your first redesign — from any URL to deployable HTML in under 30 minutes." />
 <meta name="twitter:image" content="https://paolomoz.github.io/stardust-site/og-image.jpg" />
 <style>
   :root {
@@ -62,31 +66,134 @@
   a { color: var(--amber-deep); text-decoration: none; }
   a:focus-visible { outline: 2px solid var(--amber-deep); outline-offset: 3px; border-radius: 2px; }
 
-  .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
-
+  /* TYPOGRAPHY */
   h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; color: var(--deep-ink); }
-  h1 { font-size: clamp(40px, 5vw, 72px); line-height: 1.02; letter-spacing: -0.032em; }
+  h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.032em; margin-bottom: 18px; }
   h1 .ital { color: var(--amber-deep); font-style: italic; }
-  h2 { font-size: 24px; line-height: 1.18; letter-spacing: -0.018em; margin-bottom: 14px; }
-  h3 { font-size: 18px; line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.005em; }
-  p  { margin: 0 0 16px; line-height: 1.65; max-width: 60ch; color: rgba(26,31,56,0.78); }
+  h2 {
+    font-size: clamp(24px, 2.4vw, 32px); line-height: 1.18; letter-spacing: -0.018em;
+    margin: 56px 0 16px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  h2 .step {
+    font: 500 12px/1 var(--mono); letter-spacing: 0.22em; color: var(--amber-deep);
+    text-transform: uppercase;
+    display: block; margin-bottom: 8px;
+  }
+  h3 { font-size: 19px; line-height: 1.3; margin: 28px 0 8px; letter-spacing: -0.005em; }
+  p  { margin: 0 0 16px; line-height: 1.65; max-width: 64ch; color: rgba(26,31,56,0.78); }
   p:last-child { margin-bottom: 0; }
   em { font-style: italic; color: var(--amber-deep); }
   strong { color: var(--deep-ink); font-weight: 600; }
+  ul, ol { padding-left: 24px; margin: 0 0 16px; max-width: 64ch; }
+  ul li, ol li { margin-bottom: 6px; line-height: 1.55; color: rgba(26,31,56,0.78); }
 
   .eyebrow {
     font: 500 11px/1 var(--mono);
     letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber-deep);
-    display: inline-block; margin-bottom: 22px;
+    display: inline-block;
   }
   .eyebrow .num { color: rgba(26,31,56,0.5); margin-right: 10px; }
 
-  /* NAV — same as home (ink-deep dark, fixed) */
+  /* INLINE CODE */
+  code {
+    font: 500 0.92em/1 var(--mono);
+    background: rgba(232,185,94,0.18);
+    color: var(--amber-deep);
+    padding: 2px 6px; border-radius: 4px; letter-spacing: 0.02em;
+  }
+
+  /* CODE BLOCKS */
+  pre.code {
+    margin: 18px 0 22px;
+    background: var(--ink-soft);
+    color: var(--dust);
+    border-radius: 14px;
+    padding: 18px 22px;
+    font: 500 14px/1.65 var(--mono);
+    overflow-x: auto;
+    user-select: text;
+    max-width: 64ch;
+  }
+  pre.code .prompt { color: var(--amber); margin-right: 10px; user-select: none; }
+  pre.code .comment { color: rgba(245,240,230,0.45); }
+  pre.code code {
+    background: transparent; color: inherit; padding: 0; border-radius: 0;
+    font-size: inherit; letter-spacing: 0;
+  }
+
+  .install-credit {
+    font: 400 13px/1.5 var(--text); color: rgba(26,31,56,0.55);
+    letter-spacing: -0.002em; margin: -6px 0 22px; max-width: 64ch;
+  }
+  .install-credit a {
+    color: var(--amber-deep); text-decoration: none;
+    border-bottom: 1px solid rgba(201,130,45,0.3);
+    transition: border-color 120ms ease;
+  }
+  .install-credit a:hover { border-bottom-color: var(--amber-deep); }
+
+  /* SHORTCUT — inverted full-viewport band (uplift) */
+  .shortcut-block {
+    position: relative;
+    z-index: 1;                    /* above .layout::before (z 0), below sidebar content (z 2) */
+    margin-top: 72px;
+    margin-bottom: 72px;
+    /* Pull left edge to viewport's left edge — past .main's left padding, the sidebar
+       column, and any whitespace beside .layout on viewports wider than --maxw. */
+    margin-left: calc(-1 * (var(--sidebar-w) + 64px + max(0px, (100vw - var(--maxw)) / 2)));
+    margin-right: calc(-1 * (64px + max(0px, (100vw - var(--maxw)) / 2)));
+    /* Inner padding mirrors that offset so the text content stays aligned with .main's column. */
+    padding-top: 56px;
+    padding-bottom: 48px;
+    padding-left: calc(var(--sidebar-w) + 64px + max(0px, (100vw - var(--maxw)) / 2));
+    padding-right: calc(64px + max(0px, (100vw - var(--maxw)) / 2));
+    background: var(--ink);
+    color: var(--dust);
+    border-top: 2px solid var(--amber);
+    border-bottom: 2px solid var(--amber);
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .shortcut-block h2 { color: var(--dust); margin: 0 0 16px; max-width: none; }
+  .shortcut-block h2 .step { color: var(--amber); }
+  .shortcut-block p { color: rgba(245,240,230,0.78); max-width: 60ch; }
+  .shortcut-block p em { color: var(--amber-light); font-style: italic; }
+  .shortcut-block strong { color: var(--dust); }
+  .shortcut-block code {
+    background: rgba(232,185,94,0.16);
+    color: var(--amber-light);
+  }
+  .shortcut-block pre.code {
+    background: rgba(10,16,36,0.55);
+    border: 1px solid rgba(232,185,94,0.20);
+  }
+  .shortcut-block pre.code .prompt { color: var(--amber); }
+  @media (max-width: 880px) {
+    .shortcut-block {
+      margin: 56px calc(-1 * var(--pad));
+      padding: 40px var(--pad) 36px;
+    }
+    aside.sidebar { background: var(--ink); }
+  }
+
+  /* CALLOUT */
+  .callout {
+    margin: 22px 0;
+    padding: 16px 20px;
+    background: rgba(232,185,94,0.10);
+    border-left: 3px solid var(--amber-deep);
+    border-radius: 0 8px 8px 0;
+    max-width: 64ch;
+  }
+  .callout p { font-size: 15px; line-height: 1.55; color: var(--deep-ink); margin: 0; }
+  .callout strong { color: var(--amber-deep); }
+
+  /* NAV */
   nav.nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(6,10,20,0.86);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--dust-08, rgba(245,240,230,0.08));
+    border-bottom: 1px solid rgba(245,240,230,0.08);
   }
   .nav-row { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); padding: 0 var(--pad); }
   .nav-mark { display: flex; align-items: center; gap: 10px; font: 600 14px/1 var(--display); color: var(--dust); text-decoration: none; }
@@ -101,31 +208,39 @@
     display: grid;
     grid-template-columns: var(--sidebar-w) 1fr;
     max-width: var(--maxw); margin: 0 auto;
-    padding-top: var(--nav-h);   /* compensate for fixed nav */
+    padding-top: var(--nav-h);
     position: relative;
   }
-
-  /* Paint the left column ink-deep for the full layout height (desktop only).
-     Sidebar sits on top of this strip with its own sticky positioning. */
   .layout::before {
     content: '';
     position: absolute;
     top: 0; bottom: 0; left: 0;
     width: var(--sidebar-w);
-    background: var(--ink-deep);
-    border-right: 1px solid rgba(245,240,230,0.06);
+    background: var(--ink);
     z-index: 0;
     pointer-events: none;
   }
+  /* Sidebar amber side-borders, rendered on a top layer so they remain visible
+     over the shortcut band when it sweeps across the sidebar column. */
+  .layout::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: var(--sidebar-w);
+    border-left: 1px solid var(--amber);
+    border-right: 1px solid var(--amber);
+    z-index: 3;
+    pointer-events: none;
+  }
 
-  /* SIDEBAR — sticky, painted on top of the .layout::before strip */
+  /* SIDEBAR — transparent on desktop so the shortcut band can extend behind it. */
   aside.sidebar {
-    background: var(--ink-deep);
+    background: transparent;
     color: var(--dust);
     padding: 56px 28px 32px;
     position: sticky; top: var(--nav-h); align-self: start;
     max-height: calc(100vh - var(--nav-h)); overflow-y: auto;
-    z-index: 1;
+    z-index: 2;
   }
   .sidebar .lbl {
     font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
@@ -154,110 +269,20 @@
     margin-bottom: 36px;
   }
   .sidebar .meta-bottom {
-    margin-top: auto; padding-top: 24px;
+    margin-top: 24px; padding-top: 24px;
     border-top: 1px solid rgba(245,240,230,0.08);
     font: 500 10px/1.4 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
     color: rgba(245,240,230,0.4);
   }
   .sidebar .meta-bottom .op { color: var(--amber); padding: 0 4px; }
 
-  /* MAIN — fills the right column up to layout cap */
-  main.main {
-    padding: 72px 64px 96px;
-  }
+  /* MAIN */
+  main.main { padding: 72px 64px 96px; }
+  main.main h1 { max-width: 16ch; }
+  main.main h2 { max-width: 24ch; }
+  main.main .shortcut-block h2 { max-width: none; }
 
-  /* HERO */
-  .hero h1 { max-width: 14ch; margin-bottom: 24px; }
-  .hero .lede {
-    font: 400 19px/1.5 var(--display);
-    color: rgba(26,31,56,0.72); letter-spacing: -0.008em;
-    max-width: 52ch; margin: 0 0 32px;
-  }
-
-  .install-block {
-    margin: 24px 0 22px;
-    background: var(--ink-soft); border: 1px solid var(--ink-soft); border-radius: 14px;
-    padding: 20px 24px;
-    font: 500 15px/1.4 var(--mono); color: var(--dust);
-    overflow-x: auto;
-    user-select: text;
-  }
-  .install-block .prompt { color: var(--amber); margin-right: 12px; user-select: none; }
-
-  .install-credit {
-    font: 400 13px/1.5 var(--text); color: rgba(26,31,56,0.55);
-    letter-spacing: -0.002em; margin: 14px 0 0;
-  }
-  .install-credit a {
-    color: var(--amber-deep); text-decoration: none;
-    border-bottom: 1px solid rgba(201,130,45,0.3);
-    transition: border-color 120ms ease;
-  }
-  .install-credit a:hover { border-bottom-color: var(--amber-deep); }
-
-  .hero-links { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 22px; }
-  .hero-links a {
-    font: 500 14px/1 var(--text); color: var(--amber-deep);
-    border-bottom: 1px solid rgba(201,130,45,0.3); padding-bottom: 4px;
-    transition: border-color 120ms ease;
-  }
-  .hero-links a:hover { border-bottom-color: var(--amber-deep); }
-
-  /* SECTIONS */
-  section.b { padding: 56px 0 0; }
-  section.b .head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
-  section.b .head .right {
-    font: 500 11px/1.4 var(--mono);
-    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,31,56,0.4);
-  }
-
-  /* SUB-PAGES — 2x2 grid (now that we have the room) */
-  .sub-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-  .sub-list a {
-    background: rgba(26,31,56,0.04); border: 1px solid rgba(26,31,56,0.10);
-    border-radius: 14px; padding: 24px 26px;
-    text-decoration: none;
-    transition: border-color 160ms ease, background 160ms ease;
-  }
-  .sub-list a:hover { border-color: var(--amber-deep); background: rgba(232,185,94,0.10); }
-  .sub-list .lbl-row {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-    font: 500 11px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--amber-deep);
-    margin-bottom: 10px;
-  }
-  .sub-list .tag {
-    font: 500 9px/1 var(--mono); letter-spacing: 0.18em; color: rgba(26,31,56,0.45);
-    border: 1px solid rgba(26,31,56,0.18); border-radius: 999px; padding: 4px 9px;
-    text-transform: uppercase;
-  }
-  .sub-list h3 { font-size: 17px; line-height: 1.25; margin-bottom: 6px; color: var(--deep-ink); }
-  .sub-list p { font: 400 14px/1.55 var(--text); color: rgba(26,31,56,0.72); margin: 0; }
-
-  /* CONCEPT */
-  .concept-block {
-    margin: 36px 0 0;
-    padding: 28px 0;
-    border-top: 1px solid rgba(26,31,56,0.10);
-    border-bottom: 1px solid rgba(26,31,56,0.10);
-  }
-  .concept-block .line-1 {
-    font: 500 17px/1.5 var(--display);
-    letter-spacing: -0.008em; color: var(--deep-ink);
-    max-width: 60ch; margin: 0 0 8px;
-  }
-  .concept-block .line-1 code {
-    font: 500 15px/1 var(--mono);
-    background: rgba(232,185,94,0.18); color: var(--amber-deep);
-    padding: 3px 7px; border-radius: 4px; letter-spacing: 0.04em;
-  }
-  .concept-block .line-2 {
-    font: italic 500 17px/1.4 var(--display);
-    color: var(--amber-deep); letter-spacing: -0.012em;
-    max-width: 60ch; margin: 0;
-  }
-
-  /* FOOTER — full viewport width, same as home */
+  /* FOOTER */
   footer.colophon {
     padding: 80px 0 64px;
     background: var(--ink-deep);
@@ -268,15 +293,10 @@
   .colophon .container {
     display: flex; flex-direction: column; gap: 28px;
     align-items: center;
-    max-width: 720px;
+    max-width: 720px; margin: 0 auto; padding: 0 var(--pad);
   }
-  .colophon .mark-row {
-    display: flex; align-items: center; gap: 12px;
-    color: var(--dust);
-  }
-  .colophon .mark-row .wordmark {
-    font: 600 28px/1 var(--display); letter-spacing: -0.018em;
-  }
+  .colophon .mark-row { display: flex; align-items: center; gap: 12px; color: var(--dust); }
+  .colophon .mark-row .wordmark { font: 600 28px/1 var(--display); letter-spacing: -0.018em; }
   .colophon .tagline {
     font: italic 400 18px/1.4 var(--display);
     color: rgba(245,240,230,0.72); letter-spacing: -0.005em;
@@ -284,28 +304,44 @@
   }
   .colophon .tagline em { color: var(--amber); }
   .colophon .links {
-    display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center;
-    font: 500 11px/1 var(--mono);
-    letter-spacing: 0.18em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;
+    font: 500 12px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase;
   }
   .colophon .links a { color: var(--dust); text-decoration: none; transition: color 120ms ease; }
   .colophon .links a:hover { color: var(--amber); }
   .colophon .links .dot { color: var(--amber); }
   .colophon .meta {
-    font: 500 10px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
-    color: rgba(245,240,230,0.35);
+    font: 500 11px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
+    color: rgba(245,240,230,0.4);
   }
   .colophon .meta .op { color: var(--amber); padding: 0 6px; }
 
   @media (max-width: 880px) {
     .layout { grid-template-columns: 1fr; }
-    .layout::before { display: none; }
-    aside.sidebar {
-      position: static; height: auto; max-height: none;
-      padding: 32px var(--pad);
-    }
+    .layout::before, .layout::after { display: none; }
+    aside.sidebar { position: static; max-height: none; padding: 32px var(--pad); }
     .sidebar nav.side a { padding: 9px 12px; }
     main.main { padding: 48px var(--pad) 64px; }
+  }
+
+  /* SHORTCUT ZAP — sidebar text reacts when the shortcut band's amber rule passes through it.
+     The text is split into per-character spans on load; on scroll, we detect when either
+     amber border crosses a sidebar element's vertical center and stamp `data-zap` on it,
+     triggering a staggered jolt-and-flash wave across its characters. */
+  .sidebar .ch { display: inline-block; will-change: transform; }
+  @keyframes shortcut-zap {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); }
+    22%  { transform: translateY(-8px) rotate(-12deg) scale(1.4); color: var(--amber); }
+    44%  { transform: translateY(3px) rotate(8deg) scale(0.92); color: var(--amber-light); }
+    66%  { transform: translateY(-2px) rotate(-3deg) scale(1.06); color: var(--amber-light); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+  }
+  .sidebar [data-zap] .ch {
+    animation: shortcut-zap 540ms cubic-bezier(0.34, 1.56, 0.32, 1) both;
+    animation-delay: calc(var(--i, 0) * 22ms);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sidebar [data-zap] .ch { animation: none; }
   }
 </style>
 </head>
@@ -332,7 +368,7 @@
 
 <div class="layout">
 
-  <aside class="sidebar" data-section="sidebar" data-intent="navigate" data-layout="vertical-nav" data-items="4">
+  <aside class="sidebar" data-section="sidebar" data-intent="navigate" data-layout="vertical-nav" data-items="2">
     <div class="star">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <g fill="#e8b95e">
@@ -344,14 +380,9 @@
       <span>Stardust · Docs</span>
     </div>
 
-    <span class="lbl">Get started</span>
+    <span class="lbl">Docs</span>
     <nav class="side">
-      <a href="/docs/" aria-current="page"><span>Install</span><span class="num">·</span></a>
-    </nav>
-
-    <span class="lbl">Guides</span>
-    <nav class="side">
-      <a href="/docs/getting-started/"><span>Getting started</span><span class="num">01</span></a>
+      <a href="/docs/" aria-current="page"><span>Get started</span><span class="num">01</span></a>
       <a href="/docs/commands/"><span>Commands</span><span class="num">02</span></a>
     </nav>
 
@@ -360,77 +391,120 @@
     </div>
   </aside>
 
-  <main class="main">
-    <header class="hero" data-section="hero" data-intent="primary-action" data-layout="install-led" data-items="1">
-      <span class="eyebrow"><span class="num">01 ·</span>Docs</span>
+  <main class="main" data-section="article" data-intent="explain" data-layout="prose">
 
-      <h1>Install.</h1>
+    <span class="eyebrow"><span class="num">01 ·</span>Get started</span>
 
-      <p class="lede">
-        The design-phase toolkit, end to end. Install, run, iterate, ship — every command documented, every artifact named.
-      </p>
+    <h1>Your first redesign,<br><span class="ital">end to end.</span></h1>
 
-      <pre class="install-block"><span class="prompt">$</span>claude plugin marketplace add adobe/skills
+    <p style="font: 400 19px/1.5 var(--display); color: rgba(26,31,56,0.72); letter-spacing: -0.008em; max-width: 56ch; margin-bottom: 8px;">
+      Install Stardust and run your first redesign. From any URL to a complete redesigned static site — every page, not just the home.
+    </p>
+
+    <h2 id="install"><span class="step">Set up</span>Install.</h2>
+
+    <p>From inside Claude Code, add the two marketplaces and install both plugins:</p>
+
+    <pre class="code"><span class="prompt">$</span>claude plugin marketplace add adobe/skills
 <span class="prompt">$</span>claude plugin install stardust@adobe-skills
 
 <span class="prompt">$</span>claude plugin marketplace add pbakaus/impeccable
 <span class="prompt">$</span>claude plugin install impeccable@impeccable</pre>
 
-      <p class="install-credit">Built on <a href="https://impeccable.style/" rel="external">impeccable</a>. Which is, frankly, brilliant.</p>
+    <p class="install-credit">Built on <a href="https://impeccable.style/" rel="external">impeccable</a>. Which is, frankly, brilliant.</p>
 
-      <div class="hero-links">
-        <a href="/docs/getting-started/">Read the getting-started guide ›</a>
-        <a href="/docs/commands/">Browse all commands ›</a>
-      </div>
-    </header>
+    <p>Both plugins need to be installed for Stardust to run. Once installed, the <code>/stardust:*</code> slash commands are available in any Claude Code session. The <a href="/docs/commands/">commands reference</a> lists every sub-command and flag.</p>
 
-    <section class="b" data-section="sub-pages" data-intent="navigate" data-layout="list-4" data-items="4">
-      <div class="head">
-        <span class="eyebrow"><span class="num">02 ·</span>Guides</span>
-        <span class="right">Two guides · v1</span>
-      </div>
+    <div class="shortcut-block">
+      <h2 id="one-shot"><span class="step">Shortcut</span>One URL, three variants.</h2>
 
-      <h2>Where to start.</h2>
+      <p>The fastest way to get started. Skip the four-step pipeline and run a single command:</p>
 
-      <div class="sub-list">
-        <a href="/docs/getting-started/">
-          <div class="lbl-row">
-            <span>01 · Getting started</span>
-            <span class="tag">Tutorial</span>
-          </div>
-          <h3>Your first redesign, end to end.</h3>
-          <p>Install the plugin. Point it at a URL. Run extract → direct → prototype → migrate. End up with a deployable site — every page redesigned, not just the home.</p>
-        </a>
+      <pre class="code"><span class="prompt">›</span>/stardust:uplift https://example.com</pre>
 
-        <a href="/docs/commands/">
-          <div class="lbl-row">
-            <span>02 · Commands</span>
-            <span class="tag">Reference</span>
-          </div>
-          <h3>Every sub-command, named.</h3>
-          <p>Extract, Direct, Prototype, Migrate. The arguments, the flags, the artifacts each one writes. Reference, not tutorial.</p>
-        </a>
-      </div>
-    </section>
+      <p><code>uplift</code> collapses extract → direct → prototype × 3 into a single opinionated command. It picks every variability axis from the captured brand surface — palette and typography are pinned, the cinematic register is read from the brand personality, and the "what if…" candidates for variants B and C are walked from a closed catalog so nothing improvises. Output: variant A ("tomorrow's version of the site you have today"), B ("what if we amplified <em>&lt;captured trait&gt;</em>?"), and C ("what if motion was part of the identity?").</p>
 
-    <section class="b" data-section="concept" data-intent="explain" data-layout="prose-1" data-items="1">
-      <span class="eyebrow"><span class="num">03 ·</span>Concept</span>
+      <p>Or follow the long form below when you want a full multi-page migration with explicit direction.</p>
+    </div>
 
-      <div class="concept-block">
-        <p class="line-1">
-          Stardust adds a deterministic seed — <code>md5(brand · date)</code> — that picks decade × craft × register × ground for today, only today.
-        </p>
-        <p class="line-2">
-          Math, not mysticism. Yours alone, today only.
-        </p>
-      </div>
-    </section>
+    <h2 id="how-stardust-works"><span class="step">Main flow</span>Four sub-commands. One pipeline.</h2>
+
+    <p>Stardust is opinionated about <em>which</em> redesign to make and runs it as a chain of commands. Each command writes its own artifacts; the next reads them. Reading the artifacts back, you'll see the whole reasoning trace — palette picks, divergence inputs, the seed for today.</p>
+
+    <p>Math, not mysticism. Every choice has a provenance. The walkthrough below focuses on the home page; running each command without a slug fans out to the rest. You can stop after any step and pick up later — Stardust does not lock you into a pipeline.</p>
+
+    <pre class="code"><span class="comment"># the four commands you'll meet today</span>
+<span class="prompt">›</span>/stardust:extract <span class="comment">— capture the current site</span>
+<span class="prompt">›</span>/stardust:direct  <span class="comment">— resolve a redesign direction</span>
+<span class="prompt">›</span>/stardust:prototype <span class="comment">— generate three variants per page</span>
+<span class="prompt">›</span>/stardust:migrate <span class="comment">— ship deployable static HTML</span></pre>
+
+    <div class="callout">
+      <p><strong>New site, not a redesign?</strong> Stardust also designs new sites from a brief. Redesigning an existing source is the main use case today; new-site design works but is less battle-tested.</p>
+    </div>
+
+    <h2 id="step-1"><span class="step">Step 1</span>Capture the current state.</h2>
+
+    <p>Point Stardust at a URL:</p>
+
+    <pre class="code"><span class="prompt">›</span>/stardust:extract https://example.com</pre>
+
+    <p>If the project hasn't been set up yet, extract starts with a short interview that writes <code>PRODUCT.md</code> at the project root. You answer in your own words; the file captures what you're building and who it's for. Then the crawl begins.</p>
+
+    <p>It crawls five pages by default — the home plus four pillar pages — captures the brand surface (palette, typography, voice, motifs), and writes everything under <code>stardust/current/</code>. The crawl runs in a real browser, so JavaScript-rendered sites work the same as server-rendered ones.</p>
+
+    <p>When it finishes, open the eyeball-check artifact:</p>
+
+    <pre class="code"><span class="prompt">›</span>open stardust/current/brand-review.html</pre>
+
+    <p>You'll see a self-contained visual review of what was captured — colors, type, logo, motifs, voice samples, and any tensions the detector surfaced. Spend a minute here. If something looks wrong, re-run extract with <code>--refresh &lt;slug&gt;</code> on the misread page before moving on. Misreads are cheap to fix here and expensive later.</p>
+
+    <h2 id="step-2"><span class="step">Step 2</span>Direct the redesign.</h2>
+
+    <p>This is the only step where you say what you want. A short phrase is enough.</p>
+
+    <pre class="code"><span class="prompt">›</span>/stardust:direct "more editorial. lean into typography. keep the existing palette."</pre>
+
+    <p>Stardust restates your phrase in dimensional vocabulary, asks at most two clarifying questions if anything is underspecified, and resolves a target direction. It writes the target <code>PRODUCT.md</code>, <code>DESIGN.md</code>, and <code>DESIGN.json</code> at the project root, plus a full reasoning trace at <code>stardust/direction.md</code>.</p>
+
+    <p>The trace is worth reading. It tells you which axes the phrase moved, what the seed picked from <code>md5(brand · date)</code>, which font deck and palette were chosen, and why. If you disagree, rerun with <code>--re-direct</code>.</p>
+
+    <div class="callout">
+      <p><strong>Pin what matters to you.</strong> You can lock the type stack and palette by saying so in the phrase: <em>"keep typography and palette."</em> Stardust enters brand-faithful mode and only rolls the dimensions you didn't lock.</p>
+    </div>
+
+    <h2 id="step-3"><span class="step">Step 3</span>Prototype the home page.</h2>
+
+    <pre class="code"><span class="prompt">›</span>/stardust:prototype home</pre>
+
+    <p>Two things happen. First, Stardust writes a per-page composition brief at <code>stardust/prototypes/home-shape.md</code> — the section list, layout strategy, content sources, anything the brief reviewer would want to challenge before the render. You'll be asked to confirm.</p>
+
+    <p>Once you confirm, the proposed redesign renders into <code>stardust/prototypes/home-proposed.html</code>, and a viewer opens automatically — your current home on the left, the proposed redesign on the right. Review it. If something needs adjusting, edit <code>home-shape.md</code> and re-run prototype to refresh.</p>
+
+    <div class="callout">
+      <p><strong>For the rest of the site, drop the slug.</strong> Run <code>/stardust:prototype</code> without a slug and Stardust prototypes every <code>directed</code> page in turn — same direction, same brand surface, page-aware composition for each.</p>
+    </div>
+
+    <h2 id="step-4"><span class="step">Step 4</span>Approve and migrate.</h2>
+
+    <p>When the home prototype reads the way you want, signal approval — click the Approve button in the viewer, or just say <em>"approve home"</em> in the chat.</p>
+
+    <p>Then ship the home page:</p>
+
+    <pre class="code"><span class="prompt">›</span>/stardust:migrate home</pre>
+
+    <p>The output is a deployable static HTML file. Drop it on GitHub Pages, your CDN, or any host that serves files. No build step. No framework lock-in.</p>
+
+    <p>For the whole site, drop the slug:</p>
+
+    <pre class="code"><span class="prompt">›</span>/stardust:migrate</pre>
+
+    <p>Migrate runs over every approved page in <code>stardust/state.json</code> and emits a complete static site, ready to publish.</p>
 
   </main>
 
 </div>
 
-<!-- FOOTER — full viewport width, same as home (sibling of .layout, not a child) -->
 <footer class="colophon" data-section="footer" data-intent="navigate" data-layout="colophon-dark">
   <div class="container">
     <div class="mark-row">
@@ -459,6 +533,76 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Shortcut-band zap wave on sidebar text. See § SHORTCUT ZAP in the stylesheet.
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var band = document.querySelector('.shortcut-block');
+    if (!band) return;
+
+    var targets = document.querySelectorAll(
+      '.sidebar .star > span, .sidebar .lbl, .sidebar nav.side a, .sidebar .meta-bottom'
+    );
+    if (!targets.length) return;
+
+    // Wrap each character in a span; assign a sequential --i so the animation staggers.
+    targets.forEach(function (target) {
+      var walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT, null);
+      var nodes = [];
+      var n;
+      while ((n = walker.nextNode())) nodes.push(n);
+      var idx = 0;
+      nodes.forEach(function (textNode) {
+        if (!textNode.textContent || !textNode.textContent.replace(/\s+/g, '')) return;
+        var frag = document.createDocumentFragment();
+        var chars = Array.from(textNode.textContent);
+        chars.forEach(function (c) {
+          var span = document.createElement('span');
+          span.className = 'ch';
+          if (!/\s/.test(c)) span.style.setProperty('--i', idx++);
+          span.textContent = c;
+          frag.appendChild(span);
+        });
+        textNode.parentNode.replaceChild(frag, textNode);
+      });
+    });
+
+    // 540ms animation + (max ~30 chars × 22ms) stagger = ~1.2s; hold the class a hair longer.
+    var ZAP_TTL = 1300;
+    var state = new Map();
+    var timers = new Map();
+
+    function tick() {
+      var r = band.getBoundingClientRect();
+      var top = r.top, bot = r.bottom;
+      targets.forEach(function (el) {
+        var er = el.getBoundingClientRect();
+        var c = er.top + er.height / 2;
+        var dTop = top - c, dBot = bot - c;
+        var prev = state.get(el);
+        state.set(el, { dTop: dTop, dBot: dBot });
+        if (!prev) return;
+        // Sign flip on either border = it just crossed this element's center.
+        if (prev.dTop * dTop < 0 || prev.dBot * dBot < 0) {
+          el.removeAttribute('data-zap');
+          void el.offsetWidth; // force reflow so the animation restarts cleanly
+          el.setAttribute('data-zap', '');
+          clearTimeout(timers.get(el));
+          timers.set(el, setTimeout(function () { el.removeAttribute('data-zap'); }, ZAP_TTL));
+        }
+      });
+    }
+
+    var raf = 0;
+    window.addEventListener('scroll', function () {
+      if (raf) return;
+      raf = requestAnimationFrame(function () { tick(); raf = 0; });
+    }, { passive: true });
+    window.addEventListener('resize', function () { state.clear(); tick(); });
+    tick(); // initial snapshot so the first scroll registers crossings, not state-creation
+  })();
+</script>
 
 </body>
 </html>
