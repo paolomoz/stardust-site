@@ -31,7 +31,24 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          rsync -a --exclude='.git' --exclude='.github' --exclude='_site' --exclude='README.md' ./ _site/
+          # /samples/ is internal showcase tooling and must not be browsable publicly.
+          # Only the per-slug data folders (consumed by /sample.html via JSON fetches)
+          # are deployed; the discoverable entry points and listing files are excluded
+          # so /samples/ and /samples/brand.html both 404.
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='_site' \
+            --exclude='README.md' \
+            --exclude='samples/README.md' \
+            --exclude='samples/sample-format.md' \
+            --exclude='samples/index.html' \
+            --exclude='samples/index.json' \
+            --exclude='samples/brand.html' \
+            --exclude='samples/favicon.svg' \
+            --exclude='samples/og-image.jpg' \
+            --exclude='samples/og-image.svg' \
+            ./ _site/
 
       - uses: actions/configure-pages@v5
 
