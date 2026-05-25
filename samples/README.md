@@ -11,12 +11,6 @@ The showcase exists to make stardust's output legible: the
 A reader of any sample should be able to trace every visual
 decision back to a captured input — that's the brand promise.
 
-> Stardust picks from 127 real palettes scraped from
-> coolors.co/palettes/trending. Every chosen hex carries a source
-> URL.
->
-> *— stardust voice principles, "Math, not mysticism"*
-
 ---
 
 ## What's here
