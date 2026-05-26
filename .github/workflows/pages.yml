@@ -40,6 +40,8 @@ jobs:
             --exclude='.github' \
             --exclude='_site' \
             --exclude='README.md' \
+            --exclude='_identity' \
+            --exclude='og-mock.html' \
             --exclude='samples/README.md' \
             --exclude='samples/sample-format.md' \
             --exclude='samples/brand.html' \

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>OG mock — Stardust 1280×640</title>
+<style>
+  :root {
+    --ink-deep: #060A14;
+    --ink: #0A1024;
+    --dust: #F5F0E6;
+    --amber: #E8B95E;
+    --amber-light: #FFD98A;
+    --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #1a1f2e; }
+  body {
+    display: grid; place-items: center; min-height: 100vh;
+    font-family: var(--display);
+    padding: 32px;
+  }
+
+  /* The OG canvas — pinned at 1280x640. Screenshot just this element. */
+  .og {
+    width: 1280px; height: 640px;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse 90% 70% at 78% 38%, #1a2450 0%, #070c1e 55%, #060a14 100%);
+    color: var(--dust);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  }
+
+  /* Stardust particle layer */
+  .dust-layer {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(2.5px 2.5px at 8% 14%, rgba(245,240,230,0.6), transparent 60%),
+      radial-gradient(2px 2px at 90% 8%, rgba(245,240,230,0.5), transparent 60%),
+      radial-gradient(2.5px 2.5px at 16% 88%, rgba(245,240,230,0.42), transparent 60%),
+      radial-gradient(1.5px 1.5px at 76% 78%, rgba(245,240,230,0.55), transparent 60%),
+      radial-gradient(1px 1px at 50% 10%, rgba(245,240,230,0.35), transparent 60%),
+      radial-gradient(1.8px 1.8px at 4% 58%, rgba(245,240,230,0.4), transparent 60%),
+      radial-gradient(1.5px 1.5px at 98% 60%, rgba(245,240,230,0.48), transparent 60%),
+      radial-gradient(1px 1px at 34% 48%, rgba(245,240,230,0.3), transparent 60%),
+      radial-gradient(1.2px 1.2px at 64% 36%, rgba(245,240,230,0.38), transparent 60%),
+      radial-gradient(1px 1px at 22% 28%, rgba(245,240,230,0.28), transparent 60%),
+      radial-gradient(1.5px 1.5px at 86% 92%, rgba(245,240,230,0.42), transparent 60%);
+  }
+
+  /* Top amber rule */
+  .og::before {
+    content: '';
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 4px; background: var(--amber);
+  }
+
+  /* Hex corner codes (decorative, mirrors hero) */
+  .codes {
+    position: absolute; inset: 40px 56px;
+    font: 500 13px/1 var(--mono);
+    letter-spacing: 0.22em; color: rgba(245,240,230,0.42);
+    pointer-events: none;
+  }
+  .codes span { position: absolute; }
+  .codes .tl { top: 0; left: 0; }
+  .codes .tr { top: 0; right: 0; }
+  .codes .bl { bottom: 0; left: 0; }
+  .codes .br { bottom: 0; right: 0; }
+
+  /* Centered lockup + subtitle */
+  .stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 36px;
+  }
+
+  /* Lockup (logo + wordmark) */
+  .lockup {
+    display: flex; align-items: center; gap: 44px;
+  }
+  .lockup .mark {
+    display: block; width: 320px; height: 320px;
+    filter: drop-shadow(0 0 60px rgba(232,185,94,0.4));
+  }
+  .lockup .word {
+    font: 600 156px/1 var(--display);
+    letter-spacing: -0.04em;
+    color: var(--dust);
+  }
+
+  /* Subtitle */
+  .subtitle {
+    font: italic 400 44px/1 var(--display);
+    letter-spacing: -0.02em;
+    color: var(--amber);
+  }
+
+  /* URL bottom-right */
+  .url {
+    position: absolute; right: 88px; bottom: 56px;
+    font: 500 22px/1 var(--mono);
+    letter-spacing: 0.14em;
+    color: var(--amber);
+  }
+
+  /* Helper UI (not in screenshot) */
+  .controls {
+    position: fixed; top: 16px; left: 16px;
+    background: rgba(6,10,20,0.86); color: var(--dust);
+    font: 500 12px/1.6 var(--mono); letter-spacing: 0.1em;
+    padding: 12px 16px; border-radius: 10px;
+    border: 1px solid rgba(232,185,94,0.3);
+    max-width: 320px;
+  }
+  .controls strong { color: var(--amber); display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+  <div class="controls">
+    <strong>OG mock · 1280×640</strong>
+    DevTools → right-click the <code>#og</code> node → "Capture node screenshot".
+  </div>
+
+  <div class="og" id="og">
+    <div class="dust-layer"></div>
+
+    <div class="codes">
+      <span class="tl">a3f7</span>
+      <span class="tr">c92e</span>
+      <span class="bl">b1d4</span>
+      <span class="br">8a0c</span>
+    </div>
+
+    <div class="stage">
+      <div class="lockup">
+        <!-- Canonical Stardust primary mark, per docs/stardust-identity.html -->
+        <svg class="mark" viewBox="0 0 200 200" aria-hidden="true">
+          <g fill="#E8B95E">
+            <rect x="92" y="26"  width="16" height="16"/>
+            <rect x="92" y="46"  width="16" height="16" opacity="0.7"/>
+            <rect x="92" y="66"  width="16" height="16" opacity="0.5"/>
+            <rect x="92" y="118" width="16" height="16" opacity="0.5"/>
+            <rect x="92" y="138" width="16" height="16" opacity="0.7"/>
+            <rect x="92" y="158" width="16" height="16"/>
+            <rect x="26"  y="92" width="16" height="16"/>
+            <rect x="46"  y="92" width="16" height="16" opacity="0.7"/>
+            <rect x="66"  y="92" width="16" height="16" opacity="0.5"/>
+            <rect x="118" y="92" width="16" height="16" opacity="0.5"/>
+            <rect x="138" y="92" width="16" height="16" opacity="0.7"/>
+            <rect x="158" y="92" width="16" height="16"/>
+          </g>
+          <rect x="85" y="85" width="30" height="30" fill="#FFD98A"/>
+          <g fill="#E8B95E" opacity="0.6">
+            <rect x="60"  y="60"  width="12" height="12"/>
+            <rect x="128" y="60"  width="12" height="12"/>
+            <rect x="60"  y="128" width="12" height="12"/>
+            <rect x="128" y="128" width="12" height="12"/>
+          </g>
+        </svg>
+        <span class="word">Stardust</span>
+      </div>
+
+      <p class="subtitle">redesign the web</p>
+    </div>
+
+    <span class="url">stardust.style</span>
+  </div>
+</body>
+</html>
