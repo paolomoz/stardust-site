@@ -3,13 +3,11 @@
 <head>
 <!-- stardust:provenance
   writtenBy:        impeccable:craft (via stardust:prototype)
-  writtenAt:        2026-04-30
   page:             home
   variant:          C — Editorial drama (iter 2)
   iteration:        2
   iterationPhrase:  "iterate further: white-label before/after, no real brands, no showcase links, math-not-mysticism headline, AI-facing brand frame, cleaner footer, drop 'built on impeccable'"
-  stash:            home-C-stash-2026-04-30T1100.html (iter 1)
-  againstDirection: stardust/direction.md (Active 2026-04-30)
+  againstDirection: stardust/direction.md
   shapeBrief:       stardust/prototypes/home-shape.md
   stardustVersion:  0.10.0
   designSystem:     DESIGN.md, DESIGN.json
@@ -20,7 +18,7 @@
     - "Built on impeccable" reference removed.
     - Section 03 replaced: "The AI-facing brand" (was "See it in action").
     - Footer restructured to editorial colophon style.
-    - 2026-05-25: bumped to plugin 0.10.0; added /stardust:uplift one-shot quickstart in hero.
+    - Bumped to plugin 0.10.0; added /stardust:uplift one-shot quickstart in hero.
 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -47,7 +45,7 @@
     --deep-ink:    #1A1F38;
     --amber:       #E8B95E;
     --amber-light: #FFD98A;
-    --amber-deep:  #C9822D;
+    --amber-deep: #854f17;
 
     --dust-72: rgba(245, 240, 230, 0.72);
     --dust-50: rgba(245, 240, 230, 0.50);
@@ -76,17 +74,36 @@
   }
   ::selection { background: var(--amber); color: var(--ink); }
   a { color: var(--amber); text-decoration: none; }
+  /* Prose links inside paragraphs get a visible underline so the affordance never depends on color alone. */
+  p a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; border-radius: 2px; }
+  /* On cream grounds the lighter amber would disappear — swap link colour AND focus outline to the darker amber-deep. */
+  .ground-dust a { color: var(--amber-deep); }
+  .ground-dust a:focus-visible { outline-color: var(--amber-deep); }
+
+  /* Skip link — visually hidden until keyboard-focused, lets AT users bypass nav. */
+  .skip {
+    position: absolute; top: 0; left: 0;
+    transform: translateY(-200%);
+    background: var(--amber); color: var(--ink);
+    font: 600 13px/1 var(--mono); letter-spacing: 0.08em;
+    padding: 14px 20px; border-radius: 0 0 10px 0;
+    z-index: 200; text-decoration: none;
+    transition: transform 160ms ease;
+  }
+  .skip:focus { transform: translateY(0); outline: 2px solid var(--ink); outline-offset: -2px; }
 
   .container { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
 
   h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; }
-  h1 { font-size: clamp(80px, 10vw, 144px); line-height: 0.92; letter-spacing: -0.04em; color: var(--dust); }
-  h2 { font-size: clamp(48px, 7vw, 96px); line-height: 0.96; letter-spacing: -0.032em; color: var(--dust); }
+  /* Type scale uses a vw + base formula so it scales smoothly from 320px up — never bottoms out at desktop sizes on mobile. */
+  h1 { font-size: clamp(52px, 6vw + 32px, 144px); line-height: 0.94; letter-spacing: -0.04em; color: var(--dust); }
+  h2 { font-size: clamp(34px, 4vw + 20px, 96px); line-height: 0.98; letter-spacing: -0.032em; color: var(--dust); }
   h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.18; color: var(--dust); }
   p  { margin: 0 0 20px; line-height: 1.6; max-width: 60ch; color: var(--dust-72); }
   p:last-child { margin-bottom: 0; }
   em, .ital { color: var(--amber); font-style: italic; }
+  .ground-dust em { color: var(--amber-deep); }
   strong { color: var(--dust); font-weight: 600; }
 
   /* GROUNDS */
@@ -110,7 +127,7 @@
   .head { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 56px; }
   .head .right {
     font: 500 11px/1.4 var(--mono);
-    letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-30);
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-50);
     text-align: right;
   }
 
@@ -144,7 +161,8 @@
   /* HERO */
   .hero {
     position: relative; overflow: hidden;
-    padding: 140px 0 70px; min-height: 100vh;
+    padding: clamp(96px, 8vw + 60px, 140px) 0 clamp(48px, 4vw + 24px, 70px);
+    min-height: 100svh;
     display: flex; flex-direction: column; justify-content: center;
     background: radial-gradient(ellipse 90% 70% at 80% 35%, #1a2450 0%, #070c1e 55%, #060a14 100%);
   }
@@ -164,7 +182,7 @@
 
   .hero .hero-subtitle {
     margin: 20px 0 0; max-width: 22ch;
-    font: italic 400 clamp(32px, 5vw, 64px)/1.02 var(--display);
+    font: italic 400 clamp(24px, 4vw + 8px, 64px)/1.04 var(--display);
     letter-spacing: -0.024em; color: var(--dust);
   }
   .hero .hero-subtitle .accent { color: var(--amber); }
@@ -176,28 +194,6 @@
   }
   .hero .lede strong { color: var(--amber-light); font-weight: 500; }
 
-  .chiprow { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 44px; }
-  .chip {
-    font: 500 11px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-50);
-    padding: 11px 16px; border: 1px solid var(--dust-15); border-radius: 999px;
-  }
-  .chip .op { color: var(--amber); padding: 0 6px; }
-  .chip.solid { background: var(--amber); color: var(--ink); border-color: var(--amber); font-weight: 600; }
-  .chip.solid .op { color: var(--ink); }
-
-  .seed-display {
-    margin-top: 36px;
-    font: 500 13px/1.5 var(--mono);
-    letter-spacing: 0.06em; color: var(--dust-50);
-    padding: 14px 0;
-    border-top: 1px solid var(--dust-08);
-    border-bottom: 1px solid var(--dust-08);
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  }
-  .seed-display .lbl { color: var(--dust-30); }
-  .seed-display .arrow { color: var(--amber); }
-  .seed-display .seed { color: var(--amber-light); background: rgba(232,185,94,0.08); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(232,185,94,0.2); }
-
   .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 44px; }
 
   .quickstart {
@@ -206,7 +202,7 @@
     font: 500 13px/1.5 var(--mono); color: var(--dust-50);
   }
   .quickstart .qs-lbl {
-    letter-spacing: 0.22em; text-transform: uppercase; color: var(--dust-30);
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--dust-50);
   }
   .quickstart .qs-cmd {
     color: var(--dust); background: rgba(232,185,94,0.08);
@@ -353,9 +349,9 @@
     .real-sticker, .real-sticker .rs-rim, .real-sticker .rs-star { animation: none; }
   }
 
-  /* SECTIONS */
+  /* SECTIONS — fluid padding that doesn't waste vertical space on mobile. */
   section.b {
-    padding: clamp(67px, 8.4vw, 112px) 0;
+    padding: clamp(48px, 5vw + 32px, 112px) 0;
     position: relative;
   }
 
@@ -387,7 +383,7 @@
   }
   .ground-dust .shift-row { border-color: rgba(26,31,56,0.10); }
   .shift-row .term {
-    font: 500 clamp(28px, 4vw, 56px)/1.05 var(--display);
+    font: 500 clamp(22px, 3vw + 8px, 56px)/1.1 var(--display);
     letter-spacing: -0.022em; color: var(--dust);
   }
   .ground-dust .shift-row .term { color: var(--deep-ink); }
@@ -403,8 +399,6 @@
     width: 100vw;
     padding: 67px var(--pad);
     background: linear-gradient(180deg, var(--ink-deep) 0%, var(--ink) 100%);
-    border-top: 1px solid var(--amber);
-    border-bottom: 1px solid var(--amber);
   }
   .pipeline-scene .inner { max-width: var(--maxw); margin: 0 auto; }
   .pipeline {
@@ -468,11 +462,26 @@
     letter-spacing: -0.002em; margin: -8px 0 18px;
   }
   .two-divided .install-credit a {
-    color: var(--amber); text-decoration: none;
-    border-bottom: 1px solid rgba(232,185,94,0.3);
-    transition: border-color 120ms ease;
+    color: var(--amber);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
-  .two-divided .install-credit a:hover { border-bottom-color: var(--amber); }
+
+  /* AEM ROUTE — section 05 (Scale to production). Quieter, informational treatment on cream ground. */
+  .aem-route h2 { font-size: clamp(28px, 4vw, 48px); max-width: 22ch; }
+  .aem-route .lede { font-size: 18px; line-height: 1.6; max-width: 64ch; margin-top: 8px; }
+  .aem-route .aem-cta-row { margin-top: 28px; }
+  .aem-route .aem-cta {
+    font: 500 14px/1 var(--mono); letter-spacing: 0.06em;
+    color: var(--amber-deep);
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+  }
+  .aem-route .aem-credit {
+    font: 500 11px/1.4 var(--mono); letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(26,31,56,0.6);
+    margin-top: 56px; max-width: none;
+  }
 
   /* FOOTER — editorial colophon (rebuilt cleaner) */
   footer.colophon {
@@ -513,7 +522,7 @@
   .colophon .links .dot { color: var(--amber); }
   .colophon .meta {
     font: 500 11px/1 var(--mono); letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--dust-30);
+    color: var(--dust-50);
   }
   .colophon .meta .op { color: var(--amber); padding: 0 6px; }
 
@@ -531,16 +540,19 @@
     .pipeline .pills { grid-template-columns: 1fr; gap: 8px; }
     .pipeline .arrow { transform: rotate(90deg); justify-self: center; }
     .two-divided > .col + .col { border-left: 0; border-top: 1px solid var(--dust-08); }
-    .two-divided > .col { padding: 48px 32px; }
+    .two-divided > .col { padding: 48px 32px; min-width: 0; }
+    .two-divided pre.code { max-width: 100%; }
     .shift-row { grid-template-columns: 1fr; gap: 24px; }
     .shift-row .term.r { text-align: left; }
     .shift-row .arrow { transform: rotate(90deg); justify-self: start; }
-    .nav-meta { display: none; }
+    .nav-meta { gap: 14px; font-size: 10px; letter-spacing: 0.14em; }
     .codes { display: none; }
   }
 </style>
 </head>
 <body>
+
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="nav" data-section="header" data-intent="navigate" data-layout="full-width-dark">
@@ -563,6 +575,8 @@
 </nav>
 
 <!-- HERO -->
+<main id="main">
+
 <header class="hero ground-ink" data-section="hero" data-intent="primary-action" data-layout="centered-with-before-after" data-items="2">
   <div class="dust-layer"></div>
   <div class="codes">
@@ -572,29 +586,13 @@
   <div class="container">
     <span class="eyebrow"><span class="num">00 ·</span>Stardust</span>
 
-    <h1>Redesign<br>any website.</h1>
+    <h1>Redesign<br>the Web.</h1>
 
     <p class="hero-subtitle">Math, not <span class="accent">mysticism.</span></p>
 
     <p class="lede">
       Stardust generates a brand expression for today only — one that this brand and this date alone can produce. <strong>Deterministic, reproducible, structured.</strong> The canonical AI-facing version of your brand, rendered as deployable HTML.
     </p>
-
-    <div class="chiprow" aria-hidden="true">
-      <span class="chip">brief<span class="op">+</span>seed<span class="op">=</span>star</span>
-      <span class="chip solid">open source <span class="op">·</span> Apache 2.0</span>
-    </div>
-
-    <div class="seed-display" role="note">
-      <span class="lbl">Today's seed</span>
-      <span>Stardust · 2026-04-30</span>
-      <span class="arrow">→</span>
-      <span>md5</span>
-      <span class="arrow">→</span>
-      <span class="seed">a3f7c9</span>
-      <span class="arrow">→</span>
-      <span>palette × decade × craft × register</span>
-    </div>
 
     <div class="cta-row">
       <a class="ds-btn ds-btn--primary" href="/docs/">Install in two minutes <span class="arrow">›</span></a>
@@ -691,7 +689,7 @@
       Stardust doesn't introduce chaos. It introduces <strong>structured variation within a defined design space</strong> — three variant theses per page, each prototyped at desktop, tablet, and mobile, each accompanied by design rationale. The brand manager isn't ceding control. They're <em>expanding the vocabulary of control</em>.
     </p>
 
-    <div class="three" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="three" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
       <div class="card">
         <div class="lbl">Names the defaults</div>
         <h3>The divergence toolkit.</h3>
@@ -841,6 +839,32 @@
     </div>
   </div>
 </section>
+
+<!-- 05 SCALE TO PRODUCTION (route to AEM) -->
+<section class="b ground-dust aem-route" data-section="aem-route" data-intent="route" data-layout="prose-1" data-items="1">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow"><span class="num">05 ·</span>Scale to production</span>
+      <span class="right">One option · zero friction</span>
+    </div>
+
+    <h2>Deploy anywhere. <em>Scale with AEM</em>.</h2>
+
+    <p class="lede">
+      Stardust is a generic redesign tool — drop the output on GitHub Pages, your CDN, or any host that serves files. When you need to manage experiences at scale (multiple markets, in-place authoring, drafts, translations, scheduled releases), <strong>AEM Edge Delivery</strong> is a frictionless route to production. The bridge is <a href="https://github.com/aemcoder/skills/tree/main/skills/snowflake" rel="external">Snowflake</a>, which converts the Stardust output into an EDS overlay page that's authorable in Document Authoring without losing the design.
+    </p>
+
+    <p class="aem-cta-row">
+      <a class="aem-cta" href="/aem/">See how Stardust ships to AEM Edge Delivery <span aria-hidden="true">›</span></a>
+    </p>
+
+    <p class="aem-credit">
+      Open source · Apache 2.0 · built by the AEM team at Adobe
+    </p>
+  </div>
+</section>
+
+</main>
 
 <!-- FOOTER — editorial colophon -->
 <footer class="colophon" data-section="footer" data-intent="navigate" data-layout="colophon">

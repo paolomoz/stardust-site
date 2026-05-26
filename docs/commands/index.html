@@ -3,8 +3,6 @@
 <head>
 <!-- stardust:provenance
   writtenBy:        impeccable:craft (via stardust:prototype)
-  writtenAt:        2026-04-30
-  updatedAt:        2026-05-25
   page:             docs-commands
   variant:          single (sub-page, not multi-variant)
   layout:           inherits docs-B (split sidebar + main, full-width footer)
@@ -45,7 +43,7 @@
     --deep-ink:    #1A1F38;
     --amber:       #E8B95E;
     --amber-light: #FFD98A;
-    --amber-deep:  #C9822D;
+    --amber-deep: #854f17;
 
     --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --text:    "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -69,17 +67,32 @@
   }
   ::selection { background: var(--amber); color: var(--ink); }
   a { color: var(--amber-deep); text-decoration: none; }
+  /* Prose links inside paragraphs/lists get a visible underline so the affordance never depends on color alone. */
+  p a, li a, dd a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:focus-visible { outline: 2px solid var(--amber-deep); outline-offset: 3px; border-radius: 2px; }
+
+  /* Skip link — visually hidden until keyboard-focused, lets AT users bypass nav. */
+  .skip {
+    position: absolute; top: 0; left: 0;
+    transform: translateY(-200%);
+    background: var(--amber); color: var(--ink);
+    font: 600 13px/1 var(--mono); letter-spacing: 0.08em;
+    padding: 14px 20px; border-radius: 0 0 10px 0;
+    z-index: 200; text-decoration: none;
+    transition: transform 160ms ease;
+  }
+  .skip:focus { transform: translateY(0); outline: 2px solid var(--ink); outline-offset: -2px; }
 
   h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; color: var(--deep-ink); }
   h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.04; letter-spacing: -0.032em; margin-bottom: 18px; }
   h1 .ital { color: var(--amber-deep); font-style: italic; }
   h2 {
-    font-size: clamp(28px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.024em;
+    font-size: clamp(22px, 3vw + 12px, 40px); line-height: 1.1; letter-spacing: -0.024em;
     margin: 80px 0 14px;
     scroll-margin-top: calc(var(--nav-h) + 24px);
     font-family: var(--mono); font-weight: 600;
     color: var(--deep-ink);
+    overflow-wrap: anywhere;
   }
   h2 .slash { color: var(--amber-deep); }
   h2 .name  { color: var(--deep-ink); }
@@ -102,10 +115,10 @@
 
   .breadcrumb {
     font: 500 11px/1.4 var(--mono);
-    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,31,56,0.45);
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(26,31,56,0.7);
     margin-bottom: 18px;
   }
-  .breadcrumb a { color: rgba(26,31,56,0.45); text-decoration: none; }
+  .breadcrumb a { color: rgba(26,31,56,0.7); text-decoration: none; }
   .breadcrumb a:hover { color: var(--amber-deep); }
   .breadcrumb .sep { color: var(--amber-deep); padding: 0 6px; }
 
@@ -307,8 +320,8 @@
     margin-bottom: 32px;
   }
   .sidebar nav.side a {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-    padding: 11px 14px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 16px; min-height: 44px; border-radius: 8px;
     font: 500 13px/1.4 var(--text); color: rgba(245,240,230,0.78);
     text-decoration: none;
     transition: background 120ms ease, color 120ms ease;
@@ -372,16 +385,57 @@
   @media (max-width: 880px) {
     .layout { grid-template-columns: 1fr; }
     .layout::before, .layout::after { display: none; }
-    aside.sidebar { background: var(--ink); position: static; max-height: none; padding: 32px var(--pad); }
-    .sidebar nav.side a { padding: 9px 12px; }
-    main.main { padding: 48px var(--pad) 64px; }
+
+    /* Compact horizontal nav strip — sticky below the main nav while scrolling. */
+    aside.sidebar {
+      background: var(--ink);
+      position: sticky; top: var(--nav-h); z-index: 50;
+      max-height: none;
+      padding: 14px var(--pad);
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(245,240,230,0.08);
+    }
+    .sidebar .star { margin: 0; }
+    .sidebar .star span { font-size: 13px; }
+    .sidebar .lbl, .sidebar .meta-bottom { display: none; }
+    .sidebar nav.side {
+      flex: 1; flex-direction: row; gap: 4px; margin: 0;
+      justify-content: flex-end; flex-wrap: wrap;
+    }
+    .sidebar nav.side a {
+      padding: 10px 14px; min-height: 40px;
+      font-size: 12px;
+    }
+    .sidebar nav.side a .num { display: none; }
+
+    main.main { padding: 32px var(--pad) 56px; max-width: 100%; }
+    /* Prevent grid items from expanding to fit pre.code's 64ch intrinsic width. */
+    .layout > * { min-width: 0; }
+    main.main pre.code { max-width: 100%; }
+    main.main dl.spec, main.main ul.writes, main.main .toc, main.main .callout { max-width: 100%; }
+    /* Let long flag names (e.g. --refresh-stale) break to fit narrow viewports. */
+    dl.spec dt, ul.writes li, code { overflow-wrap: anywhere; }
     .toc ol { grid-template-columns: 1fr; }
     dl.spec { grid-template-columns: 1fr; }
     dl.spec dt { margin-top: 12px; }
+    h2 { margin-top: 56px; }
+    section.cmd { margin-top: 56px; }
+  }
+
+  /* Respect reduced-motion: neutralise transitions on hover/focus interactions. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>
 <body>
+
+<a class="skip" href="#main">Skip to content</a>
 
 <nav class="nav" data-section="header" data-intent="navigate" data-layout="full-width-dark">
   <div class="nav-row">
@@ -427,7 +481,7 @@
     </div>
   </aside>
 
-  <main class="main" data-section="article" data-intent="explain" data-layout="reference">
+  <main id="main" class="main" data-section="article" data-intent="explain" data-layout="reference">
 
     <p class="breadcrumb"><a href="/docs/">Docs</a><span class="sep">›</span>Commands</p>
 
@@ -732,7 +786,7 @@
 
     <!-- ============ DISTILL (optional addition) ============ -->
     <section class="cmd" id="distill">
-      <h2><span class="slash">/</span><span class="name">stardust:distill</span> <span style="font: 500 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,31,56,0.45); margin-left: 14px; vertical-align: middle;">— optional</span></h2>
+      <h2><span class="slash">/</span><span class="name">stardust:distill</span> <span style="font: 500 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,31,56,0.7); margin-left: 14px; vertical-align: middle;">— optional</span></h2>
 
       <p class="cmd-lede">Optional pre-extract step. Read a directory of user-provided design samples — static HTML mocks plus a manifest of live URLs — and produce a structured trait matrix + narrative brief that <code>direct</code> reads as anchor references. Use when the redesign direction has been pre-set by an art director and arrives as a folder of references.</p>
 

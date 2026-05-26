@@ -3,17 +3,14 @@
 <head>
 <!-- stardust:provenance
   writtenBy:        impeccable:craft (via stardust:prototype)
-  writtenAt:        2026-04-30
-  updatedAt:        2026-05-25
   page:             docs (combined install + getting-started)
   variant:          single (sub-page, not multi-variant)
   layout:           inherits docs-B (split sidebar + main, full-width footer)
   abstractionLevel: impeccable.style/tutorials — second-person, intent-driven
   stardustVersion:  0.10.0
   notes:
-    - 2026-05-25: merged the standalone install page into this guide so a
-                  visitor lands on the first action directly. /docs/getting-started/
-                  is removed.
+    - Merged the standalone install page into this guide so a visitor lands
+      on the first action directly. /docs/getting-started/ is removed.
 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -40,7 +37,7 @@
     --deep-ink:    #1A1F38;
     --amber:       #E8B95E;
     --amber-light: #FFD98A;
-    --amber-deep:  #C9822D;
+    --amber-deep: #854f17;
 
     --display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     --text:    "SF Pro Text", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
@@ -64,7 +61,23 @@
   }
   ::selection { background: var(--amber); color: var(--ink); }
   a { color: var(--amber-deep); text-decoration: none; }
+  /* Prose links inside paragraphs/lists get a visible underline so the affordance never depends on color alone. */
+  p a, li a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:focus-visible { outline: 2px solid var(--amber-deep); outline-offset: 3px; border-radius: 2px; }
+  /* Inside the dark shortcut band, swap focus to lighter amber so it stays visible. */
+  .shortcut-block a:focus-visible { outline-color: var(--amber); }
+
+  /* Skip link — visually hidden until keyboard-focused, lets AT users bypass nav. */
+  .skip {
+    position: absolute; top: 0; left: 0;
+    transform: translateY(-200%);
+    background: var(--amber); color: var(--ink);
+    font: 600 13px/1 var(--mono); letter-spacing: 0.08em;
+    padding: 14px 20px; border-radius: 0 0 10px 0;
+    z-index: 200; text-decoration: none;
+    transition: transform 160ms ease;
+  }
+  .skip:focus { transform: translateY(0); outline: 2px solid var(--ink); outline-offset: -2px; }
 
   /* TYPOGRAPHY */
   h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; letter-spacing: -0.022em; margin: 0; color: var(--deep-ink); }
@@ -127,11 +140,11 @@
     letter-spacing: -0.002em; margin: -6px 0 22px; max-width: 64ch;
   }
   .install-credit a {
-    color: var(--amber-deep); text-decoration: none;
-    border-bottom: 1px solid rgba(201,130,45,0.3);
-    transition: border-color 120ms ease;
+    color: var(--amber-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
   }
-  .install-credit a:hover { border-bottom-color: var(--amber-deep); }
 
   /* SHORTCUT — inverted full-viewport band (uplift) */
   .shortcut-block {
@@ -251,8 +264,8 @@
     margin-bottom: 32px;
   }
   .sidebar nav.side a {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
-    padding: 11px 14px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 16px; min-height: 44px; border-radius: 8px;
     font: 500 13px/1.4 var(--text); color: rgba(245,240,230,0.78);
     text-decoration: none;
     transition: background 120ms ease, color 120ms ease;
@@ -319,9 +332,43 @@
   @media (max-width: 880px) {
     .layout { grid-template-columns: 1fr; }
     .layout::before, .layout::after { display: none; }
-    aside.sidebar { position: static; max-height: none; padding: 32px var(--pad); }
-    .sidebar nav.side a { padding: 9px 12px; }
-    main.main { padding: 48px var(--pad) 64px; }
+
+    /* Collapse the sidebar into a compact horizontal nav strip above the main content
+       so visitors land near the content immediately instead of scrolling past a vertical list.
+       Sticky below the main nav (which is fixed at 60px) so it remains visible while scrolling. */
+    aside.sidebar {
+      background: var(--ink);
+      position: sticky; top: var(--nav-h); z-index: 50;
+      max-height: none;
+      padding: 14px var(--pad);
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(245,240,230,0.08);
+    }
+    .sidebar .star { margin: 0; }
+    .sidebar .star span { font-size: 13px; }
+    .sidebar .lbl, .sidebar .meta-bottom { display: none; }
+    .sidebar nav.side {
+      flex: 1; flex-direction: row; gap: 4px; margin: 0;
+      justify-content: flex-end; flex-wrap: wrap;
+    }
+    .sidebar nav.side a {
+      padding: 10px 14px; min-height: 40px;
+      font-size: 12px;
+    }
+    .sidebar nav.side a .num { display: none; }
+
+    main.main { padding: 32px var(--pad) 56px; }
+    /* Prevent grid items from expanding to fit their intrinsic content (pre.code is 64ch wide
+       which would force the column past viewport width on small screens). */
+    .layout > * { min-width: 0; }
+    main.main pre.code { max-width: 100%; }
+
+    /* Disable the zap per-character inline-block on mobile — they prevent normal text wrapping
+       in the compact horizontal sidebar and the visual cause (the band passing through) is no
+       longer in play once the sidebar is static, not sticky. !important needed because the
+       global .sidebar .ch rule is declared later in the file (after this media query). */
+    .sidebar .ch { display: inline !important; will-change: auto !important; }
+    .sidebar [data-zap] .ch { animation: none !important; }
   }
 
   /* SHORTCUT ZAP — sidebar text reacts when the shortcut band's amber rule passes through it.
@@ -346,6 +393,8 @@
 </style>
 </head>
 <body>
+
+<a class="skip" href="#main">Skip to content</a>
 
 <nav class="nav" data-section="header" data-intent="navigate" data-layout="full-width-dark">
   <div class="nav-row">
@@ -391,7 +440,7 @@
     </div>
   </aside>
 
-  <main class="main" data-section="article" data-intent="explain" data-layout="prose">
+  <main id="main" class="main" data-section="article" data-intent="explain" data-layout="prose">
 
     <span class="eyebrow"><span class="num">01 ·</span>Get started</span>
 
