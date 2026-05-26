@@ -21,5 +21,27 @@
     "nvidia",
     "frescopa",
     "digitalinnovation"
-  ]
+  ],
+  "tokens": {
+    "stardust-whitepaper": "350ceebced",
+    "heathrow": "108a95b5dd",
+    "virginatlantic": "f39af4a22f",
+    "vanguard": "c4b9d0e57d",
+    "theroadhome": "7914401540",
+    "patagonia": "fd2326a312",
+    "festool": "116094f4f8",
+    "glossier": "2a1ec7be56",
+    "aman": "24f7d01bb7",
+    "polestar": "0c24bf7228",
+    "oatly": "2df66b5fc2",
+    "onemedical": "accf843d3f",
+    "liquiddeath": "21c147d3fe",
+    "lemonade": "e2eaad7247",
+    "jfk-airport": "26de980f23",
+    "lovesac": "90154dbb01",
+    "ups-gb": "b5c8f3608b",
+    "nvidia": "fc3ecc42bd",
+    "frescopa": "0d8ad14f44",
+    "digitalinnovation": "80a17fe7c1"
+  }
 }

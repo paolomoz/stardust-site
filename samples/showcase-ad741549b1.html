@@ -366,6 +366,10 @@
     catch { return u; }
   }
 
+  // tokens[slug] = '<10-hex>' — populated from showcase JSON. Used to build
+  // the obscure /_share/<token>.html share URL per brand. Falls back to the
+  // public /sample.html?slug=… if a token isn't present for a slug.
+  let tokens = {};
   function renderCard(meta) {
     const slug = meta.slug;
     const variants = Array.isArray(meta.variants) ? meta.variants : [];
@@ -374,7 +378,10 @@
     const logoHtml = logo
       ? `<span class="card-logo"><img src="${escape(slug + '/' + logo)}" alt="" loading="lazy"></span>`
       : '';
-    const detailHref = `brand.html?slug=${encodeURIComponent(slug)}`;
+    const token = tokens[slug];
+    const detailHref = token
+      ? `/_share/${token}.html`
+      : `/sample.html?slug=${encodeURIComponent(slug)}`;
     const cat = (meta.source && (meta.source.category || meta.source.register)) || '';
     return `
       <a class="card${isDraft ? ' draft' : ''}" href="${detailHref}" data-register="${escape(meta.source && meta.source.register || '')}">
@@ -401,6 +408,7 @@
     .then(r => { if (!r.ok) throw new Error('index.json HTTP ' + r.status); return r.json(); })
     .then(idx => {
       const slugs = Array.isArray(idx.samples) ? idx.samples : [];
+      tokens = idx.tokens || {};
       metaCount.textContent = String(slugs.length);
       if (slugs.length === 0) { empty.hidden = false; return; }
       return Promise.all(slugs.map(slug =>
