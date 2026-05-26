@@ -25,6 +25,7 @@
 <title>Stardust — math, not mysticism</title>
 <meta name="description" content="Stardust generates a brand expression for today only. Deterministic, reproducible, structured — the canonical AI-facing version of your brand, rendered as deployable HTML." />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="canonical" href="https://stardust.style/" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://stardust.style/" />
 <meta property="og:title" content="Stardust — math, not mysticism" />
@@ -549,6 +550,37 @@
     .codes { display: none; }
   }
 </style>
+
+<!-- Structured data — helps search engines and LLM crawlers identify Stardust as software. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Stardust",
+  "url": "https://stardust.style/",
+  "description": "Redesign any website. AI-driven, brand-faithful redesign tool that generates clean, deployable static HTML. Open source under Apache 2.0, built by the AEM team at Adobe.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "image": "https://stardust.style/og-image.jpg",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Adobe — AEM team",
+    "url": "https://www.adobe.com/"
+  },
+  "codeRepository": "https://github.com/adobe/skills/tree/main/plugins/stardust",
+  "isBasedOn": {
+    "@type": "SoftwareApplication",
+    "name": "impeccable",
+    "url": "https://impeccable.style/"
+  }
+}
+</script>
 </head>
 <body>
 
