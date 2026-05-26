@@ -5,9 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stardust — showcase</title>
 <meta name="description" content="A curated set of stardust redesign runs. Brief + seed = star.">
-<!-- Internal showcase: URL is intentionally unguessable. Keep out of search indexes. -->
+<!-- Internal showcase: URL is intentionally unguessable. Keep out of search indexes
+     and out of Referer headers so the obscure URL doesn't leak when a viewer clicks
+     through to an external link inside a brand sample. -->
 <meta name="robots" content="noindex, nofollow">
 <meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stardust — showcase">
