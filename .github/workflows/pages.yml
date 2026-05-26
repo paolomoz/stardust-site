@@ -31,10 +31,10 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site
-          # /samples/ is internal showcase tooling and must not be browsable publicly.
-          # Only the per-slug data folders (consumed by /sample.html via JSON fetches)
-          # are deployed; the discoverable entry points and listing files are excluded
-          # so /samples/ and /samples/brand.html both 404.
+          # /samples/ is internal showcase tooling. Per-slug data folders deploy so
+          # /sample.html can fetch them, plus the renamed showcase index lives at an
+          # intentionally unguessable filename (samples/showcase-<random>.html). The
+          # bare /samples/ and /samples/index.html paths must 404.
           rsync -a \
             --exclude='.git' \
             --exclude='.github' \
@@ -42,8 +42,6 @@ jobs:
             --exclude='README.md' \
             --exclude='samples/README.md' \
             --exclude='samples/sample-format.md' \
-            --exclude='samples/index.html' \
-            --exclude='samples/index.json' \
             --exclude='samples/brand.html' \
             --exclude='samples/favicon.svg' \
             --exclude='samples/og-image.jpg' \

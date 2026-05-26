@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Stardust — showcase</title>
 <meta name="description" content="A curated set of stardust redesign runs. Brief + seed = star.">
+<!-- Internal showcase: URL is intentionally unguessable. Keep out of search indexes. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Stardust — showcase">
@@ -262,7 +265,7 @@
 
 <header class="chrome">
   <div class="container">
-    <a href="./index.html" class="lockup" aria-label="stardust showcase home">
+    <a href="./showcase-ad741549b1.html" class="lockup" aria-label="stardust showcase home">
       <span class="mark">
         <svg viewBox="0 0 200 200" aria-hidden="true">
           <g fill="#e8b95e">
@@ -394,7 +397,7 @@
     `;
   }
 
-  fetch('./index.json', { cache: 'no-store' })
+  fetch('./showcase-ad741549b1.json', { cache: 'no-store' })
     .then(r => { if (!r.ok) throw new Error('index.json HTTP ' + r.status); return r.json(); })
     .then(idx => {
       const slugs = Array.isArray(idx.samples) ? idx.samples : [];
