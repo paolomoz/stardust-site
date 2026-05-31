@@ -158,6 +158,14 @@
   .nav-meta a { color: var(--dust-50); transition: color 120ms ease; }
   .nav-meta a:hover { color: var(--amber); }
   .nav-meta .op { color: var(--amber); padding: 0 4px; }
+  /* Primary nav CTA — amber pill so "Docs" reads as the call to action. */
+  .nav-meta .nav-cta {
+    background: var(--amber); color: var(--ink);
+    padding: 8px 14px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.14em;
+    transition: background 120ms ease;
+  }
+  .nav-meta .nav-cta:hover { background: var(--amber-light); color: var(--ink); }
 
   /* HERO */
   .hero {
@@ -600,7 +608,7 @@
       Stardust
     </a>
     <div class="nav-meta">
-      <a href="/docs/">Docs</a>
+      <a class="nav-cta" href="/docs/">Docs</a>
       <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub <span class="op">›</span></a>
     </div>
   </div>
@@ -883,7 +891,7 @@
     <h2>Deploy anywhere. <em>Scale with AEM</em>.</h2>
 
     <p class="lede">
-      Stardust is a generic redesign tool — drop the output on GitHub Pages, your CDN, or any host that serves files. When you need to manage experiences at scale (multiple markets, in-place authoring, drafts, translations, scheduled releases), <strong>AEM Edge Delivery</strong> is a frictionless route to production. The bridge is <a href="https://github.com/aemcoder/skills/tree/main/skills/snowflake" rel="external">Snowflake</a>, which converts the Stardust output into an EDS overlay page that's authorable in Document Authoring without losing the design.
+      Stardust is a generic redesign tool — drop the output on GitHub Pages, your CDN, or any host that serves files. When you need to manage experiences at scale (multiple markets, in-place authoring, drafts, translations, scheduled releases), <strong>AEM Edge Delivery</strong> is a frictionless route to production. The bridge is <a href="https://github.com/adobe/skills/tree/main/plugins/aem/edge-delivery-services/skills/snowflake" rel="external">Snowflake</a>, which converts the Stardust output into an EDS overlay page that's authorable in Document Authoring without losing the design.
     </p>
 
     <p class="aem-cta-row">
