@@ -136,6 +136,14 @@
   .nav .meta { font: 500 11px/1 var(--mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--dust-50); display: flex; gap: 24px; }
   .nav .meta a { color: var(--dust-50); transition: color 120ms ease; }
   .nav .meta a:hover { color: var(--amber); }
+  /* Primary nav CTA — amber pill so "Docs" reads as the call to action. */
+  .nav .meta .nav-cta {
+    background: var(--amber); color: var(--ink);
+    padding: 8px 14px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.14em;
+    transition: background 120ms ease;
+  }
+  .nav .meta .nav-cta:hover { background: var(--amber-light); color: var(--ink); }
 
   /* HERO */
   .hero {
@@ -336,7 +344,7 @@
       <a href="/">Stardust</a><span class="sep">×</span>AEM&nbsp;Edge&nbsp;Delivery
     </div>
     <div class="meta">
-      <a href="/docs/">Docs</a>
+      <a class="nav-cta" href="/docs/">Docs</a>
       <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub</a>
     </div>
   </div>
@@ -445,7 +453,7 @@
       <span class="right">Stardust HTML <span style="color:var(--amber);padding:0 6px;">›</span> AEM EDS</span>
     </div>
     <h2>Meet <em class="ital">Snowflake</em>.<br>From static HTML to a live AEM experience.</h2>
-    <p style="color:var(--dust-72); font-size: 17px; max-width:64ch;"><a href="https://github.com/aemcoder/skills/tree/main/skills/snowflake" rel="external" style="color:var(--amber);border-bottom:1px solid rgba(232,185,94,0.35);">Snowflake</a> is the open-source converter that turns a Stardust page into an AEM Edge Delivery experience. It uses an <em class="ital">overlay pattern</em>: the original DOM is preserved byte-for-byte while text and image content become authorable in Document Authoring. Header and footer drop into static repository fragments. Page CSS and any animation JavaScript ship per-template under the EDS code bus.</p>
+    <p style="color:var(--dust-72); font-size: 17px; max-width:64ch;"><a href="https://github.com/adobe/skills/tree/main/plugins/aem/edge-delivery-services/skills/snowflake" rel="external" style="color:var(--amber);border-bottom:1px solid rgba(232,185,94,0.35);">Snowflake</a> is the open-source converter that turns a Stardust page into an AEM Edge Delivery experience. It uses an <em class="ital">overlay pattern</em>: the original DOM is preserved byte-for-byte while text and image content become authorable in Document Authoring. Header and footer drop into static repository fragments. Page CSS and any animation JavaScript ship per-template under the EDS code bus.</p>
 
     <div class="arch">
       <div class="arch-flow">
@@ -484,7 +492,7 @@
     <p style="margin-top: 4px;">From a live URL to a working AEM Edge Delivery experience. Stardust generates the redesign; Snowflake converts it into an EDS overlay page authorable in Document Authoring.</p>
     <ol class="steps">
       <li><b>Generate the redesign.</b> <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/stardust:uplift &lt;URL&gt;</code> — Stardust crawls the live site, captures the brand surface, and generates three differentiated variants in one run. Approve the one that fits.</li>
-      <li><b>Convert and ship to AEM.</b> <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/snowflake &lt;FILE&gt; to AEM</code> — <a href="https://github.com/aemcoder/skills/tree/main/skills/snowflake" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">Snowflake</a> wraps the chosen variant with the EDS overlay engine and pushes it into your <a href="https://www.aem.live/" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">AEM Edge Delivery</a> project. Preview, then publish.</li>
+      <li><b>Convert and ship to AEM.</b> <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/snowflake &lt;FILE&gt; to AEM</code> — <a href="https://github.com/adobe/skills/tree/main/plugins/aem/edge-delivery-services/skills/snowflake" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">Snowflake</a> wraps the chosen variant with the EDS overlay engine and pushes it into your <a href="https://www.aem.live/" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">AEM Edge Delivery</a> project. Preview, then publish.</li>
     </ol>
   </div>
 </section>
