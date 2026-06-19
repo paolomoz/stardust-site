@@ -11,17 +11,18 @@
   contentSources:
     - skills/uplift/SKILL.md            (Inputs, Outputs) — added 0.10.0
     - skills/extract/SKILL.md           (Inputs, Outputs)
-    - skills/distill/SKILL.md           (Inputs, Outputs) — added 0.8.0
     - skills/direct/SKILL.md            (Inputs, Outputs)
     - skills/prototype/SKILL.md         (Inputs, Outputs) — --cinematic flag added 0.9.0
     - skills/prepare-migration/SKILL.md (Inputs, Outputs)
     - skills/migrate/SKILL.md           (Inputs, Outputs)
-  stardustVersion:  0.10.0
+    - skills/deploy/SKILL.md            (Inputs, Outputs) — added 0.12.0
+    - skills/diff/SKILL.md              (Inputs, Outputs) — added 0.12.0
+  stardustVersion:  0.12.0
 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Commands · Stardust</title>
-<meta name="description" content="Every Stardust sub-command: uplift, extract, distill, direct, prototype, prepare-migration, migrate. Inputs, flags, and what each writes." />
+<meta name="description" content="Every Stardust sub-command: uplift, extract, direct, prototype, migrate, deploy, diff, prepare-migration. Inputs, flags, and what each writes." />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="canonical" href="https://stardust.style/docs/commands/" />
 <meta property="og:type" content="website" />
@@ -33,7 +34,7 @@
 <meta property="og:image:height" content="640" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Commands · Stardust" />
-<meta name="twitter:description" content="Every Stardust sub-command: uplift, extract, distill, direct, prototype, prepare-migration, migrate. Inputs, flags, and what each writes." />
+<meta name="twitter:description" content="Every Stardust sub-command: uplift, extract, direct, prototype, migrate, deploy, diff, prepare-migration. Inputs, flags, and what each writes." />
 <meta name="twitter:image" content="https://stardust.style/og-image.jpg" />
 <style>
   :root {
@@ -273,6 +274,14 @@
   .nav-meta a:hover { color: var(--amber); }
   .nav-meta a[aria-current="page"] { color: var(--amber); }
   .nav-meta .op { color: var(--amber); padding: 0 4px; }
+  /* Primary nav CTA — amber pill so "Docs" reads as the call to action. */
+  .nav-meta .nav-cta {
+    background: var(--amber); color: var(--ink);
+    padding: 8px 14px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.14em;
+    transition: background 120ms ease;
+  }
+  .nav-meta .nav-cta:hover { background: var(--amber-light); color: var(--ink); }
 
   /* SPLIT LAYOUT */
   .layout {
@@ -451,7 +460,7 @@
       Stardust
     </a>
     <div class="nav-meta">
-      <a href="/docs/" aria-current="page">Docs</a>
+      <a class="nav-cta" href="/docs/">Docs</a>
       <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub <span class="op">›</span></a>
     </div>
   </div>
@@ -519,12 +528,13 @@
         <li><a href="#direct"><span>/stardust:direct</span><span class="step">02</span></a></li>
         <li><a href="#prototype"><span>/stardust:prototype</span><span class="step">03</span></a></li>
         <li><a href="#migrate"><span>/stardust:migrate</span><span class="step">04</span></a></li>
-        <li><a href="#distill"><span>/stardust:distill</span><span class="step">optional</span></a></li>
+        <li><a href="#deploy"><span>/stardust:deploy</span><span class="step">AEM</span></a></li>
+        <li><a href="#diff"><span>/stardust:diff</span><span class="step">AEM</span></a></li>
       </ol>
     </div>
 
     <p style="margin-top: 32px;">
-      The main flow is four commands in order — <code>extract</code> describes the current state, <code>direct</code> resolves a target, <code>prototype</code> renders proposed redesigns, <code>migrate</code> ships deployable HTML. Each writes its own artifacts under <code>stardust/</code>; the next reads them. You can run them in order, or jump in at any point. For a presales pitch deck, the <code>uplift</code> shortcut collapses extract → direct → three variants into one command. The optional <code>distill</code> step turns user-provided design samples into a brief that <code>direct</code> reads as anchor references.
+      The main flow is four commands in order — <code>extract</code> describes the current state, <code>direct</code> resolves a target, <code>prototype</code> renders proposed redesigns, <code>migrate</code> ships deployable HTML. Each writes its own artifacts under <code>stardust/</code>; the next reads them. You can run them in order, or jump in at any point. For a presales pitch deck, the <code>uplift</code> shortcut collapses extract → direct → three variants into one command. To ship to AEM Edge Delivery, <code>deploy</code> converts the approved page into authorable EDS blocks and <code>diff</code> verifies the built page against the source prototype.
     </p>
 
     <!-- ============ UPLIFT ============ -->
@@ -785,44 +795,73 @@
       </div>
     </section>
 
-    <!-- ============ DISTILL (optional addition) ============ -->
-    <section class="cmd" id="distill">
-      <h2><span class="slash">/</span><span class="name">stardust:distill</span> <span style="font: 500 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,31,56,0.7); margin-left: 14px; vertical-align: middle;">— optional</span></h2>
+    <!-- ============ DEPLOY (ship to AEM) ============ -->
+    <section class="cmd" id="deploy">
+      <h2><span class="slash">/</span><span class="name">stardust:deploy</span> <span style="font: 500 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,31,56,0.7); margin-left: 14px; vertical-align: middle;">— ship to AEM</span></h2>
 
-      <p class="cmd-lede">Optional pre-extract step. Read a directory of user-provided design samples — static HTML mocks plus a manifest of live URLs — and produce a structured trait matrix + narrative brief that <code>direct</code> reads as anchor references. Use when the redesign direction has been pre-set by an art director and arrives as a folder of references.</p>
+      <p class="cmd-lede">Convert an approved Stardust prototype into an AEM Edge Delivery experience and deploy it. Each prototype section becomes one independent EDS block — the section's CSS becomes that block's scoped stylesheet, and its text and images become authorable. Header and footer drop into static fragments; the page ships as a content fragment to AEM. Targets a project on the AuthorKit runtime; a vanilla <code>aem-boilerplate</code> is bootstrapped first.</p>
 
       <h3>Syntax</h3>
-      <pre class="code"><span class="prompt">›</span>/stardust:distill <span class="arg">[samples-dir]</span> [flags]</pre>
+      <pre class="code"><span class="prompt">›</span>/stardust:deploy <span class="arg">[prototype]</span></pre>
 
-      <h3>Flags</h3>
+      <h3>Requires</h3>
       <dl class="spec">
-        <dt>[samples-dir]</dt>
-        <dd>Optional positional. Defaults to <code>samples/</code>. Expects a directory containing <code>static/&lt;sample&gt;/</code> subdirs and/or a <code>live/urls.json</code> manifest.</dd>
+        <dt>An EDS project</dt>
+        <dd>A project at the repo root with <code>blocks/</code>, <code>styles/</code>, <code>scripts/</code>, and <code>head.html</code>. A vanilla <code>aem-boilerplate</code> triggers a runtime bootstrap (the AuthorKit runtime is ported in) before conversion.</dd>
 
-        <dt>--from-static</dt>
-        <dd>Distill only static samples; skip live fetching.</dd>
-
-        <dt>--from-live</dt>
-        <dd>Distill only live samples; skip static parsing.</dd>
-
-        <dt>--cap &lt;N&gt;</dt>
-        <dd>Cap live URLs to fetch. Default 8 — enough to triangulate a visual language without burning budget on near-duplicates.</dd>
-
-        <dt>--refresh</dt>
-        <dd>Re-fetch and re-parse every sample even when cached snapshots exist.</dd>
+        <dt>[prototype]</dt>
+        <dd>The approved prototype to convert. Defaults to discovering prototypes under <code>stardust/prototypes/</code> (or a <code>samples/</code> folder); JSX prototypes are pre-rendered to static HTML first.</dd>
       </dl>
 
       <h3>Writes</h3>
       <ul class="writes">
-        <li><code>samples/SAMPLES.md</code> <span class="desc">narrative vocabulary brief — direct reads this under Mode B</span></li>
-        <li><code>samples/trait-matrix.json</code> <span class="desc">per-sample + cross-sample design tokens</span></li>
-        <li><code>samples/live/snapshots/</code> <span class="desc">cached DOM + screenshots from live URLs</span></li>
-        <li><code>stardust/state.json</code> <span class="desc">adds <code>samples.distilledAt</code> + inventory</span></li>
+        <li><code>blocks/&lt;block&gt;/</code> <span class="desc">one block (decorate JS + scoped CSS) per prototype section</span></li>
+        <li><code>styles/styles.css</code> <span class="desc">foundation tokens, global reset, self-hosted fonts</span></li>
+        <li><code>fragments/header.html</code>, <code>fragments/footer.html</code> <span class="desc">static chrome</span></li>
+        <li>the content page <span class="desc">a body fragment, shipped to AEM via the source API</span></li>
       </ul>
 
       <h3>Example</h3>
-      <pre class="code"><span class="prompt">›</span>/stardust:distill <span class="comment"># defaults to ./samples/</span>
-<span class="prompt">›</span>/stardust:distill samples/q2-refresh --cap 12</pre>
+      <pre class="code"><span class="prompt">›</span>/stardust:deploy <span class="comment"># convert + ship the approved prototype</span></pre>
+    </section>
+
+    <!-- ============ DIFF (verify the build) ============ -->
+    <section class="cmd" id="diff">
+      <h2><span class="slash">/</span><span class="name">stardust:diff</span> <span style="font: 500 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: rgba(26,31,56,0.7); margin-left: 14px; vertical-align: middle;">— verify the build</span></h2>
+
+      <p class="cmd-lede">Reconcile a built page against its source prototype with two complementary probes: a pixel/layout diff (stretched images, dropped wraps, blank renders, colour flips) and a structural content + typography diff (dropped or mis-slotted headings, eyebrows, CTAs; rendered-face font forks). Run both — either alone gives a false "looks fine". Stack-agnostic via profiles.</p>
+
+      <h3>Syntax</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:diff <span class="arg">&lt;prototypeURL&gt; &lt;buildURL&gt;</span> [flags]</pre>
+
+      <h3>Flags</h3>
+      <dl class="spec">
+        <dt>--profile &lt;eds|generic&gt;</dt>
+        <dd>Remediation language + thresholds. <code>eds</code> (default) carries Edge Delivery / DA hints; <code>generic</code> is neutral for any prototype↔build comparison.</dd>
+
+        <dt>--width &lt;px&gt;</dt>
+        <dd>Viewport width for both renders. Default 1280.</dd>
+
+        <dt>--main &lt;selector&gt;</dt>
+        <dd>Content-root selector for the structural diff. Defaults to the profile's root.</dd>
+
+        <dt>--sections &lt;a,b&gt;</dt>
+        <dd>Per-section screenshots for the pixel probe.</dd>
+
+        <dt>--json</dt>
+        <dd>Dump both role-classified inventories as JSON.</dd>
+      </dl>
+
+      <h3>Outputs</h3>
+      <ul class="writes">
+        <li>a structural report <span class="desc">🔴 missing / role-swapped content · 🟡 body drift · 🟠 font forks</span></li>
+        <li>a pixel/layout report <span class="desc">geometry, image, and colour red flags</span></li>
+        <li><code>&lt;out&gt;/</code> screenshots <span class="desc">per-section captures when <code>--sections</code> is set</span></li>
+      </ul>
+
+      <h3>Example</h3>
+      <pre class="code"><span class="prompt">›</span>/stardust:diff "$PROTO" "$BUILD" --profile eds
+<span class="prompt">›</span>/stardust:diff "$PROTO" "$BUILD" --profile generic <span class="comment"># any stack</span></pre>
     </section>
 
   </main>

@@ -216,6 +216,15 @@
   .nav-meta a:hover { color: var(--amber); }
   .nav-meta a[aria-current="page"] { color: var(--amber); }
   .nav-meta .op { color: var(--amber); padding: 0 4px; }
+  /* Primary nav CTA — amber pill so "Docs" reads as the call to action. */
+  .nav-meta .nav-cta {
+    background: var(--amber); color: var(--ink);
+    padding: 8px 14px; border-radius: 999px;
+    font-weight: 700; letter-spacing: 0.14em;
+    transition: background 120ms ease;
+  }
+  .nav-meta .nav-cta:hover { background: var(--amber-light); color: var(--ink); }
+  .nav-meta .nav-cta[aria-current="page"] { color: var(--ink); }
 
   /* SPLIT LAYOUT */
   .layout {
@@ -410,7 +419,7 @@
       Stardust
     </a>
     <div class="nav-meta">
-      <a href="/docs/" aria-current="page">Docs</a>
+      <a class="nav-cta" href="/docs/" aria-current="page">Docs</a>
       <a href="https://github.com/adobe/skills/tree/main/plugins/stardust" rel="external">GitHub <span class="op">›</span></a>
     </div>
   </div>

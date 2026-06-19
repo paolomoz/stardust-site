@@ -362,10 +362,10 @@
     </div>
     <span class="eyebrow"><span class="num">00 ·</span>Deploy to AEM</span>
     <h1>Manage at scale.<br><span class="word r">From Stardust to AEM.</span></h1>
-    <p class="lede">Stardust generates clean, deployable static HTML. <span class="hl">Snowflake</span> turns it into a full <em class="ital">AEM Edge Delivery experience</em> — authorable in Document Authoring, edge-served globally, optimized for performance and AI brand visibility.</p>
+    <p class="lede">Stardust generates clean, deployable static HTML. <span class="hl">stardust:deploy</span> turns it into a full <em class="ital">AEM Edge Delivery experience</em> — authorable, edge-served globally, optimized for performance and AI brand visibility.</p>
 
     <div class="chiprow">
-      <span class="chip">stardust<span class="op">→</span>snowflake<span class="op">→</span>edge delivery</span>
+      <span class="chip">stardust<span class="op">→</span>deploy<span class="op">→</span>edge delivery</span>
       <span class="chip">maximise brand visibility <span class="op">·</span> by default</span>
     </div>
 
@@ -422,7 +422,7 @@
       <span class="right">Beyond serving HTML <span style="color:var(--amber);padding:0 6px;">·</span> managing experiences</span>
     </div>
     <h2>More than a renderer. <em class="ital">An experience system.</em></h2>
-    <p style="color:var(--dust-72); font-size: 17px; max-width:64ch;">AEM Edge Delivery serves document-authored static HTML at top-decile performance — but the deeper value is what comes with it: an experience platform for managing every market, every language, every campaign, while keeping the brand control non-negotiable. Stardust generates the artifact; AEM is where that artifact lives at scale.</p>
+    <p style="color:var(--dust-72); font-size: 17px; max-width:64ch;">AEM Edge Delivery serves static HTML at top-decile performance — but the deeper value is what comes with it: an experience platform for managing every market, every language, every campaign, while keeping the brand control non-negotiable. Stardust generates the artifact; AEM is where that artifact lives at scale.</p>
 
     <div class="three">
       <div class="card">
@@ -444,38 +444,38 @@
   </div>
 </section>
 
-<!-- 03 Snowflake -->
+<!-- 03 The bridge: deploy -->
 <section class="b ground-ink-soft">
   <div class="container">
     <div class="codes"><span class="tl">a3f7</span><span class="tr">c92e</span><span class="bl">b1d4</span><span class="br">8a0c</span></div>
     <div class="head">
-      <span class="eyebrow"><span class="num">03 ·</span>The bridge: Snowflake</span>
+      <span class="eyebrow"><span class="num">03 ·</span>The bridge: stardust:deploy</span>
       <span class="right">Stardust HTML <span style="color:var(--amber);padding:0 6px;">›</span> AEM EDS</span>
     </div>
-    <h2>Meet <em class="ital">Snowflake</em>.<br>From static HTML to a live AEM experience.</h2>
-    <p style="color:var(--dust-72); font-size: 17px; max-width:64ch;"><a href="https://github.com/adobe/skills/tree/main/plugins/aem/edge-delivery-services/skills/snowflake" rel="external" style="color:var(--amber);border-bottom:1px solid rgba(232,185,94,0.35);">Snowflake</a> is the open-source converter that turns a Stardust page into an AEM Edge Delivery experience. It uses an <em class="ital">overlay pattern</em>: the original DOM is preserved byte-for-byte while text and image content become authorable in Document Authoring. Header and footer drop into static repository fragments. Page CSS and any animation JavaScript ship per-template under the EDS code bus.</p>
+    <h2>Meet <em class="ital">stardust:deploy</em>.<br>From static HTML to a live AEM experience.</h2>
+    <p style="color:var(--dust-72); font-size: 17px; max-width:64ch;"><a href="https://github.com/adobe/skills/tree/main/plugins/stardust/skills/deploy" rel="external" style="color:var(--amber);border-bottom:1px solid rgba(232,185,94,0.35);">stardust:deploy</a> is the open-source converter that turns a Stardust page into an AEM Edge Delivery experience. Each prototype section becomes one independent EDS block: the section's CSS becomes that block's scoped stylesheet, and its text and images become authorable content. Header and footer drop into static repository fragments, and the page ships as a content fragment to AEM.</p>
 
     <div class="arch">
       <div class="arch-flow">
         <div class="arch-node">
           <div class="role">Generate</div>
-          <div class="name">Stardust</div>
-          <div class="desc">Regenerate the site against pinned brand. Output: deployable, polished static HTML.</div>
+          <div class="name">stardust:uplift</div>
+          <div class="desc">From a live URL: capture the brand and generate the redesign as deployable, polished static HTML.</div>
         </div>
         <div class="arch-arrow">›</div>
         <div class="arch-node signal">
           <div class="role">Convert</div>
-          <div class="name">Snowflake</div>
-          <div class="desc">Overlay the static page onto the EDS substrate. Make content authorable in Document Authoring without losing the design.</div>
+          <div class="name">stardust:deploy</div>
+          <div class="desc">Turn each section into an authorable EDS block; per-section CSS becomes block CSS. Content stays editable by authors.</div>
         </div>
         <div class="arch-arrow">›</div>
         <div class="arch-node">
           <div class="role">Publish</div>
           <div class="name">AEM Edge Delivery</div>
-          <div class="desc">Document-authored, file-based, edge-served. 100/100 Core Web Vitals, Universal Editor wired, AI-friendly markup.</div>
+          <div class="desc">File-based, edge-served. 100/100 Core Web Vitals, Universal Editor wired, AI-friendly markup.</div>
         </div>
       </div>
-      <div class="arch-foot"><b>·</b> The design never changes shape <b>·</b> Content stays authorable end-to-end <b>·</b></div>
+      <div class="arch-foot"><b>·</b> Every section becomes an authorable block <b>·</b> The design is reproduced faithfully <b>·</b></div>
     </div>
   </div>
 </section>
@@ -489,10 +489,10 @@
       <span class="right">Two commands <span style="color:var(--amber-deep);padding:0 6px;">·</span> URL to AEM</span>
     </div>
     <h2>Two commands. <em class="ital">No development</em> in between.</h2>
-    <p style="margin-top: 4px;">From a live URL to a working AEM Edge Delivery experience. Stardust generates the redesign; Snowflake converts it into an EDS overlay page authorable in Document Authoring.</p>
+    <p style="margin-top: 4px;">From a live URL to a working AEM Edge Delivery experience. Stardust generates the redesign; stardust:deploy converts it into authorable EDS blocks and ships them to AEM.</p>
     <ol class="steps">
       <li><b>Generate the redesign.</b> <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/stardust:uplift &lt;URL&gt;</code> — Stardust crawls the live site, captures the brand surface, and generates three differentiated variants in one run. Approve the one that fits.</li>
-      <li><b>Convert and ship to AEM.</b> <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/snowflake &lt;FILE&gt; to AEM</code> — <a href="https://github.com/adobe/skills/tree/main/plugins/aem/edge-delivery-services/skills/snowflake" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">Snowflake</a> wraps the chosen variant with the EDS overlay engine and pushes it into your <a href="https://www.aem.live/" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">AEM Edge Delivery</a> project. Preview, then publish.</li>
+      <li><b>Convert and ship to AEM.</b> <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/stardust:deploy</code> — <a href="https://github.com/adobe/skills/tree/main/plugins/stardust/skills/deploy" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">stardust:deploy</a> turns the chosen variant into EDS blocks and content pages and pushes them into your <a href="https://www.aem.live/" rel="external" style="color:var(--amber-deep);border-bottom:1px solid rgba(201,130,45,0.4);">AEM Edge Delivery</a> project. Run <code style="font-family:var(--mono);font-size:0.92em;background:rgba(232,185,94,0.18);color:var(--amber-deep);padding:2px 7px;border-radius:4px;">/stardust:diff</code> to confirm the build matches the prototype, then publish.</li>
     </ol>
   </div>
 </section>

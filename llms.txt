@@ -2,23 +2,23 @@
 
 > Stardust is an opinionated, AI-driven redesign tool for the web. Point it at any URL and it generates clean, deployable static HTML — brand-faithful by default. Open source under Apache 2.0, built by the AEM team at Adobe.
 
-Stardust ships as a Claude Code plugin. It captures a site's existing brand surface (palette, typography, voice, motifs), resolves a redesign direction, prototypes proposed pages, and emits deployable static HTML. The output runs anywhere static files run — GitHub Pages, any CDN, or AEM Edge Delivery via the open-source Snowflake converter.
+Stardust ships as a Claude Code plugin. It captures a site's existing brand surface (palette, typography, voice, motifs), resolves a redesign direction, prototypes proposed pages, and emits deployable static HTML. The output runs anywhere static files run — GitHub Pages, any CDN, or AEM Edge Delivery via the open-source stardust:deploy converter.
 
 The pipeline is four commands — `extract → direct → prototype → migrate` — plus a one-shot shortcut `/stardust:uplift <URL>` that produces three differentiated variant redesigns from a single command (one of them with cinematic motion).
 
 ## Docs
 
 - [Get started](https://stardust.style/docs/): Install Stardust + impeccable in Claude Code, then walk through the four-step pipeline. Includes the `/stardust:uplift` shortcut.
-- [Commands](https://stardust.style/docs/commands/): Reference for every sub-command — uplift, extract, direct, prototype, migrate, plus the optional distill (sample-driven anchor references) and the prepare-migration addendum used before shipping to AEM EDS.
+- [Commands](https://stardust.style/docs/commands/): Reference for every sub-command — uplift, extract, direct, prototype, migrate, plus deploy and diff for shipping to AEM EDS and the prepare-migration addendum.
 
 ## Deployment
 
-- [Stardust on AEM Edge Delivery](https://stardust.style/aem/): How Stardust output ships to AEM EDS via Snowflake. AEM EDS is the frictionless production destination — manage experiences at scale, edge-served, with AI-friendly markup. Stardust generates the artifact, Snowflake converts it into an EDS overlay page authorable in Document Authoring without losing the design.
+- [Stardust on AEM Edge Delivery](https://stardust.style/aem/): How Stardust output ships to AEM EDS via stardust:deploy. AEM EDS is the frictionless production destination — manage experiences at scale, edge-served, with AI-friendly markup. Stardust generates the artifact; stardust:deploy converts each section into an authorable EDS block and ships it to AEM, and stardust:diff confirms the build matches the source prototype.
 
 ## Code
 
-- [Stardust plugin source (adobe/skills)](https://github.com/adobe/skills/tree/main/plugins/stardust): The Claude Code plugin implementation, all skills (`stardust`, `uplift`, `extract`, `direct`, `prototype`, `migrate`, `distill`, `prepare-migration`).
-- [Snowflake (aemcoder/skills)](https://github.com/aemcoder/skills/tree/main/skills/snowflake): The open-source bridge that converts Stardust HTML into AEM Edge Delivery experiences via a DOM-preserving overlay pattern.
+- [Stardust plugin source (adobe/skills)](https://github.com/adobe/skills/tree/main/plugins/stardust): The Claude Code plugin implementation, all skills (`stardust`, `uplift`, `extract`, `direct`, `prototype`, `migrate`, `prepare-migration`, `deploy`, `diff`).
+- [stardust:deploy (adobe/skills)](https://github.com/adobe/skills/tree/main/plugins/stardust/skills/deploy): The open-source bridge that converts Stardust HTML into AEM Edge Delivery experiences — each section becomes one authorable EDS block. Paired with [stardust:diff](https://github.com/adobe/skills/tree/main/plugins/stardust/skills/diff), which reconciles the built page against the source prototype.
 
 ## Optional
 
