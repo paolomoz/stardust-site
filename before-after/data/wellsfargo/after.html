@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wells Fargo · Personal Banking (Variant A · faithful)</title>
+<link rel="icon" href="data:image/x-icon;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA">
+<!-- stardust:uplift Variant A: faithful + improvements. Mode A: palette + Wells Fargo Sans pinned. -->
+<style>
+:root{
+  --bg:#FFFFFF; --surface:#F4F0ED; --surface-alt:#F9F7F6;
+  --primary:#D71E28; --primary-ink:#B31217;
+  --text:#141414; --text-2:#5C5551; --muted:#787070; --warm-dark:#3B3331;
+  --accent:#5A469B; --gold:#FFCD41;
+  /* tonal ramp: warm-neutral derivatives of the pinned palette (hairlines, hover tints,
+     dark-band shades). No invented hues; all sit within the captured warm-neutral family. */
+  --hairline:#e6e0da; --hairline-warm:#ece7e1; --hairline-soft:#f0ebe5; --hairline-soft2:#efeae4;
+  --field-line:#cfc8c1; --disclosure-line:#d9d2cc; --tint-red:#fdeaea;
+  --ink-900:#22201f; --ink-700:#4a4441; --on-dark:#d9d2cd; --on-dark-muted:#8f8884; --ribbon-ink:#3a2c00;
+  --sans:"Wells Fargo Sans",Arial,Helvetica,sans-serif;
+  --wrap:1180px; --pad:64px;
+  --card-sh:0 1px 5px rgba(0,0,0,.14),0 6px 22px rgba(20,20,20,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--text);background:var(--bg);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+h1,h2,h3{margin:0;font-weight:400;letter-spacing:-.01em}
+p{margin:0 0 1em}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 12px}
+
+/* ---- buttons ---- */
+.btn{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:600;border-radius:24px;padding:11px 26px;cursor:pointer;text-decoration:none;border:1.5px solid transparent;transition:.18s}
+.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn.primary:hover{background:var(--primary-ink);border-color:var(--primary-ink)}
+.btn.ghost{background:transparent;color:var(--warm-dark);border-color:var(--warm-dark)}
+.btn.ghost:hover{background:var(--warm-dark);color:#fff}
+.btn.small{padding:8px 18px;font-size:14px}
+.link{color:var(--accent);font-weight:600;text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:6px}
+.link:hover{text-decoration:underline}
+.link .ar{transition:.18s}.link:hover .ar{transform:translateX(3px)}
+
+/* ---- utility bar ---- */
+.util{background:var(--primary);color:#fff}
+.util .wrap{max-width:none;padding:0 32px;display:flex;align-items:center;gap:26px;height:56px}
+.util .brand{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:22px;letter-spacing:.4px;color:#fff;text-decoration:none;margin-right:auto}
+.util a.u{color:#fff;text-decoration:none;font-size:14px;opacity:.94}
+.util a.u:hover{opacity:1;text-decoration:underline}
+.util .signon{background:#fff;color:var(--primary);border-radius:24px;padding:8px 22px;font-weight:700;font-size:14px}
+.util .signon:hover{background:var(--tint-red)}
+
+/* ---- nav ---- */
+.nav{border-bottom:1px solid var(--hairline-warm);background:#fff;position:sticky;top:0;z-index:20}
+.nav .wrap{max-width:none;padding:0 32px}
+.nav .primary-row{display:flex;gap:30px;align-items:center;height:54px;font-size:15px}
+.nav .primary-row a{text-decoration:none;color:var(--text);padding:6px 0;position:relative;font-weight:400}
+.nav .primary-row a.sel{font-weight:700;color:var(--primary)}
+.nav .primary-row a.sel::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--primary);border-radius:3px}
+.nav .primary-row a:hover{color:var(--primary)}
+.subnav{border-top:1px solid var(--hairline-soft);background:var(--surface-alt)}
+.subnav .wrap{max-width:none;padding:0 32px}
+.subnav-row{display:flex;gap:26px;height:46px;align-items:center;font-size:14px;color:var(--text-2);overflow-x:auto}
+.subnav-row a{text-decoration:none;color:var(--text-2);white-space:nowrap}
+.subnav-row a:hover{color:var(--primary)}
+
+/* ---- sections ---- */
+section{padding:var(--pad) 0}
+.section-head{text-align:center;max-width:720px;margin:0 auto 40px}
+.section-head h2{font-size:42px;font-weight:300;color:var(--text)}
+.section-head .rule{width:54px;height:3px;background:var(--gold);border-radius:3px;margin:18px auto 0}
+.section-head p{color:var(--text-2);margin-top:16px;font-size:18px}
+
+/* ---- hero ---- */
+.hero{background:var(--surface);padding:52px 0 56px}
+.hero .grid{display:grid;grid-template-columns:360px 1fr;gap:44px;align-items:stretch}
+.signon-card{background:#fff;border-radius:14px;box-shadow:var(--card-sh);padding:26px 26px 22px}
+.signon-card h2{font-size:24px;font-weight:400;margin-bottom:2px}
+.signon-card .sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+.field{position:relative;margin-bottom:14px}
+.field input{width:100%;padding:15px 14px 7px;border:1px solid var(--field-line);border-radius:8px;font:inherit;font-size:16px;background:#fff}
+.field label{position:absolute;left:14px;top:14px;color:var(--muted);font-size:15px;pointer-events:none;transition:.15s}
+.field input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label{top:5px;font-size:11px;letter-spacing:.03em}
+.field .show{position:absolute;right:12px;top:14px;color:var(--accent);font-size:13px;font-weight:600;background:none;border:0;cursor:pointer}
+.signon-card .row{display:flex;align-items:center;gap:8px;margin:6px 0 18px;font-size:14px;color:var(--text-2)}
+.signon-card .btn.primary{width:100%;justify-content:center;padding:13px}
+.signon-card .foot{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:16px;font-size:13px}
+.signon-card .foot a{color:var(--accent);text-decoration:none}
+.signon-card .foot a:hover{text-decoration:underline}
+.hero-offer{background:#fff;border-radius:14px;box-shadow:var(--card-sh);padding:44px 48px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.hero-offer .eyebrow{color:var(--primary)}
+.hero-offer h1{font-size:56px;font-weight:400;line-height:1.06;max-width:14ch}
+.hero-offer h1 .big{color:var(--primary)}
+.hero-offer p{color:var(--text-2);font-size:19px;margin:18px 0 26px;max-width:44ch}
+.hero-offer .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-offer .amt{position:absolute;right:40px;top:36px;font-weight:300;font-size:15px;color:var(--accent);text-align:center;line-height:1.1}
+.hero-offer .amt b{display:block;font-size:58px;font-weight:300}
+.hero-offer .amt::before,.hero-offer .amt::after{content:"";display:block;width:60px;height:2px;background:var(--accent);margin:6px auto}
+
+/* ---- new-customer strip (collapsed offers) ---- */
+.newcust{background:#fff;border-top:1px solid var(--hairline-soft2);border-bottom:1px solid var(--hairline-soft2)}
+.newcust .wrap{display:flex;align-items:center;gap:24px;padding-top:26px;padding-bottom:26px}
+.newcust .ic{width:52px;height:52px;border-radius:12px;border:1.5px solid var(--primary);display:grid;place-items:center;flex:0 0 auto}
+.newcust h3{font-size:22px;font-weight:400}
+.newcust p{margin:2px 0 0;color:var(--text-2);font-size:15px}
+.newcust .btn{margin-left:auto;flex:0 0 auto}
+
+/* ---- offers rail ---- */
+.offers{background:var(--surface-alt)}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.ocard{background:#fff;border-radius:12px;box-shadow:var(--card-sh);padding:26px 24px 24px;display:flex;flex-direction:column}
+.ocard .ic{width:56px;height:56px;border-radius:12px;border:1.5px solid var(--primary);display:grid;place-items:center;margin-bottom:18px}
+.ocard h3{font-size:20px;font-weight:400;line-height:1.2;margin-bottom:10px}
+.ocard p{color:var(--text-2);font-size:14.5px;flex:1}
+.ocard .link{margin-top:14px}
+
+/* icon glyph */
+.g{width:28px;height:28px;stroke:var(--primary);stroke-width:1.6;fill:none}
+
+/* ---- cobrand ---- */
+.cobrand{background:var(--surface)}
+.cobrand .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.cobrand h2{font-size:38px;font-weight:300;line-height:1.1}
+.cobrand p{color:var(--text-2);margin:16px 0 24px;font-size:18px}
+.cobrand .media{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--card-sh)}
+.cobrand .media img{width:100%;height:340px;object-fit:cover}
+.ribbon{position:absolute;left:0;bottom:26px;background:var(--gold);color:var(--ribbon-ink);font-weight:700;font-size:13px;letter-spacing:.06em;padding:9px 20px 9px 16px;border-radius:0 20px 20px 0;text-transform:uppercase}
+
+/* ---- guidance ---- */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.gcard{background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--card-sh);display:flex;flex-direction:column}
+.gcard.feature{grid-row:span 1}
+.gcard img{width:100%;height:210px;object-fit:cover}
+.gcard .b{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+.gcard h3{font-size:23px;font-weight:600;margin-bottom:10px}
+.gcard p{color:var(--text-2);font-size:15px;flex:1}
+.gcard .btn{margin-top:18px;align-self:flex-start}
+.guidance .feature-wide{display:grid;grid-template-columns:1.4fr 1fr;gap:0;margin-bottom:24px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--card-sh)}
+.guidance .feature-wide img{width:100%;height:100%;min-height:320px;object-fit:cover}
+.guidance .feature-wide .b{padding:44px;display:flex;flex-direction:column;justify-content:center}
+.guidance .feature-wide h3{font-size:32px;font-weight:300;margin-bottom:14px}
+.guidance .feature-wide p{font-size:18px;color:var(--text-2)}
+
+/* ---- ask fargo ---- */
+.ask{background:var(--warm-dark);color:#fff}
+.ask .grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:48px;align-items:center}
+.ask .phone{background:var(--ink-900);border-radius:26px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.4);max-width:300px;margin:0 auto}
+.ask .phone img{border-radius:16px}
+.ask h2{font-size:40px;font-weight:300;color:#fff}
+.ask p{color:var(--on-dark);font-size:19px;margin:18px 0 24px;max-width:46ch}
+.ask .badges{display:flex;gap:14px;align-items:center}
+.ask .badges a{background:#000;border:1px solid var(--ink-700);border-radius:10px;padding:10px 16px;color:#fff;text-decoration:none;font-size:13px;display:flex;flex-direction:column;line-height:1.15}
+.ask .badges a b{font-size:16px;font-weight:600}
+.ask .fine{color:var(--on-dark-muted);font-size:12px;margin-top:16px}
+
+/* ---- community ---- */
+.community{background:#fff}
+.community .cards2{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:8px}
+.ccard{border-radius:16px;overflow:hidden;box-shadow:var(--card-sh);background:#fff}
+.ccard img{width:100%;height:300px;object-fit:cover}
+.ccard .b{padding:28px 30px 32px}
+.ccard h3{font-size:26px;font-weight:400;margin-bottom:12px}
+.ccard p{color:var(--text-2);font-size:16px}
+.ccard .btn{margin-top:8px}
+
+/* ---- help row ---- */
+.help{background:var(--surface)}
+.help .wrap{display:flex;justify-content:center;gap:56px;flex-wrap:wrap}
+.help h2{font-size:26px;font-weight:300;text-align:center;width:100%;margin-bottom:8px}
+.help a{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-size:18px}
+.help a .dot{width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--primary);display:grid;place-items:center}
+.help a:hover{color:var(--primary)}
+
+/* ---- footer ---- */
+footer{background:var(--surface-alt);color:var(--text-2);font-size:13px;padding:44px 0 60px;border-top:3px solid var(--primary)}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 22px;padding-bottom:22px;border-bottom:1px solid var(--hairline);margin-bottom:22px}
+footer .links a{color:var(--warm-dark);text-decoration:none}
+footer .links a:hover{color:var(--primary);text-decoration:underline}
+footer .social{display:flex;gap:14px;margin-bottom:24px}
+footer .social span{width:30px;height:30px;border-radius:50%;background:var(--warm-dark);color:#fff;display:grid;place-items:center;font-size:13px}
+.disclosure{border:1px solid var(--disclosure-line);border-radius:8px;padding:16px 20px;margin-bottom:20px;background:#fff}
+.disclosure b{color:var(--text)}
+.disclosure ul{margin:8px 0 0;padding-left:18px}
+footer .fine{color:var(--muted);line-height:1.7}
+footer .eh{display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:600;color:var(--warm-dark)}
+footer .eh .box{width:26px;height:26px;border:2px solid var(--warm-dark);display:grid;place-items:center;font-size:12px}
+
+@media(max-width:920px){
+  :root{--pad:44px}
+  .hero .grid,.cobrand .grid,.ask .grid,.community .cards2,.guidance .feature-wide{grid-template-columns:1fr}
+  .cards4{grid-template-columns:1fr 1fr}
+  .cards3{grid-template-columns:1fr}
+  .hero-offer h1{font-size:42px}
+  .hero-offer .amt{display:none}
+}
+@media(max-width:560px){
+  .util .wrap{overflow-x:auto;gap:16px;-webkit-overflow-scrolling:touch}
+  .util .brand,.util a.u,.util .signon{flex:0 0 auto}
+  .cards4{grid-template-columns:1fr}
+  .section-head h2{font-size:32px}
+  .nav .primary-row{overflow-x:auto;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- 1 · utility bar -->
+<div class="util" data-section="utility-bar">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Wells Fargo Home">WELLS&nbsp;FARGO</a>
+    <a class="u" href="#">ATMs/Locations</a>
+    <a class="u" href="#">Help</a>
+    <a class="u" href="#">Español</a>
+    <a class="u" href="#" aria-label="Search">Search</a>
+    <a class="signon" href="#signon">Sign On</a>
+  </div>
+</div>
+
+<!-- 2 · nav -->
+<nav class="nav" data-section="primary-nav" aria-label="Primary">
+  <div class="wrap"><div class="primary-row">
+    <a class="sel" href="#">Personal</a>
+    <a href="#">Investing &amp; Wealth Management</a>
+    <a href="#">Business</a>
+    <a href="#">Commercial Banking</a>
+    <a href="#">Corporate &amp; Investment Banking</a>
+    <a href="#">About Wells Fargo</a>
+  </div></div>
+  <div class="subnav"><div class="wrap"><div class="subnav-row">
+    <a href="#">Checking</a><a href="#">Savings &amp; CDs</a><a href="#">Credit Cards</a>
+    <a href="#">Home Loans</a><a href="#">Personal Loans</a><a href="#">Auto Loans</a>
+    <a href="#">Premier</a><a href="#">Education &amp; Tools</a>
+  </div></div></div>
+</nav>
+
+<!-- 3 · hero: one job: sign-on + a single quiet acquisition hero (improvement #1) -->
+<section class="hero" id="signon" data-section="hero" data-purpose="signon+acquisition">
+  <div class="wrap"><div class="grid">
+    <form class="signon-card" onsubmit="return false" aria-label="Sign on">
+      <h2>Good evening</h2>
+      <div class="sub">Sign on to manage your accounts.</div>
+      <div class="field"><input id="u" placeholder=" "><label for="u">Username</label></div>
+      <div class="field"><input id="p" type="password" placeholder=" "><label for="p">Password</label><button type="button" class="show">Show</button></div>
+      <div class="row"><input type="checkbox" id="sv"><label for="sv">Save username</label></div>
+      <button class="btn primary" type="submit">Sign On</button>
+      <div class="foot">
+        <a href="#">Sign on with a passkey</a>
+        <a href="#">Enroll</a>
+        <a href="#">Forgot username or password?</a>
+        <a href="#">Privacy, Cookies, and Legal</a>
+      </div>
+    </form>
+    <div class="hero-offer">
+      <div class="amt">Enjoy<b>$325</b></div>
+      <div class="eyebrow">Limited-time offer</div>
+      <h1><span class="big">$325</span> checking bonus on us</h1>
+      <p>New customers open an eligible checking account with qualifying direct deposits.</p>
+      <div class="cta">
+        <a class="btn primary" href="#">Get started</a>
+        <a class="link" href="#">See offer details <span class="ar">→</span></a>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 4 · collapsed new-customer entry (improvement #1) -->
+<div class="newcust" data-section="new-customer" data-purpose="collapsed-offers">
+  <div class="wrap">
+    <div class="ic"><svg class="g" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg></div>
+    <div>
+      <h3>New to Wells Fargo?</h3>
+      <p>Say hello to a $125 bonus with a Clear Access Banking account, great for students and more.</p>
+    </div>
+    <a class="btn ghost" href="#">See offer details</a>
+  </div>
+</div>
+
+<!-- 5 · offers rail, demoted one scroll down -->
+<section class="offers" data-section="offers" data-purpose="secondary-offers">
+  <div class="wrap">
+    <div class="cards4">
+      <div class="ocard">
+        <div class="ic"><svg class="g" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div>
+        <h3>Find a credit card</h3>
+        <p>Low intro rate, cash back, rewards and more, matched to how you spend.</p>
+        <a class="link" href="#">Learn more <span class="ar">→</span></a>
+      </div>
+      <div class="ocard">
+        <div class="ic"><svg class="g" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+        <h3>Enjoy 0% intro APR for 21 months</h3>
+        <p>From account opening on purchases and qualifying balance transfers. Terms apply.</p>
+        <a class="link" href="#">Learn more <span class="ar">→</span></a>
+      </div>
+      <div class="ocard">
+        <div class="ic"><svg class="g" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 15c.5 1 1.7 1.6 3 1.6 1.7 0 3-.9 3-2.3 0-3-6-1.7-6-4.6 0-1.3 1.3-2.3 3-2.3 1.3 0 2.5.6 3 1.6M12 6v1.7M12 16.3V18"/></svg></div>
+        <h3>Interest rates today</h3>
+        <p>Compare current rates across savings, CDs and lending in one place.</p>
+        <a class="link" href="#">Learn more <span class="ar">→</span></a>
+      </div>
+      <div class="ocard">
+        <div class="ic"><svg class="g" viewBox="0 0 24 24"><path d="M3 21h18M6 21V10l6-4 6 4v11M10 21v-6h4v6"/></svg></div>
+        <h3>Home loans that fit your plans</h3>
+        <p>Explore rates, tools and guidance for buying or refinancing a home.</p>
+        <a class="link" href="#">Learn more <span class="ar">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · cobrand -->
+<section class="cobrand" data-section="cobrand">
+  <div class="wrap"><div class="grid">
+    <div>
+      <div class="eyebrow" style="color:var(--primary)">Choice Privileges® · Wells Fargo</div>
+      <h2>Earn 60,000 bonus points</h2>
+      <p>After qualifying purchases with the Choice Privileges® credit card. Terms apply.</p>
+      <a class="btn ghost" href="#">Learn more</a>
+    </div>
+    <div class="media">
+      <img src="assets/eda111-choice_hplp_mom_baby_1600x700.jpg" alt="A parent and child playing together at home">
+      <div class="ribbon">Limited time intro offer</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 7 · guidance (improvement #2: one photo given more canvas) -->
+<section class="guidance" data-section="guidance">
+  <div class="wrap">
+    <div class="section-head"><h2>Financial guidance and support</h2><div class="rule"></div></div>
+    <div class="feature-wide">
+      <img src="assets/e6ca76-wfi_ph_g_1614430716-savings_hpsp_616x353.jpg" alt="A family walking together through an airport">
+      <div class="b">
+        <h3>Savings you can count on</h3>
+        <p>Discover how smart saving moves you closer to your goals, with tools, insights, and people who know your name.</p>
+        <a class="btn ghost" href="#" style="margin-top:22px;align-self:flex-start">Grow your savings</a>
+      </div>
+    </div>
+    <div class="cards3">
+      <div class="gcard">
+        <img src="assets/7db3be-wfi_ph_g_1263166552-protecting_hpsp_616x353.jpg" alt="A man sitting outdoors with his dog">
+        <div class="b"><h3>Secure your next chapter</h3><p>Protect what you've built as you look ahead.</p><a class="btn ghost small" href="#">Unlock your options</a></div>
+      </div>
+      <div class="gcard">
+        <img src="assets/1c6882-wfi_ph_g_1472303553-lifesync_hpsp_616x353.jpg" alt="A person watching a hot-air balloon rise at dawn">
+        <div class="b"><h3>Step into your future</h3><p>Track goals and get insights for your financial future with LifeSync®.</p><a class="btn ghost small" href="#">Discover how</a></div>
+      </div>
+      <div class="gcard">
+        <img src="assets/bfcd79-women-in-greenhouse_616x353.png" alt="Two people tending plants together in a greenhouse">
+        <div class="b"><h3>Guidance for every goal</h3><p>Talk with a banker about saving, borrowing and planning ahead.</p><a class="btn ghost small" href="#">Make an appointment</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · ask fargo -->
+<section class="ask" data-section="ask-fargo">
+  <div class="wrap"><div class="grid">
+    <div class="phone"><img src="assets/956356-Fargo-Spending-Insights-Wells-Fargo-Mobile-App-2025.png" alt="Wells Fargo mobile app showing spending insights"></div>
+    <div>
+      <h2>Need help? Ask Fargo®</h2>
+      <p>Fargo gives you valuable insights like a summary of your spending by category, retailer and across accounts. Find it only in the Wells Fargo Mobile® app.</p>
+      <div class="badges">
+        <a href="#"><span>Download on the</span><b>App Store</b></a>
+        <a href="#"><span>Get it on</span><b>Google Play</b></a>
+      </div>
+      <div class="fine">*Screen image is simulated.</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 9 · community (improvement #3: stewardship lede lifted) -->
+<section class="community" data-section="community">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Serving our customers and communities</h2><div class="rule"></div>
+      <p>It doesn't happen with one transaction, in one day on the job, or in one quarter. It's earned relationship by relationship.</p>
+    </div>
+    <div class="cards2">
+      <div class="ccard">
+        <img src="assets/30e732-volunteers_cars_616x353.jpg" alt="Volunteers loading supplies into a car">
+        <div class="b"><h3>Who we are</h3><p>Wells Fargo helps strengthen communities through inclusion, economic empowerment, and sustainability.</p><a class="btn ghost" href="#">About Wells Fargo</a></div>
+      </div>
+      <div class="ccard">
+        <img src="assets/bfcd79-women-in-greenhouse_616x353.png" alt="Two community members working together in a greenhouse">
+        <div class="b"><h3>Why we're committed to communities</h3><p>We don't just serve our communities. We are our communities, helping neighborhoods across the country thrive.</p><a class="btn ghost" href="#">Wells Fargo Stories</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · help row -->
+<section class="help" data-section="help-row">
+  <div class="wrap">
+    <h2>How can we help?</h2>
+    <a href="#"><span class="dot"><svg class="g" viewBox="0 0 24 24"><path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span>Find a location</a>
+    <a href="#"><span class="dot"><svg class="g" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></span>Make an appointment</a>
+    <a href="#"><span class="dot"><svg class="g" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-1 .8-1.5 1.2-1.5 2.5M12 17.5v.01"/></svg></span>Quick help</a>
+  </div>
+</section>
+
+<!-- 11 · footer -->
+<footer data-section="legal-footer">
+  <div class="wrap">
+    <div class="links">
+      <a href="#">Privacy, Cookies, Security &amp; Legal</a><a href="#">Do Not Sell or Share My Personal Information</a>
+      <a href="#">Notice of Data Collection</a><a href="#">General Terms of Use</a><a href="#">Online Access Agreement</a>
+      <a href="#">Report Fraud</a><a href="#">About Wells Fargo</a><a href="#">Careers</a><a href="#">Inclusion and Accessibility</a><a href="#">Sitemap</a>
+    </div>
+    <div class="social"><span>f</span><span>in</span><span>◎</span><span>P</span><span>▶</span><span>t</span></div>
+    <div class="disclosure">
+      <b>Investment and Insurance Products are:</b>
+      <ul>
+        <li>Not Insured by the FDIC or Any Federal Government Agency</li>
+        <li>Not a Deposit or Other Obligation of, or Guaranteed by, the Bank or Any Bank Affiliate</li>
+        <li>Subject to Investment Risks, Including Possible Loss of the Principal Amount Invested</li>
+      </ul>
+    </div>
+    <p class="fine">Deposit products offered by Wells Fargo Bank, N.A. Member FDIC. Investment products and services are offered through affiliated broker-dealers and non-bank affiliates of Wells Fargo &amp; Company.</p>
+    <div class="eh"><span class="box">⌂</span> Equal Housing Lender</div>
+    <p class="fine" style="margin-top:12px">© 1999 – 2026 Wells Fargo. NMLSR ID 399801. <span data-placeholder>[disclosure IDs]</span></p>
+  </div>
+</footer>
+
+</body>
+</html>

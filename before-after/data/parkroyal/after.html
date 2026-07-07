@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- stardust:provenance
+{
+  "writtenBy": "stardust:prototype --cinematic (variant C — arrival register)",
+  "writtenAt": "2026-07-07T18:30:00Z",
+  "page": "index",
+  "pageUrl": "https://www.park-royalhotels.com/",
+  "againstDirection": "stardust/direction.md",
+  "designFile": "DESIGN-C.json",
+  "fidelity": "quick",
+  "surprise": "high",
+  "variant": "C",
+  "compositionInheritedFrom": "stardust/prototypes/index-A-proposed.html (C-cliff guard: same 14 sections, same order, same copy, same assets — the bet is motion, not layout; per stardust/prototypes/index-C-shape.md § Role)",
+  "compositionDelta_vs_A": [
+    "motion: full arrival choreography vs static",
+    "identity deployment: purple scrim + gradient wipes + wordmark arrival vs gradient-in-ribbon-only"
+  ],
+  "compositionDelta_vs_B": [
+    "axis: motion vs composition — C keeps A's IA, B restructures it",
+    "trait: identity gesture vs photography scale"
+  ],
+  "dominantDimension": "kinetic identity",
+  "capturedSourceLineage": {
+    "promo-ribbon": "captured top ribbon; campaign line relocated per improvements #1",
+    "header": "site-wide system-component; nav from _brand-extraction.json#voice.navItems",
+    "hero": "captured lifestyle asset a7eeae0361c3e11 (=s1900) + captured booking widget; H1 is the direction-authorized brand-line rewrite. NOTE: all 3 captured cssBackgrounds carry seasonal discount campaign art baked into the pixels (SUMMER MODE 33% OFF / 5 NOCHES / 37% OFF), which contradicts improvements #1 — hero ground swapped to a clean captured photo (captured alt retained)",
+    "benefits": "pages/index.json#headings (4 perks captured-verbatim; captured supporting lines not present in capture — omitted, not invented)",
+    "split-intro": "captured split-intro; firstParagraph verbatim; photo aafd4de9a7193a0=s1000",
+    "hotels": "captured card-carousel promoted to 3+2 grid per improvements #2; property names/alts/hrefs captured",
+    "experiences": "captured experience-tile-row; tile images matched by captured alts",
+    "offers": "captured 12-card offers carousel curated to 3 cards per improvements #3; titles captured-verbatim",
+    "blog": "captured blog-2up + side panel",
+    "brands-duo": "captured brand-logos-duo; Park Royal logo captured, Grand Park Royal logo art not captured",
+    "social-grid": "captured social-video-grid; 3 captured MP4s + captured stills; Google Play badge captured",
+    "newsletter": "captured newsletter-inline; heading from captured fragment '¡Regístrate…!'; consent #1 label captured",
+    "sustainability-band": "captured cta-band-sustainability, seafoam #94D2BE",
+    "footer": "site-wide system-component; footer headings + property list captured; SEO paragraph = captured meta description"
+  },
+  "voiceClassification": {
+    "heroH1": "direction-authorized rewrite (improvements #1; assembled from captured firstParagraph 'más de 30 años' claim)",
+    "heroLede": "captured-verbatim fragment of firstParagraph",
+    "splitIntro": "captured-verbatim",
+    "benefits": "captured-verbatim",
+    "hotelsIntro": "captured-verbatim",
+    "experiencesIntro": "captured-verbatim",
+    "offers": "captured-verbatim",
+    "blogTitles": "captured-verbatim",
+    "newsletter": "captured fragment + captured consent label",
+    "sustainability": "captured-verbatim",
+    "footer": "captured-verbatim",
+    "descubreMas": "direction-authorized rewrite (improvements #4 — canonical secondary CTA)"
+  },
+  "unsourcedContent": [
+    {
+      "selector": "section[data-section=\"brands-duo\"] .brands-copy",
+      "type": "other",
+      "reason": "brief demands 'Nuestras marcas…' paragraph; pages/index.json body[] is empty — copy not captured"
+    },
+    {
+      "selector": "section[data-section=\"brands-duo\"] .brand-card--gpr .placeholder-logo",
+      "type": "other",
+      "reason": "Grand Park Royal logo art not captured (only Park Royal corporate logo captured)"
+    },
+    {
+      "selector": "section[data-section=\"social-grid\"] .app-badge--appstore",
+      "type": "other",
+      "reason": "App Store badge art not in capture (apps.apple.com link captured; only Google Play badge image captured)"
+    },
+    {
+      "selector": "section[data-section=\"newsletter\"] .consent--2",
+      "type": "other",
+      "reason": "captured newsletter has 2 consent checkboxes; only 'He leído y acepto la política de privacidad' label captured"
+    }
+  ],
+  "reflexRejectAudit": {
+    "bypassed": "Mode A pinned families: Open Sans + Montserrat (captured)"
+  },
+  "iteratedVia": "impeccable:critique + impeccable:audit (P1 fixes: mobile booking-bar compaction into first viewport; keyboard-operable hamburger; unified hairline token; email required)",
+  "dismissedAsBrandFaithful": [
+    "overused-font Open Sans / Montserrat — captured brand families, Mode A pin",
+    "design-system-color rgba() scrim stops — captured photo-scrim motif (DESIGN-A.json extensions.motifs.scrim), functional photo-legibility overlays",
+    "design-system-color #43104C — documented button hover in DESIGN-A.json componentStyle.buttons.primary.hover",
+    "pure white ground + captured uppercase Montserrat labels — captured brand choices",
+    "SFMono/ui-monospace on .placeholder-eyebrow — placeholder visual signature mandated by proposed-file-shell.md",
+    "autoplaying muted looping social videos — captured social-video-grid signature; cinematic runtime pauses them under prefers-reduced-motion"
+  ],
+  "notes": [
+    "ink-muted #8D8D8D (3.5:1 on white) kept as token; readable small meta uses #767676 (4.54:1, AA) — token-discipline fix per improvements #5, same spirit as link-color inversion",
+    "static variant: no scroll animations, no IntersectionObserver; single ≤10-line inline script for hamburger a11y only",
+    "cinematic file: loads lenis.min.js / lenis.min.css via relative path (sanctioned exception to self-containment; assets staged in stardust/prototypes/)",
+    "html.js-anim gate class is set inline in <head> BEFORE the stylesheet so hidden-initial-state rules never strand content when JS fails; <noscript> re-sets all motion states visible",
+    "benefits section carries no [data-anim] (it is above-first-scroll furniture at 1440x900 — hiding it at scrollY=0 would strand first-viewport content); its gesture is rising-plate + perk-countups",
+    "rising-plate translate tuned to 8vh (register default 16vh would occlude the docked booking bar — DESIGN-C stillSurfaces: booking-bar never demoted)",
+    "footer wordmark = captured logo_color_svg.svg rendered white via CSS filter for AA legibility on plum-slate footer ground"
+  ],
+  "motion": {
+    "register": "arrival",
+    "registerSource": "direct",
+    "registerTokens": "DESIGN-C.json extensions.motion",
+    "runtimeVersion": "v1",
+    "lenisAssets": {
+      "js": "lenis.min.js",
+      "css": "lenis.min.css"
+    },
+    "attributesEmitted": [
+      "data-anim",
+      "data-countup",
+      "data-parallax"
+    ],
+    "choreographies": [
+      "hero-arrival",
+      "rising-plate",
+      "perk-countups",
+      "section-entrances",
+      "gradient-wipes",
+      "wordmark-arrival"
+    ],
+    "refuses": [
+      "scroll-jack",
+      "letter-by-letter reveals",
+      "marquees",
+      "animated mid-page headings",
+      "motion on booking bar after load"
+    ],
+    "degradation": {
+      "reducedMotion": "full neutralization — parallax off, entrances resolve to end-state, counters render final values, hero scrim fixed at 0.30",
+      "noJs": "noscript block + html.js-anim gate: page renders as the static composition"
+    }
+  },
+  "motionValidation": {
+    "passedAt": "2026-07-07T19:05:00Z",
+    "harness": "stardust/scripts/pass6-C.mjs (motion-validation.md § Pass 6, gates a–g)",
+    "viewportsTested": [
+      {
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "findings": {
+      "hiddenInViewport": [],
+      "sectionOverlaps": [
+        {
+          "a": "hero",
+          "b": "benefits",
+          "classification": "by-design",
+          "explainedBy": "rising-plate"
+        }
+      ],
+      "clippedReveals": [],
+      "rangeMismatches": []
+    },
+    "fixesApplied": [
+      "gradient-wipe border-radius 2px removed (outside DESIGN-C rounded scale)",
+      "reduced-motion neutralization extended: social-mosaic videos paused, footer wordmark clip cleared, count-up observers gated"
+    ],
+    "cinematic": {
+      "register": "arrival",
+      "registerSource": "direct",
+      "lenisBoot": "ok",
+      "reducedMotionFallback": "complete",
+      "scrollJackCheck": "pass",
+      "noJsCheck": "pass",
+      "registerMatchAudit": "pass (emits data-anim/data-countup/data-parallax only; no flip/fill/sweep/marquee/split)",
+      "cliffDetector": {
+        "animElementCount": 32,
+        "maxParallaxVh": 35,
+        "activeInfiniteLoops": 0,
+        "verdict": "pass"
+      },
+      "screenshots": {
+        "desktopTop": "stardust/validation/index-C/motion-top.png",
+        "desktopMid": "stardust/validation/index-C/motion-mid.png",
+        "desktopDeep": "stardust/validation/index-C/motion-bottom.png",
+        "heroTransition": "stardust/validation/index-C/motion-hero-transition.png",
+        "mobile": "stardust/validation/index-C/motion-mobile.png"
+      }
+    }
+  }
+}
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js-anim');</script>
+<title>Park Royal Hotels &amp; Resorts | El Caribe y el Pacífico Mexicano</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABUCAYAAAAcaxDBAAAEoUlEQVR4nO3aT28bRRgG8OeZXSpu8TdIvkHMBSmNom6piqqoiOXIAXVzRD1k2xIUoKVT0kJFArXEgWNsIc5sE4SqVtQOqOoR5xu436A5UYE9L4fdjd2qje148+fl/UmRvKudnZlnZ8azcgCllFJKKaWUUkoppZRSSimllFJKKaWOnV/OLQf5Z9/vnvcBPPOfNT9IKk8PvVEDOPJAfz77edl4KBtIQGCKwCkDgBQwa+Aex9uAtAzZBFzj7K9rjSPrSOZIAv3p3ashjIQUCQwwSXQDM1mj+gb6qjKCuzRI4P2bnD6CUXxoga4HtuROtGMjEhl2Q9wNA4DpCe1lxy9eP8BxzXVYOf3bavOw+nnggf54zk75nbYlcIEEiG6nTXZMAEawBYOGB7QI12oDrQ/v3W697J6b55cDr+NKpCmTnTLBgMDEiyM5DRUgZIsCO3cIS8KBBXonsKU3fReTct2gZ7rmoQqewEhiaJKP7t1sjFrf/fmlMsmAQETKdP7QgN1QQWDL9/xoJnn5gyrCgQT6wxkbGnYqzNbH3pFI8q4HqS7cv5kcRN0AUA+Xp1y7ExsgIjCRBwpkHSZuzG2s2YOou9BA7wS2ZDxXMcSFdERm0zvtUM15vv34nm0VWede6mFcQvtETEhMYiJ/qEjbtE3DaDYpdn0tLNA7Z20ZDlXCTfeECANsCb344gPbLKquYdXDuGTab1hQFp9fW7EDYTy7uVotqq5CAl07Y0NCqgQm0m2MgMSOR4kvPlipFlFHEerzS2XPkyqA6Z5QQaB2cmMtKqKOkQP99h0bEVhnGiIMAEC20THhpcbhTe9h/Hl+qQLKIrPeZ8tT7eTGd9Go9x4p0G8CG9FgPf1GzbY/ZO3y73bkhh20P967ElJYpUlnVRrE6KHuO9BbwVcR6dZNd9rAAxauPLTVURp0mB7NL5WdkUY3VAENajPJ/kPdV6ArgQ1I1nvWSxhg4dMxCjP3aH6p7HxpGGACGD3UoQO1gZ0yZHP3zQQAKQufjWGYud5Qs6kPGlmYSb6vDnuvoQK1gS0BpkFgOn9vBnnp6sMvK8NWfNw8CpfKzuWhprPOo3nr7SH3qWaYix1oBZgWABBAgNrrECYAzCarTRiEACAgRICOuOSvMC4Nc5+BA70arAQOXBQA6R+3r9WvR8NUdtzNJWsNB9zoOTX5Nzw7zD0GDrQjqIowCxM7AhcOU9G4yN7xt/JRSsHi4/CTYNDyAwW6HKxYASazkQkBrD2mm/YiGONHAHaQhQoHO3DZfhfEgS05Ybw71QXbK43XY918lZnkdssBFclPUE49Di9Hg5TtG6jvvNgBE3mgJOL9NnSctE27AuJJPvUhtIOU6xuoA2ORdKpDsHWzca0xYlvHwumk8hTuuRAnB1lL9ww0nrsVSc/ohBl8LXkdzG6uVqVnlApc3K/MnoE6Iupuk7B9+38yOnuJoJp+IuD4fr3PvnTPQEVQlfzHAye2kBaOmbZpVxywI0D2fwB76/vqGc99HcKTVqXxRbOIBo6jehiXTjg//se0K0fxW79SSimllFJKKaWUUkoppZRSSimllFJKqWPmPwbRr7RVhWejAAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap">
+<link rel="stylesheet" href="assets/08ef8e-lenis.min.css">
+<style>
+/* ============ :root token contract — skills/stardust/reference/token-contract.md ============ */
+:root {
+  --heading-font-family: 'Open Sans', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --body-font-family:    'Open Sans', -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --label-font-family:   'Montserrat', -apple-system, sans-serif;
+
+  --heading-xxl: clamp(2.5rem, 4.5vw, 3.125rem); /* display 40–50px, composition inherited from variant A (C-cliff guard) */
+  --heading-xl:  2.5rem;    /* 40px */
+  --heading-lg:  2rem;      /* 32px — H2, DESIGN-C typography.heading */
+  --heading-md:  1.25rem;   /* 20px — H3 card titles */
+  --body:        1rem;      /* 16px */
+  --body-sm:     0.875rem;  /* 14px */
+  --label:       0.8125rem; /* 13px — Montserrat labels */
+
+  --line-height-heading: 1.25;
+  --line-height-display: 1.15;
+  --line-height-body:    1.55;
+
+  /* sand-white */   --color-bg:      #FFFFFF;
+  /* ink */          --color-fg:      #333333;
+  /* royal-purple */ --color-accent:  #5C1669;
+  /* royal-magenta */--color-magenta: #971F6E;
+  /* seafoam */      --color-seafoam: #94D2BE;
+  /* plum-slate */   --color-plum:    #44425E;
+  /* shell-grey */   --color-surface: #F7F5F5;
+  /* ink-muted */    --color-muted:   #8D8D8D;
+  /* AA-safe muted for small meta text (see provenance notes) */
+  --color-muted-aa: #767676;
+
+  --spacing-xs:  8px;
+  --spacing-sm:  16px;
+  --spacing-md:  24px;
+  --spacing-lg:  40px;
+  --spacing-xl:  64px;
+  --spacing-2xl: 96px;
+
+  --section-padding: 64px;
+  --max-width:       1200px;
+  --max-width-wide:  1320px;
+  --radius:          8px;
+  --radius-lg:       20px;
+
+  --hairline:       #E7E2E7;
+  --shadow-card:    0 12px 40px -16px rgba(68, 66, 94, 0.18);
+  --shadow-booking: 0 16px 48px -20px rgba(68, 66, 94, 0.25);
+  --gradient-brand: linear-gradient(76deg, #5C1669, #991F6E);
+  --scrim:          linear-gradient(rgba(0,0,0,0.26), rgba(0,0,0,0));
+  --input-border:   1px solid #ADADAD;
+  --focus-ring:     0 0 0 3px rgba(92,22,105,0.25);
+}
+
+/* ============ Stock mobile-nav-collapse pattern (base rules — before any @media) ============ */
+.ds-nav-toggle {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.ds-nav-burger { display: none; }
+.ds-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md, 24px);
+  font-family: var(--label-font-family, system-ui, sans-serif);
+}
+.ds-nav a {
+  color: var(--color-fg, #111);
+  text-decoration: none;
+  font-size: var(--label, 0.8125rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.ds-nav a:hover { color: var(--color-accent); }
+
+/* ============ Base ============ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body);
+  line-height: var(--line-height-body);
+  color: var(--color-fg);
+  background: var(--color-bg);
+}
+img, video { max-width: 100%; display: block; }
+.hotel-card img, .offer-card img, .blog-card img, .experience-tile img, .split-intro__photo img { height: auto; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--heading-font-family); text-wrap: balance; }
+h1 { font-size: var(--heading-xxl); font-weight: 300; line-height: var(--line-height-display); letter-spacing: -0.01em; }
+h2 { font-size: var(--heading-lg); font-weight: 300; line-height: var(--line-height-heading); }
+h3 { font-size: var(--heading-md); font-weight: 600; line-height: 1.35; }
+p { margin: 0; }
+a { color: var(--color-accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, label:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.container { max-width: var(--max-width); margin-inline: auto; padding-inline: 24px; }
+.container--wide { max-width: var(--max-width-wide); }
+section { padding-block: var(--section-padding); }
+.section-heading { max-width: 62ch; }
+.section-heading + * { margin-top: var(--spacing-lg); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--label-font-family);
+  font-size: var(--label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  line-height: 1.4;
+}
+.btn--primary {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  padding: 14px 32px;
+  border: none;
+}
+.btn--primary:hover { background: #43104C; }
+.btn--secondary {
+  background: #FFFFFF;
+  color: var(--color-accent);
+  padding: 13px 32px;
+  border: 1.5px solid var(--color-accent);
+}
+.btn--secondary:hover { background: #F6EFF8; }
+.text-cta {
+  font-family: var(--label-font-family);
+  font-size: var(--label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.text-cta:hover { text-decoration: underline; }
+
+/* Placeholder signature (mandatory — content-sourcing contract) */
+[data-placeholder] {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  outline: 2px dashed var(--color-accent);
+  outline-offset: -2px;
+  background: rgba(247, 245, 245, 0.7);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+}
+.placeholder-eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+.placeholder-shape { font-size: var(--body-sm); color: var(--color-muted-aa); }
+
+/* ============ Promo ribbon ============ */
+.promo-ribbon {
+  background: var(--gradient-brand);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 16px;
+  font-family: var(--label-font-family);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.promo-ribbon a { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; margin-left: 6px; }
+
+/* ============ Header ============ */
+.site-header { position: relative; background: var(--color-bg); border-bottom: 1px solid var(--hairline); }
+.utility-strip { background: var(--color-plum); color: #FFFFFF; }
+.utility-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding-block: 7px;
+  font-size: 0.75rem;
+}
+.utility-strip a { color: #FFFFFF; text-decoration: none; }
+.utility-strip a:hover { text-decoration: underline; }
+.utility-group { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; }
+.utility-sep { opacity: 0.45; }
+.main-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding-block: 14px;
+}
+.logo-link { display: inline-flex; flex-shrink: 0; }
+.logo-link img { height: 48px; width: auto; }
+.main-bar .btn--primary { padding: 12px 24px; flex-shrink: 0; }
+
+/* ============ Hero + booking bar ============ */
+.hero { padding-block: 0; }
+.hero-media {
+  position: relative;
+  height: clamp(460px, 58vh, 620px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.34) 46%, rgba(0,0,0,0.10) 78%),
+              linear-gradient(180deg, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.06) 55%, rgba(0,0,0,0.30) 100%);
+}
+.hero-copy { position: relative; z-index: 1; color: #FFFFFF; width: 100%; }
+.hero-copy h1 { max-width: 18ch; }
+.hero-lede { margin-top: var(--spacing-sm); font-size: 1.125rem; max-width: 48ch; }
+.booking-wrap { position: relative; z-index: 2; margin-top: -76px; padding-bottom: 8px; }
+.booking-bar {
+  background: #FFFFFF;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-booking);
+  padding: 18px 20px 14px;
+}
+.booking-fields {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1.2fr 1fr auto;
+  gap: 12px;
+  align-items: end;
+}
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field > label {
+  font-family: var(--label-font-family);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-aa);
+}
+.field select, .field input {
+  font-family: var(--body-font-family);
+  font-size: var(--body-sm);
+  color: var(--color-fg);
+  border: var(--input-border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  background: #FFFFFF;
+  width: 100%;
+  min-height: 42px;
+}
+.field select:focus, .field input:focus { box-shadow: var(--focus-ring); outline: none; border-color: var(--color-accent); }
+.booking-bar .btn--primary { min-height: 42px; padding: 12px 28px; }
+.booking-note {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: var(--color-muted-aa);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.booking-note svg { flex-shrink: 0; }
+
+/* ============ Benefits ============ */
+.benefits { padding-block: var(--section-padding) var(--spacing-xl); }
+.benefits h2 { text-align: center; margin-inline: auto; }
+.benefits-grid {
+  margin-top: var(--spacing-lg);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+.benefit {
+  text-align: center;
+  padding: var(--spacing-md) var(--spacing-sm);
+}
+.benefit svg { margin-inline: auto; display: block; color: var(--color-plum); }
+.benefit h3 { margin-top: var(--spacing-sm); font-size: 1.125rem; }
+
+/* ============ Split intro ============ */
+.split-intro__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+}
+.split-intro__copy p { margin-top: var(--spacing-md); max-width: 58ch; }
+.split-intro__copy .btn { margin-top: var(--spacing-lg); }
+.split-intro__photo img {
+  border-radius: var(--radius-lg);
+  aspect-ratio: 3 / 2;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* ============ Hotels ============ */
+.hotels-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--spacing-md);
+}
+.hotel-card {
+  grid-column: span 2;
+  background: #FFFFFF;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.hotel-card:hover { box-shadow: 0 12px 40px -12px rgba(68, 66, 94, 0.28); }
+.hotel-card:nth-child(4), .hotel-card:nth-child(5) { grid-column: span 3; }
+.hotel-card img { aspect-ratio: 3 / 2; width: 100%; object-fit: cover; }
+.hotel-card__body { padding: var(--spacing-md); display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.hotel-card__meta { font-size: var(--body-sm); color: var(--color-muted-aa); }
+.hotel-card__body .text-cta { margin-top: auto; padding-top: var(--spacing-sm); }
+.hotels-footer { margin-top: var(--spacing-lg); text-align: center; }
+
+/* ============ Experiences ============ */
+.experiences-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+.experience-tile {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+.experience-tile img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; }
+.experience-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 55%);
+}
+.experience-tile h3 {
+  position: absolute;
+  z-index: 1;
+  left: var(--spacing-md);
+  bottom: var(--spacing-sm);
+  color: #FFFFFF;
+  font-family: var(--label-font-family);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ============ Offers (shell-grey substrate) ============ */
+.offers { background: var(--color-surface); }
+.offers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+.offer-card {
+  background: #FFFFFF;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.offer-card img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
+.offer-card__body { padding: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-sm); flex: 1; }
+.offer-card__body h3 { font-size: 1.125rem; }
+.offer-card__actions { margin-top: auto; display: flex; align-items: center; gap: var(--spacing-md); padding-top: var(--spacing-xs); }
+.offer-card__actions .btn--primary { padding: 11px 22px; }
+.offers-conditions { margin-top: var(--spacing-md); font-size: 0.75rem; color: var(--color-muted-aa); }
+.offers-footer { margin-top: var(--spacing-md); }
+
+/* ============ Blog 2-up ============ */
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.9fr;
+  gap: var(--spacing-md);
+  align-items: stretch;
+}
+.blog-card { display: block; text-decoration: none; color: var(--color-fg); }
+.blog-card img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; border-radius: var(--radius); }
+.blog-card h3 { margin-top: var(--spacing-sm); font-size: 1.125rem; }
+.blog-card:hover h3 { color: var(--color-accent); }
+.blog-aside {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-md);
+}
+.blog-aside h2 { font-size: 1.375rem; font-weight: 300; }
+.blog-aside .btn { align-self: flex-start; }
+
+/* ============ Brands duo ============ */
+.brands-copy { margin-top: var(--spacing-md); }
+.brands-grid {
+  margin-top: var(--spacing-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+.brand-card {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  text-align: center;
+}
+.brand-card img { height: 84px; width: auto; }
+.brand-card .placeholder-logo { align-items: center; }
+.brand-card__name { font-family: var(--heading-font-family); font-size: 1.375rem; font-weight: 300; color: var(--color-fg); }
+
+/* ============ Social grid ============ */
+.social-mosaic {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 210px;
+  gap: var(--spacing-sm);
+}
+.social-mosaic > * { border-radius: var(--radius); overflow: hidden; }
+.social-mosaic video, .social-mosaic img { width: 100%; height: 100%; object-fit: cover; }
+.social-tile--video { grid-row: span 2; }
+.social-follow {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+.social-follow__icons { display: flex; align-items: center; gap: var(--spacing-sm); }
+.social-follow__label {
+  font-family: var(--label-font-family);
+  font-size: var(--label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-accent);
+}
+.social-icon:hover { background: var(--color-accent); color: #FFFFFF; }
+.app-badges { display: flex; align-items: center; gap: var(--spacing-sm); }
+.app-badges img { height: 52px; width: auto; border-radius: var(--radius); }
+.app-badge--appstore { min-height: 52px; justify-content: center; }
+
+/* ============ Newsletter ============ */
+.newsletter-box {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: var(--spacing-lg);
+}
+.newsletter-form { margin-top: var(--spacing-md); display: flex; gap: 12px; max-width: 560px; }
+.newsletter-form input[type="email"] {
+  flex: 1;
+  font-family: var(--body-font-family);
+  font-size: var(--body-sm);
+  border: var(--input-border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  min-height: 46px;
+}
+.newsletter-form input[type="email"]:focus { box-shadow: var(--focus-ring); outline: none; border-color: var(--color-accent); }
+.newsletter-consents { margin-top: var(--spacing-md); display: flex; flex-direction: column; gap: 10px; }
+.consent { display: flex; align-items: flex-start; gap: 10px; font-size: var(--body-sm); }
+.consent input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--color-accent); }
+
+/* ============ Sustainability band (seafoam substrate) ============ */
+.sustainability { background: var(--color-seafoam); }
+.sustainability__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--spacing-lg); }
+.sustainability__copy { max-width: 62ch; }
+.sustainability__copy p { margin-top: var(--spacing-sm); font-size: 1.125rem; }
+
+/* ============ Footer ============ */
+.site-footer { background: var(--color-plum); color: #FFFFFF; padding-block: var(--section-padding) var(--spacing-md); }
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+.footer-col h2 {
+  font-family: var(--label-font-family);
+  font-size: var(--label);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.footer-col ul { list-style: none; margin: var(--spacing-sm) 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.footer-col a { color: rgba(255,255,255,0.88); text-decoration: none; font-size: var(--body-sm); }
+.footer-col a:hover { color: #FFFFFF; text-decoration: underline; }
+.footer-seo { margin-top: var(--spacing-xl); font-size: var(--body-sm); color: rgba(255,255,255,0.85); max-width: 90ch; }
+.footer-legal {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 0.75rem;
+}
+.footer-legal a { color: rgba(255,255,255,0.85); text-decoration: none; }
+.footer-legal a:hover { text-decoration: underline; }
+.footer-phones { margin-top: var(--spacing-sm); display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.75rem; color: rgba(255,255,255,0.85); }
+.footer-phones a { color: rgba(255,255,255,0.85); text-decoration: none; }
+
+/* ============ Responsive ============ */
+@media (max-width: 1080px) {
+  .ds-nav-burger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 14px;
+    font-family: var(--label-font-family, system-ui, sans-serif);
+    font-size: var(--body-sm, 0.9375rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-fg, #111);
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: var(--radius, 8px);
+    user-select: none;
+  }
+  .ds-nav-burger-icon { width: 16px; height: 12px; position: relative; }
+  .ds-nav-burger-icon::before,
+  .ds-nav-burger-icon::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: currentColor;
+  }
+  .ds-nav-burger-icon::before { top: 0; }
+  .ds-nav-burger-icon::after  { bottom: 0; }
+  .ds-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 30;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--spacing-sm, 16px) var(--spacing-md, 24px);
+    background: var(--color-bg, #fff);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 180ms cubic-bezier(0.2, 0, 0, 1),
+                opacity   180ms cubic-bezier(0.2, 0, 0, 1),
+                visibility 0s linear 180ms;
+  }
+  .ds-nav a {
+    padding: 13px 0;
+    font-size: var(--body, 1rem);
+    white-space: normal;
+    border-bottom: 1px solid rgba(51,51,51,0.12);
+  }
+  .ds-nav a:last-child { border-bottom: 0; }
+  .ds-nav-toggle:checked ~ .ds-nav {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 180ms cubic-bezier(0.2, 0, 0, 1),
+                opacity   180ms cubic-bezier(0.2, 0, 0, 1),
+                visibility 0s linear 0s;
+  }
+  .booking-fields { grid-template-columns: 1fr 1fr; }
+  .booking-fields .field--hotel { grid-column: 1 / -1; }
+  .booking-fields .btn--primary { grid-column: 1 / -1; }
+  .hotels-grid { grid-template-columns: 1fr 1fr; }
+  .hotel-card, .hotel-card:nth-child(4), .hotel-card:nth-child(5) { grid-column: auto; }
+  .social-mosaic { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; grid-auto-flow: dense; }
+}
+
+@media (max-width: 900px) {
+  :root { --section-padding: 48px; }
+  .split-intro__grid { grid-template-columns: 1fr; gap: var(--spacing-lg); }
+  .benefits-grid { grid-template-columns: 1fr 1fr; }
+  .offers-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr 1fr; }
+  .blog-aside { grid-column: 1 / -1; }
+  .experiences-grid { grid-template-columns: 1fr 1fr; }
+  .hero-media { height: clamp(420px, 52vh, 540px); }
+}
+
+@media (max-width: 640px) {
+  :root { --section-padding: 40px; }
+  .hotels-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .brands-grid { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; }
+  .social-mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+  .main-bar { gap: var(--spacing-sm); }
+  .main-bar .btn--primary { padding: 11px 16px; }
+  .logo-link img { height: 40px; }
+  .hero-media { height: auto; min-height: 340px; padding-block: 48px 96px; }
+  .hero-copy h1 { font-size: 2.125rem; }
+  .hero-lede { font-size: 1rem; }
+  .booking-bar { padding: 14px 14px 12px; }
+  .booking-fields { gap: 10px; }
+  .field select, .field input { min-height: 40px; padding: 8px 10px; }
+  .experiences-grid { gap: var(--spacing-sm); }
+  .experience-tile h3 { left: var(--spacing-sm); font-size: 0.8125rem; }
+  .promo-ribbon { font-size: 0.6875rem; }
+  .sustainability__inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 420px) {
+  .main-bar { gap: 10px; }
+  .main-bar .btn--primary { padding: 10px 12px; font-size: 0.75rem; }
+  .ds-nav-burger { padding: 9px 11px; }
+  .ds-nav-burger-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .logo-link img { height: 36px; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .utility-strip__inner { justify-content: center; }
+  .booking-wrap { margin-top: -56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-nav,
+  .ds-nav-toggle:checked ~ .ds-nav { transition: none; }
+}
+
+/* ============ Motion — arrival register (DESIGN-C.json extensions.motion) ============ */
+/* Hidden initial states are scoped under html.js-anim (class set inline in <head>
+   before this stylesheet) — observer/JS failure never strands content. */
+:root {
+  --ease-entrance: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-transition: cubic-bezier(0.42, 0, 0, 1);
+  --motion-enter: 700ms;
+  --motion-stagger: 90ms;
+  --parallax-progress: 0;
+}
+
+/* hero-arrival: load entrance, enterUp stagger 90ms; booking bar last (~360ms), then still */
+@keyframes enterUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+html.js-anim .hero-copy h1 { animation: enterUp var(--motion-enter) var(--ease-entrance) 0ms both; }
+html.js-anim .hero-lede    { animation: enterUp var(--motion-enter) var(--ease-entrance) var(--motion-stagger) both; }
+html.js-anim .booking-wrap { animation: enterUp var(--motion-enter) var(--ease-entrance) 360ms both; }
+
+/* hero-arrival: photo parallax (runtime drives transform to -35vh) + purple identity scrim */
+html.js-anim .hero-media > img.hero-marquee { height: calc(100% + 35vh); will-change: transform; }
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(92,22,105,0) 0%, rgba(92,22,105,1) 100%);
+  opacity: calc(var(--parallax-progress, 0) * 0.45); /* identity scrim, alpha cap 0.45 */
+}
+
+/* rising-plate: benefits rises over the hero (runtime drives .post-hero transform) */
+html.js-anim .benefits.post-hero {
+  position: relative;
+  z-index: 1; /* below .booking-wrap (z-index 2): the plate slides under the docked booking bar */
+  background: var(--color-bg);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: 0 -24px 64px -32px rgba(68, 66, 94, 0.35);
+}
+
+/* gradient-wipes: captured 76° gradient as 3px section-divider chrome */
+.gradient-wipe {
+  height: 3px;
+  background: var(--gradient-brand);
+  transform-origin: left center;
+  margin-bottom: var(--spacing-lg);
+}
+html.js-anim .gradient-wipe { transform: scaleX(0); transition: transform 700ms var(--ease-transition); }
+html.js-anim .gradient-wipe.in { transform: scaleX(1); }
+
+/* wordmark-arrival: footer wordmark, clip-path wipe-up driven by scroll progress */
+.site-footer__wordmark {
+  height: 48px;
+  width: auto;
+  margin-bottom: var(--spacing-lg);
+  filter: brightness(0) invert(1); /* captured color wordmark rendered white on plum-slate */
+  opacity: 0.94;
+}
+
+/* Degradation: full neutralization under reduced motion (DESIGN-C extensions.motion.reducedMotion) */
+@media (prefers-reduced-motion: reduce) {
+  html.js-anim .hero-copy h1,
+  html.js-anim .hero-lede,
+  html.js-anim .booking-wrap { animation: none; }
+  html.js-anim .hero-media > img.hero-marquee { height: 100%; transform: none !important; }
+  .hero-scrim { opacity: 0.30 !important; } /* scrim fixed at 0.30 */
+  html.js-anim .gradient-wipe { transform: scaleX(1); transition: none; }
+  html.js-anim .benefits.post-hero { transform: none !important; margin-bottom: 0 !important; }
+  [data-anim] { opacity: 1 !important; transform: none !important; }
+  .site-footer__wordmark { clip-path: none !important; }
+}
+
+/* Mobile: parallax off (runtime clears transform ≤767px); restore natural crop */
+@media (max-width: 767px) {
+  html.js-anim .hero-media > img.hero-marquee { height: 100%; }
+}
+</style>
+<noscript>
+<style>
+[data-anim] { opacity: 1 !important; transform: none !important; }
+[data-parallax], .hero-marquee, .post-hero { transform: none !important; margin-bottom: 0 !important; }
+.site-footer__wordmark { clip-path: none !important; }
+.gradient-wipe { transform: scaleX(1) !important; }
+.hero-copy h1, .hero-lede, .booking-wrap { animation: none !important; opacity: 1 !important; }
+</style>
+</noscript>
+</head>
+<body data-template="landing">
+
+<aside class="promo-ribbon" data-section="promo-ribbon" data-purpose="seasonal campaign line" data-intent="seasonal campaign line" data-layout="edge-to-edge">
+  SUMMER MODE: ON &middot; Hasta 33% OFF + Ni&ntilde;os Gratis*
+  <a href="https://www.park-royalhotels.com/ofertas.html">Ver ofertas</a>
+</aside>
+
+<header class="site-header" data-section="header" data-purpose="navigation" data-intent="navigation" data-layout="contained" data-nav-collapse="hamburger">
+  <div class="utility-strip">
+    <div class="container utility-strip__inner">
+      <div class="utility-group">
+        <a href="tel:18008903798">US &amp; CAN - 1 800 890 3798</a>
+        <span class="utility-sep" aria-hidden="true">&middot;</span>
+        <a href="tel:+551152420710">BR +55 (11) 52420710</a>
+      </div>
+      <div class="utility-group">
+        <a href="https://www.park-royalhotels.com/royal-planet.html">Royal Planet</a>
+        <span class="utility-sep" aria-hidden="true">&middot;</span>
+        <a href="https://www.park-royalhotels.com/loyalty-experiences.html">Loyalty Experiences</a>
+        <span class="utility-sep" aria-hidden="true">&middot;</span>
+        <a href="https://www.park-royalhotels.com/en/" lang="en">EN</a>
+        <a href="https://www.park-royalhotels.com/pt/" lang="pt">PT</a>
+      </div>
+    </div>
+  </div>
+  <div class="container main-bar">
+    <a class="logo-link" href="https://www.park-royalhotels.com/">
+      <img src="https://storage.googleapis.com/cdn.paraty.es/parkroyal-corpo/files/logo_color_svg.svg" alt="Park Royal Hotels &amp; Resorts" width="180" height="80">
+    </a>
+
+    <input type="checkbox" id="ds-nav-toggle" class="ds-nav-toggle" tabindex="-1">
+    <label class="ds-nav-burger" for="ds-nav-toggle" role="button" tabindex="0" aria-controls="ds-nav-list" aria-expanded="false">
+      <span class="ds-nav-burger-icon" aria-hidden="true"></span>
+      <span class="ds-nav-burger-label">Men&uacute;</span>
+    </label>
+
+    <nav id="ds-nav-list" class="ds-nav" aria-label="Principal">
+      <a href="https://www.park-royalhotels.com/hoteles--resorts.html">Hoteles &amp; Resorts</a>
+      <a href="https://www.park-royalhotels.com/hoteles--resorts.html?destiny=Caribe%20Mexicano">Destinos</a>
+      <a href="https://www.park-royalhotels.com/bodas.html">Bodas</a>
+      <a href="https://www.park-royalhotels.com/wellness.html">Wellness</a>
+      <a href="https://www.park-royalhotels.com/eventos.html">Eventos</a>
+      <a href="https://www.park-royalhotels.com/ofertas.html">Ofertas</a>
+      <a href="https://www.park-royalhotels.com/galeria.html">Galer&iacute;a</a>
+    </nav>
+
+    <a class="btn btn--primary" href="#data">Reservar</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" data-section="hero" data-purpose="emotional hook + direct booking" data-intent="emotional hook + direct booking" data-layout="full-bleed" data-media="image">
+  <div class="hero-media">
+    <img class="hero-marquee" data-parallax src="https://cdn2.paraty.es/parkroyal-corpo/images/a7eeae0361c3e11=s1900" alt="Pareja en la playa al atardecer, vista desde una caba&ntilde;a de Park Royal: Corpo" loading="eager" fetchpriority="high">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="container hero-copy">
+      <h1>M&aacute;s de 30 a&ntilde;os creando experiencias inolvidables en M&eacute;xico</h1>
+      <p class="hero-lede">D&eacute;jate consentir y viajamos juntos.</p>
+    </div>
+  </div>
+  <div class="container booking-wrap">
+    <form class="booking-bar" id="data" aria-label="Reserva tu estancia" action="https://www.park-royalhotels.com/#data" method="get">
+      <div class="booking-fields">
+        <div class="field field--hotel">
+          <label for="bk-hotel">Hotel</label>
+          <select id="bk-hotel" name="hotel">
+            <option>Grand Park Royal Canc&uacute;n</option>
+            <option>Grand Park Royal Cozumel</option>
+            <option>Grand Park Royal Puerto Vallarta</option>
+            <option>Royal Select at Grand Park Royal Canc&uacute;n Adults Only</option>
+            <option>Park Royal Beach Acapulco</option>
+            <option>Park Royal Beach Canc&uacute;n</option>
+            <option>Park Royal Beach Ixtapa</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bk-in">Llegada</label>
+          <input id="bk-in" name="llegada" type="date">
+        </div>
+        <div class="field">
+          <label for="bk-out">Salida</label>
+          <input id="bk-out" name="salida" type="date">
+        </div>
+        <div class="field">
+          <label for="bk-guests">Hu&eacute;spedes</label>
+          <select id="bk-guests" name="huespedes">
+            <option>2 adultos</option>
+            <option>2 adultos &middot; 1 ni&ntilde;o</option>
+            <option>2 adultos &middot; 2 ni&ntilde;os</option>
+            <option>1 adulto</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bk-promo">C&oacute;digo promo</label>
+          <input id="bk-promo" name="promo" type="text">
+        </div>
+        <button class="btn btn--primary" type="submit">Reservar</button>
+      </div>
+      <p class="booking-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Mejor precio garantizado
+      </p>
+    </form>
+  </div>
+</section>
+
+<section class="benefits post-hero" data-section="benefits" data-purpose="loyalty perks / value proposition" data-intent="loyalty perks / value proposition" data-layout="grid" data-items="4">
+  <div class="container">
+    <h2 class="section-heading" style="margin-inline:auto;text-align:center;">Al reservar en Park Royal obtienes mejores ventajas</h2>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        <h3><span data-countup="10">10</span>% de descuento</h3>
+      </div>
+      <div class="benefit">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>
+        <h3>Meses sin intereses</h3>
+      </div>
+      <div class="benefit">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg>
+        <h3>Early Check-in | Late Check-out</h3>
+      </div>
+      <div class="benefit">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9"/><path d="M2 16h20v2a1 1 0 0 1-1 1h-2"/><circle cx="7.5" cy="19" r="1.8"/><circle cx="16.5" cy="19" r="1.8"/><line x1="4" y1="11" x2="20" y2="11"/></svg>
+        <h3>Transportaci&oacute;n Gratuita</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="split-intro" data-section="split-intro" data-purpose="brand introduction" data-intent="brand introduction" data-layout="split-media" data-media="image">
+  <div class="container"><div class="gradient-wipe" aria-hidden="true"></div></div>
+  <div class="container split-intro__grid">
+    <div class="split-intro__copy" data-anim>
+      <h2>Park Royal Hotels &amp; Resorts</h2>
+      <p>En Park Royal Hotels &amp; Resorts sabemos lo que significa un viaje, porque durante m&aacute;s de 30 a&ntilde;os te hemos acompa&ntilde;ado creando experiencias y momentos inolvidables en los mejores destinos de M&eacute;xico, d&eacute;jate consentir y viajamos juntos.</p>
+      <a class="btn btn--secondary" href="https://www.park-royalhotels.com/hoteles--resorts.html">Descubre m&aacute;s</a>
+    </div>
+    <div class="split-intro__photo" data-anim>
+      <img src="https://cdn2.paraty.es/parkroyal-corpo/images/aafd4de9a7193a0=s1000" alt="Pareja disfruta balc&oacute;n con vistas al mar en Park Royal: Corpo" loading="lazy" width="1000" height="666">
+    </div>
+  </div>
+</section>
+
+<section class="hotels" data-section="hotels" data-purpose="property discovery" data-intent="property discovery" data-layout="grid" data-items="5" data-media="image">
+  <div class="container container--wide">
+    <div class="gradient-wipe" aria-hidden="true"></div>
+    <h2 class="section-heading" data-anim>Explora nuestros Hoteles &amp; Resorts , disfruta de ubicaciones privilegiadas dise&ntilde;adas para que descubras de cerca las principales atracciones y lugares emblem&aacute;ticos.</h2>
+    <div class="hotels-grid">
+      <article class="hotel-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/50828207992ae59=s1000" alt="Hotel Grand Park Royal Canc&uacute;n: Piscina, playa y palmeras en el Caribe Mexicano" loading="lazy" width="1000" height="548">
+        <div class="hotel-card__body">
+          <h3>Grand Park Royal Canc&uacute;n</h3>
+          <p class="hotel-card__meta">Caribe Mexicano</p>
+          <a class="text-cta" href="https://www.park-royalhotels.com/grand-park-royal-cancun.html">Reservar</a>
+        </div>
+      </article>
+      <article class="hotel-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/97601c83e3ea0a2=s1000" alt="Infinity pool en Park Royal: Corpo. Sol y mar con tumbonas." loading="lazy" width="1000" height="548">
+        <div class="hotel-card__body">
+          <h3>Grand Park Royal Cozumel</h3>
+          <p class="hotel-card__meta">Caribe Mexicano</p>
+          <a class="text-cta" href="https://www.park-royalhotels.com/grand-park-royal-cozumel.html">Reservar</a>
+        </div>
+      </article>
+      <article class="hotel-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/e4da0cc8fb3f58e=s1000" alt="Hotel Grand Park Royal Puerto Vallarta: piscina frente a la playa y vistas al Pac&iacute;fico Mexicano." loading="lazy" width="1000" height="648">
+        <div class="hotel-card__body">
+          <h3>Grand Park Royal Puerto Vallarta</h3>
+          <p class="hotel-card__meta">Pacifico Mexicano</p>
+          <a class="text-cta" href="https://www.park-royalhotels.com/grand-park-royal-puerto-vallarta.html">Reservar</a>
+        </div>
+      </article>
+      <article class="hotel-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/381509dff6235d2=s1000" alt="Hotel Park Royal Beach Acapulco: terraza con vistas al mar, piscina y restaurante." loading="lazy" width="1000" height="562">
+        <div class="hotel-card__body">
+          <h3>Park Royal Beach Acapulco</h3>
+          <p class="hotel-card__meta">Pacifico Mexicano</p>
+          <a class="text-cta" href="https://www.park-royalhotels.com/park-royal-beach-acapulco.html">Reservar</a>
+        </div>
+      </article>
+      <article class="hotel-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/2d5d01017c9f7a7=s1000" alt="Ni&ntilde;os jugando en la arena en Park Royal: Corpo Vacacional" loading="lazy" width="1000" height="666">
+        <div class="hotel-card__body">
+          <h3>Park Royal Beach Canc&uacute;n</h3>
+          <p class="hotel-card__meta">Caribe Mexicano</p>
+          <a class="text-cta" href="https://www.park-royalhotels.com/park-royal-beach-cancun.html">Reservar</a>
+        </div>
+      </article>
+    </div>
+    <div class="hotels-footer" data-anim>
+      <a class="btn btn--secondary" href="https://www.park-royalhotels.com/hoteles--resorts.html">Ver todos los hoteles &amp; resorts</a>
+    </div>
+  </div>
+</section>
+
+<section class="experiences" data-section="experiences" data-purpose="experience discovery" data-intent="experience discovery" data-layout="grid" data-items="6" data-media="image">
+  <div class="container container--wide">
+    <div class="gradient-wipe" aria-hidden="true"></div>
+    <h2 class="section-heading" data-anim>Rel&aacute;jate en nuestros Hoteles &amp; Resorts, organiza tus eventos corporativos, celebra la boda de tus sue&ntilde;os o vive experiencias &uacute;nicas en tus destinos favoritos con Park Royal Hotels &amp; Resorts.</h2>
+    <div class="experiences-grid">
+      <a class="experience-tile" data-anim href="https://www.park-royalhotels.com/bodas.html">
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/a1264ae05eca9db=s700" alt="Boda en la playa: Parque Real ofrece escenarios de ensue&ntilde;o para tu gran d&iacute;a." loading="lazy" width="700" height="544">
+        <h3>Bodas</h3>
+      </a>
+      <a class="experience-tile" data-anim href="https://www.park-royalhotels.com/royal-planet.html">
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/1c9bbb9b99fd02d=s700" alt="Royal Planet by Park Royal Hotels &amp; Resorts, es el programa de sostenibilidad implementado por Park Royal Hotels &amp; Resorts" loading="lazy" width="700" height="467">
+        <h3>Sostenibilidad</h3>
+      </a>
+      <a class="experience-tile" data-anim href="https://www.park-royalhotels.com/wellness.html">
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/4652c5bed01301d=s700" alt="Park Royal: Corpo y mente en paz, meditando al atardecer en la playa." loading="lazy" width="700" height="466">
+        <h3>Wellness</h3>
+      </a>
+      <a class="experience-tile" data-anim href="https://www.park-royalhotels.com/eventos.html">
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/2b9e89a76583b54=s700" alt="Sala de juntas Park Royal: vista al mar, montaje en U, sillas blancas y proyector." loading="lazy" width="700" height="420">
+        <h3>Eventos y Convenciones</h3>
+      </a>
+      <div class="experience-tile" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/0faf13d43c3879f=s700" alt="Kids' Club en Park Royal: &aacute;rea de juegos tem&aacute;tica de playa con tobog&aacute;n." loading="lazy" width="700" height="383">
+        <h3>Kid&acute;s</h3>
+      </div>
+      <div class="experience-tile" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/3a6aa5eb1d455de=s700" alt="Elegante restaurante Park Royal: Corpo con decoraci&oacute;n asi&aacute;tica y mesas de teppanyaki." loading="lazy" width="700" height="383">
+        <h3>Gastronom&iacute;a</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="offers" data-section="offers" data-purpose="promotional moment — curated offers" data-intent="promotional moment — curated offers" data-layout="grid" data-items="3" data-media="image">
+  <div class="container">
+    <div class="gradient-wipe" aria-hidden="true"></div>
+    <h2 class="section-heading" data-anim>Aprovecha las mejores ofertas para que vivas unas vacaciones inolvidables. Y solo por registrarte sin costo a Loyalty Experiences by Park Royal &iexcl;obtienes 10% de descuento adicional!</h2>
+    <div class="offers-grid">
+      <article class="offer-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/05d25cca6a70378=s900" alt="Park Royal Hotels &amp; Resorts" loading="lazy" width="900" height="506">
+        <div class="offer-card__body">
+          <h3>Hasta 33% OFF, Ni&ntilde;os Gratis + hasta <span data-countup="9">9</span> MSI* y Transportaci&oacute;n incluida*</h3>
+          <div class="offer-card__actions">
+            <a class="btn btn--primary" href="#data">Reservar</a>
+            <a class="text-cta" href="https://www.park-royalhotels.com/venta-de-verano.html">Descubre m&aacute;s</a>
+          </div>
+        </div>
+      </article>
+      <article class="offer-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/21415e93b9f54ba=s900" alt="Park Royal Hotels &amp; Resorts" loading="lazy" width="900" height="506">
+        <div class="offer-card__body">
+          <h3>Los ni&ntilde;os se hospedan gratis*</h3>
+          <div class="offer-card__actions">
+            <a class="btn btn--primary" href="#data">Reservar</a>
+            <a class="text-cta" href="https://www.park-royalhotels.com/ninos-gratis.html">Descubre m&aacute;s</a>
+          </div>
+        </div>
+      </article>
+      <article class="offer-card" data-anim>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/10b80d9ec5cecf5=s900" alt="Park Royal Hotels &amp; Resorts" loading="lazy" width="900" height="506">
+        <div class="offer-card__body">
+          <h3>Transportaci&oacute;n Aeropuerto - Hotel - Aeropuerto gratuita*</h3>
+          <div class="offer-card__actions">
+            <a class="btn btn--primary" href="#data">Reservar</a>
+            <a class="text-cta" href="https://www.park-royalhotels.com/transportacion-gratuita.html">Descubre m&aacute;s</a>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="offers-conditions">*Aplican t&eacute;rminos y condiciones</p>
+    <div class="offers-footer" data-anim>
+      <a class="btn btn--secondary" href="https://www.park-royalhotels.com/ofertas.html">Ver todas las ofertas disponibles</a>
+    </div>
+  </div>
+</section>
+
+<section class="blog" data-section="blog" data-purpose="destination inspiration / freshness" data-intent="destination inspiration / freshness" data-layout="grid" data-items="2" data-media="image">
+  <div class="container"><div class="gradient-wipe" aria-hidden="true"></div></div>
+  <div class="container blog-grid">
+    <a class="blog-card" data-anim href="https://www.park-royalhotels.com/blog/celebra-el-4-de-julio-en-cancun.html">
+      <img src="https://cdn2.paraty.es/parkroyal-corpo/images/a627bf96257ef79=s600" alt="Celebra el 4 de Julio en Canc&uacute;n" loading="lazy" width="600" height="339">
+      <h3>Celebra el 4 de Julio en Canc&uacute;n</h3>
+    </a>
+    <a class="blog-card" data-anim href="https://www.park-royalhotels.com/blog/zona-arqueologica-soledad-de-maciel.html">
+      <img src="https://cdn2.paraty.es/parkroyal-corpo/images/f4e6d17b242a71a=s600" alt="Zona Arqueol&oacute;gica Soledad de Maciel" loading="lazy" width="600" height="343">
+      <h3>Zona Arqueol&oacute;gica Soledad de Maciel</h3>
+    </a>
+    <div class="blog-aside" data-anim>
+      <h2>&iquest;Quieres estar al d&iacute;a de lo &uacute;ltimo de Park Royal Hotels &amp; Resorts?</h2>
+      <a class="btn btn--secondary" href="https://www.park-royalhotels.com/blog.html">Visita nuestro blog</a>
+    </div>
+  </div>
+</section>
+
+<section class="brands" data-section="brands-duo" data-purpose="brand architecture" data-intent="brand architecture" data-layout="grid" data-items="2">
+  <div class="container">
+    <h2 data-anim>Marcas</h2>
+    <p class="brands-copy" data-anim>
+      <span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="brief demands 'Nuestras marcas…' paragraph; pages/index.json body[] empty — copy not captured">
+        <span class="placeholder-eyebrow">PLACEHOLDER &middot; copy</span>
+        <span class="placeholder-shape">Texto &laquo;Nuestras marcas&hellip;&raquo; del sitio actual no capturado en esta extracci&oacute;n.</span>
+      </span>
+    </p>
+    <div class="brands-grid">
+      <a class="brand-card brand-card--gpr" data-anim href="https://www.park-royalhotels.com/hoteles--resorts.html?brand=luxury">
+        <span class="placeholder-logo" data-placeholder="true" data-placeholder-type="other" data-placeholder-source="Grand Park Royal logo art not captured; only Park Royal corporate logo captured">
+          <span class="placeholder-eyebrow">PLACEHOLDER &middot; logo</span>
+          <span class="placeholder-shape">Logotipo Grand Park Royal</span>
+        </span>
+        <span class="brand-card__name">Grand Park Royal</span>
+      </a>
+      <a class="brand-card" data-anim href="https://www.park-royalhotels.com/hoteles--resorts.html?brand=beach">
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/35b870955567067=s800" alt="Logo de Park Royal: Corporativo y Resorts, un arco degradado sobre el nombre." loading="lazy" width="360" height="160">
+        <span class="brand-card__name">Park Royal</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="social" data-section="social-grid" data-purpose="social proof / first-click experience" data-intent="social proof / first-click experience" data-layout="grid" data-items="7" data-media="video">
+  <div class="container container--wide">
+    <div class="gradient-wipe" aria-hidden="true"></div>
+    <h2 class="section-heading" data-anim>Y porque queremos que la experiencia comience desde el primer clic&hellip;</h2>
+    <div class="social-mosaic">
+      <div class="social-tile--video">
+        <video src="https://storage.googleapis.com/cdn.paraty.es/parkroyal-corpo/files/RS_PARRILLA_15_AGO%20%281%29.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video de Park Royal Hotels &amp; Resorts"></video>
+      </div>
+      <div>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/dd64f9d9df34e94=s400" alt="Novia y novio abrazados en boda en playa Park Royal: Cuerpo y alma." loading="lazy" width="400" height="400">
+      </div>
+      <div class="social-tile--video">
+        <video src="https://storage.googleapis.com/cdn.paraty.es/parkroyal-corpo/files/GPR_CZM_PARRILLA_7%20AGO%20%281%29.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video de Park Royal Hotels &amp; Resorts"></video>
+      </div>
+      <div>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/5de87e99b39a806=s400" alt="Pareja en piscina infinita, Park Royal: Corpo Caribe." loading="lazy" width="400" height="266">
+      </div>
+      <div class="social-tile--video">
+        <video src="https://storage.googleapis.com/cdn.paraty.es/parkroyal-corpo/files/GPR_PARRILLA_NOV%207%20%282%29%20%281%29.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Video de Park Royal Hotels &amp; Resorts"></video>
+      </div>
+      <div>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/3d8e4403d2f4185=s400" alt="Infinity pool y playa en Park Royal: Corpo, vistas al mar y descanso." loading="lazy" width="400" height="217">
+      </div>
+      <div>
+        <img src="https://cdn2.paraty.es/parkroyal-corpo/images/1936d016b2a9d5c=s400" alt="Masaje relajante en Park Royal: Corpo para una experiencia de bienestar inolvidable." loading="lazy" width="400" height="400">
+      </div>
+    </div>
+    <div class="social-follow" data-anim>
+      <div class="social-follow__icons">
+        <span class="social-follow__label">S&iacute;guenos</span>
+        <a class="social-icon" href="http://www.facebook.com/ParkRoyalHotels" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.6 1.7-1.6h1.4V4.8c-.3 0-1.2-.1-2.2-.1-2.2 0-3.9 1.4-3.9 4V11H8v3h2.5v7h3z"/></svg>
+        </a>
+        <a class="social-icon" href="http://www.instagram.com/parkroyalhoteles" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social-icon" href="http://www.tiktok.com/@parkroyalhotels" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.4 2 1.7 3.4 3.9 3.6v2.9c-1.5 0-2.8-.4-3.9-1.2v5.9c0 3.7-2.6 5.8-5.5 5.8-2.8 0-5.1-2.1-5.1-5 0-3.2 2.9-5.4 5.9-4.9v3c-1.4-.5-2.9.4-2.9 1.9 0 1.2 1 2.1 2.2 2.1 1.4 0 2.4-1 2.4-2.9V3h3z"/></svg>
+        </a>
+      </div>
+      <div class="app-badges">
+        <a href="https://play.google.com/store/apps/details?id=com.tcass.igs.parkroyal&amp;hl=es&amp;gl=US">
+          <img src="https://cdn2.paraty.es/parkroyal-corpo/images/ada486c12df4bb2=s300" alt="Descarga la app de Park Royal: Corpo en Google Play." loading="lazy" width="238" height="80">
+        </a>
+        <a class="app-badge--appstore" href="https://apps.apple.com/us/app/park-royal-hotels-resorts/id1523872530" data-placeholder="true" data-placeholder-type="other" data-placeholder-source="App Store badge art not in capture; apps.apple.com link captured">
+          <span class="placeholder-eyebrow">PLACEHOLDER &middot; badge</span>
+          <span class="placeholder-shape">App Store</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter" data-section="newsletter" data-purpose="lead capture" data-intent="lead capture" data-layout="contained" data-interactive="form">
+  <div class="container">
+    <form class="newsletter-box" data-anim action="https://www.park-royalhotels.com/" method="get">
+      <h2>&iexcl;Reg&iacute;strate!</h2>
+      <div class="newsletter-form">
+        <label for="nl-email" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email</label>
+        <input id="nl-email" type="email" name="email" placeholder="Email" autocomplete="email" required>
+        <button class="btn btn--primary" type="submit">Enviar</button>
+      </div>
+      <div class="newsletter-consents">
+        <label class="consent consent--1">
+          <input type="checkbox" name="privacidad">
+          <span>He le&iacute;do y acepto la <a href="https://www.park-royalhotels.com/es/?sectionContent=politica-de-privacidad.html">pol&iacute;tica de privacidad</a></span>
+        </label>
+        <label class="consent consent--2">
+          <input type="checkbox" name="consent2">
+          <span data-placeholder="true" data-placeholder-type="other" data-placeholder-source="second captured consent label not in capture">
+            <span class="placeholder-eyebrow">PLACEHOLDER &middot; consent</span>
+            <span class="placeholder-shape">Etiqueta del segundo consentimiento no capturada.</span>
+          </span>
+        </label>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="sustainability" data-section="sustainability-band" data-purpose="Royal Planet sustainability pillar" data-intent="Royal Planet sustainability pillar" data-layout="edge-to-edge">
+  <div class="container sustainability__inner">
+    <div class="sustainability__copy" data-anim>
+      <h2>Nos preocupamos por el medio ambiente</h2>
+      <p>&iquest;Buscas unas vacaciones responsables? Royal Planet es la respuesta a unas vacaciones eco-friendly</p>
+    </div>
+    <a class="btn btn--secondary" href="https://www.park-royalhotels.com/royal-planet.html">&iquest;En qu&eacute; consiste Royal Planet?</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" data-section="footer" data-purpose="directory + legal" data-intent="directory + legal" data-layout="grid">
+  <div class="container">
+    <img class="site-footer__wordmark" src="https://storage.googleapis.com/cdn.paraty.es/parkroyal-corpo/files/logo_color_svg.svg" alt="Park Royal Hotels &amp; Resorts" width="180" height="80" loading="lazy">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h2>Hoteles &amp; Resorts</h2>
+        <ul>
+          <li><a href="https://www.park-royalhotels.com/grand-park-royal-cancun.html">Grand Park Royal Canc&uacute;n</a></li>
+          <li><a href="https://www.park-royalhotels.com/grand-park-royal-cozumel.html">Grand Park Royal Cozumel</a></li>
+          <li><a href="https://www.park-royalhotels.com/grand-park-royal-puerto-vallarta.html">Grand Park Royal Puerto Vallarta</a></li>
+          <li><a href="https://www.park-royalhotels.com/royal-select-at-grand-park-royal-cancun.html">Royal Select at Grand Park Royal Canc&uacute;n Adults Only</a></li>
+          <li><a href="https://www.park-royalhotels.com/park-royal-beach-acapulco.html">Park Royal Beach Acapulco</a></li>
+          <li><a href="https://www.park-royalhotels.com/park-royal-beach-cancun.html">Park Royal Beach Canc&uacute;n</a></li>
+          <li><a href="https://www.park-royalhotels.com/park-royal-beach-ixtapa.html">Park Royal Beach Ixtapa</a></li>
+          <li><a href="https://www.park-royalhotels.com/hoteles--resorts.html">Ver todos los hoteles &amp; resorts</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Destinos</h2>
+        <ul>
+          <li><a href="https://www.park-royalhotels.com/hoteles--resorts.html?destiny=Caribe%20Mexicano">Caribe Mexicano</a></li>
+          <li><a href="https://www.park-royalhotels.com/hoteles--resorts.html?destiny=Pacifico%20Mexicano">Pacifico Mexicano</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>Marcas</h2>
+        <ul>
+          <li><a href="https://www.park-royalhotels.com/hoteles--resorts.html?brand=luxury">Grand Park Royal</a></li>
+          <li><a href="https://www.park-royalhotels.com/hoteles--resorts.html?brand=beach">Park Royal Beach</a></li>
+          <li><a href="https://www.park-royalhotels.com/royal-planet.html">Royal Planet</a></li>
+          <li><a href="https://www.park-royalhotels.com/loyalty-experiences.html">Loyalty Experiences</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-seo">Todo el equipo de Park Royal Hotels &amp; Resorts est&aacute;n a tu disposici&oacute;n para que tengas una experiencia &uacute;nica. Reserva online y consigue los mejores precios</p>
+    <div class="footer-phones">
+      <a href="tel:18008903798">US &amp; CAN - 1 800 890 3798</a>
+      <a href="tel:+551152420710">BR +55 (11) 52420710</a>
+    </div>
+    <div class="footer-legal">
+      <a href="https://www.park-royalhotels.com/comunicado-antifraude.html">Comunicado antifraude</a>
+      <a href="https://www.park-royalhotels.com/cdn/files/Principios%20de%20negocio%202025.pdf">Principios de negocio</a>
+      <a href="https://www.park-royalhotels.com/politicas-de-privacidad-park-royal.html">Pol&iacute;tica de Privacidad</a>
+      <a href="https://www.park-royalhotels.com/canal-de-denuncia-y-transparencia.html">Canal de denuncias</a>
+      <a href="https://www.park-royalhotels.com/trabaja-con-nosotros.html">Trabaja con nosotros</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const t = document.getElementById('ds-nav-toggle');
+  const b = document.querySelector('.ds-nav-burger');
+  if (!t || !b) return;
+  const sync = () => b.setAttribute('aria-expanded', t.checked);
+  t.addEventListener('change', sync); sync();
+  b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.checked = !t.checked; sync(); } });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && t.checked) { t.checked = false; sync(); b.focus(); } });
+})();
+</script>
+
+<script src="assets/d4131e-lenis.min.js"></script>
+<script>
+/* Canonical stardust motion runtime v1 (motion-runtime.md), animConfig rewritten to the
+   arrival register tokens (DESIGN-C.json extensions.motion). Register-specific appends:
+   gradient-wipe IO block. Degradation hardening: measure()/observers gated so
+   prefers-reduced-motion renders final states (motion-validation.md § 6b). */
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis bootstrap ────────────────────────────────────────────
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+
+  // ── Nav scrolled state ─────────────────────────────────────────
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('scrolled', scroll > 40);
+  });
+
+  // ── Helpers ────────────────────────────────────────────────────
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+
+  // ── Register-specific configuration (arrival) ──────────────────
+  const animConfig = {
+    parallax:      { translate: 35, fade: 0.55, rangeStart: 0, range: 80 },
+    plansParallax: { translate: 8, rangeStart: 0, range: 80 },
+    cards:         { trigger: 0.85, range: 0.32, slide: 40, stagger: 0.12 },
+    wordmark:      { range: 0.6, clip: 80 },
+  };
+
+  // ── data-split: pre-process letter spans (no-op: arrival emits none) ──
+  document.querySelectorAll('[data-split]').forEach((el) => {
+    const text = el.textContent;
+    el.textContent = '';
+    text.split('').forEach((ch) => {
+      const s = document.createElement('span');
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(60%)';
+      s.style.filter = 'blur(8px)';
+      el.appendChild(s);
+    });
+  });
+
+  // ── Register lists ─────────────────────────────────────────────
+  const animList = [];
+  const headWords = [];
+  const splitLetters = [];
+  let wordmarkEl = null, wordmarkTop = 0;
+
+  function measure() {
+    const postHeroEl = document.querySelector('.post-hero');
+    const savedTransform = postHeroEl ? postHeroEl.style.transform : '';
+    if (postHeroEl) postHeroEl.style.transform = '';
+
+    animList.forEach(({ el }) => { el.style.opacity = el.style.transform = el.style.willChange = ''; });
+    animList.length = 0;
+    headWords.length = 0;
+    splitLetters.length = 0;
+
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => {
+      const parent = el.closest('.band, .ops-band, .alerts, .access, .news, .ops-section > div, .ops-tiles, .ops-alerts, .ops-mini, section');
+      let stagger = 0;
+      if (parent) {
+        const peers = parent.querySelectorAll('[data-anim], [data-tile-anim]');
+        const idx = Array.prototype.indexOf.call(peers, el);
+        stagger = (idx % 8) * animConfig.cards.stagger;
+      }
+      el.style.opacity = '0';
+      el.style.transform = el.hasAttribute('data-tile-anim')
+        ? `translateY(28px) rotateX(8deg)`
+        : `translateY(${animConfig.cards.slide}px)`;
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+
+    document.querySelectorAll('.display-head, .terminals-band__head h2').forEach((head) => {
+      const words = head.querySelectorAll('.word');
+      const top = getDocTop(head);
+      words.forEach((w, i) => {
+        w.style.clipPath = 'inset(0 100% 0 0)';
+        w.style.transform = 'translateY(110%)';
+        w.style.willChange = 'clip-path, transform';
+        headWords.push({ el: w, triggerTop: top, staggerDelay: i * 0.15 });
+      });
+    });
+
+    document.querySelectorAll('[data-split]').forEach((el) => {
+      const top = getDocTop(el);
+      el.querySelectorAll('span').forEach((s, i) => {
+        splitLetters.push({ el: s, triggerTop: top, staggerDelay: i * 0.05 });
+      });
+    });
+
+    // Footer wordmark wipe-up
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl) {
+      wordmarkTop = getDocTop(wordmarkEl);
+      wordmarkEl.style.clipPath = `inset(${animConfig.wordmark.clip}% 0 0 0)`;
+      wordmarkEl.style.willChange = 'clip-path';
+    }
+
+    if (postHeroEl) postHeroEl.style.transform = savedTransform;
+  }
+
+  // ── [data-countup]: IO-triggered numeric tween ─────────────────
+  const countSeen = new WeakSet();
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || countSeen.has(entry.target)) return;
+      countSeen.add(entry.target);
+      const target = +entry.target.getAttribute('data-countup');
+      const duration = target > 20 ? 1400 : target > 5 ? 900 : 600;
+      const start = performance.now();
+      (function step(now) {
+        const t = clamp((now - start) / duration, 0, 1);
+        entry.target.textContent = String(Math.round(easeOut3(t) * target));
+        if (t < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }, { threshold: 0.4 });
+  if (!prefersReducedMotion) document.querySelectorAll('[data-countup]').forEach((el) => countObserver.observe(el));
+
+  // ── [data-flip] / [data-fill]: no-ops for arrival (none emitted) ──
+  const flipObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.target.dataset.flipped === '1') return;
+      entry.target.dataset.flipped = '1';
+      const target = +entry.target.getAttribute('data-flip');
+      const total = 8 + Math.floor(Math.random() * 4);
+      let i = 0;
+      (function flap() {
+        if (i >= total) { entry.target.textContent = String(target); return; }
+        entry.target.textContent = String(Math.floor(Math.random() * 10));
+        i++;
+        setTimeout(flap, 60);
+      })();
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-flip]').forEach((el) => flipObserver.observe(el));
+
+  const fillObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.target.dataset.filled === '1') return;
+      entry.target.dataset.filled = '1';
+      const pct = +entry.target.getAttribute('data-fill');
+      setTimeout(() => { entry.target.style.width = pct + '%'; }, 120);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-fill]').forEach((el) => fillObserver.observe(el));
+
+  // ── gradient-wipes: IO-triggered identity chrome (arrival append) ──
+  const wipeObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('in');
+      wipeObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+  if (!prefersReducedMotion) document.querySelectorAll('.gradient-wipe').forEach((el) => wipeObserver.observe(el));
+
+  // ── rAF loop: scroll-progress reveals + parallax ───────────────
+  const heroMarqueeEl = document.querySelector('.hero-marquee');
+  const postHeroEl = document.querySelector('.post-hero');
+  let _lastMB = null;
+
+  (function tick() {
+    if (prefersReducedMotion) { requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+    const isDesktop = window.innerWidth > 767;
+
+    // Hero parallax + identity scrim progress
+    if (heroMarqueeEl) {
+      const pp = animConfig.parallax;
+      if (isDesktop) {
+        const rs = pp.rangeStart / 100 * vh;
+        const re = pp.range / 100 * vh;
+        const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1));
+        heroMarqueeEl.style.transform = `translateY(${p * -pp.translate}vh)`;
+        document.documentElement.style.setProperty('--parallax-progress', p);
+      } else {
+        heroMarqueeEl.style.transform = '';
+        document.documentElement.style.setProperty('--parallax-progress', 0);
+      }
+    }
+
+    // rising-plate: post-hero rises faster than the hero
+    let postHeroOffsetPx = 0;
+    if (postHeroEl) {
+      const pp2 = animConfig.plansParallax;
+      if (isDesktop) {
+        const rs = pp2.rangeStart / 100 * vh;
+        const re = pp2.range / 100 * vh;
+        const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1));
+        postHeroOffsetPx = p * -pp2.translate / 100 * vh;
+        postHeroEl.style.transform = `translateY(${p * -pp2.translate}vh)`;
+        const newMB = `${p * -pp2.translate}vh`;
+        if (newMB !== _lastMB) { postHeroEl.style.marginBottom = newMB; _lastMB = newMB; }
+      } else {
+        postHeroEl.style.transform = '';
+        if (_lastMB !== '') { postHeroEl.style.marginBottom = ''; _lastMB = ''; }
+      }
+    }
+
+    // Scroll-progress entrances
+    for (let i = 0; i < animList.length; i++) {
+      const item = animList[i];
+      const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh * trigger - (item.triggerTop + postHeroOffsetPx)) / (vh * range);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      if (item.el.hasAttribute('data-tile-anim')) {
+        item.el.style.transform = `translateY(${(1 - p) * 28}px) rotateX(${(1 - p) * 8}deg)`;
+      } else {
+        item.el.style.transform = `translateY(${(1 - p) * slide}px)`;
+      }
+    }
+
+    // Display-head clip-path word reveals (no-op for arrival)
+    for (let i = 0; i < headWords.length; i++) {
+      const item = headWords[i];
+      const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.30);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+      item.el.style.transform = `translateY(${(1 - p) * 110}%)`;
+    }
+
+    // [data-split] letter reveals (no-op for arrival)
+    for (let i = 0; i < splitLetters.length; i++) {
+      const item = splitLetters[i];
+      const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.35);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      item.el.style.transform = `translateY(${(1 - p) * 60}%)`;
+      item.el.style.filter = `blur(${(1 - p) * 8}px)`;
+    }
+
+    // wordmark-arrival: footer wordmark wipe-up
+    if (wordmarkEl) {
+      const adjustedTop = wordmarkTop + postHeroOffsetPx;
+      const wP = easeOut3(clamp((sY + vh - adjustedTop) / (vh * animConfig.wordmark.range), 0, 1));
+      wordmarkEl.style.clipPath = `inset(${(1 - wP) * animConfig.wordmark.clip}% 0 0 0)`;
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  if (!prefersReducedMotion) {
+    measure();
+    window.addEventListener('load',   () => requestAnimationFrame(measure), { once: true });
+    window.addEventListener('resize', measure, { passive: true });
+  }
+
+  // ── Reduced-motion: force final states ─────────────────────────
+  if (prefersReducedMotion) {
+    document.querySelectorAll('[data-anim], [data-tile-anim], [data-split] span').forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.filter = 'none';
+      el.style.clipPath = 'none';
+    });
+    document.querySelectorAll('.word').forEach((el) => {
+      el.style.clipPath = 'none';
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('[data-countup]').forEach((el) => { el.textContent = el.getAttribute('data-countup'); });
+    document.querySelectorAll('[data-flip]').forEach((el) => { el.textContent = el.getAttribute('data-flip'); });
+    document.querySelectorAll('[data-fill]').forEach((el) => { el.style.width = el.getAttribute('data-fill') + '%'; });
+    document.querySelectorAll('.site-footer__wordmark').forEach((el) => { el.style.clipPath = 'none'; });
+    document.querySelectorAll('.gradient-wipe').forEach((el) => { el.classList.add('in'); });
+    // full neutralization: ambient looping video stops too
+    document.querySelectorAll('.social-mosaic video').forEach((v) => { v.removeAttribute('autoplay'); try { v.pause(); } catch (e) {} });
+  }
+})();
+</script>
+</body>
+</html>

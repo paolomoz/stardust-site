@@ -1,0 +1,233 @@
+window.SAMPLES = [
+ {
+  "slug": "tyson",
+  "brand": "Tyson Foods",
+  "url": "https://www.tysonfoods.com/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Editorial full-bleed hero over a stock corporate grid.",
+  "before": "data/tyson/before.jpg",
+  "after": "data/tyson/after.html",
+  "afterThumb": "data/tyson/after.jpg"
+ },
+ {
+  "slug": "velocity-global",
+  "brand": "PEBL",
+  "url": "https://hellopebl.com/",
+  "variant": "D \u00b7 Refined",
+  "page": "Homepage",
+  "thesis": "Quiet fintech confidence replacing a busy marketing wall.",
+  "before": "data/velocity-global/before.jpg",
+  "after": "data/velocity-global/after.html",
+  "afterThumb": "data/velocity-global/after.jpg"
+ },
+ {
+  "slug": "dtn",
+  "brand": "DTN",
+  "url": "https://www.dtn.com/",
+  "variant": "Proposed",
+  "page": "Homepage",
+  "thesis": "One clear value story in place of scattered vertical tiles.",
+  "before": "data/dtn/before.jpg",
+  "after": "data/dtn/after.html",
+  "afterThumb": "data/dtn/after.jpg"
+ },
+ {
+  "slug": "parkroyal",
+  "brand": "PARKROYAL Hotels",
+  "url": "https://www.park-royalhotels.com/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Cinematic hospitality mood over a flat booking layout.",
+  "before": "data/parkroyal/before.jpg",
+  "after": "data/parkroyal/after.html",
+  "afterThumb": "data/parkroyal/after.jpg"
+ },
+ {
+  "slug": "fairmas",
+  "brand": "Fairmas",
+  "url": "https://fairmas.com/",
+  "variant": "A \u00b7 Proposed",
+  "page": "Homepage",
+  "thesis": "Structured SaaS clarity for a dense feature page.",
+  "before": "data/fairmas/before.jpg",
+  "after": "data/fairmas/after.html",
+  "afterThumb": "data/fairmas/after.jpg"
+ },
+ {
+  "slug": "elevenlabs",
+  "brand": "ElevenLabs",
+  "url": "https://elevenlabs.io/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Dark, product-forward hero with sharpened hierarchy.",
+  "before": "data/elevenlabs/before.jpg",
+  "after": "data/elevenlabs/after.html",
+  "afterThumb": "data/elevenlabs/after.jpg"
+ },
+ {
+  "slug": "paramount",
+  "brand": "Paramount",
+  "url": "https://www.paramount.com/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Studio-grade storytelling over a link-heavy portal.",
+  "before": "data/paramount/before.jpg",
+  "after": "data/paramount/after.html",
+  "afterThumb": "data/paramount/after.jpg"
+ },
+ {
+  "slug": "festool",
+  "brand": "Festool",
+  "url": "https://www.festool.com/",
+  "variant": "A \u00b7 Proposed",
+  "page": "Homepage",
+  "thesis": "Precision-tool craft with restrained, confident type.",
+  "before": "data/festool/before.jpg",
+  "after": "data/festool/after.html",
+  "afterThumb": "data/festool/after.jpg"
+ },
+ {
+  "slug": "nvidia",
+  "brand": "NVIDIA",
+  "url": "https://www.nvidia.com/en-us/",
+  "variant": "C \u00b7 Proposed",
+  "page": "Homepage",
+  "thesis": "Focused narrative instead of an overloaded card firehose.",
+  "before": "data/nvidia/before.jpg",
+  "after": "data/nvidia/after.html",
+  "afterThumb": "data/nvidia/after.jpg"
+ },
+ {
+  "slug": "theroadhome",
+  "brand": "The Road Home",
+  "url": "https://theroadhome.org/",
+  "variant": "Proposed",
+  "page": "Homepage",
+  "thesis": "Human, mission-first hero for a nonprofit.",
+  "before": "data/theroadhome/before.jpg",
+  "after": "data/theroadhome/after.html",
+  "afterThumb": "data/theroadhome/after.jpg"
+ },
+ {
+  "slug": "cardvalet",
+  "brand": "CardValet",
+  "url": "https://www.cardvalet.com/",
+  "variant": "Proposed",
+  "page": "Homepage",
+  "thesis": "Modern fintech surface over a dated product site.",
+  "before": "data/cardvalet/before.jpg",
+  "after": "data/cardvalet/after.html",
+  "afterThumb": "data/cardvalet/after.jpg"
+ },
+ {
+  "slug": "3m",
+  "brand": "3M",
+  "url": "https://www.3m.com/",
+  "variant": "C \u00b7 Video",
+  "page": "Homepage",
+  "thesis": "Motion-led hero unifying a fragmented conglomerate page.",
+  "before": "data/3m/before.jpg",
+  "after": "data/3m/after.html",
+  "afterThumb": "data/3m/after.jpg"
+ },
+ {
+  "slug": "card-corner",
+  "brand": "Card-Corner",
+  "url": "https://www.card-corner.de/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Boutique retail warmth over a generic shop template.",
+  "before": "data/card-corner/before.jpg",
+  "after": "data/card-corner/after.html",
+  "afterThumb": "data/card-corner/after.jpg"
+ },
+ {
+  "slug": "frescopa",
+  "brand": "Frescopa",
+  "url": "https://frescopa.coffee/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Rich coffee craft replacing a flat catalog.",
+  "before": "data/frescopa/before.jpg",
+  "after": "data/frescopa/after.html",
+  "afterThumb": "data/frescopa/after.jpg"
+ },
+ {
+  "slug": "jfkairport",
+  "brand": "JFK Airport",
+  "url": "https://www.jfkairport.com/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Wayfinding calm over a cluttered travel portal.",
+  "before": "data/jfkairport/before.jpg",
+  "after": "data/jfkairport/after.html",
+  "afterThumb": "data/jfkairport/after.jpg"
+ },
+ {
+  "slug": "sagora",
+  "brand": "Sagora",
+  "url": "https://www.sagora.com/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Senior-living warmth with clearer hierarchy.",
+  "before": "data/sagora/before.jpg",
+  "after": "data/sagora/after.html",
+  "afterThumb": "data/sagora/after.jpg"
+ },
+ {
+  "slug": "virginatlantic",
+  "brand": "Virgin Atlantic",
+  "url": "https://www.virginatlantic.com/",
+  "variant": "Proposed",
+  "page": "Where We Fly \u2014 New York",
+  "thesis": "Destination romance for a functional route page.",
+  "before": "data/virginatlantic/before.jpg",
+  "after": "data/virginatlantic/after.html",
+  "afterThumb": "data/virginatlantic/after.jpg"
+ },
+ {
+  "slug": "semrush",
+  "brand": "Semrush",
+  "url": "https://www.semrush.com/",
+  "variant": "A \u00b7 Proposed",
+  "page": "Homepage",
+  "thesis": "Sharpened SaaS hierarchy over a dense marketing grid.",
+  "before": "data/semrush/before.jpg",
+  "after": "data/semrush/after.html",
+  "afterThumb": "data/semrush/after.jpg"
+ },
+ {
+  "slug": "wellsfargo",
+  "brand": "Wells Fargo",
+  "url": "https://www.wellsfargo.com/",
+  "variant": "A \u00b7 Proposed",
+  "page": "Homepage",
+  "thesis": "Trust-forward banking calm over a busy promo stack.",
+  "before": "data/wellsfargo/before.jpg",
+  "after": "data/wellsfargo/after.html",
+  "afterThumb": "data/wellsfargo/after.jpg"
+ },
+ {
+  "slug": "cecreditsonline",
+  "brand": "CE Credits Online",
+  "url": "https://www.cecreditsonline.org/",
+  "variant": "C \u00b7 Cinematic",
+  "page": "Homepage",
+  "thesis": "Credible education hero replacing a plain course list.",
+  "before": "data/cecreditsonline/before.jpg",
+  "after": "data/cecreditsonline/after.html",
+  "afterThumb": "data/cecreditsonline/after.jpg"
+ },
+ {
+  "slug": "wheelercat",
+  "brand": "Wheeler CAT",
+  "url": "https://wheelercat.com/",
+  "variant": "A \u00b7 Rich",
+  "page": "Homepage",
+  "thesis": "Heavy-equipment grit with a bolder, richer hero.",
+  "before": "data/wheelercat/before.jpg",
+  "after": "data/wheelercat/after.html",
+  "afterThumb": "data/wheelercat/after.jpg"
+ }
+];

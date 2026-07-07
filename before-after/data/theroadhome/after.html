@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         stardust:prototype
+  writtenAt:         2026-07-02T09:35:00+02:00
+  page:              home
+  pageUrl:           https://theroadhome.org/
+  againstDirection:  stardust/direction.md (Active 2026-07-02T09:03:00+02:00)
+  readArtifacts:
+    - stardust/current/pages/index.json
+    - stardust/current/_brand-extraction.json
+    - DESIGN.md
+    - DESIGN.json
+    - stardust/prototypes/home-shape.md
+  divergenceVersion: v1.0 (stardust v2)
+  fontDeck:          brand-inherited (HarmoniaSans + DINNextLTPro, Mode A pinned)
+  paletteSource:     inherited (Mode A — DESIGN.md colors frontmatter, hex)
+  surprise:          low
+  signatureElements:
+    - kind: scroll-motion
+      capturedSource: voice.heroMedium (skrollr vc_parallax slide-1.png)
+      mechanism: "CSS parallax — background-attachment:fixed on the hero photo + scrim gradient for overlaid-text legibility"
+      fallback: "prefers-reduced-motion + touch: background-attachment:scroll (static photo); scrim always present"
+    - kind: motif
+      capturedSource: systemComponents.housing-focused-motif
+      mechanism: "journey band reproduced as connected 3-step line-art (SVG), brand's own icon language"
+      fallback: "static SVG"
+    - kind: motif
+      capturedSource: motifs.full-bleed-color-band + duotone-bw-photography
+      mechanism: "full-bleed teal/purple/fog band rhythm + B&W portrait grid retained"
+      fallback: n/a
+  motionNote: "Static prototype uses CSS-only motion (background-attachment:fixed parallax + on-load hero fade). No IntersectionObserver / rAF / animation-timeline, so content never gates on JS; count-up is rendered at final captured values. The one permitted inline script is the mobile-nav a11y helper per proposed-file-shell.md."
+  brandFaithfulInversions: "pure #fff ground + #000 text retained (Mode A); hex tokens retained; 0px radius retained; scoped uppercase (display+eyebrow+short CTA)"
+  reflexRejectAudit:
+    bypassed: true
+    reason: "Mode A — captured display (HarmoniaSans) + body (DINNextLTPro) families pinned; not a reflex choice"
+  copyCadenceBypass:
+    rules: [em-dash-overuse, all-caps-body, overused-font]
+    basis: "voiceClassification = captured-verbatim; copy is The Road Home's own, reproduced exactly; uppercase display/eyebrow is the captured brand signature"
+  capturedVsDirectionReconciliation: "DESIGN.json systemComponentRoles.header says deep-harbor ground; captured screenshots (index, get-help) show a WHITE header with the color logo. Mode A follows the captured reality: white sticky header, color logo, deep-harbor nav text, teal DONATE. Logged in learnings."
+  unsourcedContent: []
+  stardustVersion:   0.13.1
+-->
+<script>document.documentElement.classList.add('js')</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home - The Road Home</title>
+<meta name="description" content="The Road Home has been seeking to help those in need of housing and shelter services for 100 years.">
+<style>
+:root{
+  /* Type — HarmoniaSans (display) + DINNextLTPro (body), Mode A pinned */
+  --heading-font-family: 'HarmoniaSans', 'Arial Narrow', system-ui, sans-serif;
+  --body-font-family: 'DINNextLTPro', system-ui, -apple-system, sans-serif;
+
+  --heading-xxl: clamp(44px, 5vw, 64px);
+  --heading-xl: clamp(32px, 3.5vw, 44px);
+  --heading-lg: 28px;
+  --heading-md: 20px;
+  --body: 17px;
+  --body-sm: 14px;
+  --stat: clamp(40px, 4.5vw, 56px);
+
+  --line-height-heading: 1.12;
+  --line-height-body: 1.6;
+
+  /* Color — brand-faithful (Mode A), hex per DESIGN.md frontmatter */
+  --daylight: #ffffff;       /* page ground */
+  --fog-line: #e9eeef;       /* alt surface band */
+  --road-teal: #008192;      /* primary brand color */
+  --deep-harbor: #005560;    /* chrome/dark band, text on light */
+  --dusk-purple: #604a7b;    /* one band per page */
+  --morning-lilac: #c8bcd6;  /* story ground */
+  --ink: #000000;            /* body text on light */
+
+  --color-bg: var(--daylight);
+  --color-fg: var(--ink);
+  --color-accent: var(--road-teal);
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 96px;
+
+  --section-padding: 64px;
+  --max-width: 1200px;
+  --radius: 0px;
+
+  --shadow-card: 0 5px 15px rgba(0,0,0,0.15);
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --z-header: 100;
+}
+
+/* Mobile-nav base rule (source-order: after :root, before @media) */
+.ds-nav-burger{ display:none; }
+
+@font-face{ font-family:'HarmoniaSans'; src:url('assets/3652b1-HarmoniaSansProRegular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face{ font-family:'HarmoniaSans'; src:url('assets/83e544-HarmoniaSansProSemiBd.woff2') format('woff2'); font-weight:600; font-display:swap; }
+@font-face{ font-family:'HarmoniaSans'; src:url('assets/fdedd0-HarmoniaSansProBold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+@font-face{ font-family:'HarmoniaSans'; src:url('assets/f7567d-HarmoniaSansProBlack.woff2') format('woff2'); font-weight:900; font-display:swap; }
+@font-face{ font-family:'DINNextLTPro'; src:url('assets/910bc2-DINNextLTPro-Light.woff2') format('woff2'); font-weight:300; font-display:swap; }
+@font-face{ font-family:'DINNextLTPro'; src:url('assets/eeb3c5-DINNextLTPro-Regular.woff2') format('woff2'); font-weight:400; font-display:swap; }
+@font-face{ font-family:'DINNextLTPro'; src:url('assets/275400-DINNextLTPro-Bold.woff2') format('woff2'); font-weight:700; font-display:swap; }
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ hanging-punctuation: first; scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{
+  font-family:var(--body-font-family);
+  font-size:var(--body);
+  line-height:var(--line-height-body);
+  color:var(--color-fg);
+  background:var(--color-bg);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4{ font-family:var(--heading-font-family); line-height:var(--line-height-heading); text-wrap:balance; }
+p{ text-wrap:pretty; }
+img{ display:block; max-width:100%; height:auto; }
+a{ color:var(--deep-harbor); }
+:focus-visible{ outline:2px solid var(--road-teal); outline-offset:3px; }
+
+.wrap{ max-width:var(--max-width); margin-inline:auto; padding-inline:24px; }
+.eyebrow{
+  font-family:var(--heading-font-family); font-weight:700; font-size:13px;
+  text-transform:uppercase; letter-spacing:0.08em; color:var(--road-teal);
+  display:inline-block; margin-bottom:var(--spacing-md);
+}
+.eyebrow--onlight{ color:var(--deep-harbor); }
+.eyebrow--ondark{ color:var(--morning-lilac); }
+.visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+section{ padding-block:var(--section-padding); }
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  font-family:var(--heading-font-family); font-weight:700; font-size:18px;
+  text-transform:uppercase; letter-spacing:0.02em; text-decoration:none;
+  padding:16px 40px; border-radius:var(--radius); border:2px solid transparent;
+  cursor:pointer; transition:background-color .16s var(--ease), color .16s var(--ease);
+  min-height:52px;
+}
+.btn--primary{ background:var(--road-teal); color:var(--daylight); }
+.btn--primary:hover{ background:var(--deep-harbor); }
+.btn--secondary{ background:transparent; color:var(--deep-harbor); border-color:var(--deep-harbor); }
+.btn--secondary:hover{ background:var(--deep-harbor); color:var(--daylight); }
+.btn--ondark{ color:var(--daylight); border-color:var(--daylight); }
+.btn--ondark:hover{ background:var(--daylight); color:var(--deep-harbor); }
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky; top:0; z-index:var(--z-header);
+  background:var(--daylight); border-bottom:1px solid var(--fog-line);
+}
+.site-header__inner{ display:flex; align-items:center; gap:24px; min-height:72px; }
+.site-header__logo img{ height:44px; width:auto; }
+.site-nav{ display:flex; align-items:center; gap:26px; margin-left:auto; }
+.site-nav a{
+  font-family:var(--heading-font-family); font-weight:700; font-size:15px;
+  text-transform:uppercase; letter-spacing:0.03em; color:var(--deep-harbor);
+  text-decoration:none; padding:6px 0; position:relative;
+}
+.site-nav a:not(.btn)::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--road-teal); transform:scaleX(0); transform-origin:left;
+  transition:transform .18s var(--ease);
+}
+.site-nav a:not(.btn):hover::after{ transform:scaleX(1); }
+.site-nav__util{ display:flex; gap:18px; padding-inline:14px; border-inline:1px solid var(--fog-line); }
+.site-nav__util a{ font-weight:600; font-size:13px; }
+
+/* ============ HERO ============ */
+.hero{ position:relative; padding:0; min-height:clamp(460px, 72vh, 640px); display:flex; }
+.hero__bg{
+  position:absolute; inset:0;
+  background-image:linear-gradient(90deg, rgba(0,42,48,0.78) 0%, rgba(0,42,48,0.30) 55%, rgba(0,42,48,0.12) 100%),
+    url('assets/0a2da1-slide-1-52d6cc86.png');
+  background-size:cover; background-position:center 30%;
+  background-attachment:fixed; /* signature parallax */
+}
+.hero__inner{ position:relative; width:100%; align-self:flex-end; padding-block:56px; }
+.hero__panel{ max-width:640px; }
+.hero h1{
+  color:var(--daylight); font-weight:900; text-transform:uppercase;
+  font-size:var(--heading-xxl); letter-spacing:-0.01em; margin-bottom:20px;
+}
+.hero__sub{ color:var(--daylight); font-size:20px; max-width:52ch; margin-bottom:28px; opacity:.96; }
+.hero__cta{ display:flex; flex-wrap:wrap; gap:14px; }
+.hero-fade{ opacity:0; transform:translateY(16px); animation:heroIn .8s var(--ease) .12s forwards; }
+@keyframes heroIn{ to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce){
+  .hero__bg{ background-attachment:scroll; }
+  .hero-fade{ opacity:1; transform:none; animation:none; }
+}
+@media (hover:none){ .hero__bg{ background-attachment:scroll; } }
+
+/* ============ CRISIS HOTLINE BAND ============ */
+.crisis{ background:var(--deep-harbor); color:var(--daylight); padding-block:36px; }
+.crisis__inner{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 40px; }
+.crisis__lead{ font-size:20px; font-weight:700; font-family:var(--heading-font-family); }
+.crisis__lead small{ display:block; font-family:var(--body-font-family); font-weight:400; font-size:14px; opacity:.85; letter-spacing:.04em; text-transform:uppercase; }
+.crisis__tel{
+  font-family:var(--heading-font-family); font-weight:900; font-size:clamp(30px,4vw,44px);
+  color:var(--daylight); text-decoration:none; letter-spacing:-0.01em; line-height:1;
+  display:inline-flex; align-items:center; gap:12px; min-height:48px;
+}
+.crisis__tel:hover{ text-decoration:underline; }
+.crisis__211{ margin-left:auto; font-size:15px; }
+.crisis__211 a{ color:var(--daylight); font-weight:700; }
+
+/* ============ ROUTES ============ */
+.routes{ background:var(--daylight); }
+.routes__grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:8px; }
+.route{
+  position:relative; display:block; text-decoration:none; color:var(--daylight);
+  min-height:320px; overflow:hidden; border-top:4px solid var(--road-teal);
+}
+.route img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05); transition:transform .5s var(--ease), filter .3s var(--ease); }
+.route::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,85,96,0.15) 0%, rgba(0,85,96,0.85) 100%); }
+.route:hover img{ transform:scale(1.05); filter:grayscale(.4) contrast(1.05); }
+.route__label{ position:absolute; left:24px; bottom:22px; z-index:1; }
+.route__label span{ display:block; }
+.route__glyph{ width:32px; height:32px; margin-bottom:14px; }
+.route__name{ font-family:var(--heading-font-family); font-weight:900; font-size:22px; text-transform:uppercase; letter-spacing:.01em; }
+.route__more{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; opacity:.92; margin-top:6px; }
+
+/* ============ IMPACT ============ */
+.impact{ background:var(--road-teal); color:var(--daylight); text-align:center; }
+.impact .eyebrow{ color:var(--morning-lilac); }
+.impact__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px 32px; margin-top:12px; text-align:center; }
+.impact__num{ font-family:var(--heading-font-family); font-weight:900; font-size:var(--stat); line-height:1; letter-spacing:-0.02em; font-variant-numeric:tabular-nums; }
+.impact__cap{ font-size:16px; line-height:1.5; max-width:34ch; margin:14px auto 0; opacity:.96; }
+.impact__glyph{ width:40px; height:40px; margin:0 auto 16px; opacity:.9; }
+
+/* ============ JOURNEY ============ */
+.journey{ background:var(--daylight); text-align:center; }
+.journey__head p{ color:var(--deep-harbor); font-size:19px; margin-top:6px; }
+.journey__steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px; position:relative; }
+.jstep{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+.jstep__icon{ width:96px; height:96px; color:var(--road-teal); }
+.jstep__name{ font-family:var(--heading-font-family); font-weight:700; font-size:var(--heading-md); color:var(--ink); }
+.jstep__more{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--deep-harbor); text-decoration:none; border-bottom:2px solid var(--road-teal); padding-bottom:2px; }
+.jstep__more:hover{ color:var(--road-teal); }
+.journey__dashes{ display:none; }
+@media(min-width:900px){
+  .journey__dashes{ display:block; position:absolute; top:48px; left:16%; right:16%; height:40px; color:var(--morning-lilac); z-index:0; }
+}
+
+/* ============ CHARITY (purple, the one purple band) ============ */
+.charity{ background:var(--dusk-purple); color:var(--daylight); }
+.charity__inner{ display:grid; grid-template-columns:1.1fr 1.4fr; gap:40px; align-items:center; }
+.charity h2{ color:var(--daylight); font-weight:900; text-transform:uppercase; font-size:var(--heading-xl); }
+.charity__badge{ display:flex; align-items:center; gap:16px; margin-top:20px; }
+.charity__stars{ color:#f5c518; font-size:22px; letter-spacing:3px; }
+.charity__badge strong{ font-family:var(--heading-font-family); font-weight:700; font-size:16px; text-transform:uppercase; letter-spacing:.04em; }
+.charity p{ font-size:18px; line-height:1.6; }
+.charity .btn{ margin-top:22px; }
+
+/* ============ STORIES ============ */
+.stories{ background:var(--morning-lilac); }
+.stories .eyebrow{ color:var(--deep-harbor); }
+.stories__head{ text-align:center; max-width:640px; margin-inline:auto; }
+.stories__head h2{ color:var(--ink); font-weight:900; text-transform:uppercase; font-size:var(--heading-xl); }
+.stories__head p{ color:var(--deep-harbor); margin-top:12px; font-size:18px; }
+.stories__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px; }
+.story{ background:var(--daylight); display:flex; flex-direction:column; text-decoration:none; color:var(--ink); border-top:4px solid var(--road-teal); transition:box-shadow .2s var(--ease), transform .2s var(--ease); }
+.story:hover{ box-shadow:var(--shadow-card); transform:translateY(-2px); }
+.story__photo{ aspect-ratio:4/3; overflow:hidden; }
+.story__photo img{ width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05); }
+.story__body{ padding:24px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.story__name{ font-family:var(--heading-font-family); font-weight:900; font-size:24px; text-transform:uppercase; color:var(--ink); }
+.story__excerpt{ font-size:16px; color:var(--ink); flex:1; }
+.story__more{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--deep-harbor); }
+.story:hover .story__more{ color:var(--road-teal); }
+.stories__foot{ text-align:center; margin-top:36px; }
+
+/* ============ NEWSLETTER ============ */
+.newsletter{ background:var(--fog-line); }
+.newsletter__inner{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.newsletter h2{ color:var(--ink); font-weight:900; text-transform:uppercase; font-size:var(--heading-xl); }
+.newsletter__sub{ font-family:var(--heading-font-family); font-weight:600; font-size:var(--heading-lg); color:var(--deep-harbor); margin-top:6px; }
+.nl-form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.nl-field{ display:flex; flex-direction:column; gap:6px; }
+.nl-field--full{ grid-column:1 / -1; }
+.nl-field label{ font-size:13px; font-weight:700; color:var(--deep-harbor); }
+.nl-field input{ font-family:var(--body-font-family); font-size:16px; padding:12px 14px; border:1px solid #9db3b7; border-radius:var(--radius); background:var(--daylight); color:var(--ink); }
+.nl-field input:focus-visible{ outline:2px solid var(--road-teal); outline-offset:1px; border-color:var(--road-teal); }
+.nl-consent{ grid-column:1 / -1; display:flex; gap:10px; align-items:flex-start; }
+.nl-consent input{ margin-top:4px; width:18px; height:18px; accent-color:var(--road-teal); }
+.nl-consent p{ font-size:12.5px; color:var(--deep-harbor); line-height:1.5; }
+.nl-fine{ grid-column:1 / -1; font-size:11.5px; color:var(--deep-harbor); opacity:.85; line-height:1.5; }
+.nl-form .btn{ grid-column:1 / -1; justify-self:start; }
+
+/* ============ FOOTER ============ */
+.site-footer{ background:var(--deep-harbor); color:var(--daylight); padding-top:56px; }
+.footer__cols{ display:grid; grid-template-columns:repeat(4,1fr) 1.1fr; gap:32px; }
+.site-footer h3{ font-family:var(--heading-font-family); font-weight:700; font-size:15px; text-transform:uppercase; letter-spacing:.05em; color:var(--morning-lilac); margin-bottom:14px; }
+.site-footer ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+.site-footer a{ color:var(--daylight); text-decoration:none; font-size:14px; opacity:.9; }
+.site-footer a:hover{ opacity:1; text-decoration:underline; }
+.footer__brand{ display:flex; flex-direction:column; gap:12px; }
+.footer__brand img{ width:120px; }
+.footer__addr{ font-size:14px; line-height:1.7; opacity:.92; }
+.footer__addr a{ font-weight:700; }
+.footer__bar{ border-top:1px solid rgba(255,255,255,0.18); margin-top:44px; padding-block:20px; display:flex; flex-wrap:wrap; gap:16px 24px; align-items:center; font-size:13px; }
+.footer__bar .social{ display:flex; gap:16px; }
+.footer__bar .social a{ width:24px; height:24px; display:inline-flex; }
+.footer__bar .social svg{ width:20px; height:20px; fill:currentColor; }
+.footer__legal{ display:flex; gap:16px; opacity:.9; }
+.footer__copy{ margin-left:auto; opacity:.8; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px){
+  .footer__cols{ grid-template-columns:repeat(2,1fr); }
+  .footer__brand{ grid-column:1 / -1; }
+  .charity__inner{ grid-template-columns:1fr; }
+  .newsletter__inner{ grid-template-columns:1fr; gap:28px; }
+  .routes__grid{ grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:768px){
+  :root{ --section-padding:48px; }
+  .site-nav{
+    position:fixed; inset:72px 0 auto 0; flex-direction:column; align-items:stretch;
+    gap:0; background:var(--daylight); border-bottom:1px solid var(--fog-line);
+    padding:8px 24px 20px; margin:0; transform:translateY(-120%); transition:transform .25s var(--ease);
+    max-height:calc(100vh - 72px); overflow:auto; box-shadow:var(--shadow-card);
+  }
+  .site-nav[data-open="true"]{ transform:translateY(0); }
+  .site-nav a{ padding:14px 0; border-bottom:1px solid var(--fog-line); }
+  .site-nav a:not(.btn)::after{ display:none; }
+  .site-nav__util{ flex-direction:column; gap:0; padding:0; border:0; }
+  .site-nav .btn{ margin-top:14px; justify-content:center; }
+  .ds-nav-burger{
+    display:inline-flex; flex-direction:column; justify-content:center; gap:5px;
+    margin-left:auto; width:44px; height:44px; background:none; border:0; cursor:pointer; padding:8px;
+  }
+  .ds-nav-burger span{ display:block; height:2px; background:var(--deep-harbor); transition:transform .2s var(--ease), opacity .2s var(--ease); }
+  .ds-nav-burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .ds-nav-burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .ds-nav-burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .routes__grid,.impact__grid,.journey__steps,.stories__grid{ grid-template-columns:1fr; }
+  .nl-form{ grid-template-columns:1fr; }
+  .crisis__211{ margin-left:0; width:100%; }
+  .footer__cols{ grid-template-columns:1fr; }
+}
+@media (max-width:480px){
+  :root{ --section-padding:32px; }
+  .hero__cta{ flex-direction:column; align-items:stretch; }
+  .hero__cta .btn{ width:100%; }
+}
+</style>
+</head>
+<body data-template="landing">
+
+<header class="site-header" data-section="header" data-intent="navigate" data-layout="full-bleed" data-nav-collapse="hamburger" data-module="site-header" data-canon>
+  <div class="wrap site-header__inner">
+    <a class="site-header__logo" href="https://theroadhome.org" aria-label="The Road Home home">
+      <img src="assets/36d79d-2026-website-logo-TRH-scaled-89d7fea8.png" alt="The Road Home" width="1920" height="1097">
+    </a>
+    <button class="ds-nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="https://theroadhome.org/get-help/">Get Help</a>
+      <a href="https://theroadhome.org/give-main/">Give</a>
+      <a href="https://theroadhome.org/get-involved/">Get Involved</a>
+      <a href="https://theroadhome.org/about-us/">About Us</a>
+      <span class="site-nav__util">
+        <a href="https://theroadhome.org/get-help/">Find A Shelter</a>
+        <a href="https://theroadhome.org/get-involved/">Volunteer</a>
+      </span>
+      <a class="btn btn--primary" href="https://theroadhome.org/donate">Donate</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed" data-media="image">
+    <div class="hero__bg" role="img" aria-label="Woman in a red beanie and blue coat sitting on a rock against a city backdrop"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__panel hero-fade">
+        <h1>Refuge. Resources. Relief.</h1>
+        <p class="hero__sub">The Road Home provides emergency shelter, supportive services, and housing assistance that help individuals and families step out of homelessness.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="https://theroadhome.org/get-help/">Find Shelter</a>
+          <a class="btn btn--ondark" href="https://theroadhome.org/donate">Donate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="crisis" data-section="crisis-hotline-band" data-intent="drive action" data-layout="contained" data-module="hotline-211">
+    <div class="wrap crisis__inner">
+      <h2 class="visually-hidden">Get immediate help</h2>
+      <div class="crisis__lead">
+        Looking for immediate shelter?
+        <small>Call the Homeless Services Line</small>
+      </div>
+      <a class="crisis__tel" href="tel:8019909999" data-slot="phone">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.9.36 1.78.7 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.48a2 2 0 0 1 2.11-.45c.82.34 1.7.57 2.6.7A2 2 0 0 1 22 16.92z"/></svg>
+        801-990-9999
+      </a>
+      <div class="crisis__211">Other resource questions? <a href="tel:211" data-slot="secondary">Please call 211</a></div>
+    </div>
+  </section>
+
+  <section class="routes wrap" data-section="routes" data-intent="audience routing" data-layout="grid" data-items="3">
+    <span class="eyebrow">How you can connect</span>
+    <h2 class="visually-hidden">How you can connect</h2>
+    <div class="routes__grid">
+      <a class="route" href="https://theroadhome.org/get-help/">
+        <img src="assets/01a2f0-way-2-aa943cc7.jpg" alt="A person receiving support services">
+        <span class="route__label">
+          <svg class="route__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7.5-5.1-10-9.3C.4 9 1.6 5.5 4.8 5.1 7 4.8 8.9 6.2 12 9c3.1-2.8 5-4.2 7.2-3.9 3.2.4 4.4 3.9 2.8 6.6C19.5 15.9 12 21 12 21z"/></svg>
+          <span class="route__name">Services &amp; Resources</span>
+          <span class="route__more">Get help →</span>
+        </span>
+      </a>
+      <a class="route" href="https://theroadhome.org/give-main/">
+        <img src="assets/a5654f-way-1-ed5fcaef.jpg" alt="Volunteers packing donations">
+        <span class="route__label">
+          <svg class="route__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
+          <span class="route__name">Ways to Give</span>
+          <span class="route__more">Give →</span>
+        </span>
+      </a>
+      <a class="route" href="https://theroadhome.org/get-involved/">
+        <img src="assets/773c14-way-3-9320a8f7.jpg" alt="A community volunteer">
+        <span class="route__label">
+          <svg class="route__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="route__name">Volunteer</span>
+          <span class="route__more">Get involved →</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="impact" data-section="impact" data-intent="build trust" data-layout="grid" data-items="3">
+    <div class="wrap">
+      <span class="eyebrow">Impact</span>
+      <h2 class="visually-hidden">Impact</h2>
+      <div class="impact__grid">
+        <div class="stat">
+          <svg class="impact__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+          <div class="impact__num">1,550</div>
+          <p class="impact__cap">On any given night, we have over 1,550 people in housing, in the community</p>
+        </div>
+        <div class="stat">
+          <svg class="impact__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg>
+          <div class="impact__num">60%</div>
+          <p class="impact__cap">Of those who shelter with us, 60% receive case management services at some point during their stay</p>
+        </div>
+        <div class="stat">
+          <svg class="impact__glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="7" r="3"/><path d="M2 21c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="18" cy="8" r="2.5"/><path d="M16.5 14.4c2.6.6 4.5 2.6 4.5 5.6"/></svg>
+          <div class="impact__num">3,491</div>
+          <p class="impact__cap">In the last year we assisted 3,491 people with employment and housing-related services</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="journey wrap" data-section="journey" data-intent="explain mechanic" data-layout="grid" data-items="3" data-module="journey">
+    <div class="journey__head">
+      <span class="eyebrow eyebrow--onlight">Housing-Focused Resources</span>
+      <h2 class="visually-hidden">Housing-Focused Resources</h2>
+      <p>Along the journey from unsheltered to housed.</p>
+    </div>
+    <div class="journey__steps">
+      <svg class="journey__dashes" viewBox="0 0 600 40" fill="none" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 150 -10, 300 50, 450 20 S 600 10, 600 10" stroke="currentColor" stroke-width="2" stroke-dasharray="4 8" stroke-linecap="round"/></svg>
+      <div class="jstep">
+        <svg class="jstep__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="8" y="30" width="48" height="18" rx="2"/><path d="M8 38h48"/><path d="M14 30v-4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v4"/><path d="M14 48v4M50 48v4"/></svg>
+        <div class="jstep__name">Emergency Shelter</div>
+        <a class="jstep__more" href="https://theroadhome.org/housing-programs/">Learn More</a>
+      </div>
+      <div class="jstep">
+        <svg class="jstep__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10h18l8 8v28a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/><path d="M38 10v8h8"/><circle cx="30" cy="34" r="6"/><path d="m28 34 1.5 1.5L33 32"/></svg>
+        <div class="jstep__name">Supportive Services</div>
+        <a class="jstep__more" href="https://theroadhome.org/housing-programs/">Learn More</a>
+      </div>
+      <div class="jstep">
+        <svg class="jstep__icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 30 32 14l20 16"/><path d="M18 27v19h28V27"/><path d="M28 46V34h8v12"/><path d="M40 20V14h5v10"/></svg>
+        <div class="jstep__name">Housing Assistance</div>
+        <a class="jstep__more" href="https://theroadhome.org/housing-programs/">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="charity" data-section="charity" data-intent="build trust" data-layout="split-media">
+    <div class="wrap charity__inner">
+      <div>
+        <span class="eyebrow eyebrow--ondark">Accountability</span>
+        <h2>Official Four Star Charity</h2>
+        <div class="charity__badge">
+          <span class="charity__stars" aria-label="Four stars">★★★★</span>
+          <strong>Charity Navigator</strong>
+        </div>
+      </div>
+      <div>
+        <p>The Road Home’s Four Star Charity Navigator assures you of the responsible way in which your contributions will be put to work helping the people we serve.</p>
+        <a class="btn btn--ondark" href="https://www.charitynavigator.org/index.cfm?bay=search.summary&amp;orgid=7374">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="stories" data-section="stories" data-intent="testimony" data-layout="grid" data-items="3" data-fragment="story-card" data-fragment-role="source">
+    <div class="wrap">
+      <div class="stories__head">
+        <span class="eyebrow">Housing Stories</span>
+        <h2>Housing Stories</h2>
+        <p>Helping individuals and families move out of shelter and into housing happens every day at The Road Home. You can read some of their stories here.</p>
+      </div>
+      <div class="stories__grid">
+        <a class="story" href="https://theroadhome.org/housingstory/cole/">
+          <div class="story__photo"><img src="assets/3be3fc-Cole_Canva-Stock-Photo_BW-50685a06.jpg" alt="Cole, a Road Home participant"></div>
+          <div class="story__body">
+            <div class="story__name">Cole</div>
+            <p class="story__excerpt">Cole spent years in shelter struggling with various ailments and barriers that kept him from moving …</p>
+            <span class="story__more">Read More →</span>
+          </div>
+        </a>
+        <a class="story" href="https://theroadhome.org/housingstory/ray/">
+          <div class="story__photo"><img src="assets/d8e041-Ray_Canva-Stock-Photo_BW-979cde35.jpg" alt="Ray, a Road Home participant"></div>
+          <div class="story__body">
+            <div class="story__name">Ray</div>
+            <p class="story__excerpt">Read how Ray moved out of shelter and into a home of his own.</p>
+            <span class="story__more">Read More →</span>
+          </div>
+        </a>
+        <a class="story" href="https://theroadhome.org/housingstory/randall/">
+          <div class="story__photo"><img src="assets/06d6fd-Randall_Canva-Stock-Photo_BW-2d6bb7e5.jpg" alt="Randall, a Road Home participant"></div>
+          <div class="story__body">
+            <div class="story__name">Randall</div>
+            <p class="story__excerpt">Read how Randall moved out of shelter and into a home of his own.</p>
+            <span class="story__more">Read More →</span>
+          </div>
+        </a>
+      </div>
+      <div class="stories__foot">
+        <a class="btn btn--secondary" href="https://theroadhome.org/housing-stories/">More Stories</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter" data-section="newsletter" data-intent="capture lead" data-layout="split-media" data-interactive="form" data-module="newsletter-band" data-canon>
+    <div class="wrap newsletter__inner">
+      <div>
+        <span class="eyebrow eyebrow--onlight">Newsletter</span>
+        <h2>Stay Up To Date</h2>
+        <p class="newsletter__sub">Stay Up to Date on Programs and Events</p>
+      </div>
+      <form class="nl-form" action="https://theroadhome.org/" method="post">
+        <div class="nl-field"><label for="fn">First Name</label><input id="fn" name="first_name" type="text" autocomplete="given-name"></div>
+        <div class="nl-field"><label for="ln">Last Name</label><input id="ln" name="last_name" type="text" autocomplete="family-name"></div>
+        <div class="nl-field nl-field--full"><label for="em">Email</label><input id="em" name="email" type="email" placeholder="email@email.com" autocomplete="email"></div>
+        <div class="nl-field nl-field--full"><label for="ph">Mobile Phone <span style="font-weight:400;opacity:.7">(Optional)</span></label><input id="ph" name="phone" type="tel" autocomplete="tel"></div>
+        <label class="nl-consent"><input type="checkbox" name="sms_consent" checked><p>By submitting your cell phone number you are agreeing to receive periodic text messages from this organization. Message and data rates may apply. Text HELP for more information. Text STOP to stop receiving messages.</p></label>
+        <p class="nl-fine">SMS opt-in terms and conditions: Text messaging originator opt-in data and consent will not be shared with any third parties, provided that the foregoing does not apply to sharing (1) with vendors, consultants and other service providers who need access to such information to carry out work on our behalf (and who will not use such information for their own purposes); (2) if we believe disclosure is required by any applicable law, rule, or regulation or to comply with law enforcement or legal process.</p>
+        <button class="btn btn--primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="navigate" data-layout="grid" data-module="site-footer" data-canon>
+  <div class="wrap">
+    <div class="footer__cols">
+      <div>
+        <h3>Get Help</h3>
+        <ul>
+          <li class="footer__addr">Looking for immediate shelter? Call the Homeless Services Line at <a href="tel:8019909999">801-990-9999</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Give</h3>
+        <ul>
+          <li><a href="https://theroadhome.org/fundraiser/">Fundraisers</a></li>
+          <li><a href="https://theroadhome.org/donate">One-Time Donation</a></li>
+          <li><a href="http://theroadhome.org/housing-champions/">Recurring Donation</a></li>
+          <li><a href="https://theroadhome.org/item-donations/">Item Donations</a></li>
+          <li><a href="https://theroadhome.org/give-main/real-property/">Real Property</a></li>
+          <li><a href="https://theroadhome.org/give-main/legacy-planned/">Legacy/Planned</a></li>
+          <li><a href="http://theroadhome.org/data-finances/">Where Does It Go?</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get Involved</h3>
+        <ul>
+          <li><a href="http://theroadhome.org/getinvolved/group-volunteer-options/">Group</a></li>
+          <li><a href="http://theroadhome.org/getinvolved/individual-volunteer-options/">Individual</a></li>
+          <li><a href="https://theroadhome.org/events/">Events</a></li>
+          <li><a href="https://theroadhome.org/get-involved-old/careers/">Careers</a></li>
+          <li><a href="https://theroadhome.org/tell-your-story/">Tell Your Story</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="https://theroadhome.org/housing-programs/">Housing Programs</a></li>
+          <li><a href="https://theroadhome.org/resource-centers/">Resource Centers</a></li>
+          <li><a href="https://theroadhome.org/meet-the-team/">Meet the Team</a></li>
+          <li><a href="https://theroadhome.org/data-finances/">Data &amp; Finances</a></li>
+          <li><a href="https://theroadhome.org/media-center/">Media Center</a></li>
+          <li><a href="https://theroadhome.org/history/">History</a></li>
+        </ul>
+      </div>
+      <div class="footer__brand">
+        <img src="assets/217fcd-TRH-100-Year-Logo-for-website-footer-e1675441750220-5fd4763b.png" alt="The Road Home — 100 Years" width="120">
+        <p class="footer__addr">1415 South Main St<br>Salt Lake City, UT 84115<br><a href="tel:801.359.4142">801.359.4142</a></p>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <div class="social" aria-label="Social media">
+        <a href="https://www.linkedin.com/company/the-road-home/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V10.3H6.1V17h2.24zM7.22 9.3a1.3 1.3 0 1 0 0-2.6 1.3 1.3 0 0 0 0 2.6zM18 17v-3.87c0-2.06-1.1-3.02-2.57-3.02-1.19 0-1.72.65-2.02 1.11V10.3h-2.24V17h2.24v-3.74c0-.99.19-1.95 1.41-1.95 1.2 0 1.21 1.13 1.21 2.02V17H18z"/></svg></a>
+        <a href="https://twitter.com/theroadhomeut" aria-label="Twitter"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 5.9c-.7.3-1.5.5-2.3.6.8-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.8-.5v.1c0 2 1.4 3.6 3.3 4a4.1 4.1 0 0 1-1.8.1a4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg></a>
+        <a href="https://www.facebook.com/theroadhomeut" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h-3a5 5 0 0 0-5 5v3H4v4h3v6h4v-6h3l1-4h-4V8a1 1 0 0 1 1-1h3V3z"/></svg></a>
+        <a href="https://www.instagram.com/theroadhomeut/" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c2.7 0 3 0 4.1.1 1 0 1.7.2 2.3.5.6.2 1.1.5 1.6 1 .5.5.8 1 1 1.6.2.6.4 1.3.5 2.3.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c0 1-.2 1.7-.5 2.3a4.4 4.4 0 0 1-1 1.6 4.4 4.4 0 0 1-1.6 1c-.6.2-1.3.4-2.3.5-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-1 0-1.7-.2-2.3-.5a4.4 4.4 0 0 1-1.6-1 4.4 4.4 0 0 1-1-1.6c-.2-.6-.4-1.3-.5-2.3C2 15 2 14.7 2 12s0-3 .1-4.1c0-1 .2-1.7.5-2.3a4.4 4.4 0 0 1 1-1.6 4.4 4.4 0 0 1 1.6-1c.6-.2 1.3-.4 2.3-.5C9 2 9.3 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.4 6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg></a>
+      </div>
+      <div class="charity__stars" style="color:#f5c518;font-size:15px" aria-label="Charity Navigator Four Star Charity">★★★★ <span style="color:#fff;font-size:12px;letter-spacing:.04em">Four Star Charity</span></div>
+      <div class="footer__legal">
+        <a href="https://theroadhome.org/give-main/donor-bill-of-rights/">Donor Privacy</a>
+        <a href="https://theroadhome.org/wp-content/uploads/2021/04/New-Privacy-Rh.pdf">Policies</a>
+      </div>
+      <div class="footer__copy">© 2026 The Road Home. All Rights Reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile-nav a11y only (proposed-file-shell.md permitted exception) */
+(function(){
+  var b=document.querySelector('.ds-nav-burger'), n=document.getElementById('site-nav');
+  if(!b||!n)return;
+  b.addEventListener('click',function(){
+    var open=b.getAttribute('aria-expanded')==='true';
+    b.setAttribute('aria-expanded',String(!open));
+    n.setAttribute('data-open',String(!open));
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&b.getAttribute('aria-expanded')==='true'){b.setAttribute('aria-expanded','false');n.setAttribute('data-open','false');b.focus();}
+  });
+})();
+</script>
+</body>
+</html>

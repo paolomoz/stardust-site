@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:prototype (Phase 2, delegated to impeccable:craft)
+  writtenAt:        2026-07-02T11:40:00Z
+  page:             where-we-fly-north-america-usa-new-york
+  pageUrl:          https://www.virginatlantic.com/where-we-fly/north-america/usa/new-york
+  againstDirection: stardust/direction.md (Active 2026-07-02T07:15:00Z)
+  shapeBrief:       stardust/prototypes/where-we-fly-north-america-usa-new-york-shape.md
+  mode:             A (brand-faithful, signal-strong)
+  fidelity:         refined
+  template:         program (destination) — reuses index canon
+  motion:           static (arrival register available; not applied this run)
+  signatureElements:
+    - { kind: hero-image, capturedSource: brooklyn-bridge-man-v1-promobanner-3aab9be2.jpg, mechanism: "full-bleed image element + scrim", fallback: static }
+    - { kind: one-red-discipline, mechanism: "red only on primary CTAs; Upper-Class band uses #4f145b purple, never red" }
+    - { kind: purple-subbrand-activation, capturedSource: "--color-cabin-upperclass #4f145b", mechanism: "Upper-Class band eyebrows/rules" }
+  voiceClassification:
+    - header/nav/footer + canon labels: captured-verbatim
+    - hero h1 "Flights to New York": direction-authorized rewrite (captured page title, improvement #1)
+    - hero lede, christmas/upper-class/discover/why-va headings + paragraphs: captured-verbatim
+    - route-facts labels: captured-verbatim (from heroLede)
+    - card CTAs "Search flights"/"Discover <thing>"/"Read the guide": direction-authorized (canon vocab)
+  deviations:
+    - Dropped improvements-list "~8h" route-facts flight-time stat: not present in captured content (fabrication guard).
+  unsourcedContent: []
+  copyCadenceBypass:
+    rules: [marketing-buzzword]
+    basis: "captured-verbatim (Mode A) — 'world-class New York hotel' is VA's own copy (pages/...new-york.json#body[13]); Discipline 9 bypass, prose not the agent's to rewrite"
+  stardustVersion:  0.14 (fable5-refactor)
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flights to New York | Virgin Atlantic</title>
+<meta name="description" content="Discover the Big Apple with direct flights to New York JFK. Book your New York tickets from London Heathrow and Manchester with Virgin Atlantic.">
+<style>
+:root{
+  --bg:#ffffff;--surface:#f5f5f6;--bg-inverse:#030c16;--surface-inverse:#111921;
+  --text:#030c16;--text-secondary:#676d73;--primary:#da0530;--primary-hover:#b1062b;
+  --primary-active:#9a0728;--secondary:#4f145b;--accent-on-dark:#f92b47;--border:#e6e7e8;
+  --crimson-deep:#4e0c21;--cabin-upperclass:#4f145b;--purple-tint:#f6f1f7;--purple-border:#e3d6e6;
+  --on-inverse:#ffffff;--on-inverse-muted:#b9bec4;
+  --t-13:0.8125rem;--t-16:1rem;--t-20:1.25rem;--t-25:1.5625rem;--t-31:1.953rem;
+  --t-39:2.441rem;--t-49:3.0517rem;--t-61:3.815rem;
+  --font-display:"Gotham","Montserrat",Arial,sans-serif;--font-body:"Gotham","Montserrat",Arial,sans-serif;
+  --w-display:300;--w-body:325;--w-medium:350;--w-semibold:600;
+  --r-signature:4px;--r-card:8px;--sp-base:8px;--pad-desktop:64px;--pad-tablet:48px;--pad-mobile:32px;--maxw:1200px;
+  --shadow-float:rgba(3,12,22,0.2) 0px 4px 40px 0px;--shadow-card-hover:rgba(3,12,22,0.14) 0px 8px 28px 0px;
+  --ease-entrance:cubic-bezier(0.25,0.46,0.45,0.94);--ease-transition:cubic-bezier(0.42,0,0,1);--z-header:100;--z-widget:20;
+}
+@font-face{font-family:"Gotham";font-weight:300;font-style:normal;font-display:swap;src:url("assets/fc116f-gotham-light.bb5a1021.woff2") format("woff2");}
+@font-face{font-family:"Gotham";font-weight:325;font-style:normal;font-display:swap;src:url("assets/422542-gotham-book.woff2") format("woff2");}
+@font-face{font-family:"Gotham";font-weight:400;font-style:normal;font-display:swap;src:url("assets/422542-gotham-book.woff2") format("woff2");}
+@font-face{font-family:"Gotham";font-weight:350;font-style:normal;font-display:swap;src:url("assets/023cdf-gotham-medium.ab8335e5.woff2") format("woff2");}
+@font-face{font-family:"Gotham";font-weight:600;font-style:normal;font-display:swap;src:url("assets/023cdf-gotham-medium.ab8335e5.woff2") format("woff2");}
+.nav-burger{display:none;}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;hanging-punctuation:first;scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{margin:0;font-family:var(--font-body);font-weight:var(--w-body);font-size:var(--t-16);line-height:1.5;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+img{max-width:100%;display:block;}a{color:inherit;text-decoration:none;}
+h1,h2,h3{margin:0;font-family:var(--font-display);font-weight:var(--w-display);line-height:1.06;letter-spacing:-0.02em;text-wrap:balance;}
+p{margin:0;text-wrap:pretty;max-width:68ch;}button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:3px solid var(--primary);outline-offset:2px;border-radius:2px;}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px;}
+.section-pad{padding-block:var(--pad-desktop);}
+.eyebrow{font-size:var(--t-13);font-weight:var(--w-semibold);letter-spacing:0.06em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 12px;}
+.btn{display:inline-flex;align-items:center;gap:.5em;border-radius:var(--r-signature);font-weight:var(--w-semibold);font-size:var(--t-16);line-height:1;padding:15px 26px;border:1px solid transparent;transition:background-color .18s var(--ease-transition),border-color .18s var(--ease-transition),color .18s var(--ease-transition);}
+.btn-primary{background:var(--primary);color:#fff;}.btn-primary:hover{background:var(--primary-hover);}.btn-primary:active{background:var(--primary-active);}
+.btn-outline{background:transparent;border-color:var(--text);color:var(--text);}.btn-outline:hover{background:var(--text);color:#fff;}
+.discover{display:inline-flex;align-items:center;gap:.45em;font-weight:var(--w-semibold);font-size:var(--t-16);color:var(--text);width:max-content;padding-bottom:2px;border-bottom:1.5px solid transparent;transition:border-color .18s;}
+.discover .arw{transition:transform .18s var(--ease-transition);}.discover:hover{border-color:var(--text);}.discover:hover .arw{transform:translateX(4px);}
+.discover.purple{color:var(--cabin-upperclass);}.discover.purple:hover{border-color:var(--cabin-upperclass);}
+/* header */
+.site-header{position:sticky;top:0;z-index:var(--z-header);background:var(--bg-inverse);color:var(--on-inverse);border-bottom:1px solid rgba(255,255,255,.08);}
+.header-inner{display:flex;align-items:center;gap:32px;height:72px;}
+.va-logo{display:flex;align-items:center;flex:0 0 auto;}.va-logo svg{height:30px;width:auto;}
+.va-logo svg path:first-of-type{fill:#ffffff;}
+.primary-nav{display:flex;align-items:center;gap:28px;margin-left:8px;}
+.primary-nav a{font-size:var(--t-16);font-weight:var(--w-medium);color:var(--on-inverse);position:relative;padding:6px 0;}
+.primary-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--primary);transition:right .22s var(--ease-transition);}
+.primary-nav a:hover::after,.primary-nav a[aria-current]::after{right:0;}
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:20px;}
+.header-actions a{font-size:var(--t-16);font-weight:var(--w-medium);color:var(--on-inverse);}
+.header-actions .signin{display:inline-flex;align-items:center;gap:.5em;}
+.header-actions .mybooking:hover,.header-actions .signin:hover{color:var(--on-inverse-muted);}
+/* hero */
+.hero{position:relative;min-height:74vh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;isolation:isolate;}
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+.hero__scrim{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(3,12,22,.30) 0%,rgba(3,12,22,0) 32%,rgba(3,12,22,.58) 72%,rgba(3,12,22,.88) 100%);}
+.hero__inner{padding-bottom:96px;padding-top:96px;max-width:780px;}
+.hero .eyebrow{color:rgba(255,255,255,.9);}
+.hero h1{font-size:clamp(2.6rem,6vw,var(--t-61));color:#fff;letter-spacing:-0.03em;margin-bottom:20px;}
+.hero__lede{font-size:var(--t-20);color:rgba(255,255,255,.92);margin-bottom:30px;font-weight:var(--w-body);max-width:56ch;}
+/* route facts */
+.route-facts{background:var(--surface);border-bottom:1px solid var(--border);}
+.route-facts__row{display:flex;flex-wrap:wrap;gap:12px 48px;padding-block:26px;}
+.rf{display:flex;flex-direction:column;gap:4px;}
+.rf b{font-size:var(--t-20);font-weight:var(--w-medium);color:var(--text);letter-spacing:-0.01em;}
+.rf span{font-size:var(--t-13);font-weight:var(--w-semibold);letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);}
+/* booking widget */
+.booking{position:relative;z-index:var(--z-widget);margin-block:40px;}
+.booking__card{background:linear-gradient(135deg,var(--primary-active) 0%,var(--crimson-deep) 100%);border-radius:var(--r-card);box-shadow:var(--shadow-float);color:#fff;padding:34px 36px 36px;}
+.booking__card h2{font-size:var(--t-25);color:#fff;margin-bottom:22px;letter-spacing:-0.01em;}
+.booking__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:end;}
+.field{display:flex;flex-direction:column;gap:7px;}
+.field label{font-size:var(--t-13);font-weight:var(--w-semibold);letter-spacing:.04em;text-transform:uppercase;color:rgba(255,255,255,.85);}
+.field input,.field select{appearance:none;-webkit-appearance:none;background:#fff;color:var(--text);border:1px solid #d7d8da;border-radius:var(--r-signature);padding:13px 14px;font-size:var(--t-16);font-family:inherit;width:100%;}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23676d73' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;}
+.booking__submit{grid-column:1/-1;display:flex;justify-content:flex-end;margin-top:8px;}
+.booking__submit .btn-primary{background:#fff;color:var(--primary-active);}.booking__submit .btn-primary:hover{background:#f2f2f4;}
+/* section head */
+.section-head{margin-bottom:40px;max-width:680px;}
+.section-head h2{font-size:var(--t-39);letter-spacing:-0.02em;}
+.section-head p{font-size:var(--t-16);color:var(--text-secondary);margin-top:14px;}
+/* christmas split promo */
+.xmas__inner{display:grid;grid-template-columns:1.05fr 1fr;gap:0;align-items:stretch;}
+.xmas__media{min-height:440px;}.xmas__media img{width:100%;height:100%;object-fit:cover;}
+.xmas__copy{padding:var(--pad-desktop) 56px;display:flex;flex-direction:column;justify-content:center;gap:16px;}
+.xmas__copy h2{font-size:var(--t-39);}.xmas__copy p{font-size:var(--t-16);color:var(--text-secondary);}
+.xmas__copy .btn{margin-top:10px;align-self:flex-start;}
+/* upper class band (purple plate) */
+.uc{background:var(--purple-tint);}
+.uc .section-head .eyebrow{color:var(--cabin-upperclass);}
+.uc__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.uc-card{display:grid;grid-template-columns:180px 1fr;background:#fff;border:1px solid var(--purple-border);border-radius:var(--r-card);overflow:hidden;transition:box-shadow .18s var(--ease-transition);}
+.uc-card:hover{box-shadow:var(--shadow-card-hover);}
+.uc-card__media img{width:100%;height:100%;object-fit:cover;}
+.uc-card__body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;}
+.uc-eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:var(--t-13);font-weight:var(--w-semibold);letter-spacing:.07em;text-transform:uppercase;color:var(--cabin-upperclass);}
+.uc-eyebrow::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--cabin-upperclass);}
+.uc-card h3{font-size:var(--t-20);font-weight:var(--w-medium);}
+.uc-card p{font-size:var(--t-16);color:var(--text-secondary);}
+.uc-card .discover{margin-top:auto;}
+/* discover NY editorial grid */
+.disc__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.disc-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;transition:transform .18s var(--ease-transition),box-shadow .18s var(--ease-transition);}
+.disc-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+.disc-card__media{aspect-ratio:4/3;overflow:hidden;}.disc-card__media img{width:100%;height:100%;object-fit:cover;}
+.disc-card__body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.disc-card h3{font-size:var(--t-20);font-weight:var(--w-display);}
+.disc-card .discover{font-size:var(--t-13);margin-top:auto;}
+/* why VA */
+.whyva{background:var(--surface);}
+.whyva__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.whyva-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;}
+.whyva-card__media{aspect-ratio:16/10;overflow:hidden;}.whyva-card__media img{width:100%;height:100%;object-fit:cover;}
+.whyva-card__body{padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1;}
+.whyva-card h3{font-size:var(--t-25);font-weight:var(--w-display);}
+.whyva-card p{font-size:var(--t-16);color:var(--text-secondary);flex:1;}
+.whyva-card .discover{margin-top:4px;}
+/* footer */
+.site-footer{background:var(--bg-inverse);color:var(--on-inverse);padding-block:56px 40px;}
+.footer-top{display:grid;grid-template-columns:1.1fr repeat(4,1fr);gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1);}
+.footer-brand .va-logo svg{height:34px;}
+.footer-brand p{color:var(--on-inverse-muted);font-size:var(--t-13);margin-top:18px;max-width:30ch;}
+.footer-col h4{margin:0 0 16px;font-size:var(--t-13);font-weight:var(--w-semibold);letter-spacing:.06em;text-transform:uppercase;color:#fff;}
+.footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+.footer-col a{color:var(--on-inverse-muted);font-size:var(--t-16);transition:color .16s;}.footer-col a:hover{color:#fff;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:26px;}
+.footer-bottom small{color:var(--on-inverse-muted);font-size:var(--t-13);}
+.footer-social{display:flex;gap:16px;}
+.footer-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;color:#fff;transition:background .16s,border-color .16s;}
+.footer-social a:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.4);}.footer-social svg{width:18px;height:18px;}
+/* responsive */
+@media (max-width:1024px){
+  .booking__grid{grid-template-columns:repeat(2,1fr);}.field--who{grid-column:1/-1;}
+  .xmas__inner{grid-template-columns:1fr;}.xmas__media{min-height:300px;order:-1;}.xmas__copy{padding:var(--pad-tablet) 32px;}
+  .uc__grid{grid-template-columns:1fr;}
+  .disc__grid{grid-template-columns:repeat(2,1fr);}
+  .whyva__grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:768px){
+  .section-pad{padding-block:var(--pad-tablet);}
+  .section-head h2,.xmas__copy h2{font-size:var(--t-31);}
+  .route-facts__row{gap:12px 28px;}
+}
+@media (max-width:640px){
+  .section-pad{padding-block:var(--pad-mobile);}
+  .primary-nav,.header-actions .signin span,.header-actions .mybooking{display:none;}
+  .nav-burger{display:inline-flex;align-items:center;justify-content:center;margin-left:auto;width:44px;height:44px;background:transparent;border:0;color:#fff;}
+  .nav-burger svg{width:26px;height:26px;}.header-actions{margin-left:0;}
+  .mobile-nav{display:none;background:var(--bg-inverse);border-top:1px solid rgba(255,255,255,.1);padding:8px 24px 20px;}
+  .mobile-nav.open{display:block;}
+  .mobile-nav a{display:block;padding:13px 0;color:#fff;font-size:var(--t-20);font-weight:var(--w-medium);border-bottom:1px solid rgba(255,255,255,.08);}
+  .hero__inner{padding-bottom:72px;padding-top:64px;}
+  .booking__grid{grid-template-columns:1fr;}.booking__card{padding:26px 22px 28px;}
+  .uc-card{grid-template-columns:1fr;}.uc-card__media{aspect-ratio:16/9;}
+  .disc__grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;gap:28px;}
+}
+.mobile-nav{display:none;}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important;animation-duration:.001ms !important;}}
+</style>
+</head>
+<body data-template="program">
+
+<header class="site-header" data-section="header" data-intent="navigate" data-layout="full-bleed" data-nav-collapse="hamburger">
+  <div class="wrap header-inner">
+    <a class="va-logo" href="https://www.virginatlantic.com/en-EU/" aria-label="Virgin Atlantic home">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 233 48" role="img" preserveAspectRatio="xMinYMin"><title>Virgin Atlantic Logo</title><path d="M9.809 43.082h-1.74L.015 25.67h2.323l6.637 14.824 6.553-14.824h2.205l-7.93 17.412h.007Zm11.798-19.346h-1.99v-2.31h1.99v2.31Zm0 19.346h-1.99V25.67h1.99v17.412ZM54.372 23.7H52.39v-2.31h1.982v2.31Zm0 19.346H52.39V25.635h1.982v17.412Zm49.969 0h-1.99V21.391h1.99v21.656Zm46.087-19.346h-1.983v-2.31h1.983v2.31Zm0 19.346h-1.983V25.635h1.983v17.412Zm-53.475 0h-1.976V21.391h1.976v4.25h3.409v1.851h-3.409v15.562-.007Zm46.087 0h-1.976V21.391h1.976v4.25h3.402V27.5h-3.402v15.555-.007Zm-58.463.369c-3.227 0-6.497-1.885-6.497-5.489v-.063c0-3.777 2.623-5.69 7.77-5.69h4.863v-.049c0-3.165-1.795-4.779-5.336-4.779-1.718 0-3.353.41-5.175 1.301l-.167.084-.73-1.65.152-.069c1.934-1.002 4.119-1.537 6.143-1.537 2.344 0 4.132.598 5.322 1.78 1.148 1.155 1.718 2.742 1.718 4.842v10.957h-1.927v-2.31c-.786.967-2.81 2.679-6.136 2.679v-.007Zm-4.466-5.58c0 2.178 1.941 3.771 4.62 3.771 2.99 0 6.017-1.704 6.017-5.523V33.99h-4.689c-4.222 0-5.94 1.113-5.94 3.853l-.008-.006Zm33.148 5.58c-3.221 0-6.49-1.885-6.49-5.489v-.063c0-3.777 2.615-5.69 7.77-5.69h4.87v-.049c0-3.165-1.802-4.779-5.343-4.779-1.711 0-3.353.41-5.176 1.301l-.167.084-.723-1.65.146-.069c1.941-1.002 4.132-1.537 6.15-1.537 2.337 0 4.132.598 5.314 1.78 1.155 1.155 1.712 2.742 1.712 4.842v10.957h-1.913v-2.31c-.786.967-2.804 2.679-6.15 2.679v-.007Zm-4.466-5.58c0 2.178 1.941 3.771 4.619 3.771 2.998 0 6.018-1.704 6.018-5.523V33.99h-4.689c-4.216 0-5.948 1.113-5.948 3.853v-.006Zm-37.078 5.211h-1.983V33.85c0-1.99 0-6.65-5.106-6.65-3.638 0-5.809 2.762-5.809 7.374v8.48h-1.975V25.642h1.975v2.9c.703-1.078 2.519-3.192 6.039-3.192 4.424 0 6.859 2.685 6.859 7.547v10.15Zm66.984 0h-1.989V33.85c0-1.99 0-6.65-5.113-6.65-3.632 0-5.795 2.762-5.795 7.374v8.48h-1.983V25.642h1.983v2.9c.702-1.078 2.511-3.192 6.031-3.192 4.424 0 6.866 2.685 6.866 7.547v10.15Zm-97.002 4.94c-4.507 0-7.38-2.36-7.694-2.63l-.125-.105 1.127-1.593.14.105c1.725 1.217 3.707 2.344 6.58 2.344 4.049 0 6.275-2.421 6.275-6.825V38.4c-1.148 1.788-3.652 3.416-6.692 3.416a8.267 8.267 0 0 1-5.58-2.213c-1.634-1.523-2.532-3.645-2.532-5.94v-.07c0-2.316.898-4.445 2.533-5.969a8.171 8.171 0 0 1 5.579-2.247c3.075 0 5.572 1.559 6.692 3.263v-2.97h1.94v13.579c0 2.928-.646 4.918-2.128 6.434-1.454 1.496-3.624 2.31-6.122 2.31l.007-.007Zm-.23-20.69c-3.582 0-6.197 2.623-6.197 6.24v.063c0 3.54 2.726 6.317 6.212 6.317 3.13 0 6.504-2.4 6.504-6.275v-.063c0-3.923-3.311-6.268-6.518-6.268v-.014ZM161.413 43.25c-4.89 0-8.723-3.924-8.723-8.925v-.063c0-5.05 3.833-8.995 8.723-8.995 4 0 6.282 2.33 6.887 3.054l.104.125-1.252 1.357-.125-.14c-1.732-1.697-3.576-2.525-5.642-2.525-3.694 0-6.587 3.096-6.587 7.061v.063c0 3.993 2.949 7.116 6.72 7.116 2.796 0 4.653-1.614 5.523-2.574l.118-.139 1.301 1.19-.09.125c-.772 1.134-3.228 3.27-6.964 3.27h.007Zm-135.339-.167h-1.99V25.67h1.99v4.146c1.544-2.818 4.25-4.432 7.34-4.3h.173v2.074h-.348c-3.568 0-7.172 2.56-7.172 8.299v7.193h.007Z"></path><path fill="#da0530" d="M200.96.021h-17.023c-5.266 0-6.56.863-8.66 3.172L160.056 19.89c12.16-.584 15.902 11.659 28.257 8.306L200.953.028l.007-.007Z"></path></svg>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="https://www.virginatlantic.com/where-we-fly" aria-current="page">Where we fly</a>
+      <a href="https://flywith.virginatlantic.com/global/en.html">Experience</a>
+      <a href="https://flights.virginatlantic.com/en-gb/">Deals</a>
+      <a href="https://flywith.virginatlantic.com/global/en/flying-club.html">Flying Club</a>
+    </nav>
+    <div class="header-actions">
+      <a class="signin" href="https://account.virginatlantic.com/flying-club/join">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Sign in</span>
+      </a>
+      <a class="mybooking" href="https://www.virginatlantic.com/en-EU/">My booking</a>
+      <button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+    <a href="https://www.virginatlantic.com/where-we-fly">Where we fly</a>
+    <a href="https://flywith.virginatlantic.com/global/en.html">Experience</a>
+    <a href="https://flights.virginatlantic.com/en-gb/">Deals</a>
+    <a href="https://flywith.virginatlantic.com/global/en/flying-club.html">Flying Club</a>
+    <a href="https://account.virginatlantic.com/flying-club/join">Sign in</a>
+    <a href="https://www.virginatlantic.com/en-EU/">My booking</a>
+  </nav>
+</header>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed" data-media="image">
+  <img class="hero__img" src="assets/89f666-brooklyn-bridge-man-v1-promobanner-3aab9be2.jpg" alt="Brooklyn Bridge and the New York skyline" fetchpriority="high" loading="eager" decoding="async">
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="wrap hero__inner">
+    <p class="eyebrow">Where we fly · North America · USA</p>
+    <h1>Flights to New York</h1>
+    <p class="hero__lede">Discover the Big Apple with direct flights to New York JFK. Book your New York tickets from London Heathrow and Manchester with Virgin Atlantic.</p>
+    <a class="btn btn-primary" href="https://flights.virginatlantic.com/en-gb/">Search flights</a>
+  </div>
+</section>
+
+<!-- ROUTE FACTS -->
+<section class="route-facts" data-section="route-facts" data-intent="build trust" data-layout="contained" data-items="3">
+  <div class="wrap route-facts__row">
+    <div class="rf"><b>Direct flights</b><span>Non-stop service</span></div>
+    <div class="rf"><b>London Heathrow &amp; Manchester</b><span>Departing from</span></div>
+    <div class="rf"><b>New York JFK</b><span>Arriving into</span></div>
+  </div>
+</section>
+
+<!-- BOOKING WIDGET (preserved first-viewport IA priority) -->
+<section class="booking" data-section="booking-widget" data-intent="drive action" data-layout="contained" data-interactive="form" data-module="booking-widget">
+  <div class="wrap">
+    <form class="booking__card" action="#" method="get" aria-label="Flight search">
+      <h2>So, where next?</h2>
+      <div class="booking__grid">
+        <div class="field"><label for="bk-from">Flying from</label><input id="bk-from" name="from" type="text" placeholder="London (LHR)" autocomplete="off"></div>
+        <div class="field"><label for="bk-to">Flying to</label><input id="bk-to" name="to" type="text" value="New York (JFK)" autocomplete="off"></div>
+        <div class="field"><label for="bk-journey">Journey</label><select id="bk-journey" name="journey"><option>Round trip</option><option>One way</option><option>Multi-city</option></select></div>
+        <div class="field"><label for="bk-when">When</label><input id="bk-when" name="when" type="text" placeholder="Add dates" autocomplete="off"></div>
+        <div class="field field--who"><label for="bk-who">Who</label><select id="bk-who" name="who"><option>1 person</option><option>2 people</option><option>3 people</option><option>4+ people</option></select></div>
+        <div class="booking__submit"><button class="btn btn-primary" type="submit">Search flights</button></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- CHRISTMAS PROMO -->
+<section data-section="christmas-promo" data-intent="value proposition" data-layout="split-media" data-media="image">
+  <div class="wrap" style="padding-inline:0;">
+    <div class="xmas__inner">
+      <div class="xmas__media"><img src="assets/12a365-new-york-rockefeller-christmas-tree-0e9dbeba.jpg" alt="The Rockefeller Center Christmas tree in New York" loading="lazy"></div>
+      <div class="xmas__copy">
+        <p class="eyebrow">Where every corner feels like a holiday movie.</p>
+        <h2>New York at Christmas</h2>
+        <p>Book your New York winter break for later this year and enjoy the magic of the city at Christmas, with an unforgettable end-of-year adventure already on the calendar.</p>
+        <a class="btn btn-primary" href="https://flights.virginatlantic.com/en-gb/">Search flights</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPPER CLASS BAND -->
+<section class="uc section-pad" data-section="upper-class-band" data-intent="explain mechanic" data-layout="grid" data-items="4" data-media="image">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Upper Class</p>
+      <h2>New York, the Upper Class Way</h2>
+      <p>Touch down in the city that never sleeps in signature Virgin Atlantic style. From lie-flat comfort at 35,000ft to cocktails in our exclusive Clubhouse, your New York story starts the moment you step on board.</p>
+    </div>
+    <div class="uc__grid">
+      <article class="uc-card">
+        <div class="uc-card__media"><img src="assets/ecc908-gold-hero_business-9f8ef531.jpg" alt="Virgin Atlantic Upper Class suite" loading="lazy"></div>
+        <div class="uc-card__body">
+          <span class="uc-eyebrow">Fly Upper Class</span>
+          <h3>Fly Upper Class to the city that never sleeps</h3>
+          <p>Arrive in Manhattan feeling ready for anything with our latest Upper Class flight deals to New York.</p>
+          <a class="discover purple" href="https://flights.virginatlantic.com/en-gb/upper-class-flight-deals?cta=VA_NHP_upperclass">Discover Upper Class <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="uc-card">
+        <div class="uc-card__media"><img src="assets/a81aeb-upper-class-experience-food-fddc9fc8.jpg" alt="Dining above the clouds in Upper Class" loading="lazy"></div>
+        <div class="uc-card__body">
+          <span class="uc-eyebrow">Onboard</span>
+          <h3>Where the journey is the destination</h3>
+          <p>Lie flat, sip something special and dine above the clouds. Upper Class starts New York in style.</p>
+          <a class="discover purple" href="https://flywith.virginatlantic.com/global/en.html">Discover the experience <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="uc-card">
+        <div class="uc-card__media"><img src="assets/bdd751-upper-class-1024x768-dd3ddbfd.jpg" alt="Upper Class comfort with a New York hotel stay" loading="lazy"></div>
+        <div class="uc-card__body">
+          <span class="uc-eyebrow">Holidays</span>
+          <h3>Round off your trip in style</h3>
+          <p>Pair your Upper Class flight with a world-class New York hotel and step straight from skyline views to city streets in style.</p>
+          <a class="discover purple" href="https://www.virginatlantic.com/holidays">Discover holidays <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="uc-card">
+        <div class="uc-card__media"><img src="assets/b7b4f1-JFK-Clubhouse-6f15c338.jpg" alt="The Virgin Atlantic Clubhouse at JFK" loading="lazy"></div>
+        <div class="uc-card__body">
+          <span class="uc-eyebrow">JFK Clubhouse</span>
+          <h3>Introducing our clubhouse at JFK</h3>
+          <p>New York moves fast, and your airport experience shouldn't. In our JFK Clubhouse, unwind before take-off with seasonal menus, signature cocktails and spaces designed to help you switch off or dial in.</p>
+          <a class="discover purple" href="https://flywith.virginatlantic.com/global/en.html">Discover the Clubhouse <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVER NEW YORK -->
+<section class="section-pad" data-section="discover-ny" data-intent="build trust" data-layout="grid" data-items="4" data-media="image">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Discover New York</h2>
+      <p>You could spend a year in New York and not discover it all. We love everything about the city from Central Park to hipster Williamsburg. Curious to know more? Check out our stories below for more inspiration.</p>
+    </div>
+    <div class="disc__grid">
+      <article class="disc-card">
+        <div class="disc-card__media"><img src="assets/26be6f-Bronx-1-12097c7b.jpg" alt="A street in the Bronx, New York" loading="lazy"></div>
+        <div class="disc-card__body"><h3>Five Reasons To Visit The Bronx</h3><a class="discover" href="https://www.virginatlantic.com/inspiration">Read the guide <span class="arw" aria-hidden="true">→</span></a></div>
+      </article>
+      <article class="disc-card">
+        <div class="disc-card__media"><img src="assets/86e409-view-across-harlem-to-manhattan-053af4eb.jpg" alt="The view across Harlem to Manhattan" loading="lazy"></div>
+        <div class="disc-card__body"><h3>Five Reasons To Visit Harlem</h3><a class="discover" href="https://www.virginatlantic.com/inspiration">Read the guide <span class="arw" aria-hidden="true">→</span></a></div>
+      </article>
+      <article class="disc-card">
+        <div class="disc-card__media"><img src="assets/dbb56e-central-park-family-GettyImages-602983721-77e91a1a.jpg" alt="A family in Central Park, New York" loading="lazy"></div>
+        <div class="disc-card__body"><h3>New York Family Itinerary</h3><a class="discover" href="https://www.virginatlantic.com/inspiration">Read the guide <span class="arw" aria-hidden="true">→</span></a></div>
+      </article>
+      <article class="disc-card">
+        <div class="disc-card__media"><img src="assets/cfe93c-NYC-food-truck-d3f70ce3.jpg" alt="A New York City food truck" loading="lazy"></div>
+        <div class="disc-card__body"><h3>New York Street Food Guide</h3><a class="discover" href="https://www.virginatlantic.com/inspiration">Read the guide <span class="arw" aria-hidden="true">→</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHY VA -->
+<section class="whyva section-pad" data-section="why-va" data-intent="build trust" data-layout="grid" data-items="3" data-media="image">
+  <div class="wrap">
+    <div class="section-head"><h2>Why you'll love flying with Virgin Atlantic</h2></div>
+    <div class="whyva__grid">
+      <article class="whyva-card">
+        <div class="whyva-card__media"><img src="assets/4dd943-cabins-and-seats-532426ef.jpg" alt="Virgin Atlantic cabins and seats" loading="lazy"></div>
+        <div class="whyva-card__body">
+          <h3>Cabins and seats</h3>
+          <p>Our seats have been carefully designed to help you fly in total comfort during the flight, no matter which cabin you're in. Find out how our Upper Class, Premium and Economy seats measure up.</p>
+          <a class="discover" href="https://flywith.virginatlantic.com/global/en.html">Discover cabins <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="whyva-card">
+        <div class="whyva-card__media"><img src="assets/901e2c-services-16736936.jpg" alt="Virgin Atlantic inflight services" loading="lazy"></div>
+        <div class="whyva-card__body">
+          <h3>Inflight services</h3>
+          <p>Whichever cabin you're travelling in, you'll enjoy exciting inflight entertainment and delicious food and drinks throughout the flight.</p>
+          <a class="discover" href="https://flywith.virginatlantic.com/global/en.html">Discover services <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="whyva-card">
+        <div class="whyva-card__media"><img src="assets/484394-Spend_points-d1634c28.jpg" alt="Spending Virgin Points" loading="lazy"></div>
+        <div class="whyva-card__body">
+          <h3>Virgin Points</h3>
+          <p>We reward your adventures with Virgin Points. Whether you're taking off, doing the weekly shop or splashing out on an exclusive stay, points make it all more rewarding.</p>
+          <a class="discover" href="https://flywith.virginatlantic.com/global/en/flying-club.html">Discover Flying Club <span class="arw" aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" id="main-footer" data-section="footer" data-intent="navigate" data-layout="contained">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="va-logo" aria-label="Virgin Atlantic">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 233 48" role="img" aria-label="Virgin Atlantic"><title>Virgin Atlantic</title><path d="M9.809 43.082h-1.74L.015 25.67h2.323l6.637 14.824 6.553-14.824h2.205l-7.93 17.412h.007Zm11.798-19.346h-1.99v-2.31h1.99v2.31Zm0 19.346h-1.99V25.67h1.99v17.412ZM54.372 23.7H52.39v-2.31h1.982v2.31Zm0 19.346H52.39V25.635h1.982v17.412Zm49.969 0h-1.99V21.391h1.99v21.656Zm46.087-19.346h-1.983v-2.31h1.983v2.31Zm0 19.346h-1.983V25.635h1.983v17.412Zm-53.475 0h-1.976V21.391h1.976v4.25h3.409v1.851h-3.409v15.562-.007Zm46.087 0h-1.976V21.391h1.976v4.25h3.402V27.5h-3.402v15.555-.007Zm-58.463.369c-3.227 0-6.497-1.885-6.497-5.489v-.063c0-3.777 2.623-5.69 7.77-5.69h4.863v-.049c0-3.165-1.795-4.779-5.336-4.779-1.718 0-3.353.41-5.175 1.301l-.167.084-.73-1.65.152-.069c1.934-1.002 4.119-1.537 6.143-1.537 2.344 0 4.132.598 5.322 1.78 1.148 1.155 1.718 2.742 1.718 4.842v10.957h-1.927v-2.31c-.786.967-2.81 2.679-6.136 2.679v-.007Zm-4.466-5.58c0 2.178 1.941 3.771 4.62 3.771 2.99 0 6.017-1.704 6.017-5.523V33.99h-4.689c-4.222 0-5.94 1.113-5.94 3.853l-.008-.006Zm33.148 5.58c-3.221 0-6.49-1.885-6.49-5.489v-.063c0-3.777 2.615-5.69 7.77-5.69h4.87v-.049c0-3.165-1.802-4.779-5.343-4.779-1.711 0-3.353.41-5.176 1.301l-.167.084-.723-1.65.146-.069c1.941-1.002 4.132-1.537 6.15-1.537 2.337 0 4.132.598 5.314 1.78 1.155 1.155 1.712 2.742 1.712 4.842v10.957h-1.913v-2.31c-.786.967-2.804 2.679-6.15 2.679v-.007Zm-4.466-5.58c0 2.178 1.941 3.771 4.619 3.771 2.998 0 6.018-1.704 6.018-5.523V33.99h-4.689c-4.216 0-5.948 1.113-5.948 3.853v-.006Zm-37.078 5.211h-1.983V33.85c0-1.99 0-6.65-5.106-6.65-3.638 0-5.809 2.762-5.809 7.374v8.48h-1.975V25.642h1.975v2.9c.703-1.078 2.519-3.192 6.039-3.192 4.424 0 6.859 2.685 6.859 7.547v10.15Zm66.984 0h-1.989V33.85c0-1.99 0-6.65-5.113-6.65-3.632 0-5.795 2.762-5.795 7.374v8.48h-1.983V25.642h1.983v2.9c.702-1.078 2.511-3.192 6.031-3.192 4.424 0 6.866 2.685 6.866 7.547v10.15Zm-97.002 4.94c-4.507 0-7.38-2.36-7.694-2.63l-.125-.105 1.127-1.593.14.105c1.725 1.217 3.707 2.344 6.58 2.344 4.049 0 6.275-2.421 6.275-6.825V38.4c-1.148 1.788-3.652 3.416-6.692 3.416a8.267 8.267 0 0 1-5.58-2.213c-1.634-1.523-2.532-3.645-2.532-5.94v-.07c0-2.316.898-4.445 2.533-5.969a8.171 8.171 0 0 1 5.579-2.247c3.075 0 5.572 1.559 6.692 3.263v-2.97h1.94v13.579c0 2.928-.646 4.918-2.128 6.434-1.454 1.496-3.624 2.31-6.122 2.31l.007-.007Zm-.23-20.69c-3.582 0-6.197 2.623-6.197 6.24v.063c0 3.54 2.726 6.317 6.212 6.317 3.13 0 6.504-2.4 6.504-6.275v-.063c0-3.923-3.311-6.268-6.518-6.268v-.014ZM161.413 43.25c-4.89 0-8.723-3.924-8.723-8.925v-.063c0-5.05 3.833-8.995 8.723-8.995 4 0 6.282 2.33 6.887 3.054l.104.125-1.252 1.357-.125-.14c-1.732-1.697-3.576-2.525-5.642-2.525-3.694 0-6.587 3.096-6.587 7.061v.063c0 3.993 2.949 7.116 6.72 7.116 2.796 0 4.653-1.614 5.523-2.574l.118-.139 1.301 1.19-.09.125c-.772 1.134-3.228 3.27-6.964 3.27h.007Zm-135.339-.167h-1.99V25.67h1.99v4.146c1.544-2.818 4.25-4.432 7.34-4.3h.173v2.074h-.348c-3.568 0-7.172 2.56-7.172 8.299v7.193h.007Z" fill="#fff"></path><path fill="#da0530" d="M200.96.021h-17.023c-5.266 0-6.56.863-8.66 3.172L160.056 19.89c12.16-.584 15.902 11.659 28.257 8.306L200.953.028l.007-.007Z"></path></svg>
+        </span>
+        <p>© 2026 Virgin Atlantic Airways Ltd. All rights reserved. All images are for illustrative purposes only.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About Virgin Atlantic</h4>
+        <ul>
+          <li><a href="https://corporate.virginatlantic.com/global/en/our-story.html">Our story</a></li>
+          <li><a href="https://corporate.virginatlantic.com/global/en/business-for-good.html">Business as a force for good</a></li>
+          <li><a href="https://corporate.virginatlantic.com/global/en/media.html">Media centre</a></li>
+          <li><a href="https://corporate.virginatlantic.com/global/en/annual-reports.html">Annual reports</a></li>
+          <li><a href="https://careersuk.virgin-atlantic.com/">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://help.virginatlantic.com/">Help centre</a></li>
+          <li><a href="https://help.virginatlantic.com/bb/en/baggage.html">Baggage</a></li>
+          <li><a href="https://help.virginatlantic.com/bb/en/travel-advice.html">Accessible travel</a></li>
+          <li><a href="https://help.virginatlantic.com/bb/en/flight-disruptions/cancelled-or-changed.html">Flight disruption</a></li>
+          <li><a href="https://flywith.virginatlantic.com/bb/en/flying-club.html">Flying Club help</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="https://www.virginatlantic.com/policies">All Policies &amp; Claims</a></li>
+          <li><a href="https://www.virginatlantic.com/policies">Air Carrier Access Act</a></li>
+          <li><a href="https://www.virginatlantic.com/policies">Website security guidance</a></li>
+          <li><a href="https://www.virginatlantic.com/policies">Tarmac delay plan</a></li>
+          <li><a href="https://www.virginatlantic.com/policies">Customer commitment</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="https://www.virginatlantic.com/en-EU/">Business travel</a></li>
+          <li><a href="https://www.virginatlantic.com/en-EU/">Virgin Atlantic Cargo</a></li>
+          <li><a href="https://www.virginatlantic.com/en-EU/">Travel trade</a></li>
+          <li><a href="https://www.virginatlantic.com/en-EU/">Credit Cards</a></li>
+          <li><a href="https://www.virginatlantic.com/en-EU/">SkyTeam</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>© 2026 Virgin Atlantic Airways Ltd. All rights reserved.</small>
+      <div class="footer-social">
+        <a href="https://www.virginatlantic.com/en-EU/" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 22v-8h3l.5-3H13V9c0-.9.3-1.5 1.6-1.5H16.5V4.8C16.2 4.7 15.1 4.6 13.9 4.6c-2.5 0-4.2 1.5-4.2 4.3V11H7v3h2.7v8H13z"/></svg></a>
+        <a href="https://www.virginatlantic.com/en-EU/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://www.virginatlantic.com/en-EU/" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H3l8-9L3 2h6l4 6 5-6z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.querySelector('.nav-burger'),n=document.getElementById('mobile-nav');
+  if(!b||!n)return;
+  b.addEventListener('click',function(){
+    var open=n.classList.toggle('open');
+    b.setAttribute('aria-expanded',open?'true':'false');
+    b.setAttribute('aria-label',open?'Close menu':'Open menu');
+  });
+})();
+</script>
+</body>
+</html>

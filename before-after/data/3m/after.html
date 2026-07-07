@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3M · In motion (Variant C — kinetic-display, live hero video)</title>
+<!--
+  _provenance:
+    writtenBy: stardust:uplift / prototype (variant C, cinematic, video-hero edition)
+    againstInput: https://www.3m.com/
+    mode: Mode A (brand-faithful) — palette + 3MCircular pinned
+    bet: motion as identity. Register kinetic-display (auto-picked from
+      Brand Personality: display-typography-signature + monogram tie-break).
+      Amplifies the unused 3MCircular Light cut + the 3M red square monogram.
+      Identical IA to variant A; the bet is motion, not layout.
+    heroMedia: live 3M homepage hero video reused verbatim
+      (multimedia.3m.com/.../the-scientific-method-30s-no-music.mp4),
+      saved to assets/img/hero.mp4. Full-bleed video behind the kinetic
+      display headline; the ghost monogram is replaced by the live footage.
+      Reduced-motion pauses the video.
+    motion: Lenis + canonical inline runtime. Full reduced-motion + no-JS
+      fallbacks. C-cliff safe (~14 data-anim, 1 marquee, no parallax beyond frame).
+-->
+<link rel="stylesheet" href="assets/f51d34-lenis.min.css">
+<style>
+  @font-face{font-family:"3MCircular";font-weight:300;font-display:swap;src:url("assets/38d708-3MCircularWeb-Light..woff") format("woff");}
+  @font-face{font-family:"3MCircular";font-weight:400;font-display:swap;src:url("assets/629502-3MCircularWeb-Book..woff") format("woff");}
+  @font-face{font-family:"3MCircular";font-weight:700;font-display:swap;src:url("assets/458a56-3MCircularWeb-Bold..woff") format("woff");}
+
+  :root{
+    --heading-font-family:"3MCircular",Arial,sans-serif;
+    --body-font-family:"3MCircular",Arial,sans-serif;
+    --heading-xxl:120px; --heading-xl:88px; --heading-lg:56px; --heading-md:34px;
+    --body:18px; --body-sm:15px;
+    --line-height-heading:1.0; --line-height-body:1.55;
+    --color-bg:#FFFFFF; --color-fg:#4B4B4B; --color-accent:#D10411;
+    --ink:#202024; --crimson:#8A041F; --blue:#0033CC; --black:#000000;
+    --surface:#F5F5F5; --line:#e6e6e6; --muted:#9a9a9a;
+    --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px; --spacing-lg:24px;
+    --spacing-xl:48px; --spacing-2xl:96px;
+    --section-padding:120px; --max-width:1200px; --radius:0px;
+    /* motion (cinematic) */
+    --ease-out-cubic:cubic-bezier(0.25,0.46,0.45,0.94);
+    --ease-expo:cubic-bezier(0.16,1,0.3,1);
+    --enter-duration:800ms; --enter-stagger:110ms;
+    --parallax-progress:0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--body-font-family);font-weight:400;color:var(--color-fg);background:var(--color-bg);line-height:var(--line-height-body);font-size:var(--body);-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--heading-font-family);line-height:var(--line-height-heading);margin:0}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+  .wrap{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent)}
+
+  /* header */
+  header.site{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,0);transition:background .35s,box-shadow .35s}
+  header.site.scrolled{background:#fff;box-shadow:0 1px 0 var(--line)}
+  .site .bar{display:flex;align-items:center;gap:28px;height:72px}
+  .logo{display:flex;align-items:center;font-weight:700;font-size:30px;color:#fff;background:var(--color-accent);letter-spacing:-1px;padding:5px 12px;line-height:1}
+  nav.main{display:flex;gap:26px;font-weight:700;font-size:15px;color:var(--ink)}
+  nav.main a{padding:6px 0;border-bottom:2px solid transparent}
+  nav.main a:hover{border-color:var(--color-accent)}
+  .bar .right{margin-left:auto;display:flex;align-items:center;gap:22px;font-size:14px;font-weight:700;color:var(--ink)}
+  .bar .right .locale{color:var(--muted)}
+  .btn{display:inline-block;font-weight:700;font-size:15px;padding:13px 26px;border:2px solid var(--ink);color:var(--ink)}
+  .btn--solid{background:var(--color-accent);border-color:var(--color-accent);color:#fff}
+  .btn--solid:hover{background:#b3030f;border-color:#b3030f}
+  .btn--ghost:hover{background:var(--ink);color:#fff}
+
+  /* hero — full-bleed live video + giant Light display, CSS load reveal */
+  .hero{min-height:100vh;display:flex;align-items:flex-end;padding:96px 0 64px;position:relative;overflow:hidden;background:var(--black)}
+  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.34) 0%,rgba(0,0,0,0) 38%,rgba(0,0,0,.84) 100%)}
+  .hero .inner{position:relative;z-index:1;width:100%}
+  .hero h1{font-weight:300;font-size:clamp(48px,8.2vw,var(--heading-xxl));letter-spacing:-.025em;color:#fff;max-width:16ch}
+  .hero h1 b{font-weight:700;color:#fff}
+  .hero .lede{font-size:21px;max-width:40ch;margin-top:26px;color:#eaeaea}
+  .hero .cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+  .hero .btn{border-color:#fff;color:#fff}
+  .hero .btn--solid{background:var(--color-accent);border-color:var(--color-accent);color:#fff}
+  .hero .btn--ghost:hover{background:#fff;color:var(--ink)}
+  .reveal-load{opacity:0;animation:riseIn .9s var(--ease-expo) forwards}
+  .hero .l1{animation-delay:.05s}.hero .l2{animation-delay:.18s}.hero .l3{animation-delay:.34s}.hero .l4{animation-delay:.5s}
+  @keyframes riseIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+  .clipline{display:inline-block;clip-path:inset(0 100% 0 0);animation:clipReveal 1s var(--ease-expo) .15s forwards}
+  @keyframes clipReveal{to{clip-path:inset(0 0 0 0)}}
+
+  /* signage marquee */
+  .marquee{background:var(--color-accent);color:#fff;overflow:hidden;border-top:1px solid #b3030f}
+  .marquee__track{display:flex;gap:40px;white-space:nowrap;padding:16px 0;font-weight:700;font-size:18px;letter-spacing:.14em;text-transform:uppercase;animation:marqueeScroll 26s linear infinite;will-change:transform}
+  .marquee__track span{display:inline-flex;gap:40px}
+  .marquee__track .dot{color:#ffd9dc}
+  @keyframes marqueeScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  section{padding:var(--section-padding) 0}
+  .display-head{margin-bottom:48px}
+  .display-head .lab{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent);display:block;margin-bottom:14px}
+  .display-head h2{font-weight:300;font-size:clamp(40px,6vw,var(--heading-xl));color:var(--ink);letter-spacing:-.02em;overflow:hidden}
+  .display-head h2 .word{display:inline-block}
+  .display-head h2 b{font-weight:700}
+
+  /* statement band with data-split */
+  .statement{background:var(--ink);color:#fff;text-align:left}
+  .statement p{font-weight:300;font-size:clamp(30px,4.6vw,64px);letter-spacing:-.02em;line-height:1.08;margin:0;max-width:20ch}
+  .statement .accent{color:var(--color-accent);font-weight:700}
+
+  /* news cards */
+  .news{background:var(--surface)}
+  .news .layout{display:grid;grid-template-columns:1.4fr 1fr;gap:40px}
+  .lead{background:#fff;display:block}
+  .lead .img{aspect-ratio:16/9;overflow:hidden}
+  .lead .img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+  .lead:hover .img img{transform:scale(1.03)}
+  .lead .body{padding:28px 30px 34px}
+  .lead .date{font-size:13px;font-weight:700;color:var(--muted)}
+  .lead h3{font-weight:700;font-size:28px;margin:10px 0 12px;color:var(--ink)}
+  .stack{display:flex;flex-direction:column;gap:24px}
+  .item{background:#fff;display:grid;grid-template-columns:120px 1fr;gap:18px}
+  .item .img{overflow:hidden}.item .img img{width:100%;height:100%;object-fit:cover;min-height:104px}
+  .item .body{padding:16px 18px 16px 0}
+  .item .date{font-size:12px;font-weight:700;color:var(--muted)}
+  .item h3{font-weight:700;font-size:17px;margin:6px 0 0;color:var(--ink);line-height:1.25}
+  .item:hover h3{color:var(--color-accent)}
+
+  /* what we do — industry navigator (live-site pattern: tabs + selected panel) */
+  .navi{display:grid;grid-template-columns:264px 1fr;gap:0;align-items:start}
+  .navi .tabs{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .navi .tab{text-align:left;font-family:var(--heading-font-family);font-weight:700;font-size:16px;color:var(--ink);background:none;border:0;border-bottom:1px solid var(--line);padding:15px 18px;cursor:pointer;transition:background .2s,color .2s}
+  .navi .tab:hover{color:var(--color-accent)}
+  .navi .tab[aria-selected="true"]{background:var(--color-accent);color:#fff}
+  .navi .panel{border:1px solid var(--color-accent);background:#fff}
+  .navi .panel .pimg{aspect-ratio:16/7;overflow:hidden;background:var(--surface)}
+  .navi .panel .pimg img{width:100%;height:100%;object-fit:cover;display:block}
+  .navi .panel .pbody{padding:32px 36px 36px}
+  .navi .panel h3{font-weight:700;font-size:clamp(22px,2.4vw,30px);color:var(--ink);margin:0 0 14px}
+  .navi .panel p{font-size:17px;margin:0 0 22px;max-width:72ch;color:var(--color-fg)}
+  .navi .panel .plinks{display:flex;flex-wrap:wrap;gap:10px 28px}
+  .navi .panel .plinks a{color:var(--color-accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;font-size:15px}
+  @media(max-width:860px){
+    .navi{grid-template-columns:1fr}
+    .navi .tabs{flex-direction:row;overflow-x:auto;border-top:0;border-bottom:1px solid var(--line)}
+    .navi .tab{white-space:nowrap;border-bottom:0}
+  }
+
+  /* domains index (legacy, unused in this edition) */
+  .domains .index{border-top:2px solid var(--ink)}
+  .domains .row{display:grid;grid-template-columns:188px 1fr auto;gap:24px;align-items:center;padding:22px 6px;border-bottom:1px solid var(--line);transition:background .25s}
+  .domains .row:hover{background:var(--surface)}
+  .domains .num{font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent)}
+  .domains .row h3{font-weight:400;font-size:clamp(20px,2.4vw,28px);color:var(--ink);transition:transform .25s ease}
+  .domains .row:hover h3{font-weight:700;transform:translateX(10px)}
+  .domains .arrow{font-weight:700;color:#bdbdbd;font-size:20px}.domains .row:hover .arrow{color:var(--color-accent)}
+
+  /* who */
+  .who{background:var(--black);color:#bdbdbd}
+  .who h2{font-weight:300;font-size:clamp(40px,6vw,var(--heading-xl));color:#fff;letter-spacing:-.02em}
+  .who h2 .red{color:var(--color-accent);font-weight:700}
+  .who .links{margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,360px));gap:0 56px}
+  .who .links a{display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #2c2c2c;font-weight:700;font-size:18px;color:#fff}
+  .who .links a span{color:#6f6f6f;transition:transform .25s}
+  .who .links a:hover span{color:var(--color-accent);transform:translateX(4px)}
+
+  /* footer with giant wordmark wipe */
+  footer.site{position:static;background:var(--ink);color:#bdbdbd;padding:80px 0 40px;font-size:14px;overflow:hidden}
+  .site-footer__wordmark{font-weight:700;font-size:clamp(120px,30vw,420px);line-height:.8;color:var(--color-accent);letter-spacing:-.04em;margin:0 0 40px}
+  footer .top{display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:32px}
+  footer h4{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;margin:0 0 14px}
+  footer a{display:block;padding:6px 0;color:#bdbdbd}footer a:hover{color:#fff}
+  footer .legal{margin-top:46px;padding-top:22px;border-top:1px solid #34343a;display:flex;flex-wrap:wrap;gap:8px 26px;color:#9a9a9a;font-size:13px;align-items:center}
+  footer .legal .soc{margin-left:auto;display:flex;gap:18px;font-weight:700;color:#bdbdbd}
+
+  @media(max-width:860px){
+    nav.main,.bar .right .locale{display:none}
+    .news .layout{grid-template-columns:1fr}
+    .who .links{grid-template-columns:1fr}
+    .hero .mono{display:none}
+    section{padding:72px 0}
+    footer .top{grid-template-columns:1fr 1fr}
+    [style*="columns:4"]{columns:2!important}
+    .domains .row{grid-template-columns:1fr auto}
+    .domains .num{display:none}
+  }
+  @media(max-width:520px){ footer .top{grid-template-columns:1fr} [style*="columns:4"]{columns:1!important} }
+  @media (prefers-reduced-motion: reduce){
+    .reveal-load,.clipline{animation:none!important;opacity:1!important;clip-path:none!important;transform:none!important}
+    .marquee__track{animation:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+<noscript>
+  <style>
+    [data-anim],[data-tile-anim],[data-split] span{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}
+    .word{clip-path:none!important;transform:none!important}
+    .hero-marquee,.post-hero{transform:none!important}
+    .site-footer__wordmark{clip-path:none!important}
+  </style>
+</noscript>
+</head>
+<body>
+<header class="site" id="nav">
+  <div class="wrap bar">
+    <a class="logo" href="#" aria-label="3M home">3M</a>
+    <nav class="main"><a href="#breadth">Products</a><a href="#domains">Industries</a><a href="#who">Brands</a></nav>
+    <div class="right"><a href="#">Search</a><a href="#">Sign In</a><span class="locale">US&nbsp;·&nbsp;EN</span></div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO — live 3M homepage video -->
+  <section class="hero">
+    <video src="assets/3fe9ad-hero.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="scrim"></div>
+    <div class="wrap inner">
+      <span class="eyebrow reveal-load l1">Science. Applied to Life.</span>
+      <h1 style="margin-top:16px"><span class="clipline">What the world needs next,</span><br><span class="reveal-load l2"><b>we are making now.</b></span></h1>
+      <p class="lede reveal-load l3">Materials science applied across industry, electronics, energy and transportation, turning the toughest problems into what comes next.</p>
+      <div class="cta reveal-load l4">
+        <a class="btn btn--solid" href="#breadth">Explore products</a>
+        <a class="btn btn--ghost" href="#domains">See our industries</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Science. Applied to Life. <i class="dot">/</i> What the world needs next <i class="dot">/</i> Reimagining what's possible <i class="dot">/</i> Made now <i class="dot">/</i>&nbsp;</span>
+      <span>Science. Applied to Life. <i class="dot">/</i> What the world needs next <i class="dot">/</i> Reimagining what's possible <i class="dot">/</i> Made now <i class="dot">/</i>&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- WHAT'S NEW -->
+  <section class="news" id="news">
+    <div class="wrap">
+      <div class="display-head">
+        <span class="lab">What's new</span>
+        <h2><span class="word">Stories</span> <span class="word">from</span> <span class="word">the</span> <span class="word"><b>frontier.</b></span></h2>
+      </div>
+      <div class="layout">
+        <a class="lead" href="#" data-anim>
+          <div class="img"><img src="assets/8d8cab-fiber-optic.jpg" alt="3M fiber optic technology inside a modern data center"></div>
+          <div class="body"><span class="date">June 25, 2026</span><h3>3M's fiber optic breakthrough is helping power AI's massive buildout</h3></div>
+        </a>
+        <div class="stack">
+          <a class="item" href="#" data-anim><div class="img"><img src="assets/18cbbd-microscope.jpg" alt="A new atomic-scale microscope developed with 3M"></div><div class="body"><span class="date">June 18, 2026</span><h3>Atomic-scale innovation, in focus</h3></div></a>
+          <a class="item" href="#" data-anim><div class="img"><img src="assets/1f3b66-skillsusa.jpg" alt="Students at the SkillsUSA national conference"></div><div class="body"><span class="date">June 23, 2026</span><h3>Championing the future workforce</h3></div></a>
+          <a class="item" href="#" data-anim><div class="img"><img src="assets/4be58a-ind-automotive.jpg" alt="A robotic arm finishing an automotive surface with 3M abrasives"></div><div class="body"><span class="date">June 8, 2026</span><h3>Helping automotive navigate what's ahead</h3></div></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATEMENT (data-split letter reveal) -->
+  <section class="statement">
+    <div class="wrap">
+      <p data-split>We are the materials science company.</p>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="domains" id="domains">
+    <div class="wrap">
+      <div class="display-head">
+        <span class="lab">What we do</span>
+        <h2><span class="word">What</span> <span class="word">we</span> <span class="word"><b>do.</b></span></h2>
+      </div>
+      <div class="navi" data-anim>
+        <div class="tabs" role="tablist" aria-label="Industries"></div>
+        <div class="panel">
+          <div class="pimg"><img id="navi-img" src="assets/332cde-ind-design.jpg" alt=""></div>
+          <div class="pbody">
+            <h3 id="navi-title"></h3>
+            <p id="navi-desc"></p>
+            <div class="plinks" id="navi-links"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT BREADTH -->
+  <section class="domains" id="breadth" style="background:var(--surface)">
+    <div class="wrap">
+      <div class="display-head">
+        <span class="lab">Products</span>
+        <h2><span class="word">One</span> <span class="word">catalog,</span> <span class="word"><b>a world of capability.</b></span></h2>
+      </div>
+      <div style="columns:4;column-gap:32px;font-size:15px" data-anim>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Abrasives</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Adhesives &amp; Sealants</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Advanced Materials</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Automotive</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Coatings</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Electrical</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Electronics</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Films &amp; Sheeting</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Filtration</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Lab Supplies</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Labels</a>
+        <a style="display:block;padding:9px 0;border-bottom:1px solid var(--line);color:var(--ink)" href="#">Personal Protective Equipment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="who" id="who">
+    <div class="wrap">
+      <div class="display-head">
+        <span class="lab" style="color:var(--color-accent)">Who we are</span>
+        <h2><span class="word">People.</span> <span class="word">Ideas.</span> <span class="word">Science.</span><br><span class="word"><span class="red">Reimagining</span></span> <span class="word">what's</span> <span class="word">possible.</span></h2>
+      </div>
+      <div class="links">
+        <a href="#" data-anim>About 3M <span>&rsaquo;</span></a>
+        <a href="#" data-anim>Careers <span>&rsaquo;</span></a>
+        <a href="#" data-anim>Investors <span>&rsaquo;</span></a>
+        <a href="#" data-anim>Sustainability <span>&rsaquo;</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="site-footer__wordmark" aria-hidden="true">3M</div>
+    <div class="top">
+      <div class="brand"><div class="logo">3M</div><p style="color:#9a9a9a;max-width:26ch;margin-top:14px">Science. Applied to Life.</p></div>
+      <div><h4>Products</h4><a href="#">All products</a><a href="#">Brands</a><a href="#">Order online</a><a href="#">Where to buy</a></div>
+      <div><h4>Industries</h4><a href="#">Manufacturing</a><a href="#">Electronics</a><a href="#">Energy</a><a href="#">Transportation</a></div>
+      <div><h4>Company</h4><a href="#">About 3M</a><a href="#">Careers</a><a href="#">Investors</a><a href="#">Newsroom</a></div>
+      <div><h4>Support</h4><a href="#">Contact us</a><a href="#">Site map</a><a href="#">SDS / regulatory</a><a href="#">Change location</a></div>
+    </div>
+    <div class="legal">
+      <span>© 2026 3M. All rights reserved.</span><span>Privacy</span><span>Terms</span><span>Cookie Preferences</span>
+      <span class="soc"><a href="#">LinkedIn</a><a href="#">YouTube</a><a href="#">Facebook</a><a href="#">Instagram</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/5c0cd6-lenis.min.js"></script>
+<script>
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => { nav.classList.toggle('scrolled', scroll > 40); });
+
+  const clamp = (v,lo,hi)=>v<lo?lo:v>hi?hi:v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+
+  // kinetic-display tuning
+  const animConfig = {
+    cards: { trigger: 0.85, range: 0.32, slide: 48, stagger: 0.16 },
+    wordmark: { range: 0.6, clip: 80 },
+  };
+
+  document.querySelectorAll('[data-split]').forEach((el) => {
+    const text = el.textContent; el.textContent = '';
+    text.split('').forEach((ch) => {
+      const s = document.createElement('span');
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.style.display = 'inline-block';
+      s.style.opacity = '0'; s.style.transform = 'translateY(60%)'; s.style.filter = 'blur(8px)';
+      el.appendChild(s);
+    });
+  });
+
+  const animList = [], headWords = [], splitLetters = [];
+  let wordmarkEl = null, wordmarkTop = 0;
+
+  function measure() {
+    animList.forEach(({el})=>{ el.style.opacity=el.style.transform=el.style.willChange=''; });
+    animList.length = 0; headWords.length = 0; splitLetters.length = 0;
+
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => {
+      const parent = el.closest('.layout, .stack, .index, section');
+      let stagger = 0;
+      if (parent) {
+        const peers = parent.querySelectorAll('[data-anim], [data-tile-anim]');
+        const idx = Array.prototype.indexOf.call(peers, el);
+        stagger = (idx % 8) * animConfig.cards.stagger;
+      }
+      el.style.opacity = '0';
+      el.style.transform = `translateY(${animConfig.cards.slide}px)`;
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+
+    document.querySelectorAll('.display-head h2').forEach((head) => {
+      const words = head.querySelectorAll('.word');
+      const top = getDocTop(head);
+      words.forEach((w, i) => {
+        w.style.clipPath = 'inset(0 100% 0 0)';
+        w.style.transform = 'translateY(110%)';
+        w.style.willChange = 'clip-path, transform';
+        headWords.push({ el: w, triggerTop: top, staggerDelay: i * 0.15 });
+      });
+    });
+
+    document.querySelectorAll('[data-split]').forEach((el) => {
+      const top = getDocTop(el);
+      el.querySelectorAll('span').forEach((s, i) => { splitLetters.push({ el: s, triggerTop: top, staggerDelay: i * 0.04 }); });
+    });
+
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl) {
+      wordmarkTop = getDocTop(wordmarkEl);
+      wordmarkEl.style.clipPath = `inset(${animConfig.wordmark.clip}% 0 0 0)`;
+      wordmarkEl.style.willChange = 'clip-path';
+    }
+  }
+
+  (function tick(){
+    if (prefersReducedMotion) { requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+
+    for (let i=0;i<animList.length;i++){
+      const item = animList[i];
+      const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh*trigger - item.triggerTop) / (vh*range);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      item.el.style.transform = `translateY(${(1-p)*slide}px)`;
+    }
+    for (let i=0;i<headWords.length;i++){
+      const item = headWords[i];
+      const raw = (sY + vh*0.85 - item.triggerTop) / (vh*0.30);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.clipPath = `inset(0 ${(1-p)*100}% 0 0)`;
+      item.el.style.transform = `translateY(${(1-p)*110}%)`;
+    }
+    for (let i=0;i<splitLetters.length;i++){
+      const item = splitLetters[i];
+      const raw = (sY + vh*0.85 - item.triggerTop) / (vh*0.35);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      item.el.style.transform = `translateY(${(1-p)*60}%)`;
+      item.el.style.filter = `blur(${(1-p)*8}px)`;
+    }
+    if (wordmarkEl){
+      const wP = easeOut3(clamp((sY + vh - wordmarkTop) / (vh*animConfig.wordmark.range), 0, 1));
+      wordmarkEl.style.clipPath = `inset(${(1-wP)*animConfig.wordmark.clip}% 0 0 0)`;
+    }
+    requestAnimationFrame(tick);
+  })();
+
+  measure();
+
+  if (prefersReducedMotion) {
+    // Honor reduced motion: pause the hero video, neutralize every
+    // choreography to its final visible state, and do NOT re-measure.
+    document.querySelectorAll('.hero video').forEach((v)=>{ try { v.pause(); v.removeAttribute('autoplay'); } catch (e) {} });
+    document.querySelectorAll('[data-anim], [data-tile-anim], [data-split] span').forEach((el)=>{ el.style.opacity='1'; el.style.transform='none'; el.style.filter='none'; el.style.clipPath='none'; el.style.willChange=''; });
+    document.querySelectorAll('.word').forEach((el)=>{ el.style.clipPath='none'; el.style.transform='none'; });
+    if (wordmarkEl) wordmarkEl.style.clipPath = 'none';
+  } else {
+    window.addEventListener('load', () => requestAnimationFrame(measure), { once: true });
+    window.addEventListener('resize', measure, { passive: true });
+  }
+})();
+</script>
+<script>
+  // "What we do" industry navigator — tabs + selected panel (live-site pattern).
+  const INDUSTRIES = [
+    { id:'automotive', tab:'Automotive', img:'assets/img/ind-automotive.jpg', alt:'A robotic arm finishing an automotive surface with 3M abrasives',
+      title:'Accelerating solutions to the industry’s toughest challenges',
+      desc:'From the assembly line to the body shop, 3M abrasives, films, and adhesives help build, repair, and finish vehicles to a higher standard.',
+      links:['Abrasives','Adhesives & Tapes','Paint Finishing','Films & Wraps'] },
+    { id:'commercial', tab:'Commercial Solutions', img:'assets/img/ind-commercial.jpg', alt:'A commercial interior using 3M solutions',
+      title:'Making your brand, people, and facility shine',
+      desc:'Solutions that make your brand, people, and facility shine, from graphics and signage to cleaning, safety, and surface protection.',
+      links:['Graphics & Signage','Cleaning','Safety','Surface Protection'] },
+    { id:'consumer', tab:'Consumer', img:'assets/img/ind-consumer.jpg', alt:'A shopper looking at 3M home-care products',
+      title:'Reinventing the everyday to make a world of difference',
+      desc:'The everyday, reinvented. Trusted 3M and Scotch brands help people clean, organize, repair, and protect what matters at home.',
+      links:['Command','Scotch','Filtrete','Post-it'] },
+    { id:'design', tab:'Design & Construction', img:'assets/img/ind-design.jpg', alt:'A commercial office space with 3M architectural finishes',
+      title:'Expanding what’s possible through form and function',
+      desc:'Bold ideas. Aesthetics. Efficiency. These are the tasks architects, designers, and construction companies take on every day. 3M is here to help. From state-of-the-art window films and roofing materials to ultra-strong adhesives and proven electrical solutions, our careful craftsmanship delivers the consistent and transformative results you strive for.',
+      links:['Architectural Design','Building & Construction','Electrical','Home Improvement','Infrastructure','Roofing Granules'] },
+    { id:'electronics', tab:'Electronics', img:'assets/img/ind-electronics.jpg', alt:'Internal components of a device using 3M electronics materials',
+      title:'Building technology to power the tools of tomorrow',
+      desc:'Advanced materials for thermal management, displays, and connectivity inside the devices the world depends on.',
+      links:['Thermal Management','Display Materials','Bonding','Electronics Assembly'] },
+    { id:'energy', tab:'Energy', img:'assets/img/ind-energy.jpg', alt:'A gloved hand holding a 3M hydrogen energy component',
+      title:'Sparking the transformation of global energy systems',
+      desc:'From hydrogen to grid resilience, science that helps the world generate, store, and move cleaner power.',
+      links:['Hydrogen','Grid & Utilities','Renewables','Electrical Insulation'] },
+    { id:'government', tab:'Government', img:'assets/img/ind-government.jpg', alt:'A person overlooking infrastructure served by 3M',
+      title:'A world of capability in service of your communities',
+      desc:'A world of capability in service of your communities, supporting public safety, infrastructure, and mission-critical work.',
+      links:['Public Safety','Infrastructure','Defense','Identity & Security'] },
+    { id:'manufacturing', tab:'Manufacturing', img:'assets/img/ind-manufacturing.jpg', alt:'A technician sanding a surface inside a manufacturing facility',
+      title:'Making the complex world of manufacturing run smoothly',
+      desc:'Abrasives, adhesives, and process know-how that keep production lines moving and quality high.',
+      links:['Abrasives','Adhesives & Tapes','Filtration','Maintenance'] },
+    { id:'safety', tab:'Safety', img:'assets/img/ind-safety.jpg', alt:'An industrial worker wearing 3M protective equipment',
+      title:'Advancing safe and sound through science',
+      desc:'Advancing safe and sound through science, with personal protective equipment and worker-safety solutions trusted on the job.',
+      links:['Respiratory Protection','Hearing Protection','Eye Protection','Fall Protection'] },
+    { id:'transportation', tab:'Transportation', img:'assets/img/ind-transport.jpg', alt:'A commercial airplane on a tarmac with 3M transportation solutions',
+      title:'Helping the world move safely and efficiently',
+      desc:'Reflective materials, films, and bonding solutions for the vehicles and infrastructure that carry us.',
+      links:['Reflective Materials','Vehicle Films','Bonding','Acoustic Solutions'] },
+  ];
+  (function () {
+    const tabsEl = document.querySelector('.navi .tabs');
+    const imgEl = document.getElementById('navi-img');
+    const titleEl = document.getElementById('navi-title');
+    const descEl = document.getElementById('navi-desc');
+    const linksEl = document.getElementById('navi-links');
+    if (!tabsEl) return;
+    let active = 'design';
+    function paint(id) {
+      const d = INDUSTRIES.find(x => x.id === id); if (!d) return;
+      active = id;
+      imgEl.src = d.img; imgEl.alt = d.alt;
+      titleEl.textContent = d.title; descEl.textContent = d.desc;
+      linksEl.innerHTML = d.links.map(l => '<a href="#">' + l + '</a>').join('');
+      tabsEl.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.id === id)));
+    }
+    INDUSTRIES.forEach(d => {
+      const b = document.createElement('button');
+      b.className = 'tab'; b.type = 'button'; b.role = 'tab'; b.dataset.id = d.id; b.textContent = d.tab;
+      b.addEventListener('click', () => paint(d.id));
+      b.addEventListener('mouseenter', () => paint(d.id));
+      tabsEl.appendChild(b);
+    });
+    paint(active);
+  })();
+</script>
+</body>
+</html>

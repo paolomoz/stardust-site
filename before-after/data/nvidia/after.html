@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:         stardust:prototype (rendered via impeccable:craft)
+  writtenAt:         2026-06-09T21:01:24.632Z
+  page:              home
+  variant:           C
+  pageUrl:           https://www.nvidia.com/en-us/
+  againstDirection:  stardust/direction.md (Active 2026-06-09T21:24:00Z)
+  shapeBrief:        stardust/prototypes/home-C-shape.md
+  readArtifacts:
+    - stardust/current/pages/home.json
+    - stardust/current/_brand-extraction.json
+    - DESIGN.md
+    - DESIGN-C.json
+  fidelity:          quick
+  fontDeck:          brand-inherited (NVIDIA Sans variable, Mode A pin)
+  paletteSource:     inherited from _brand-extraction.json (Mode A pin)
+  reflexRejectAudit: { bypassed: "Mode A pinned captured families (NVIDIA-NALA + Arial/Helvetica fallback)" }
+  unsourcedContent:  []
+  contentNotes:
+    - "All headings, intros, card titles, quick links, footer links captured verbatim from pages/home.json"
+    - "CTA labels 'See How DSX Works' is a direction-authorized rewrite (direction.md improvement #4); card/lead targets are captured URLs"
+    - "Popular Links footer column reuses the captured utility-nav links (Shop/Drivers/Support) — captured labels and targets, repositioned per footer system-component role"
+  motionNote:        "static reference for the cinematic variant — no runtime; see home-C-cinematic.html"
+  validation:
+    gatesRunAt:      2026-06-09T22:20:00Z
+    critique:        "0 P0 / 0 P1 — brand-faithful inversion auto-dismiss applied (pure black/white grounds, hex tokens, sharp corners, Arial fallback are recorded inversions per DESIGN.json extensions.divergence)"
+    audit:           "0 findings — skip-link first focusable, LCP eager+fetchpriority=high, h1 x1, no heading skips, all img alt attrs present, computed WCAG contrast pass on all sampled pairs (links #3f8500 on white 4.60:1; #cccccc on black 13.1:1)"
+    adapt:           "0 findings — viewports 1920/1440/1280/800/414/375/360: no horizontal overflow; <=640px rules present; stock hamburger applied (data-nav-collapse), base rule precedes @media; nav font/gap floors pass at 360"
+  stardustVersion:   0.10.0
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Leader in Artificial Intelligence Computing | NVIDIA</title>
+<meta name="description" content="NVIDIA invents the GPU and drives advances in AI, HPC, gaming, creative design, autonomous vehicles, and robotics.">
+<style>
+:root {
+  /* token contract — skills/stardust/reference/token-contract.md; sources: DESIGN.md frontmatter (hex per Stitch convention) */
+  --heading-font-family: 'NVIDIA-NALA', Arial, Helvetica, sans-serif;
+  --body-font-family:    'NVIDIA-NALA', Arial, Helvetica, sans-serif;
+
+  --heading-xxl: clamp(2.75rem, 4.5vw, 3.5rem);  /* display */
+  --heading-xl:  3rem;
+  --heading-lg:  2.25rem;   /* heading */
+  --heading-md:  1.75rem;   /* subheading */
+  --heading-sm:  1.25rem;   /* card-title */
+  --body:        1rem;
+  --body-sm:     0.8125rem;
+
+  --line-height-heading: 1.15;
+  --line-height-body:    1.55;
+
+  /* colors — brand-native roles from DESIGN.md (Mode A pinned) */
+  --color-bg:     #ffffff;  /* paper */
+  --color-fg:     #1a1a1a;  /* ink */
+  --color-accent: #76b900;  /* nvidia-green */
+  --color-accent-deep: #3f8500; /* nvidia-green-deep (AA on white 4.6:1) */
+  --color-carbon: #000000;
+  --color-ink-muted: #666666;
+  --color-panel:  #eeeeee;
+  --color-on-dark-muted: #cccccc;
+
+  --spacing-xs:  4px;
+  --spacing-sm:  8px;
+  --spacing-md:  16px;
+  --spacing-lg:  24px;
+  --spacing-xl:  48px;
+  --spacing-2xl: 96px;
+
+  --section-padding: 64px;
+  --max-width:       1310px;
+  --radius:          2px;
+
+  --shadow-sticky: rgba(0,0,0,0.3) 0 0 5px;
+  --shadow-lift:   0 8px 24px rgba(0,0,0,0.12);
+
+  /* z-scale: content < rail < header */
+  --z-rail: 20; --z-header: 30;
+}
+
+@font-face {
+  font-family: 'NVIDIA-NALA';
+  src: url('assets/196815-NVIDIASansVF_NALA_W_Wght.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-display: swap;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { font-family: var(--body-font-family); font-size: var(--body); line-height: var(--line-height-body);
+  color: var(--color-fg); background: var(--color-bg); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--heading-font-family); line-height: var(--line-height-heading); text-wrap: balance; }
+p { text-wrap: pretty; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: var(--color-accent); color: #000;
+  padding: 10px 18px; font-weight: 700; z-index: 99; }
+.skip-link:focus { left: 8px; top: 8px; }
+.wrap { max-width: var(--max-width); margin-inline: auto; padding-inline: clamp(16px, 3vw, 32px); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* header */
+.site-header { position: sticky; top: 0; z-index: var(--z-header); background: var(--color-bg);
+  border-bottom: 1px solid var(--color-panel); box-shadow: var(--shadow-sticky); }
+.site-header .bar { display: flex; align-items: center; gap: 28px; min-height: 60px; }
+.brand img { width: 110px; height: 33px; }
+.brand { display: inline-flex; align-items: center; }
+.site-nav { margin-left: auto; }
+.site-nav ul { list-style: none; display: flex; gap: clamp(12px, 2vw, 28px); align-items: center; }
+.site-nav a { text-decoration: none; font-weight: 550; font-size: 0.9375rem; color: var(--color-fg); padding: 6px 2px; }
+.site-nav a:hover { color: var(--color-accent-deep); }
+.site-nav a.signin { background: var(--color-accent); color: #000; font-weight: 700; padding: 9px 18px; border-radius: var(--radius); }
+.site-nav a.signin:hover { background: var(--color-accent-deep); color: #fff; }
+.ds-nav-burger { display: none; margin-left: auto; background: none; border: 1px solid var(--color-fg);
+  border-radius: var(--radius); width: 44px; height: 40px; cursor: pointer; position: relative; }
+.ds-nav-burger span, .ds-nav-burger span::before, .ds-nav-burger span::after { content: ''; position: absolute;
+  left: 10px; right: 10px; height: 2px; background: var(--color-fg); top: 50%; transform: translateY(-50%); }
+.ds-nav-burger span::before { top: -7px; transform: none; }
+.ds-nav-burger span::after { top: 7px; transform: none; }
+
+/* hero */
+.hero { position: relative; background: var(--color-carbon); color: #fff; overflow: clip; }
+.hero img.hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 82% center; }
+.hero .scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 48%, rgba(0,0,0,0.18) 100%); }
+.hero .hero-inner { position: relative; padding-block: clamp(72px, 11vw, 140px); max-width: 640px; }
+.eyebrow { font-size: var(--body-sm); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); }
+.hero h1 { font-size: var(--heading-xxl); font-weight: 700; letter-spacing: -0.01em; margin-top: 14px; color: #fff; }
+.hero p.sub { margin-top: 18px; font-size: 1.0625rem; color: var(--color-on-dark-muted); max-width: 56ch; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.btn { display: inline-block; text-decoration: none; font-weight: 700; font-size: 1rem;
+  padding: 14px 28px; border-radius: var(--radius); transition: background-color 150ms var(--ease, ease), color 150ms; }
+.btn-primary { background: var(--color-accent); color: #000; position: relative; overflow: hidden; }
+.btn-primary:hover { background: #bff230; }
+.btn-outline { border: 1px solid rgba(255,255,255,0.7); color: #fff; padding: 13px 27px; }
+.btn-outline:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* bands */
+.band { padding-block: var(--section-padding); }
+.band + .band { border-top: 1px solid var(--color-panel); }
+.band-head { max-width: 760px; }
+.band-head h2 { font-size: var(--heading-lg); font-weight: 700; }
+.band-head p { margin-top: 12px; color: var(--color-fg); max-width: 68ch; }
+.quick-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 18px; }
+.quick-links a { font-size: 0.9375rem; font-weight: 550; color: var(--color-accent-deep); text-decoration: none; }
+.quick-links a:hover { text-decoration: underline; }
+.view-all { display: inline-block; margin-top: 26px; font-weight: 700; color: var(--color-accent-deep); text-decoration: none; }
+.view-all:hover { text-decoration: underline; }
+
+/* footer */
+.site-footer { background: var(--color-carbon); color: #fff; padding-block: var(--section-padding) 40px; margin-top: var(--spacing-xl); }
+.site-footer .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.site-footer h2 { font-size: 1rem; font-weight: 700; color: #fff; }
+.site-footer ul { list-style: none; margin-top: 14px; display: grid; gap: 9px; }
+.site-footer a { color: var(--color-on-dark-muted); text-decoration: none; font-size: 0.9375rem; }
+.site-footer a:hover { color: var(--color-accent); }
+.foot-base { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  border-top: 1px solid rgba(255,255,255,0.18); margin-top: 44px; padding-top: 24px; }
+.foot-base img { width: 96px; height: 29px; }
+.foot-base p { color: var(--color-on-dark-muted); font-size: var(--body-sm); }
+
+/* responsive */
+@media (max-width: 1024px) {
+  .site-footer .cols { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .ds-nav-burger { display: block; }
+  .site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%;
+    background: var(--color-bg); border-bottom: 1px solid var(--color-panel); padding: 12px 16px 18px; margin-left: 0; }
+  .site-nav[data-open="true"] { display: block; }
+  .site-nav ul { flex-direction: column; align-items: stretch; gap: 4px; }
+  .site-nav a { display: block; padding: 12px 8px; font-size: 1rem; }
+  .site-footer .cols { grid-template-columns: 1fr; }
+  .hero .hero-inner { padding-block: 56px; }
+}
+
+
+.rank-row { display: grid; grid-template-columns: 7fr 5fr; gap: var(--spacing-lg); margin-top: 28px; align-items: start; }
+.band:nth-of-type(even) .rank-row { grid-template-columns: 5fr 7fr; }
+.band:nth-of-type(even) .lead-card { order: 2; }
+.lead-card, .mini-card { background: var(--color-bg); border: 1px solid var(--color-panel); border-radius: var(--radius); overflow: hidden; }
+.lead-card a, .mini-card a { text-decoration: none; color: inherit; display: block; height: 100%; }
+.lead-card img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.lead-card .pad { padding: 22px 24px 26px; }
+.lead-card h3 { font-size: var(--heading-md); font-weight: 700; }
+.lead-card a:hover h3, .mini-card a:hover h3 { color: var(--color-accent-deep); }
+.lead-tag { font-size: var(--body-sm); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-deep); }
+.lead-card .pad .lead-tag { display: block; margin-bottom: 10px; }
+.mini-stack { display: grid; gap: var(--spacing-lg); }
+.mini-card a { display: grid; grid-template-columns: 168px 1fr; gap: 16px; align-items: center; }
+.mini-card img { width: 168px; aspect-ratio: 16/9; object-fit: cover; height: 100%; }
+.mini-card h3 { font-size: var(--heading-sm); font-weight: 700; padding: 14px 16px 14px 0; }
+.mini-card.no-img a { grid-template-columns: 1fr; }
+.mini-card.no-img h3 { padding: 18px 16px; }
+@media (max-width: 1024px) {
+  .rank-row, .band:nth-of-type(even) .rank-row { grid-template-columns: 1fr; }
+  .band:nth-of-type(even) .lead-card { order: 0; }
+}
+@media (max-width: 640px) {
+  .mini-card a { grid-template-columns: 120px 1fr; }
+  .mini-card img { width: 120px; }
+}
+
+.lead-card, .mini-card { border: 0; box-shadow: 0 0 0 1px rgba(0,0,0,0.04); transition: transform 380ms var(--ease-out-quart, cubic-bezier(0.42,0,0,1)), box-shadow 380ms var(--ease-out-quart, cubic-bezier(0.42,0,0,1)); }
+.lead-card:hover, .mini-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.topic-rail { position: sticky; top: 60px; z-index: var(--z-rail); background: var(--color-bg);
+  border-bottom: 1px solid var(--color-panel); }
+.topic-rail ul { list-style: none; display: flex; gap: 4px; overflow-x: auto; }
+.topic-rail a { display: block; white-space: nowrap; text-decoration: none; font-size: 0.875rem; font-weight: 550;
+  color: var(--color-fg); padding: 12px 14px; border-bottom: 3px solid transparent; }
+.topic-rail a:hover { color: var(--color-accent-deep); }
+.topic-rail a[aria-current="true"] { border-bottom-color: var(--color-accent); font-weight: 700; }
+.btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%); transform: translateX(-110%); }
+@media (prefers-reduced-motion: no-preference) {
+  .btn-primary:hover::after { transition: transform 700ms var(--ease-out-quart, cubic-bezier(0.42,0,0,1)); transform: translateX(110%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lead-card:hover, .mini-card:hover { transform: none; }
+  .btn-primary::after { display: none; }
+}
+@media (max-width: 640px) { .topic-rail { position: static; } }
+
+</style>
+</head>
+<body data-template="landing">
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header " data-section="header" data-intent="navigate" data-layout="full-width" data-nav-collapse="hamburger">
+  <div class="wrap bar">
+    <a class="brand" href="https://www.nvidia.com/en-us/" aria-label="NVIDIA home"><img src="assets/56606a-logo.svg" alt="NVIDIA" width="110" height="33"></a>
+    <button class="ds-nav-burger" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span></button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="https://www.nvidia.com/en-us/geforce/rtx/">Shop</a></li>
+        <li><a href="https://www.nvidia.com/en-us/drivers/">Drivers</a></li>
+        <li><a href="https://www.nvidia.com/en-us/support/">Support</a></li>
+        <li><a class="signin" href="https://www.nvidia.com/en-us/account/">Sign In</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<nav class="topic-rail" aria-label="Topics" data-section="topic-rail" data-intent="domain navigation" data-layout="full-width">
+  <div class="wrap"><ul>
+    <li><a href="#artificial-intelligence" aria-current="true" data-rail="artificial-intelligence">Artificial Intelligence</a></li>
+    <li><a href="#design-and-simulation" data-rail="design-and-simulation">Design and Simulation</a></li>
+    <li><a href="#high-performance-computing" data-rail="high-performance-computing">High-Performance Computing</a></li>
+    <li><a href="#gaming-and-creating" data-rail="gaming-and-creating">Gaming and Creating</a></li>
+    <li><a href="#automotive" data-rail="automotive">Automotive</a></li>
+    <li><a href="#robotics-and-edge-ai" data-rail="robotics-and-edge-ai">Robotics and Edge AI</a></li>
+    <li><a href="#data-center-and-cloud-computing" data-rail="data-center-and-cloud-computing">Data Center and Cloud Computing</a></li>
+    <li><a href="#about-nvidia" data-rail="about-nvidia">About NVIDIA</a></li>
+  </ul></div>
+</nav>
+<main id="main">
+<section class="hero" data-section="hero" data-intent="lead announcement" data-layout="full-bleed" data-media="image" id="top">
+  <img class="hero-bg" src="assets/2a30d2-nvidia-dsx-wmfg-center-d_2x-2085.jpg" alt="" loading="eager" fetchpriority="high" width="2560" height="770">
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="wrap"><div class="hero-inner">
+    <p class="eyebrow">Data Center</p>
+    <h1>Build AI Factories Faster With NVIDIA DSX</h1>
+    <p class="sub">Design and deploy AI factories with reference designs, digital twins, open source software, and partner technologies built for lowest token cost.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://nvidianews.nvidia.com/news/dsx-infrastructure-ai-factory">See How DSX Works</a>
+      <a class="btn btn-outline" href="https://nvidianews.nvidia.com/news/dsx-infrastructure-ai-factory">Read Press Release</a>
+    </div>
+  </div></div>
+</section>
+<section class="band" id="artificial-intelligence" data-section="band-artificial-intelligence" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Artificial Intelligence</h2>
+      <p>AI is powering change in every industry. From generative AI and speech recognition to medical imaging and improved supply chain management, AI is providing enterprises that compute power, tools, and algorithms their teams need to do their life's work.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/industries/">Overview</a><a href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/data-analytics/">Data Analytics</a><a href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/machine-learning/">Machine Learning</a><a href="https://www.nvidia.com/en-us/deep-learning-ai/solutions/prediction-forecasting/">Predictive Analytics</a><a href="https://developer.nvidia.com/nvidia-merlin">Recommender Systems</a><a href="https://www.nvidia.com/en-us/ai-data-science/products/riva/">Speech AI</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-powers-faster-more-efficient-reasoning-for-long-running-agents">
+          <img src="assets/c89d23-nemotron-3-ultra-nano-1920x1080-a7dd.jpeg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>Building Long-Running Agents With New Nemotron 3 Ultra</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/uk-sovereign-ai-advancements">
+            <img src="assets/1a2269-5340350-ent-ltw-26-corp-blog-sfg-1920x1080-beb3.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>The U.K. Ramps Up Sovereign Compute</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/factory-operations-fox-blueprint-ai-brain/">
+            <img src="assets/622074-new-nvidia-fox-pr-sfg-fff5.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>Announcing NVIDIA Factory Operations Blueprint (FOX)</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/nvidia-gtc-taipei-computex-2026-news/#ai-for-media">
+            <img src="assets/c6e892-nvidia-ai-for-media-a883.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>Enhanced Real-Time AI for Video Pipelines and Workflows</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all Artificial Intelligence news</a>
+  </div>
+</section>
+<section class="band" id="design-and-simulation" data-section="band-design-and-simulation" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Design and Simulation</h2>
+      <p>NVIDIA accelerated computing, libraries and AI models enable software makers and industry manufacturers to develop products for large-scale, physically accurate simulations and interactive digital twins so teams can efficiently build, train, and test advanced systems before deployment, bringing products to market faster.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/industries/">Overview</a><a href="https://blogs.nvidia.com/blog/tag/industrial-manufacturing/">Newsroom</a><a href="https://www.nvidia.com/en-us/geforce/rtx/">Shop</a><a href="https://www.nvidia.com/en-us/omniverse/">Physical AI</a><a href="https://www.nvidia.com/en-us/industries/industrial-sector/">Industrial AI</a><a href="https://www.nvidia.com/en-us/solutions/cae/">Computer Aided Engineering</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://blogs.nvidia.com/blog/industrial-software-leaders-secure-autonomous-ai-engineers-nemoclaw">
+          <img src="assets/370f27-autonomous-agent-engineer-sfg-ef99.jpeg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>Industrial Software Leaders Build Autonomous AI Engineers</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://nvidianews.nvidia.com/news/nvidia-and-tsmc-bring-ai-into-fabs-to-advance-semiconductor-design-and-manufacturing">
+            <img src="assets/c64cb8-autonomous-agent-engineer-sfg-c8f3.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA and TSMC Bring AI Into Fabs to Advance Chipmaking</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://www.youtube.com/watch?v=gsbi7FS8Q30">
+            <img src="assets/9b6213-nvidia-tsmc-sfg-16dc.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>How Dassault Systèmes Is Building AI That Understands Physics</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/ai-manufacturing-hannover-messe/">
+            <img src="assets/969d73-hannover-messe-blog-sfg-3-13f5.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>The Future of AI-Driven Manufacturing at Hannover Messe</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all Design and Simulation news</a>
+  </div>
+</section>
+<section class="band" id="high-performance-computing" data-section="band-high-performance-computing" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>High-Performance Computing</h2>
+      <p>High-performance computing (HPC) is the ability to process data and perform complex calculations at high speeds. HPC is one of the most essential tools fueling the advancement of computational science.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/high-performance-computing/">HPC Overview</a><a href="https://www.nvidia.com/en-us/events/supercomputing/">SC24 Event</a><a href="https://www.nvidia.com/en-us/industries/supercomputing/">Supercomputing</a><a href="https://www.nvidia.com/en-us/industries/healthcare-life-sciences/">Healthcare</a><a href="https://www.nvidia.com/en-us/industries/public-sector/">Public Sector</a><a href="https://www.nvidia.com/en-us/industries/energy/">Energy</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://blogs.nvidia.com/blog/gtc-2026-news/#cuda">
+          <img src="assets/cc42c3-cuda-kv-1920x1080-7c7a.jpeg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>20 Years of CUDA: Honoring the Architects of Progress</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/gtc-2026-news/#cuest">
+            <img src="assets/724b62-nvidia-cuda-cuest-1920x1080-86e6.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>Announcing NVIDIA cuEST for Semiconductor Design</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/nvidia-earth-2-open-models/">
+            <img src="assets/ee17a9-hpc-earth-2-model-sfg-b02d.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA Launches Earth-2 Family of Open Models</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/sc25-new-science-systems-worldwide/">
+            <img src="assets/dd4743-hpc-sc25-corp-blog-sfg-b9bd.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA Accelerates AI for Over 80 New Science Systems Worldwide</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all High-Performance Computing news</a>
+  </div>
+</section>
+<section class="band" id="gaming-and-creating" data-section="band-gaming-and-creating" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Gaming and Creating</h2>
+      <p>NVIDIA RTX™ powers the world’s fastest PCs and the ultimate platform for gamers and creators. Enjoy beautiful ray tracing, AI-powered DLSS, and much more in games and applications, on your desktop, laptop, in the cloud, or in your living room.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/geforce/rtx/">Shop</a><a href="https://www.nvidia.com/en-us/geforce/">GeForce</a><a href="https://www.nvidia.com/en-us/geforce/graphics-cards/">Graphics Cards</a><a href="https://www.nvidia.com/en-us/geforce/gaming-laptops/">Laptops</a><a href="https://www.nvidia.com/en-us/geforce/technologies/dlss/">DLSS</a><a href="https://www.nvidia.com/en-us/geforce/technologies/reflex/">Reflex</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://nvidianews.nvidia.com/news/nvidia-microsoft-windows-pcs-agents-rtx-spark">
+          <img src="assets/218b3b-nvidia-rtx-spark-8c32.jpeg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>Introducing NVIDIA RTX Spark</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/en-us/geforce/news/computex-2026-nvidia-geforce-rtx-announcements/">
+            <img src="assets/59a198-nvidia-rtx-spark-74f2.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>GeForce at COMPUTEX 2026</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/en-us/geforce/news/dlss-4-5-ray-reconstruction-1000-rtx-games-apps-out-now/">
+            <img src="assets/4df6e5-geforce-cptx26-announcementnv-app-hero-1920x1080.j-c780.jpg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA DLSS 4.5</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/">
+            <img src="assets/1b9701-computex26-geforce-dlss-nv-sfg-1920x1080-0206.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>GeForce RTX 50 Series Graphics Cards and Desktops</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all Gaming and Creating news</a>
+  </div>
+</section>
+<section class="band" id="automotive" data-section="band-automotive" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Automotive</h2>
+      <p>From design and manufacturing to autonomous vehicle development and deployment—and agentic AI that helps build and power the car—NVIDIA delivers the compute, software, and infrastructure to support the entire vehicle lifecycle and drive the future of mobility.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/industries/automotive/">Automotive Industry</a><a href="https://www.nvidia.com/en-us/solutions/autonomous-vehicles/">Autonomous Vehicles</a><a href="https://www.nvidia.com/en-us/solutions/autonomous-vehicles/in-vehicle-computing/">In-Vehicle Computing</a><a href="https://www.nvidia.com/en-us/solutions/autonomous-vehicles/ai-training/">AI Training</a><a href="https://www.nvidia.com/en-us/use-cases/autonomous-vehicle-simulation/">AV Simulation</a><a href="https://www.nvidia.com/en-us/solutions/autonomous-vehicles/partners/">Partners</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://nvidianews.nvidia.com/news/nvidia-drive-hyperion-becomes-the-global-platform-for-a-robotaxi-ready-world">
+          <img src="assets/aad3ae-auto-promo-hyperion-1920x1080-43de.jpeg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>The World Is Building Robotaxis on NVIDIA DRIVE Hyperion</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://nvidianews.nvidia.com/news/nvidia-alpamayo-2-super-robotaxis">
+            <img src="assets/410178-gtctpe26-auto-banners-alpamayo-super-295x166-e07b.png" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA Unveils Alpamayo 2 Super Open Reasoning Model</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://nvidianews.nvidia.com/news/hyundai-motor-kia-autonomous-driving">
+            <img src="assets/599c4a-hyundai-kia-motional-cobrand-tech-blog-1920x1080-ac87.png" alt="" loading="lazy" width="336" height="189">
+            <h3>Hyundai, Kia, and NVIDIA Expand Partnership for Next-Gen AV Tech</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/gtc/session-catalog/sessions/gtc26-s81713/">
+            <img src="assets/1d38d5-av-special-address-sfg-e69c.png" alt="" loading="lazy" width="336" height="189">
+            <h3>Automotive Special Address: Scaling Autonomous Vehicles</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all Automotive news</a>
+  </div>
+</section>
+<section class="band" id="robotics-and-edge-ai" data-section="band-robotics-and-edge-ai" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Robotics and Edge AI</h2>
+      <p>The NVIDIA Jetson™ and Isaac™ platforms provide end-to-end solutions to develop and deploy AI-powered autonomous machines and edge computing applications across manufacturing, logistics, healthcare, smart cities, and retail.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/geforce/rtx/">Shop</a><a href="https://www.nvidia.com/en-us/industries/">Overview</a><a href="https://developer.nvidia.com/isaac">Robotics Platform</a><a href="https://www.nvidia.com/en-us/autonomous-machines/">Embedded Edge</a><a href="https://www.nvidia.com/en-us/research/robotics/">Robotics Research</a><a href="https://www.nvidia.com/en-us/autonomous-machines/">Isaac Simulation</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://blogs.nvidia.com/blog/nvidia-and-lg-group-ai-factory/">
+          <img src="assets/509b0e-kr-visit-social-lg-group-ari-a734.jpeg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>NVIDIA and LG Group to Advance Physical AI, Mobility, and AI Infrastructure</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/nvidia-and-doosan-group-physical-ai">
+            <img src="assets/911117-kr-visit-social-lg-group-ari-472e.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA and Doosan Group to Advance Physical AI and AI Factories</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/">
+            <img src="assets/d4702b-jetson-9deb.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA Jetson Is Agentic-Ready to Unlock Physical AI Frontier</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://nvidianews.nvidia.com/news/nvidia-and-global-robotics-leaders-take-physical-ai-to-the-real-world">
+            <img src="assets/e6c5af-jetson-a36a.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA and Global Robotics Leaders Take Physical AI to the Real World</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all Robotics and Edge AI news</a>
+  </div>
+</section>
+<section class="band" id="data-center-and-cloud-computing" data-section="band-data-center-and-cloud-computing" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>Data Center and Cloud Computing</h2>
+      <p>From the cloud to the office to the data center to the edge, NVIDIA provides solutions that deliver breakthrough performance on enterprise AI and HPC workloads at any scale, driving business decisions in real time and resulting in faster time to value.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/data-center/">Data Center</a><a href="https://www.nvidia.com/en-us/data-center/gpu-cloud-computing/">Cloud Computing</a><a href="https://www.nvidia.com/en-us/edge-computing/">Edge Computing</a><a href="https://build.nvidia.com/explore/discover">NVIDIA LaunchPad</a><a href="https://www.nvidia.com/en-us/data-center/products/ai-enterprise-suite/">NVIDIA AI Enterprise</a><a href="https://www.nvidia.com/en-us/data-center/dgx-systems/">DGX Systems</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://nvidianews.nvidia.com/news/naver-ai-infrastructure">
+          <img src="assets/fedfb7-nvidia-and-naver-partnership-lockup-h-on-dark-ari.-1ca2.jpg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>NAVER Expands AI Infrastructure to Serve Surging Global AI Demand</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card no-img">
+          <a href="https://nvidianews.nvidia.com/news/sk-telecom-ai-infrastructure">
+            
+            <h3>SK Telecom and NVIDIA Build AI Infrastructure in Korea</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://nvidianews.nvidia.com/news/sk-hynix-ai-factory">
+            <img src="assets/2c639f-nvidia-and-naver-partnership-lockup-h-on-dark-ari.-34c8.jpg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA and SK hynix Announce Multi-Year Technology Partnership</h3>
+          </a>
+        </article>
+        <article class="mini-card no-img">
+          <a href="https://blogs.nvidia.com/blog/microsoft-build-windows-local-cloud-devices">
+            
+            <h3>NVIDIA and Microsoft Offer Unified Stack for Agentic AI Deployment</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all Data Center and Cloud Computing news</a>
+  </div>
+</section>
+<section class="band" id="about-nvidia" data-section="band-about-nvidia" data-intent="domain routing + news" data-layout="grid" data-items="4">
+  <div class="wrap">
+    <div class="band-head">
+      <h2>About NVIDIA</h2>
+      <p>NVIDIA pioneered accelerated computing to tackle challenges no one else can solve. Our work in AI and digital twins is transforming the world's largest industries and profoundly impacting society.</p>
+      <div class="quick-links"><a href="https://www.nvidia.com/en-us/about-nvidia/">About NVIDIA</a><a href="https://www.nvidia.com/gtc/events/">NVIDIA GTC</a><a href="https://www.nvidia.com/en-us/about-nvidia/careers/">Careers</a><a href="https://blogs.nvidia.com/blog/tag/industrial-manufacturing/">Newsroom</a><a href="https://www.nvidia.com/en-us/on-demand">NVIDIA On-Demand</a><a href="https://nvidianews.nvidia.com/bios">Leaders</a></div>
+    </div>
+    <div class="rank-row">
+      <article class="lead-card">
+        <a href="https://www.nvidia.com/en-tw/gtc/taipei/">
+          <img src="assets/ae2470-gtc26-tpe-phase3-keynote-sfg-1920x1080-enen-487785-589f.jpg" alt="" loading="lazy" width="850" height="478">
+          <div class="pad"><span class="lead-tag">Latest</span><h3>NVIDIA CEO Jensen Huang’s GTC Taipei Keynote</h3></div>
+        </a>
+      </article>
+      <div class="mini-stack">
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/en-tw/gtc/taipei/keynote/#pregame">
+            <img src="assets/108be2-gtc26-tpe-phase3-keynote-sfg-1920x1080-enen-487785-6a1b.jpg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA GTC Live</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/en-eu/gtc/">
+            <img src="assets/e638b5-gtc26-tpe-phase3-keynote-pregame-sfg-1920x1080-ene-2247.jpg" alt="" loading="lazy" width="336" height="189">
+            <h3>Save the Date for GTC Berlin 2026 | October 20–22</h3>
+          </a>
+        </article>
+        <article class="mini-card">
+          <a href="https://www.nvidia.com/gtc/pregame/">
+            <img src="assets/c77026-gtc26-berlin-web-get-notified-sfg-1920x1080-328c.jpeg" alt="" loading="lazy" width="336" height="189">
+            <h3>NVIDIA GTC Live Keynote Pregame</h3>
+          </a>
+        </article>
+      </div>
+    </div>
+    <a class="view-all" href="https://nvidianews.nvidia.com/">View all About NVIDIA news</a>
+  </div>
+</section>
+</main>
+<footer class="site-footer" data-section="footer" data-intent="navigate" data-layout="mega">
+  <div class="wrap">
+    <div class="cols">
+      <nav aria-label="Company Information">
+        <h2>Company Information</h2>
+        <ul><li><a href="https://www.nvidia.com/en-us/about-nvidia/">About Us</a></li><li><a href="https://investor.nvidia.com/home/default.aspx">Investors</a></li><li><a href="https://www.nventures.ai/">Venture Capital (NVentures)</a></li><li><a href="https://www.nvidia.com/en-us/foundation/">NVIDIA Foundation</a></li><li><a href="https://www.nvidia.com/en-us/research/">Research</a></li><li><a href="https://www.nvidia.com/en-us/sustainability/">Corporate Sustainability</a></li><li><a href="https://www.nvidia.com/en-us/technologies/">Technologies</a></li><li><a href="https://www.nvidia.com/en-us/about-nvidia/careers/">Careers</a></li></ul>
+      </nav>
+      <nav aria-label="News and Events">
+        <h2>News and Events</h2>
+        <ul><li><a href="https://nvidianews.nvidia.com/">Newsroom</a></li><li><a href="https://blogs.nvidia.com/">Company Blog</a></li><li><a href="https://developer.nvidia.com/blog/">Technical Blog</a></li><li><a href="https://www.nvidia.com/en-us/about-nvidia/webinar-portal/">Webinars</a></li><li><a href="https://www.nvidia.com/en-us/preferences/email-signup/">Stay Informed</a></li><li><a href="https://www.nvidia.com/en-us/events/">Events Calendar</a></li><li><a href="https://www.nvidia.com/gtc/events/">GTC AI Conference</a></li><li><a href="https://www.nvidia.com/en-us/on-demand">NVIDIA On-Demand</a></li></ul>
+      </nav>
+      <nav aria-label="Popular Links">
+        <h2>Popular Links</h2>
+        <ul><li><a href="https://www.nvidia.com/en-us/geforce/rtx/">Shop</a></li><li><a href="https://www.nvidia.com/en-us/drivers/">Drivers</a></li><li><a href="https://www.nvidia.com/en-us/support/">Support</a></li></ul>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <img src="assets/687a64-logo-white.svg" alt="NVIDIA" width="96" height="29">
+      <p>&copy; NVIDIA Corporation</p>
+    </div>
+  </div>
+</footer>
+<script>
+// mobile nav a11y (stock hamburger pattern — mobile-nav-collapse.md)
+(function () {
+  var burger = document.querySelector('.ds-nav-burger'), navEl = document.getElementById('site-nav');
+  burger.addEventListener('click', function () {
+    var open = navEl.getAttribute('data-open') === 'true';
+    navEl.setAttribute('data-open', String(!open));
+    burger.setAttribute('aria-expanded', String(!open));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && navEl.getAttribute('data-open') === 'true') { navEl.setAttribute('data-open', 'false'); burger.setAttribute('aria-expanded', 'false'); burger.focus(); }
+  });
+})();
+</script>
+
+</body>
+</html>

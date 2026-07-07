@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stardust — Before / After</title>
+<meta name="description" content="Before/after gallery of stardust redesigns. Flip, wipe, or split-compare each live original against its stardust prototype.">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stardust — Before / After">
+<meta property="og:description" content="Flip, wipe, or split-compare each live original against its stardust redesign.">
+<meta property="og:image" content="https://paolomoz.github.io/stardust-site/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --ink:#0a1024; --ink-deep:#060a14; --ink-soft:#141b3a;
+    --dust:#f5f0e6; --dust-72:rgba(245,240,230,.72); --dust-50:rgba(245,240,230,.5);
+    --dust-30:rgba(245,240,230,.3); --dust-15:rgba(245,240,230,.15); --dust-08:rgba(245,240,230,.08);
+    --amber:#e8b95e; --amber-light:#ffd98a; --amber-deep:#c9822d;
+    --display:"SF Pro Display",Inter,system-ui,sans-serif;
+    --text:"SF Pro Text",Inter,system-ui,sans-serif;
+    --mono:"SF Mono","JetBrains Mono",ui-monospace,monospace;
+    --pad:clamp(16px,2vw,28px); --header-h:52px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--ink-deep);color:var(--dust);font:14px/1.5 var(--text);
+       font-feature-settings:"ss01","ss02";overflow:hidden}
+  ::selection{background:var(--amber);color:var(--ink)}
+  a{color:inherit}
+  [hidden]{display:none!important}
+
+  /* ---------- HEADER (browser chrome) ---------- */
+  header.chrome{position:fixed;top:0;left:0;right:0;z-index:40;background:var(--ink-deep);
+    border-bottom:1px solid var(--dust-08);height:var(--header-h);display:flex;align-items:center;padding:0 var(--pad)}
+  header .row{display:flex;align-items:center;gap:14px;width:100%}
+  .lockup{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+  .lockup .mark{width:26px;height:26px;border-radius:5px;background:linear-gradient(180deg,#151e42,#08101f);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .lockup .mark svg{width:26px;height:26px;display:block}
+  .lockup .word{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:-.025em;color:var(--dust)}
+  .crumb{color:var(--dust-50);font:11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    display:flex;align-items:center;min-width:0}
+  .crumb a{color:var(--dust-50);text-decoration:none}
+  .crumb a:hover{color:var(--amber)}
+  .crumb .sep{color:var(--dust-30);padding:0 8px}
+  .crumb .here{color:var(--dust);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  header .actions{margin-left:auto;display:flex;gap:14px;align-items:center;flex-shrink:0}
+  header .actions a,header .actions button{color:var(--dust-50);text-decoration:none;font:11px/1 var(--mono);
+    letter-spacing:.14em;text-transform:uppercase;background:transparent;border:0;padding:0;cursor:pointer}
+  header .actions a:hover,header .actions button:hover{color:var(--amber)}
+
+  /* ---------- INDEX WALL ---------- */
+  .wall{position:fixed;inset:var(--header-h) 0 0 0;overflow:auto;padding:clamp(20px,3vw,40px)}
+  .wall .lede{max-width:640px;margin:0 auto clamp(24px,3vw,40px);text-align:center}
+  .wall .lede .kick{font:500 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+  .wall .lede h1{font-family:var(--display);font-weight:600;font-size:clamp(26px,4vw,40px);
+    letter-spacing:-.02em;margin:14px 0 10px}
+  .wall .lede p{color:var(--dust-50);font-size:14px;margin:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(14px,1.6vw,22px);
+    max-width:1440px;margin:0 auto}
+  .card{background:var(--ink);border:1px solid var(--dust-08);border-radius:14px;overflow:hidden;cursor:pointer;
+    transition:transform .25s cubic-bezier(.25,1,.5,1),border-color .2s,box-shadow .25s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--dust-15);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink-soft)}
+  .card .thumb .after,.card .thumb .before{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:top}
+  .card .thumb .after{z-index:1}
+  .card .thumb .before{z-index:2;opacity:0;transition:opacity .35s}
+  .card:hover .thumb .before{opacity:1}
+  .card .thumb .tag{position:absolute;top:10px;z-index:3;font:500 9px/1 var(--mono);letter-spacing:.14em;
+    text-transform:uppercase;padding:5px 8px;border-radius:5px;backdrop-filter:blur(6px)}
+  .card .thumb .tag.after{left:10px;background:rgba(232,185,94,.92);color:var(--ink)}
+  .card .thumb .tag.before{right:10px;background:rgba(6,10,20,.72);color:var(--dust-72);opacity:0;transition:opacity .3s}
+  .card:hover .thumb .tag.before{opacity:1}
+  .card:hover .thumb .tag.after{opacity:0}
+  .card .meta{padding:13px 15px 15px;display:flex;align-items:baseline;gap:8px;border-top:1px solid var(--dust-08)}
+  .card .meta .nm{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em}
+  .card .meta .vr{margin-left:auto;font:500 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+  .card .meta .pg{font:11px/1 var(--mono);color:var(--dust-30)}
+
+  /* ---------- COMPARE STAGE ---------- */
+  .stage{position:fixed;inset:var(--header-h) 0 46px 0;background:var(--ink-deep);overflow:hidden}
+  .frame{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:100%;
+    background:var(--ink-deep);transition:width .3s cubic-bezier(.25,1,.5,1)}
+  .frame.tablet{width:834px} .frame.mobile{width:400px}
+  .frame.tablet,.frame.mobile{border-left:1px solid var(--dust-08);border-right:1px solid var(--dust-08)}
+
+  /* panes */
+  .pane{position:absolute;top:0;bottom:0;overflow:auto;background:#fff;scrollbar-width:thin}
+  .pane .lbl{position:sticky;top:0;z-index:5;display:block;pointer-events:none}
+  .pane .lbl span{position:absolute;top:12px;font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 10px;border-radius:6px}
+  .pane.before .lbl span{left:12px;background:rgba(6,10,20,.82);color:var(--dust)}
+  .pane.after  .lbl span{left:12px;background:var(--amber);color:var(--ink)}
+  .pane img.shot{display:block;width:100%;height:auto}
+  .pane iframe{display:block;width:100%;height:100%;border:0;background:#fff}
+  .pane iframe.tall{height:auto;min-height:100%}
+
+  /* mode: flip — panes stacked, toggle visibility */
+  .stage[data-mode="flip"] .pane{left:0;right:0}
+  .stage[data-mode="flip"] .pane.before{z-index:1}
+  .stage[data-mode="flip"] .pane.after{z-index:2}
+  .stage[data-mode="flip"][data-side="before"] .pane.after{opacity:0;pointer-events:none}
+  .stage[data-mode="flip"][data-side="after"]  .pane.before{opacity:0;pointer-events:none}
+
+  /* mode: split — side by side */
+  .stage[data-mode="split"] .pane.before{left:0;width:50%;border-right:1px solid rgba(0,0,0,.15)}
+  .stage[data-mode="split"] .pane.after {right:0;width:50%}
+
+  /* mode: slider — overlap, after clipped by divider */
+  .stage[data-mode="slider"] .pane{left:0;right:0;overflow:hidden}
+  .stage[data-mode="slider"] .pane .inner{position:absolute;inset:0;overflow:auto}
+  .stage[data-mode="slider"] .pane.before{z-index:1}
+  .stage[data-mode="slider"] .pane.after{z-index:2;clip-path:inset(0 0 0 var(--split))}
+  .handle{position:absolute;top:0;bottom:0;z-index:10;width:2px;background:var(--amber);
+    left:var(--split);cursor:ew-resize;display:none}
+  .stage[data-mode="slider"] .handle{display:block}
+  .handle::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:38px;height:38px;border-radius:50%;background:var(--amber);box-shadow:0 6px 20px rgba(0,0,0,.5)}
+  .handle::after{content:"◄ ►";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    font:700 9px/1 var(--mono);color:var(--ink);letter-spacing:1px;white-space:nowrap}
+
+  /* ---------- BOTTOM RAIL ---------- */
+  .rail{position:fixed;left:0;right:0;bottom:0;height:46px;z-index:40;background:var(--ink-deep);
+    border-top:1px solid var(--dust-08);display:flex;align-items:center;gap:14px;padding:0 var(--pad)}
+  .rail .nav{display:flex;align-items:center;gap:6px}
+  .rail .nav button{width:30px;height:30px;border-radius:7px;border:1px solid var(--dust-15);background:transparent;
+    color:var(--dust-50);cursor:pointer;font:14px/1 var(--mono);display:flex;align-items:center;justify-content:center}
+  .rail .nav button:hover{color:var(--amber);border-color:var(--amber)}
+  .rail .counter{font:11px/1 var(--mono);letter-spacing:.12em;color:var(--dust-50);min-width:54px;text-align:center}
+  .seg{display:flex;background:var(--ink);border:1px solid var(--dust-15);border-radius:999px;padding:3px;gap:2px}
+  .seg button{background:transparent;border:0;color:var(--dust-72);padding:6px 13px;border-radius:999px;cursor:pointer;
+    font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;transition:all .15s}
+  .seg button:hover{color:var(--dust)}
+  .seg button.on{background:var(--amber);color:var(--ink)}
+  .rail .spacer{flex:1}
+  .rail .hint{font:10px/1 var(--mono);letter-spacing:.1em;color:var(--dust-30);text-transform:uppercase}
+  @media(max-width:720px){.rail .hint,.seg.device{display:none}}
+
+  /* info popover (thesis / source) */
+  .info{position:fixed;right:16px;bottom:58px;z-index:45;width:300px;max-width:calc(100vw - 32px);
+    background:rgba(20,27,58,.94);backdrop-filter:blur(14px);border:1px solid var(--dust-15);border-radius:14px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);padding:16px 18px;transform:translateY(8px);opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s}
+  .info.show{opacity:1;transform:translateY(0);pointer-events:auto}
+  .info h2{font-family:var(--display);font-weight:600;font-size:17px;margin:0 0 3px}
+  .info .vr{font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+  .info .src{margin:12px 0 0;font:12px/1.5 var(--mono);color:var(--dust-50)}
+  .info .src a{color:var(--dust-72);text-decoration:none;border-bottom:1px dashed var(--dust-15)}
+  .info .src a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+  .info .th{margin:12px 0 0;font-size:13px;line-height:1.55;color:var(--dust-72)}
+  .info .th .k{display:block;font:500 9px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--dust-30);margin-bottom:6px}
+
+  #toast{position:fixed;bottom:64px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--amber);
+    color:var(--ink);padding:10px 18px;border-radius:8px;font:500 12px/1 var(--mono);letter-spacing:.12em;
+    text-transform:uppercase;box-shadow:0 12px 32px rgba(0,0,0,.4);opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s;z-index:100}
+  #toast.shown{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="chrome"><div class="row">
+  <a href="#" class="lockup" aria-label="Stardust home" id="homelink">
+    <span class="mark"><svg viewBox="0 0 200 200" aria-hidden="true">
+      <g fill="#e8b95e">
+        <rect x="92" y="26" width="16" height="16"/><rect x="92" y="46" width="16" height="16" opacity="0.7"/>
+        <rect x="92" y="66" width="16" height="16" opacity="0.5"/><rect x="92" y="118" width="16" height="16" opacity="0.5"/>
+        <rect x="92" y="138" width="16" height="16" opacity="0.7"/><rect x="92" y="158" width="16" height="16"/>
+        <rect x="26" y="92" width="16" height="16"/><rect x="46" y="92" width="16" height="16" opacity="0.7"/>
+        <rect x="66" y="92" width="16" height="16" opacity="0.5"/><rect x="118" y="92" width="16" height="16" opacity="0.5"/>
+        <rect x="138" y="92" width="16" height="16" opacity="0.7"/><rect x="158" y="92" width="16" height="16"/>
+      </g><rect x="85" y="85" width="30" height="30" fill="#ffd98a"/>
+    </svg></span><span class="word">stardust</span>
+  </a>
+  <nav class="crumb">
+    <a href="#">Before / After</a>
+    <span id="crumbtail" hidden><span class="sep">/</span><span class="here" id="crumbhere"></span></span>
+  </nav>
+  <div class="actions">
+    <a href="../">Stardust</a>
+    <button id="infobtn" hidden>Details</button>
+    <button id="copybtn" hidden>Copy link</button>
+  </div>
+</div></header>
+
+<!-- INDEX WALL -->
+<main class="wall" id="wall">
+  <div class="lede">
+    <div class="kick">Stardust redesigns</div>
+    <h1>Before / After</h1>
+    <p>The live original, beside its stardust prototype. Open any pair to flip, wipe, or split-compare.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- COMPARE STAGE -->
+<section class="stage" id="stage" data-mode="flip" data-side="after" hidden>
+  <div class="frame desktop" id="frame">
+    <div class="pane before" id="paneBefore"><div class="lbl"><span>Before · original</span></div></div>
+    <div class="pane after"  id="paneAfter"><div class="lbl"><span id="afterLbl">After · stardust</span></div></div>
+    <div class="handle" id="handle"></div>
+  </div>
+</section>
+
+<div class="rail" id="rail" hidden>
+  <div class="nav">
+    <button id="prev" title="Previous (←)">‹</button>
+    <span class="counter" id="counter">1 / 21</span>
+    <button id="next" title="Next (→)">›</button>
+  </div>
+  <div class="seg">
+    <button data-mode="flip"   class="on">Flip</button>
+    <button data-mode="slider">Slider</button>
+    <button data-mode="split">Split</button>
+  </div>
+  <div class="seg device">
+    <button data-dev="desktop" class="on">Desk</button>
+    <button data-dev="tablet">Tab</button>
+    <button data-dev="mobile">Mob</button>
+  </div>
+  <div class="spacer"></div>
+  <span class="hint" id="hint">Space · flip &nbsp;·&nbsp; ← → · samples</span>
+</div>
+
+<aside class="info" id="info"></aside>
+<div id="toast">Link copied</div>
+
+<script src="manifest.js"></script>
+<script>
+const S = window.SAMPLES || [];
+const $ = s => document.querySelector(s);
+const stage=$('#stage'), rail=$('#rail'), wall=$('#wall'), frame=$('#frame'),
+      paneBefore=$('#paneBefore'), paneAfter=$('#paneAfter'), handle=$('#handle'),
+      info=$('#info'), counter=$('#counter');
+let cur=-1, mode='flip', dev='desktop', side='after';
+
+/* ---------- INDEX WALL ---------- */
+function buildWall(){
+  const g=$('#grid'); g.innerHTML='';
+  S.forEach((s,i)=>{
+    const c=document.createElement('a');
+    c.className='card'; c.href='#'+s.slug;
+    const afterImg = s.afterThumb || s.before; // fallback if a thumb is missing
+    c.innerHTML=`
+      <div class="thumb">
+        <img class="after" loading="lazy" src="${afterImg}" alt="${s.brand} redesign">
+        ${s.before?`<img class="before" loading="lazy" src="${s.before}" alt="${s.brand} original">`:''}
+        <span class="tag after">After</span><span class="tag before">Before</span>
+      </div>
+      <div class="meta"><span class="nm">${s.brand}</span>
+        <span class="pg">${s.page}</span><span class="vr">${s.variant}</span></div>`;
+    g.appendChild(c);
+  });
+}
+
+/* ---------- COMPARE STAGE ---------- */
+function loadSample(i){
+  cur=i; const s=S[i];
+  // before
+  paneBefore.querySelectorAll('img.shot').forEach(n=>n.remove());
+  if(s.before){ const img=new Image(); img.className='shot'; img.src=s.before; paneBefore.appendChild(img); }
+  // after
+  paneAfter.querySelectorAll('iframe').forEach(n=>n.remove());
+  const fr=document.createElement('iframe'); fr.src=s.after; paneAfter.appendChild(fr);
+  $('#afterLbl').textContent='After · stardust '+s.variant;
+  // chrome
+  $('#crumbtail').hidden=false; $('#crumbhere').textContent=s.brand;
+  counter.textContent=(i+1)+' / '+S.length;
+  // info popover
+  info.innerHTML=`<div class="vr">${s.variant}</div><h2>${s.brand}</h2>
+    <div class="src">original ↗ <a href="${s.url}" target="_blank" rel="noopener">${s.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</a></div>
+    <div class="th"><span class="k">Redesign thesis</span>${s.thesis}</div>
+    <div class="src"><a href="${s.after}" target="_blank" rel="noopener">Open prototype ↗</a></div>`;
+  setMode('flip'); setSide('after'); syncScroll();
+  location.hash=s.slug;
+}
+function setMode(m){
+  mode=m; stage.dataset.mode=m;
+  rail.querySelectorAll('.seg button[data-mode]').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+  $('#hint').textContent = m==='flip' ? 'Space · flip  ·  ← → · samples'
+                        : m==='slider' ? 'Drag divider  ·  ← → · samples'
+                        : 'Scroll synced  ·  ← → · samples';
+  if(m==='slider'){ frame.style.setProperty('--split','50%'); }
+}
+function setSide(sd){ side=sd; stage.dataset.side=sd; }
+function setDev(d){
+  dev=d; frame.className='frame '+d;
+  rail.querySelectorAll('.seg.device button').forEach(b=>b.classList.toggle('on',b.dataset.dev===d));
+}
+function go(delta){ let n=(cur+delta+S.length)%S.length; loadSample(n); }
+
+/* scroll sync: before(image) <-> after(iframe) by fraction */
+let syncing=false;
+function frac(el){ const m=el.scrollHeight-el.clientHeight; return m>0?el.scrollTop/m:0; }
+function applyFrac(el,f){ const m=el.scrollHeight-el.clientHeight; el.scrollTop=f*m; }
+function syncScroll(){
+  const after=paneAfter, before=paneBefore;
+  function mk(srcEl,dstGetter){
+    srcEl.addEventListener('scroll',()=>{
+      if(syncing||mode==='split'===false&&false) {}
+      if(syncing) return; syncing=true;
+      const f=frac(srcEl); const dst=dstGetter();
+      if(dst) applyFrac(dst, f);
+      requestAnimationFrame(()=>syncing=false);
+    });
+  }
+  mk(before, ()=>{ const fr=paneAfter.querySelector('iframe'); try{return fr.contentDocument.scrollingElement}catch(e){return null} });
+  // iframe scroll listened after load
+  const fr=paneAfter.querySelector('iframe');
+  fr.addEventListener('load',()=>{
+    try{
+      const doc=fr.contentDocument, sc=doc.scrollingElement;
+      doc.addEventListener('scroll',()=>{
+        if(syncing) return; syncing=true;
+        applyFrac(before, frac(sc));
+        requestAnimationFrame(()=>syncing=false);
+      });
+    }catch(e){}
+  });
+}
+
+/* slider drag */
+function dragTo(clientX){
+  const r=frame.getBoundingClientRect();
+  let p=(clientX-r.left)/r.width; p=Math.max(0,Math.min(1,p));
+  frame.style.setProperty('--split',(p*100)+'%');
+  handle.style.left=(p*100)+'%';
+}
+let dragging=false;
+handle.addEventListener('pointerdown',e=>{dragging=true;handle.setPointerCapture(e.pointerId)});
+handle.addEventListener('pointermove',e=>{if(dragging)dragTo(e.clientX)});
+handle.addEventListener('pointerup',()=>dragging=false);
+stage.addEventListener('pointerdown',e=>{ if(mode==='slider'&&e.target!==handle){dragTo(e.clientX)} });
+
+/* ---------- ROUTER ---------- */
+function render(){
+  const h=location.hash.replace(/^#/,'');
+  const idx=S.findIndex(s=>s.slug===h);
+  if(idx>=0){ showStage(); if(idx!==cur) loadSample(idx); }
+  else { showWall(); }
+}
+function showWall(){
+  wall.hidden=false; stage.hidden=true; rail.hidden=true; info.classList.remove('show');
+  $('#crumbtail').hidden=true; $('#infobtn').hidden=true; $('#copybtn').hidden=true; cur=-1;
+}
+function showStage(){
+  wall.hidden=true; stage.hidden=false; rail.hidden=false;
+  $('#infobtn').hidden=false; $('#copybtn').hidden=false;
+}
+window.addEventListener('hashchange',render);
+
+/* ---------- WIRING ---------- */
+rail.querySelectorAll('.seg button[data-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+rail.querySelectorAll('.seg.device button').forEach(b=>b.onclick=()=>setDev(b.dataset.dev));
+$('#prev').onclick=()=>go(-1); $('#next').onclick=()=>go(1);
+$('#infobtn').onclick=()=>info.classList.toggle('show');
+$('#copybtn').onclick=async()=>{
+  const url=location.origin+location.pathname+'#'+S[cur].slug;
+  try{await navigator.clipboard.writeText(url)}catch(e){}
+  const t=$('#toast'); t.classList.add('shown'); setTimeout(()=>t.classList.remove('shown'),1400);
+};
+document.addEventListener('keydown',e=>{
+  if(stage.hidden) return;
+  if(e.key===' '){ e.preventDefault(); if(mode!=='flip')setMode('flip'); setSide(side==='after'?'before':'after'); }
+  else if(e.key==='ArrowRight') go(1);
+  else if(e.key==='ArrowLeft') go(-1);
+  else if(e.key==='Escape'){ location.hash=''; }
+  else if(e.key==='1') setMode('flip');
+  else if(e.key==='2') setMode('slider');
+  else if(e.key==='3') setMode('split');
+});
+
+buildWall(); render();
+</script>
+</body>
+</html>

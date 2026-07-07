@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:uplift (prototype, variant C)
+  writtenAt:        2026-07-03T14:30:00Z
+  page:             home
+  pageUrl:          https://frescopa.coffee/
+  variant:          C (cinematic editorial — MOTION version)
+  againstDirection: stardust/direction.md
+  readArtifacts:
+    - stardust/prototypes/home-A-proposed.html
+    - DESIGN-C.json
+    - reference/motion-runtime.md
+    - reference/motion-validation.md
+  structuralChangesVsA: [hero-full-bleed-latte-photography, doorstep-full-bleed-subscription-box, motion-layer]
+  motion:
+    role:           cinematic (Lenis + editorial motion runtime)
+    register:       editorial
+    registerSource: auto (DESIGN-C.json extensions.motion.register)
+    stack:          [lenis, inline-runtime]
+    config:         { parallax:{translate:10,fade:0.20,rangeStart:0,range:90}, plansParallax:{translate:8}, cards:{trigger:0.85,range:0.32,slide:24,stagger:0.18}, wordmark:{range:0.6,clip:80} }
+    moves:          [long-fade-entrances [data-anim], hero-micro-parallax .hero-marquee <=10vh, hover image scale, reading-paced reveals]
+    forbids:        [data-flip, data-fill, data-countup, data-split, marquee, live-sweep, parallax>12vh, bouncy easings]
+  unsourcedContent: []
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frescopa - Coffee, Tea &amp; Accessories</title>
+<link rel="stylesheet" href="assets/ed8893-lenis.min.css">
+<noscript>
+  <style>
+    [data-anim], [data-tile-anim], [data-split] span {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      clip-path: none !important;
+    }
+    .word { clip-path: none !important; transform: none !important; }
+    [data-parallax] { transform: none !important; }
+    .hero-marquee { transform: none !important; }
+    .post-hero { transform: none !important; }
+  </style>
+</noscript>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root{
+  /* Baskerville — display / Roboto — body (captured) */
+  --heading-font-family:'Libre Baskerville','Baskerville',Georgia,serif;
+  --body-font-family:'Roboto',system-ui,-apple-system,sans-serif;
+
+  --heading-xxl:60px; --heading-xl:46px; --heading-lg:34px; --heading-md:25px;
+  --body:18px; --body-sm:15px;
+  --line-height-heading:1.14; --line-height-body:1.6;
+
+  /* Palette — pinned to captured surface */
+  --color-bg:#FAF6F0;           /* page — warm off-white */
+  --color-fg:#58181D;           /* text — oxblood */
+  --color-accent:#00647D;       /* primary — teal */
+  --color-card:#FFFFFF;
+  --color-surface:#F4E9DC;      /* cream */
+  --color-ink:#58181D;
+  --color-teal:#00647D;
+  --color-amber:#EBA439;
+  --color-terracotta:#DC6E52;
+  --color-terracotta-deep:#E05633;
+
+  --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px; --spacing-lg:24px;
+  --spacing-xl:40px; --spacing-2xl:64px;
+  --section-padding:64px;       /* density floor: 7+ sections → ≤64px */
+  --max-width:1200px;
+  --radius:14px;
+  --shadow-card:0 10px 30px rgba(88,24,29,.10);
+  --shadow-soft:0 4px 16px rgba(88,24,29,.08);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--color-bg);color:var(--color-fg);
+  font-family:var(--body-font-family);font-weight:300;font-size:var(--body);
+  line-height:var(--line-height-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--heading-font-family);font-weight:400;
+  line-height:var(--line-height-heading);margin:0;letter-spacing:.005em}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max-width);margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--body-font-family);font-weight:500;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--color-terracotta-deep)}
+
+/* Buttons — pill */
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:var(--body-font-family);
+  font-weight:500;font-size:15px;letter-spacing:.04em;border-radius:999px;
+  padding:14px 30px;border:1.5px solid transparent;cursor:pointer;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn--primary{background:var(--color-teal);color:#fff;box-shadow:0 3px 10px rgba(88,24,29,.14)}
+.btn--primary:hover{background:#00566b}
+.btn--terracotta{background:var(--color-terracotta-deep);color:#fff}
+.btn--ghost{background:transparent;color:var(--color-ink);border-color:rgba(88,24,29,.3)}
+.btn--ghost:hover{background:rgba(88,24,29,.06)}
+.link-cta{font-family:var(--body-font-family);font-weight:500;letter-spacing:.03em;
+  color:var(--color-teal);border-bottom:1.5px solid currentColor;padding-bottom:2px}
+
+/* Announcement bar */
+.announce{background:var(--color-terracotta-deep);color:#fff;font-family:var(--body-font-family);
+  font-weight:400;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.announce .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:9px;padding-bottom:9px}
+.announce a{border-bottom:1px solid rgba(255,255,255,.6);font-weight:500}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(250,246,240,.92);
+  backdrop-filter:saturate(1.1) blur(8px);border-bottom:1px solid rgba(88,24,29,.08)}
+.site-header .wrap{display:flex;align-items:center;gap:28px;padding-top:16px;padding-bottom:16px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--heading-font-family);
+  font-size:26px;color:var(--color-ink)}
+.brand img{height:30px;width:auto}
+.nav{display:flex;gap:26px;margin-left:12px;font-family:var(--body-font-family);
+  font-weight:400;font-size:15px;letter-spacing:.02em}
+.nav a{padding:4px 0;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+.nav a:hover{border-color:var(--color-terracotta);color:var(--color-terracotta-deep)}
+.tools{margin-left:auto;display:flex;align-items:center;gap:20px;font-family:var(--body-font-family);font-size:14px}
+.tools .icn{width:22px;height:22px;stroke:var(--color-ink);fill:none;stroke-width:1.6}
+.tools a:hover .icn{stroke:var(--color-terracotta-deep)}
+.tools .signin{font-weight:500}
+.burger{display:none;background:none;border:0;cursor:pointer}
+
+/* Section rhythm */
+section{padding-top:var(--section-padding);padding-bottom:var(--section-padding)}
+
+/* HERO — FULL-BLEED latte-pour photography (structural change vs A #1) */
+.hero{position:relative;overflow:hidden;padding:0;min-height:84vh;display:flex;align-items:flex-end}
+.hero-marquee{position:absolute;inset:-12vh 0;z-index:0;will-change:transform}
+.hero-marquee img{width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  transition:transform .7s ease}
+.hero:hover .hero-marquee img{transform:scale(1.03)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(40,10,12,.28)0%,rgba(40,10,12,.08)32%,rgba(40,10,12,.52)78%,rgba(40,10,12,.82)100%),
+    linear-gradient(90deg,rgba(40,10,12,.55),rgba(40,10,12,.04)72%)}
+.hero-inner{position:relative;z-index:2;padding-top:120px;padding-bottom:9vh;width:100%}
+.hero-copy .eyebrow{color:var(--color-amber);margin-bottom:16px}
+.hero-copy h1{color:#fff;font-size:var(--heading-xxl);margin-bottom:20px;max-width:14ch;
+  text-shadow:0 2px 26px rgba(20,5,6,.45)}
+.hero-copy .lede{color:rgba(255,255,255,.93);font-size:20px;max-width:46ch;margin-bottom:28px}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero .link-cta{color:#fff;border-bottom-color:rgba(255,255,255,.7)}
+.hero .link-cta:hover{border-bottom-color:#fff}
+/* quiz secondary chip (contained band under the hero) */
+.quiz-band{padding-top:34px;padding-bottom:0}
+.quiz-chip{display:flex;align-items:center;gap:18px;background:var(--color-card);
+  border:1px solid rgba(88,24,29,.1);border-radius:16px;padding:16px 22px;box-shadow:var(--shadow-soft);max-width:620px;margin-top:-58px;position:relative;z-index:5}
+.quiz-chip .q{width:44px;height:44px;flex:none;border-radius:50%;background:var(--color-surface);
+  display:grid;place-items:center;font-family:var(--heading-font-family);font-size:22px;color:var(--color-terracotta-deep)}
+.quiz-chip .t{font-family:var(--body-font-family);font-size:15px;color:#6a2d31}
+.quiz-chip .t b{font-family:var(--heading-font-family);font-weight:400;font-size:17px;color:var(--color-ink);display:block}
+.quiz-chip .go{margin-left:auto;white-space:nowrap}
+
+/* Subscription offer (cream contained) */
+.offer .card{background:var(--color-surface);border-radius:var(--radius);
+  display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;padding:48px 52px;
+  box-shadow:var(--shadow-soft);position:relative;overflow:hidden}
+.offer h2{font-size:var(--heading-lg);margin-bottom:16px;max-width:18ch}
+.offer p{max-width:46ch;color:#6a2d31;margin-bottom:26px}
+.offer .art{width:150px;height:150px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f6d9a7,var(--color-amber));
+  justify-self:end;box-shadow:var(--shadow-soft);position:relative}
+.offer .art::after{content:"";position:absolute;inset:26px;border-radius:50%;
+  background:radial-gradient(circle at 45% 40%,#fff,#e9c58f)}
+
+/* Categories */
+.cats h2{font-size:var(--heading-lg);text-align:center;margin-bottom:8px}
+.cats .sub{text-align:center;color:#6a2d31;margin-bottom:40px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.cat{border-radius:var(--radius);padding:30px 20px 26px;text-align:center;
+  box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease;
+  border:1px solid rgba(88,24,29,.06)}
+.cat:hover{transform:translateY(-6px);box-shadow:var(--shadow-card)}
+.cat .icn-wrap{width:78px;height:78px;margin:0 auto 18px;border-radius:50%;
+  display:grid;place-items:center}
+.cat img{width:46px;height:46px;object-fit:contain}
+.cat h3{font-size:19px}
+/* warm colour-grounded tiles (T5 fix) */
+.cat:nth-child(1){background:#fbeede}.cat:nth-child(1) .icn-wrap{background:#f6dcb6}
+.cat:nth-child(2){background:#f7e6dd}.cat:nth-child(2) .icn-wrap{background:#f0cdbd}
+.cat:nth-child(3){background:#fbe7e0}.cat:nth-child(3) .icn-wrap{background:#f4d0c4}
+.cat:nth-child(4){background:#eaefec}.cat:nth-child(4) .icn-wrap{background:#cfe0dc}
+.cat:nth-child(5){background:#f3ece1}.cat:nth-child(5) .icn-wrap{background:#e2d3bd}
+
+/* Store locator (contained terracotta card) */
+.locator .card{background:var(--color-terracotta);color:#fff;border-radius:var(--radius);
+  padding:44px 52px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;
+  box-shadow:var(--shadow-card);position:relative;overflow:hidden}
+.locator .card::before{content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;
+  border-radius:50%;background:rgba(255,255,255,.10)}
+.locator .eyebrow{color:#ffe4d8;margin-bottom:12px}
+.locator h2{font-size:var(--heading-lg);color:#fff;max-width:14ch}
+.locator form{display:flex;gap:0;background:#fff;border-radius:999px;padding:6px;max-width:420px;box-shadow:var(--shadow-soft)}
+.locator input{flex:1;border:0;background:transparent;padding:12px 20px;font-family:var(--body-font-family);
+  font-size:15px;color:var(--color-ink);outline:none}
+.locator input::placeholder{color:#b98f7f}
+.locator .btn{padding:12px 26px}
+
+/* SUBSCRIPTION DOORSTEP — FULL-BLEED subscription-box photography (structural change vs A #2) */
+.doorstep{position:relative;overflow:hidden;padding:0;min-height:64vh;display:flex;align-items:center}
+.doorstep .ds-bg{position:absolute;inset:0;z-index:0}
+.doorstep .ds-bg img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .7s ease}
+.doorstep:hover .ds-bg img{transform:scale(1.02)}
+.doorstep::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(40,10,12,.10),rgba(40,10,12,.48)50%,rgba(40,10,12,.80))}
+.doorstep .ds-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1.05fr;gap:40px;
+  padding-top:56px;padding-bottom:56px;width:100%}
+.doorstep .ds-copy{grid-column:2}
+.doorstep .eyebrow{color:var(--color-amber);margin-bottom:14px}
+.doorstep h2{color:#fff;font-size:var(--heading-lg);margin-bottom:18px;max-width:16ch;text-shadow:0 2px 22px rgba(20,5,6,.4)}
+.doorstep p{color:rgba(255,255,255,.92);max-width:46ch;margin-bottom:28px}
+
+/* Gift band (teal finale) */
+.gift{background:var(--color-teal);color:#fff}
+.gift .grid{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center}
+.gift .ribbon{width:70px;height:110px;position:relative;flex:none}
+.gift .ribbon::before,.gift .ribbon::after{content:"";position:absolute;background:var(--color-amber)}
+.gift .ribbon::before{left:31px;top:0;width:8px;height:110px}
+.gift .ribbon::after{left:0;top:44px;width:70px;height:8px}
+.gift .bow{position:absolute;left:22px;top:24px;width:26px;height:26px;border-radius:50% 50% 50% 0;
+  background:var(--color-amber);transform:rotate(45deg);box-shadow:16px 0 var(--color-amber)}
+.gift h2{font-size:var(--heading-lg);color:#fff;margin-bottom:12px}
+.gift p{color:rgba(255,255,255,.9);max-width:60ch}
+.gift .btn--terracotta{background:var(--color-terracotta-deep)}
+
+/* Footer */
+.site-footer{background:#fff;border-top:1px solid rgba(88,24,29,.08);padding:56px 0 34px}
+.site-footer .top{display:grid;grid-template-columns:1.4fr repeat(5,1fr);gap:32px}
+.site-footer .brand-col .brand{margin-bottom:14px}
+.foot-tag{font-family:var(--heading-font-family);font-style:italic;font-size:18px;color:var(--color-terracotta-deep);margin-bottom:18px}
+.foot-contact{font-family:var(--body-font-family);font-size:14px;color:#6a2d31;line-height:1.9}
+.foot-col h4{font-family:var(--body-font-family);font-weight:700;font-size:13px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--color-ink);margin-bottom:14px}
+.foot-col a{display:block;font-family:var(--body-font-family);font-size:14px;color:#6a2d31;
+  padding:5px 0;transition:color .2s}
+.foot-col a:hover{color:var(--color-terracotta-deep)}
+.foot-legal{margin-top:38px;padding-top:20px;border-top:1px solid rgba(88,24,29,.1);
+  display:flex;flex-wrap:wrap;gap:8px 20px;font-family:var(--body-font-family);font-size:12.5px;color:#8a6a63}
+.foot-legal .copy{margin-right:auto}
+
+/* Responsive */
+@media(max-width:960px){
+  .offer .card,.locator .card{grid-template-columns:1fr}
+  .hero-copy h1{max-width:18ch}
+  .doorstep .ds-inner{grid-template-columns:1fr}
+  .doorstep .ds-copy{grid-column:1}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .nav{display:none}
+  .burger{display:block}
+  .site-footer .top{grid-template-columns:1fr 1fr}
+  .gift .grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  :root{--heading-xxl:40px;--heading-xl:34px;--heading-lg:28px}
+  .wrap{padding:0 20px}
+  .hero{min-height:78vh}
+  .hero-inner{padding-top:90px}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .quiz-chip{flex-wrap:wrap;margin-top:-40px}
+  /* keep the mobile header within the viewport (aux tools move into the burger menu) */
+  .site-header .wrap{gap:14px}
+  .tools{gap:14px}
+  .tools .signin,.tools a[aria-label="Search"],.tools a[aria-label="Account"]{display:none}
+}
+
+/* Reduced motion — neutralize scroll-reveal initial states (runtime also handles this at boot) */
+@media(prefers-reduced-motion:reduce){
+  [data-anim]{opacity:1 !important;transform:none !important;filter:none !important}
+  .hero-marquee{transform:none !important}
+  .hero-marquee img,.doorstep .ds-bg img{transition:none}
+}
+</style>
+</head>
+<body data-template="landing">
+
+<div class="announce">
+  <div class="wrap">
+    <span>Free shipping from $35 &amp; free coffee samples with code FRESCOPA</span>
+    <a href="/subscription">Shop Now</a>
+  </div>
+</div>
+
+<header class="site-header" data-section="site-header" data-intent="wayfinding" data-layout="contained" data-nav-collapse="hamburger">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Fréscopa home"><img src="assets/b4921b-logo.svg" alt="Fréscopa"></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/coffee">Coffee</a><a href="/tea">Tea</a><a href="/machines">Machines</a>
+      <a href="/accessories">Accessories</a><a href="/locations">Locations</a><a href="/sustainability">Sustainability</a>
+    </nav>
+    <div class="tools">
+      <a href="/cart" aria-label="Cart"><svg class="icn" viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg></a>
+      <a href="#search" aria-label="Search"><svg class="icn" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></a>
+      <a href="/login" aria-label="Account"><svg class="icn" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+      <a class="signin" href="/login?redirect=%2F">Sign in</a>
+    </div>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><svg class="icn" viewBox="0 0 24 24" style="width:26px;height:26px"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO: FULL-BLEED latte-pour photography, dark scrim, serif headline + single primary CTA overlaid -->
+  <section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed" data-media="image">
+    <div class="hero-marquee"><img src="assets/cfddcd-latte-pour.jpg" alt="Barista pouring latte art into a cup"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy" data-anim>
+        <p class="eyebrow">Morning Muse · Light Roast</p>
+        <h1>Elevate your coffee game.</h1>
+        <p class="lede">Experience the bright, citrusy notes and smooth finish of Morning Muse Light Roast. A perfect start to any day.</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="/subscription">Shop Now</a>
+          <a class="link-cta" href="/coffee">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ CHIP (contained, under the hero) -->
+  <section class="quiz-band" data-section="hero-quiz" data-intent="secondary action" data-layout="contained">
+    <div class="wrap">
+      <div class="quiz-chip" data-anim>
+        <span class="q" aria-hidden="true">?</span>
+        <span class="t"><b>Your perfect coffee is four questions away!</b>Take the MyBarista coffee quiz.</span>
+        <a class="btn btn--ghost go" href="/quiz">Start Quiz Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION OFFER (cream, contained) -->
+  <section class="offer" data-section="subscription-offer" data-intent="value proposition" data-layout="contained">
+    <div class="wrap">
+      <div class="card">
+        <div data-anim>
+          <p class="eyebrow" style="color:var(--color-terracotta-deep);margin-bottom:14px">MyBarista Subscription</p>
+          <h2>Fall in love with rich aromas and bold flavors—every single day.</h2>
+          <p>With a MyBarista subscription, savor hand-selected coffees—each chosen for their unique taste and aroma—delivered right to your door every month. Experience new flavors, curated for your lifestyle.</p>
+          <a class="btn btn--primary" href="/subscription">Shop Now</a>
+        </div>
+        <div class="art" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES (warm colour-grounded tiles — T5) -->
+  <section class="cats" data-section="product-categories" data-intent="discovery" data-layout="grid" data-items="5">
+    <div class="wrap">
+      <h2 data-anim>Shop all Fréscopa products.</h2>
+      <p class="sub" data-anim>Machines, beans, pods and everything in between.</p>
+      <div class="cat-grid">
+        <a class="cat" href="/machines" data-anim><span class="icn-wrap"><img src="assets/140dc9-icon-machines.png" alt=""></span><h3>Coffee Machines</h3></a>
+        <a class="cat" href="/coffee" data-anim><span class="icn-wrap"><img src="assets/8d884f-icon-bagged.png" alt=""></span><h3>Bagged Coffee</h3></a>
+        <a class="cat" href="/coffee" data-anim><span class="icn-wrap"><img src="assets/b3979c-icon-pods.png" alt=""></span><h3>Coffee Pods</h3></a>
+        <a class="cat" href="/accessories" data-anim><span class="icn-wrap"><img src="assets/f3acdc-icon-bundles.png" alt=""></span><h3>Bundles</h3></a>
+        <a class="cat" href="/accessories" data-anim><span class="icn-wrap"><img src="assets/3e440c-icon-accessories.png" alt=""></span><h3>Accessories</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE LOCATOR (contained terracotta card) -->
+  <section class="locator" data-section="store-locator" data-intent="drive action" data-layout="contained" data-interactive="form">
+    <div class="wrap">
+      <div class="card">
+        <div data-anim>
+          <p class="eyebrow">Find another location now</p>
+          <h2>Try a new roast at a Fréscopa near you!</h2>
+        </div>
+        <form onsubmit="return false">
+          <input type="text" placeholder="Post Code" aria-label="Post code">
+          <button class="btn btn--terracotta" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIPTION DOORSTEP: FULL-BLEED subscription-box photography with overlaid text -->
+  <section class="doorstep" data-section="subscription-doorstep" data-intent="value proposition" data-layout="full-bleed" data-media="image">
+    <div class="ds-bg"><img src="assets/e66ce4-subscription-box.png" alt="MyBarista subscription box on a doorstep"></div>
+    <div class="wrap ds-inner">
+      <div class="ds-copy" data-anim>
+        <p class="eyebrow">On your doorstep</p>
+        <h2>Your coffee. On your doorstep.</h2>
+        <p>Start a MyBarista subscription to get a carefully selected variety of coffees sent to you each month. As you rate the coffees you try, we'll fine-tune your flavor profile to give you flavors we think you'll love.</p>
+        <a class="btn btn--primary" href="/subscription">Start Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIFT BAND (teal finale) -->
+  <section class="gift" data-section="gift-band" data-intent="drive action" data-layout="full-bleed">
+    <div class="wrap grid">
+      <span class="ribbon" aria-hidden="true"><span class="bow"></span></span>
+      <div data-anim>
+        <h2>Rewards unclaimed is a Gift missed!</h2>
+        <p>Surprise your loved ones with the ultimate coffee experience. Our gift cards are the perfect way to share the joy of a freshly brewed cup from our top-of-the-line coffee machines.</p>
+      </div>
+      <a class="btn btn--terracotta" href="/signup">Claim Rewards</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-section="footer" data-intent="wayfinding" data-layout="grid">
+  <div class="wrap">
+    <div class="top">
+      <div class="brand-col">
+        <a class="brand" href="/" aria-label="Fréscopa home"><img src="assets/b4921b-logo.svg" alt="Fréscopa"></a>
+        <p class="foot-tag">Smiles one cup at a time.</p>
+        <p class="foot-contact">Fréscopa Coffee &amp; Tea<br>3900 Adobe Way, Lehi, UT 84043<br>
+          <a href="mailto:info@frescopa.coffee">info@frescopa.coffee</a><br>(385) 345-0000</p>
+      </div>
+      <div class="foot-col"><h4>Machines</h4><a href="/machines">Espresso Machines</a><a href="/machines">Fréscopa Major</a><a href="/machines">Fréscopa Minor</a><a href="/machines">Autodrip Coffee Makers</a><a href="/machines">Coffee Grinders</a></div>
+      <div class="foot-col"><h4>Coffee</h4><a href="/coffee">Bagged Coffee</a><a href="/coffee">Coffee Pods</a><a href="/locations">Find a Retailer</a><a href="/coffee">Fréscopa Affiliate</a></div>
+      <div class="foot-col"><h4>Tea</h4><a href="/tea">Loose Leaf</a><a href="/tea">Pods</a><a href="/tea">Bundles</a></div>
+      <div class="foot-col"><h4>Accessories</h4><a href="/accessories">Replacement Parts</a><a href="/accessories">Cups &amp; Mugs</a><a href="/accessories">Travel Mugs</a><a href="/accessories">Kettles &amp; Carafs</a><a href="/accessories">Carafs</a></div>
+      <div class="foot-col"><h4>About Fréscopa</h4><a href="/about-us">About Us</a><a href="/locations">Support</a><a href="/locations">Find a Retailer</a><a href="/business.html">Fréscopa Enterprise</a><a href="/sustainability">Sustainability</a><a href="/blog">Blog</a></div>
+    </div>
+    <div class="foot-legal">
+      <span class="copy">© Fréscopa, Inc. All rights reserved.</span>
+      <a href="/terms">Terms of Use</a><a href="/privacy">Privacy Policy</a><a href="/cookies">Cookie Notice</a>
+      <a href="/diversity">Diversity &amp; Inclusion</a><a href="/social">Social Responsibility</a><a href="/sitemap">Site Map</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── Cinematic motion runtime: Lenis smooth scroll + editorial choreography ── -->
+<script src="assets/1a94ca-lenis.min.js"></script>
+<script>
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis bootstrap ────────────────────────────────────────────
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+
+  // ── Nav scrolled state ─────────────────────────────────────────
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('scrolled', scroll > 40);
+  });
+
+  // ── Helpers ────────────────────────────────────────────────────
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+
+  // ── Register-specific configuration (editorial) ────────────────
+  const animConfig = {
+    parallax:      { translate: 10, fade: 0.20, rangeStart: 0, range: 90 },
+    plansParallax: { translate: 8, rangeStart: 0, range: 90 },
+    cards:         { trigger: 0.85, range: 0.32, slide: 24, stagger: 0.18 },
+    wordmark:      { range: 0.6, clip: 80 },
+  };
+
+  // ── data-split: pre-process letter spans ───────────────────────
+  document.querySelectorAll('[data-split]').forEach((el) => {
+    const text = el.textContent;
+    el.textContent = '';
+    text.split('').forEach((ch) => {
+      const s = document.createElement('span');
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(60%)';
+      s.style.filter = 'blur(8px)';
+      el.appendChild(s);
+    });
+  });
+
+  // ── Register lists ─────────────────────────────────────────────
+  const animList = [];     // [data-anim] / [data-tile-anim]
+  const headWords = [];    // .display-head .word — clip-path reveals
+  const splitLetters = []; // [data-split] letters
+  let wordmarkEl = null, wordmarkTop = 0;
+
+  function measure() {
+    const postHeroEl = document.querySelector('.post-hero');
+    const savedTransform = postHeroEl ? postHeroEl.style.transform : '';
+    if (postHeroEl) postHeroEl.style.transform = '';
+
+    animList.forEach(({ el }) => { el.style.opacity = el.style.transform = el.style.willChange = ''; });
+    animList.length = 0;
+    headWords.length = 0;
+    splitLetters.length = 0;
+
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => {
+      const parent = el.closest('.band, .ops-band, .alerts, .access, .news, .ops-section > div, .ops-tiles, .ops-alerts, .ops-mini, section');
+      let stagger = 0;
+      if (parent) {
+        const peers = parent.querySelectorAll('[data-anim], [data-tile-anim]');
+        const idx = Array.prototype.indexOf.call(peers, el);
+        stagger = (idx % 8) * animConfig.cards.stagger;
+      }
+      el.style.opacity = '0';
+      el.style.transform = el.hasAttribute('data-tile-anim')
+        ? `translateY(28px) rotateX(8deg)`
+        : `translateY(${animConfig.cards.slide}px)`;
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+
+    // Display-head word clip-path reveals (kinetic-display register)
+    document.querySelectorAll('.display-head, .terminals-band__head h2').forEach((head) => {
+      const words = head.querySelectorAll('.word');
+      const top = getDocTop(head);
+      words.forEach((w, i) => {
+        w.style.clipPath = 'inset(0 100% 0 0)';
+        w.style.transform = 'translateY(110%)';
+        w.style.willChange = 'clip-path, transform';
+        headWords.push({ el: w, triggerTop: top, staggerDelay: i * 0.15 });
+      });
+    });
+
+    // [data-split] letter list
+    document.querySelectorAll('[data-split]').forEach((el) => {
+      const top = getDocTop(el);
+      el.querySelectorAll('span').forEach((s, i) => {
+        splitLetters.push({ el: s, triggerTop: top, staggerDelay: i * 0.05 });
+      });
+    });
+
+    // Footer wordmark wipe-up
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl) {
+      wordmarkTop = getDocTop(wordmarkEl);
+      wordmarkEl.style.clipPath = `inset(${animConfig.wordmark.clip}% 0 0 0)`;
+      wordmarkEl.style.willChange = 'clip-path';
+    }
+
+    if (postHeroEl) postHeroEl.style.transform = savedTransform;
+  }
+
+  // ── [data-countup]: IO-triggered numeric tween ─────────────────
+  const countSeen = new WeakSet();
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || countSeen.has(entry.target)) return;
+      countSeen.add(entry.target);
+      const target = +entry.target.getAttribute('data-countup');
+      const duration = target > 20 ? 1400 : target > 5 ? 900 : 600;
+      const start = performance.now();
+      (function step(now) {
+        const t = clamp((now - start) / duration, 0, 1);
+        entry.target.textContent = String(Math.round(easeOut3(t) * target));
+        if (t < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-countup]').forEach((el) => countObserver.observe(el));
+
+  // ── [data-flip]: IO-triggered split-flap digit randomization ───
+  const flipObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.target.dataset.flipped === '1') return;
+      entry.target.dataset.flipped = '1';
+      const target = +entry.target.getAttribute('data-flip');
+      const total = 8 + Math.floor(Math.random() * 4);
+      let i = 0;
+      (function flap() {
+        if (i >= total) { entry.target.textContent = String(target); return; }
+        entry.target.textContent = String(Math.floor(Math.random() * 10));
+        i++;
+        setTimeout(flap, 60);
+      })();
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-flip]').forEach((el) => flipObserver.observe(el));
+
+  // ── [data-fill]: IO-triggered bar fill ─────────────────────────
+  const fillObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || entry.target.dataset.filled === '1') return;
+      entry.target.dataset.filled = '1';
+      const pct = +entry.target.getAttribute('data-fill');
+      setTimeout(() => { entry.target.style.width = pct + '%'; }, 120);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-fill]').forEach((el) => fillObserver.observe(el));
+
+  // ── Live refresh sweep (live-systems register) ─────────────────
+  const sweepEl = document.querySelector('.live-sweep');
+  if (sweepEl && !prefersReducedMotion) {
+    setInterval(() => {
+      sweepEl.classList.add('sweep');
+      setTimeout(() => sweepEl.classList.remove('sweep'), 1700);
+    }, 5400);
+  }
+
+  // ── rAF loop: scroll-progress reveals + parallax ───────────────
+  const heroMarqueeEl = document.querySelector('.hero-marquee');
+  const postHeroEl = document.querySelector('.post-hero');
+  let _lastMB = null;
+
+  (function tick() {
+    if (prefersReducedMotion) { requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+    const isDesktop = window.innerWidth > 767;
+
+    // Hero parallax
+    if (heroMarqueeEl) {
+      const pp = animConfig.parallax;
+      if (isDesktop) {
+        const rs = pp.rangeStart / 100 * vh;
+        const re = pp.range / 100 * vh;
+        const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1));
+        heroMarqueeEl.style.transform = `translateY(${p * -pp.translate}vh)`;
+        document.documentElement.style.setProperty('--parallax-progress', p);
+      } else {
+        heroMarqueeEl.style.transform = '';
+        document.documentElement.style.setProperty('--parallax-progress', 0);
+      }
+    }
+
+    // Post-hero rises faster
+    let postHeroOffsetPx = 0;
+    if (postHeroEl) {
+      const pp2 = animConfig.plansParallax;
+      if (isDesktop) {
+        const rs = pp2.rangeStart / 100 * vh;
+        const re = pp2.range / 100 * vh;
+        const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1));
+        postHeroOffsetPx = p * -pp2.translate / 100 * vh;
+        postHeroEl.style.transform = `translateY(${p * -pp2.translate}vh)`;
+        const newMB = `${p * -pp2.translate}vh`;
+        if (newMB !== _lastMB) { postHeroEl.style.marginBottom = newMB; _lastMB = newMB; }
+      } else {
+        postHeroEl.style.transform = '';
+        if (_lastMB !== '') { postHeroEl.style.marginBottom = ''; _lastMB = ''; }
+      }
+    }
+
+    // Scroll-progress entrances
+    for (let i = 0; i < animList.length; i++) {
+      const item = animList[i];
+      const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh * trigger - (item.triggerTop + postHeroOffsetPx)) / (vh * range);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      if (item.el.hasAttribute('data-tile-anim')) {
+        item.el.style.transform = `translateY(${(1 - p) * 28}px) rotateX(${(1 - p) * 8}deg)`;
+      } else {
+        item.el.style.transform = `translateY(${(1 - p) * slide}px)`;
+      }
+    }
+
+    // Display-head clip-path word reveals
+    for (let i = 0; i < headWords.length; i++) {
+      const item = headWords[i];
+      const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.30);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+      item.el.style.transform = `translateY(${(1 - p) * 110}%)`;
+    }
+
+    // [data-split] letter reveals
+    for (let i = 0; i < splitLetters.length; i++) {
+      const item = splitLetters[i];
+      const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.35);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      item.el.style.transform = `translateY(${(1 - p) * 60}%)`;
+      item.el.style.filter = `blur(${(1 - p) * 8}px)`;
+    }
+
+    // Footer wordmark wipe-up
+    if (wordmarkEl) {
+      const adjustedTop = wordmarkTop + postHeroOffsetPx;
+      const wP = easeOut3(clamp((sY + vh - adjustedTop) / (vh * animConfig.wordmark.range), 0, 1));
+      wordmarkEl.style.clipPath = `inset(${(1 - wP) * animConfig.wordmark.clip}% 0 0 0)`;
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  measure();
+  window.addEventListener('load',   () => requestAnimationFrame(measure), { once: true });
+  window.addEventListener('resize', measure, { passive: true });
+
+  // ── Reduced-motion: force final states ─────────────────────────
+  if (prefersReducedMotion) {
+    document.querySelectorAll('[data-anim], [data-tile-anim], [data-split] span').forEach((el) => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.filter = 'none';
+      el.style.clipPath = 'none';
+    });
+    document.querySelectorAll('.word').forEach((el) => {
+      el.style.clipPath = 'none';
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('[data-countup]').forEach((el) => { el.textContent = el.getAttribute('data-countup'); });
+    document.querySelectorAll('[data-flip]').forEach((el) => { el.textContent = el.getAttribute('data-flip'); });
+    document.querySelectorAll('[data-fill]').forEach((el) => { el.style.width = el.getAttribute('data-fill') + '%'; });
+  }
+})();
+</script>
+
+<script>
+/* mobile nav a11y only */
+(function(){var b=document.querySelector('.burger'),n=document.querySelector('.nav');
+if(!b||!n)return;b.addEventListener('click',function(){var e=b.getAttribute('aria-expanded')==='true';
+b.setAttribute('aria-expanded',String(!e));n.style.display=e?'':'flex';
+n.style.flexDirection='column';n.style.position='absolute';n.style.top='64px';n.style.left='0';
+n.style.right='0';n.style.background='var(--color-bg)';n.style.padding='16px 32px';});
+document.addEventListener('keydown',function(ev){if(ev.key==='Escape'){b.setAttribute('aria-expanded','false');n.style.display='';}});})();
+</script>
+</body>
+</html>

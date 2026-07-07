@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fairmas · Better Planning. Greater Success. (Variant A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#183849; --navy-700:#20485C; --navy-900:#122c3a;
+  --orange:#DF6B21; --orange-600:#C85C18;
+  --ink:#333333; --heading:#222222; --muted:#69727D;
+  --surface:#FFFFFF; --surface-alt:#F7F7F7;
+  --on-navy:#FFFFFF; --on-navy-muted:#AEBCC6;
+  --border:#E7E9EC;
+  --maxw:1200px; --pad:64px; --radius:14px;
+  --shadow:0 1px 3px rgba(24,56,73,.08), 0 10px 30px rgba(24,56,73,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--surface);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{color:var(--heading);margin:0;letter-spacing:-.02em;line-height:1.08}
+h1{font-weight:800;font-size:clamp(3rem,6.4vw,5.2rem);letter-spacing:-.03em}
+h2{font-weight:800;font-size:clamp(1.8rem,3.2vw,2.5rem)}
+h3{font-weight:700;font-size:1.35rem;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:24px}
+section{padding-block:var(--pad)}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.lead{font-size:clamp(1.1rem,1.5vw,1.35rem);line-height:1.5;color:var(--muted);font-weight:400}
+.muted{color:var(--muted)}
+
+.btn{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:1rem;
+  padding:.9em 1.7em;border-radius:999px;cursor:pointer;transition:.2s;border:1.5px solid transparent}
+.btn-primary{background:var(--orange);color:#fff}
+.btn-primary:hover{background:var(--orange-600);transform:translateY(-1px);box-shadow:0 8px 22px rgba(223,107,33,.28)}
+.btn-ghost{color:var(--navy);font-weight:600}
+.btn-ghost:hover{color:var(--orange)}
+.btn-outline{border-color:var(--navy);color:var(--navy)}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.arrow{transition:transform .2s}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:32px;height:72px}
+.logo{height:30px}
+.nav-links{display:flex;gap:26px;margin-left:12px}
+.nav-links a{font-size:.94rem;font-weight:600;color:var(--heading);display:flex;align-items:center;gap:5px}
+.nav-links a:hover{color:var(--orange)}
+.caret{width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);opacity:.55;margin-top:-3px}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.lang{font-size:.85rem;font-weight:700;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:6px 12px}
+
+/* HERO — full width, video globe */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;overflow:hidden;
+  background:radial-gradient(120% 120% at 80% 40%, #eef3f6 0%, #ffffff 55%)}
+.hero-globe{position:absolute;top:50%;right:-9%;transform:translateY(-50%);
+  width:min(64vw,880px);aspect-ratio:1;object-fit:contain;pointer-events:none;
+  will-change:transform;filter:saturate(1.02)}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero-copy{max-width:640px}
+.hero h1{margin-top:6px}
+.hero h1 span{color:var(--orange)}
+.hero .lead{margin-top:22px;max-width:30ch}
+.hero-cta{margin-top:36px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-proof{margin-top:46px;display:flex;gap:38px;flex-wrap:wrap}
+.hero-proof .n{font-weight:800;font-size:1.9rem;color:var(--navy);letter-spacing:-.02em}
+.hero-proof .l{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* trust */
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.trust-photo{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/3;background:var(--surface-alt)}
+.trust-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface-alt);border:1px solid var(--border);
+  border-radius:999px;padding:8px 16px;font-weight:700;font-size:.85rem;color:var(--navy);margin-top:22px}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--orange)}
+
+/* feature trio */
+.alt{background:var(--surface-alt)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);transition:transform .25s, box-shadow .25s}
+.feature:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(24,56,73,.12)}
+.feature .ic{width:44px;height:44px;border-radius:12px;background:rgba(223,107,33,.12);display:grid;place-items:center;margin-bottom:18px}
+.feature .ic svg{width:22px;height:22px;stroke:var(--orange)}
+.feature h3{margin-bottom:10px}
+.feature p{font-size:.96rem;color:var(--muted)}
+
+/* without / with */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.cmp .col{border-radius:var(--radius);padding:30px;border:1px solid var(--border)}
+.cmp .without{background:var(--surface)}
+.cmp .with{background:var(--navy);color:var(--on-navy);border-color:var(--navy)}
+.cmp h3{margin-bottom:16px}
+.cmp .with h3{color:#fff}
+.cmp ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.cmp li{display:flex;gap:11px;font-size:.97rem}
+.cmp .without li{color:var(--muted)}
+.cmp .with li{color:var(--on-navy)}
+.mark{flex:0 0 20px;height:20px;border-radius:50%;display:grid;place-items:center;margin-top:1px;font-size:12px;font-weight:800}
+.mark.x{background:#f0e2da;color:var(--orange-600)}
+.mark.v{background:rgba(255,255,255,.16);color:#fff}
+
+/* showcase + product tabs */
+.showcase{text-align:center}
+.showcase .lead{margin:16px auto 0;max-width:52ch}
+.dash{margin:40px auto 0;max-width:980px}
+.dash img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(24,56,73,.18))}
+.tabs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.tab{border:1px solid var(--border);border-radius:999px;padding:11px 22px;font-weight:600;font-size:.94rem;color:var(--navy);background:var(--surface);cursor:pointer;transition:.2s}
+.tab:hover{border-color:var(--orange);color:var(--orange)}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tab-body{margin:22px auto 0;max-width:60ch;color:var(--muted);min-height:3.2em}
+
+/* testimonials */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.tcard{background:var(--navy);color:var(--on-navy);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .25s}
+.tcard:hover{transform:translateY(-4px)}
+.tcard .logo-row{font-weight:800;letter-spacing:.02em;color:#fff;font-size:1.05rem;margin-bottom:18px;opacity:.95}
+.tcard .quote{font-size:1rem;line-height:1.6;color:#EAF0F4;flex:1}
+.tcard .quote::before{content:"\201C";color:var(--orange);font-size:2.4rem;line-height:0;display:block;height:22px;font-weight:800}
+.tcard .who{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.14)}
+.tcard .who b{color:#fff;display:block;font-size:.98rem}
+.tcard .who span{color:var(--on-navy-muted);font-size:.85rem}
+.t-more{text-align:center;margin-top:34px}
+
+/* proof band + logo wall */
+.proof{background:var(--surface-alt);text-align:center}
+.proof .stats{display:flex;gap:56px;justify-content:center;flex-wrap:wrap;margin:36px 0 8px}
+.stat .fig{font-weight:800;font-size:clamp(2.6rem,5.5vw,4rem);color:var(--navy);letter-spacing:-.03em;line-height:1}
+.stat .fig em{color:var(--orange);font-style:normal}
+.stat .lbl{margin-top:10px;color:var(--muted);font-weight:600;font-size:.95rem}
+
+/* logo marquee */
+.logos{overflow:hidden;margin-top:40px;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+          mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.logos__track{display:flex;gap:60px;align-items:center;width:max-content;animation:marq var(--dur,46s) linear infinite}
+.logos.rev .logos__track{animation-direction:reverse}
+.logos:hover .logos__track{animation-play-state:paused}
+.logos img{height:40px;width:auto;object-fit:contain;opacity:.72;transition:opacity .3s, transform .3s;filter:saturate(.9)}
+.logos img:hover{opacity:1;transform:scale(1.09)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* integrations */
+.integ{text-align:center}
+.integ .lead{margin:16px auto 0;max-width:56ch}
+
+/* CTA */
+.cta{background:var(--navy);color:var(--on-navy);text-align:center}
+.cta h2{color:#fff}
+.cta .eyebrow{color:var(--orange)}
+.cta p{color:var(--on-navy-muted);margin:14px auto 30px;max-width:44ch}
+
+/* footer */
+footer{background:var(--navy-900);color:var(--on-navy-muted);padding-block:56px 30px;font-size:.9rem}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+.f-logo{height:30px;width:auto;margin-bottom:16px}
+footer h4{color:#fff;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 14px}
+footer .region{margin-bottom:18px}
+footer .region b{color:#fff;display:block;font-size:.9rem;font-weight:700}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+footer a:hover{color:var(--orange)}
+.f-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.82rem}
+
+[data-anim]{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+[data-anim].in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  :root{--pad:48px}
+  .hero{min-height:auto;padding-block:64px 40px}
+  .hero-globe{position:relative;right:auto;top:auto;transform:none;width:min(86vw,420px);margin:24px auto 0;opacity:.95}
+  .hero-inner{display:flex;flex-direction:column}
+  .trust-grid{grid-template-columns:1fr}
+  .trio,.tgrid{grid-template-columns:1fr}
+  .cmp,.f-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-anim]{opacity:1;transform:none;transition:none}
+  .logos__track{animation:none}
+  .hero-globe{will-change:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <img class="logo" src="https://cdn-ilaakbl.nitrocdn.com/gSarzBsQdyQMHeZPkmNEEEjjyYsCnmOy/assets/images/optimized/rev-8177c39/fairmas.com/wp-content/uploads/2022/06/Fairmas-Logo-1.png" alt="Fairmas">
+    <nav class="nav-links">
+      <a>Who we are<i class="caret"></i></a>
+      <a>What we do<i class="caret"></i></a>
+      <a>What's new<i class="caret"></i></a>
+      <a>Resources<i class="caret"></i></a>
+    </nav>
+    <div class="nav-right">
+      <span class="lang">EN</span>
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO (full width, exact globe video) -->
+<section class="hero" data-section="hero">
+  <video class="hero-globe" id="globeVideo" autoplay loop muted playsinline
+    src="https://fairmas.com/wp-content/uploads/sites/2/2023/06/World-of-Fairmas.mp4"></video>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow" data-anim>Your 360° Hospitality Financial BI Solution</div>
+      <h1 data-anim>Better Planning.<br><span>Greater Success.</span></h1>
+      <p class="lead" data-anim>Hospitality financial planning &amp; analysis software, for single hotels through to multi-property companies.</p>
+      <div class="hero-cta" data-anim>
+        <a class="btn btn-primary" href="#contact">Get in touch <span class="arrow">&rarr;</span></a>
+        <a class="btn btn-ghost" href="#showcase">Compare products</a>
+      </div>
+      <div class="hero-proof" data-anim>
+        <div><div class="n">5,500+</div><div class="l">Hotels</div></div>
+        <div><div class="n">18,000+</div><div class="l">Users</div></div>
+        <div><div class="n">Since 2003</div><div class="l">Hospitality focus</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR HOTEL EXPERTS (team photo) -->
+<section data-section="trust">
+  <div class="wrap trust-grid">
+    <div>
+      <div class="eyebrow" data-anim>From Hotel Experts</div>
+      <h2 data-anim>For Hotel Experts</h2>
+      <p class="lead" style="margin-top:18px" data-anim>Helping you grow &amp; increase your profit with hotel-specific forecast &amp; budget planning software.</p>
+      <p style="margin-top:18px;color:var(--muted)" data-anim>With years of hospitality experience, hotel enthusiasts set out to create forecast and budget planning solutions tailor-made for the industry. Only a hotelier can truly understand what a hotel needs to grow, so Fairmas has been a trusted BI provider specialised in financial planning, controlling and management solutions worldwide since 2003.</p>
+      <div class="chip" data-anim><span class="dot"></span> Trusted by hoteliers since 2003</div>
+    </div>
+    <div class="trust-photo" data-anim>
+      <img src="https://cdn-ilaakbl.nitrocdn.com/gSarzBsQdyQMHeZPkmNEEEjjyYsCnmOy/assets/images/optimized/rev-8177c39/fairmas.com/wp-content/uploads/2025/02/Fairmas-Admin.jpg" alt="The Fairmas team">
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE TRIO -->
+<section class="alt" data-section="features">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Why Fairmas</div>
+    <h2 data-anim>Built around how hotels actually plan</h2>
+    <div class="trio">
+      <div class="feature" data-anim>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Years of experience</h3>
+        <p>Designed by hoteliers for hoteliers. Real operators who understand where hotel finance data lives, and what it takes to plan against it.</p>
+      </div>
+      <div class="feature" data-anim>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 17l6-6 4 4 6-7"/><path d="M20 8v4h-4"/></svg></div>
+        <h3>Evolving based on industry &amp; user needs</h3>
+        <p>Our hotel budgeting and planning software evolves with industry standards and the way you use it, so your financial goals stay reachable.</p>
+      </div>
+      <div class="feature" data-anim>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 7h8a4 4 0 010 8h-2"/><path d="M16 17H8a4 4 0 010-8h2"/></svg></div>
+        <h3>Flexible integration with 3rd party systems</h3>
+        <p>Fast, reliable integration with your PMS and 3rd-party systems, automating delivery for efficient, high-quality, secure data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WITHOUT / WITH -->
+<section data-section="compare">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Our hotel forecast &amp; budget planning software</div>
+    <h2 data-anim>Helps you make more informed decisions</h2>
+    <p class="lead" style="margin-top:16px;max-width:60ch" data-anim>The less time you spend on spreadsheets, the more time you have to make well-informed decisions that increase your profit.</p>
+    <div class="cmp">
+      <div class="col without" data-anim>
+        <h3 class="muted">Without Fairmas</h3>
+        <ul>
+          <li><span class="mark x">&#10005;</span> Fragmented spreadsheets, versioned by email</li>
+          <li><span class="mark x">&#10005;</span> Manual re-keying between PMS and finance</li>
+          <li><span class="mark x">&#10005;</span> Hard to compare forecast vs. actuals</li>
+          <li><span class="mark x">&#10005;</span> Slow, error-prone multi-property roll-ups</li>
+        </ul>
+      </div>
+      <div class="col with" data-anim>
+        <h3>With Fairmas</h3>
+        <ul>
+          <li><span class="mark v">&#10003;</span> One connected planning &amp; analysis platform</li>
+          <li><span class="mark v">&#10003;</span> Automated data flow from your systems</li>
+          <li><span class="mark v">&#10003;</span> Forecast, budget &amp; actuals side by side</li>
+          <li><span class="mark v">&#10003;</span> Single-hotel to multi-property in one view</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE + FairPlanner tabs -->
+<section class="alt showcase" id="showcase" data-section="showcase">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Your 360° Hospitality</div>
+    <h2 data-anim>Financial Planning &amp; Analysis Software</h2>
+    <p class="lead" data-anim>From single hotels to multi-property companies. Plan, control and report on one hospitality-native platform.</p>
+    <div class="dash" data-anim>
+      <img src="https://cdn-ilaakbl.nitrocdn.com/gSarzBsQdyQMHeZPkmNEEEjjyYsCnmOy/assets/images/optimized/rev-8177c39/fairmas.com/wp-content/uploads/2023/06/rsz_13_devices_with_login-dashboard-app-1.png" alt="FairPlanner dashboard across devices">
+    </div>
+    <div class="tabs" data-anim>
+      <button class="tab on" data-tab="fp">FairPlanner</button>
+      <button class="tab" data-tab="rp">Revenue Planning &amp; Analytics</button>
+      <button class="tab" data-tab="ar">Hotel Asset Reporting</button>
+    </div>
+    <p class="tab-body" id="tabBody" data-anim>Fairmas' hotel financial planning &amp; analysis software: build budgets and forecasts, track them against actuals, and report across single hotels or whole portfolios.</p>
+    <div style="margin-top:12px" data-anim><a class="btn btn-outline" href="#">Compare all products &rarr;</a></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section data-section="testimonials">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Testimonials</div>
+    <h2 data-anim>From small family hotels to major international chains</h2>
+    <div class="tgrid">
+      <div class="tcard" data-anim>
+        <div class="logo-row">IHG Hotels &amp; Resorts</div>
+        <p class="quote">Working with Fairmas and their products these past 20 years has improved the overall streamlining across our group. The standardized chart of accounts and planning drivers have saved our hotels a lot of time and effort.</p>
+        <div class="who"><b>Dennis Gawlik</b><span>Director, Hotel Planning &amp; Business Support</span></div>
+      </div>
+      <div class="tcard" data-anim>
+        <div class="logo-row">TIDAN Hospitality</div>
+        <p class="quote">I highly recommend Fairmas. Their unwavering commitment to every customer, new or old, is remarkable. Fairmas has significantly improved our financial planning and analysis processes. It has become an invaluable tool for our ongoing success.</p>
+        <div class="who"><b>Christine Larocque</b><span>Director of Accounting, Hospitality Division</span></div>
+      </div>
+      <div class="tcard" data-anim>
+        <div class="logo-row">SilverBirch Hotels &amp; Resorts</div>
+        <p class="quote">I would recommend Fairmas to other hotel groups because it improves efficiency and supports more accurate and informed decision-making across our portfolio.</p>
+        <div class="who"><b>Hao Li</b><span>Director, Operations Finance</span></div>
+      </div>
+    </div>
+    <div class="t-more"><a class="btn btn-outline" href="#">Success stories &rarr;</a></div>
+  </div>
+</section>
+
+<!-- MORE THAN 5,500 HOTELS — customer logo wall -->
+<section class="proof" data-section="proof">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Trusted worldwide</div>
+    <h2 data-anim>More than 5,500 hotels &amp; 18,000 users worldwide</h2>
+    <div class="stats" data-anim>
+      <div class="stat"><div class="fig">5,500<em>+</em></div><div class="lbl">Hotels planning with Fairmas</div></div>
+      <div class="stat"><div class="fig">18,000<em>+</em></div><div class="lbl">Active users worldwide</div></div>
+      <div class="stat"><div class="fig"><em>2003</em></div><div class="lbl">Hospitality-focused since</div></div>
+    </div>
+  </div>
+  <div class="logos" id="custLogos" data-anim><div class="logos__track"></div></div>
+  <div class="logos rev" id="custLogos2" style="margin-top:34px" data-anim><div class="logos__track"></div></div>
+</section>
+
+<!-- BREAK DOWN DATA SILOS — integrations -->
+<section class="alt integ" data-section="integrations">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Break down data silos through</div>
+    <h2 data-anim>Quick &amp; easy integrations</h2>
+    <p class="lead" data-anim>Fairmas connects with the PMS, RMS, accounting and business-intelligence systems hotels already run, so your data flows automatically.</p>
+  </div>
+  <div class="logos" id="integLogos" data-anim style="margin-top:44px"><div class="logos__track"></div></div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact" data-section="cta">
+  <div class="wrap">
+    <div class="eyebrow" data-anim>Ready to start?</div>
+    <h2 data-anim>Better Planning. Greater Success.</h2>
+    <p data-anim>See how Fairmas helps your hotels forecast, budget and report with confidence.</p>
+    <div data-anim><a class="btn btn-primary" href="#">Get in touch <span class="arrow">&rarr;</span></a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <img class="f-logo" src="https://cdn-ilaakbl.nitrocdn.com/gSarzBsQdyQMHeZPkmNEEEjjyYsCnmOy/assets/images/optimized/rev-8177c39/fairmas.com/wp-content/uploads/2022/09/fairmas_white@2x-1-1536x694.png" alt="Fairmas">
+        <p style="max-width:34ch">Hospitality Financial BI, helping hotels plan, control and report for a sustainable future.</p>
+        <div class="region" style="margin-top:22px"><b>Germany / Headquarters</b>Fairmas GmbH · EUREF-Campus 13, 10829 Berlin<br>+49 30 322 940 520 · Contact@fairmas.com</div>
+      </div>
+      <div>
+        <h4>Contacts</h4>
+        <div class="region"><b>Iberia &amp; Latin America</b>+34 611 616 086<br>IberoLatAm@fairmas.com</div>
+        <div class="region"><b>North America</b>+1 647 888 2367<br>NorthAmerica@fairmas.com</div>
+        <div class="region"><b>Italy</b>+39 0472 370 602<br>Italy@fairmas.com</div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a>About Fairmas</a></li><li><a>Customers</a></li><li><a>Integrations</a></li><li><a>Partners</a></li><li><a>Careers</a></li><li><a>Contact us</a></li></ul>
+      </div>
+      <div>
+        <h4>Products &amp; News</h4>
+        <ul><li><a>Financial Planning &amp; Reporting</a></li><li><a>Revenue Planning &amp; Analytics</a></li><li><a>Hotel Asset Reporting</a></li><li><a>All News</a></li><li><a>Blog</a></li></ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 Fairmas GmbH. All rights reserved.</span>
+      <span>Imprint · Privacy Policy · Data Protection</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const B='https://cdn-ilaakbl.nitrocdn.com/gSarzBsQdyQMHeZPkmNEEEjjyYsCnmOy/assets/images/';
+const customerLogos=[
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/IHG-Big-500x500-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Barcelo-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Rocco-Forte-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Maybourne-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Ruby-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-TIDAN-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Novum-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Achat-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-GCH-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Hworld.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Event-Hotels.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Cairn-Group.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Crystalbrook-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Primestar-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-BB-Hotels-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Basecamp_XIOR-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-DSR-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-TAIBA-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Vertiq-Hospitality-Logo.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Westmont.svg',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Egale-Hills-500x500-1.svg',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2024/02/Hind-Logo_blue.png',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2024/02/invesco_stacked_blue.png',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/04/Blue-Odyssey-Logo.svg'
+];
+const integLogos=[
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Opera-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Mews-400x400-1.svg',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2024/02/apaleo-logo_blue-1.png',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Infor-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-HotelKey-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Datev-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Sage-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Netsuite-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Lucanet-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Duetto-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Hotstats-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-STR-400x400-1.svg',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2024/02/ideas_logo_blue-1.png',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Lighthoise-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-Cisbox-400x400-1.svg',
+ 'source/rev-8177c39/fairmas.com/wp-content/uploads/2026/05/Blue-SunAccounts-400x400-1.svg',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2024/02/EMMA_Logo_CMYK_blue-1.png',
+ 'optimized/rev-8177c39/fairmas.com/wp-content/uploads/2024/02/Hotellistat_logo_text_black-1.png'
+];
+function fillMarquee(id,list,dur){
+  const track=document.querySelector('#'+id+' .logos__track');if(!track)return;
+  const set=list.map(u=>'<img loading="lazy" src="'+B+u+'" alt="">').join('');
+  track.innerHTML=set+set; // duplicate for seamless -50% loop
+  document.getElementById(id).style.setProperty('--dur',dur+'s');
+}
+fillMarquee('custLogos',customerLogos,52);
+fillMarquee('custLogos2',integLogos.slice().reverse().concat(customerLogos.slice(12)),58);
+fillMarquee('integLogos',integLogos,46);
+
+// entrance baseline
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('[data-anim]').forEach(el=>io.observe(el));
+
+// product tabs
+const tabCopy={
+ fp:"FairPlanner: Fairmas' hotel financial planning & analysis software. Build budgets and forecasts, track them against actuals, and report across single hotels or whole portfolios.",
+ rp:"Revenue Planning & Analytics: plan and analyse rooms revenue, segments and KPIs, and bring commercial and financial planning into one connected view.",
+ ar:"Hotel Asset Reporting: give owners and asset managers standardized, portfolio-wide reporting on performance and value, straight from the same data."
+};
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');document.getElementById('tabBody').textContent=tabCopy[t.dataset.tab];
+}));
+
+// gentle globe parallax on mouse (interactive "shader-like" polish; disabled for reduced motion)
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  const g=document.getElementById('globeVideo');
+  addEventListener('mousemove',e=>{
+    const dx=(e.clientX/innerWidth-.5),dy=(e.clientY/innerHeight-.5);
+    g.style.transform='translateY(-50%) translate3d('+(dx*18)+'px,'+(dy*14)+'px,0)';
+  },{passive:true});
+}
+</script>
+</body>
+</html>
