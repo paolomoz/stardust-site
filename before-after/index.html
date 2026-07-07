@@ -63,80 +63,66 @@
     transition:transform .25s cubic-bezier(.25,1,.5,1),border-color .2s,box-shadow .25s;display:flex;flex-direction:column}
   .card:hover{transform:translateY(-4px);border-color:var(--dust-15);box-shadow:0 24px 60px rgba(0,0,0,.5)}
   .card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink-soft)}
-  .card .thumb img.after,.card .thumb img.before{position:absolute;inset:0;width:100%;height:100%;
+  .card .thumb img.before,.card .thumb img.after{position:absolute;inset:0;width:100%;height:100%;
     object-fit:cover;object-position:top}
-  .card .thumb img.after{z-index:1}
-  .card .thumb img.before{z-index:2;opacity:0;transition:opacity .35s}
-  .card:hover .thumb img.before{opacity:1}
-  .card .thumb .tag{position:absolute;top:10px;z-index:3;font:500 9px/1 var(--mono);letter-spacing:.14em;
-    text-transform:uppercase;padding:5px 8px;border-radius:5px;backdrop-filter:blur(6px)}
-  .card .thumb .tag.after{left:10px;background:rgba(232,185,94,.92);color:var(--ink)}
-  .card .thumb .tag.before{right:10px;background:rgba(6,10,20,.72);color:var(--dust-72);opacity:0;transition:opacity .3s}
-  .card:hover .thumb .tag.before{opacity:1}
-  .card:hover .thumb .tag.after{opacity:0}
+  .card .thumb img.before{z-index:1}
+  .card .thumb img.after{z-index:2;opacity:0;transition:opacity .35s}
+  .card:hover .thumb img.after{opacity:1}
+  /* both chips share the same slot; only the active one is shown */
+  .card .thumb .tag{position:absolute;top:10px;left:10px;z-index:3;font:600 9px/1 var(--mono);letter-spacing:.14em;
+    text-transform:uppercase;padding:5px 8px;border-radius:5px;backdrop-filter:blur(6px);transition:opacity .3s}
+  .card .thumb .tag.before{background:#1e40af;color:var(--amber)}
+  .card .thumb .tag.after{background:rgba(232,185,94,.95);color:var(--ink);opacity:0}
+  .card:hover .thumb .tag.before{opacity:0}
+  .card:hover .thumb .tag.after{opacity:1}
   .card .meta{padding:13px 15px 15px;display:flex;align-items:baseline;gap:8px;border-top:1px solid var(--dust-08)}
   .card .meta .nm{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em}
   .card .meta .vr{margin-left:auto;font:500 9px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
   .card .meta .pg{font:11px/1 var(--mono);color:var(--dust-30)}
 
-  /* ---------- COMPARE STAGE ---------- */
-  .stage{position:fixed;inset:var(--header-h) 0 46px 0;background:var(--ink-deep);overflow:hidden}
-  .frame{position:absolute;top:0;left:50%;transform:translateX(-50%);height:100%;width:100%;
-    background:var(--ink-deep);transition:width .3s cubic-bezier(.25,1,.5,1)}
-  .frame.tablet{width:834px} .frame.mobile{width:400px}
-  .frame.tablet,.frame.mobile{border-left:1px solid var(--dust-08);border-right:1px solid var(--dust-08)}
+  /* ---------- COMPARE STAGE (flip only, full screen) ---------- */
+  .stage{position:fixed;inset:var(--header-h) 0 52px 0;background:var(--ink-deep);overflow:hidden}
+  .frame{position:absolute;inset:0;background:var(--ink-deep)}
 
-  /* panes */
-  .pane{position:absolute;top:0;bottom:0;overflow:auto;background:#fff;scrollbar-width:thin}
-  .pane .lbl{position:sticky;top:0;z-index:5;display:block;pointer-events:none}
-  .pane .lbl span{position:absolute;top:12px;font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
-    padding:6px 10px;border-radius:6px}
-  .pane.before .lbl span{left:12px;background:rgba(6,10,20,.82);color:var(--dust)}
-  .pane.after  .lbl span{left:12px;background:var(--amber);color:var(--ink)}
+  .pane{position:absolute;inset:0;overflow:auto;background:#fff;scrollbar-width:thin}
   .pane img.shot{display:block;width:100%;height:auto}
   .pane iframe{display:block;width:100%;height:100%;border:0;background:#fff}
-  .pane iframe.tall{height:auto;min-height:100%}
+  .pane.before{z-index:1}
+  .pane.after{z-index:2}
+  .stage[data-side="before"] .pane.after{opacity:0;pointer-events:none}
+  .stage[data-side="after"]  .pane.before{opacity:0;pointer-events:none}
 
-  /* mode: flip — panes stacked, toggle visibility */
-  .stage[data-mode="flip"] .pane{left:0;right:0}
-  .stage[data-mode="flip"] .pane.before{z-index:1}
-  .stage[data-mode="flip"] .pane.after{z-index:2}
-  .stage[data-mode="flip"][data-side="before"] .pane.after{opacity:0;pointer-events:none}
-  .stage[data-mode="flip"][data-side="after"]  .pane.before{opacity:0;pointer-events:none}
-
-  /* mode: split — side by side */
-  .stage[data-mode="split"] .pane.before{left:0;width:50%;border-right:1px solid rgba(0,0,0,.15)}
-  .stage[data-mode="split"] .pane.after {right:0;width:50%}
-
-  /* mode: slider — overlap, after clipped by divider */
-  .stage[data-mode="slider"] .pane{left:0;right:0;overflow:hidden}
-  .stage[data-mode="slider"] .pane .inner{position:absolute;inset:0;overflow:auto}
-  .stage[data-mode="slider"] .pane.before{z-index:1}
-  .stage[data-mode="slider"] .pane.after{z-index:2;clip-path:inset(0 0 0 var(--split))}
-  .handle{position:absolute;top:0;bottom:0;z-index:10;width:2px;background:var(--amber);
-    left:var(--split);cursor:ew-resize;display:none}
-  .stage[data-mode="slider"] .handle{display:block}
-  .handle::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:38px;height:38px;border-radius:50%;background:var(--amber);box-shadow:0 6px 20px rgba(0,0,0,.5)}
-  .handle::after{content:"◄ ►";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    font:700 9px/1 var(--mono);color:var(--ink);letter-spacing:1px;white-space:nowrap}
+  /* big corner state badge — click to flip */
+  .badge{position:absolute;top:16px;left:16px;z-index:15;display:inline-flex;align-items:center;gap:10px;
+    padding:11px 18px;border-radius:999px;cursor:pointer;border:0;
+    font:700 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 12px 34px rgba(0,0,0,.5);transition:transform .15s}
+  .badge:hover{transform:scale(1.04)}
+  .badge .swap{font-size:15px;opacity:.75}
+  .stage[data-side="before"] .badge{background:#1e40af;color:var(--amber)}
+  .stage[data-side="after"]  .badge{background:var(--amber);color:var(--ink)}
+  @keyframes flippulse{0%{transform:scale(1)}45%{transform:scale(1.13)}100%{transform:scale(1)}}
+  .badge.pulse{animation:flippulse .3s ease}
 
   /* ---------- BOTTOM RAIL ---------- */
-  .rail{position:fixed;left:0;right:0;bottom:0;height:46px;z-index:40;background:var(--ink-deep);
-    border-top:1px solid var(--dust-08);display:flex;align-items:center;gap:14px;padding:0 var(--pad)}
+  .rail{position:fixed;left:0;right:0;bottom:0;height:52px;z-index:40;background:var(--ink-deep);
+    border-top:1px solid var(--dust-08);display:flex;align-items:center;gap:16px;padding:0 var(--pad)}
   .rail .nav{display:flex;align-items:center;gap:6px}
   .rail .nav button{width:30px;height:30px;border-radius:7px;border:1px solid var(--dust-15);background:transparent;
     color:var(--dust-50);cursor:pointer;font:14px/1 var(--mono);display:flex;align-items:center;justify-content:center}
   .rail .nav button:hover{color:var(--amber);border-color:var(--amber)}
   .rail .counter{font:11px/1 var(--mono);letter-spacing:.12em;color:var(--dust-50);min-width:54px;text-align:center}
-  .seg{display:flex;background:var(--ink);border:1px solid var(--dust-15);border-radius:999px;padding:3px;gap:2px}
-  .seg button{background:transparent;border:0;color:var(--dust-72);padding:6px 13px;border-radius:999px;cursor:pointer;
-    font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;transition:all .15s}
-  .seg button:hover{color:var(--dust)}
-  .seg button.on{background:var(--amber);color:var(--ink)}
   .rail .spacer{flex:1}
   .rail .hint{font:10px/1 var(--mono);letter-spacing:.1em;color:var(--dust-30);text-transform:uppercase}
-  @media(max-width:720px){.rail .hint,.seg.device{display:none}}
+
+  /* big BEFORE | AFTER flip toggle, centered */
+  .flipsw{display:flex;background:var(--ink);border:1px solid var(--dust-15);border-radius:999px;padding:4px;gap:3px}
+  .flipsw button{background:transparent;border:0;cursor:pointer;padding:8px 24px;border-radius:999px;
+    font:700 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dust-50);transition:all .15s}
+  .flipsw button:hover{color:var(--dust)}
+  .flipsw button.before.on{background:#1e40af;color:var(--amber)}
+  .flipsw button.after.on{background:var(--amber);color:var(--ink)}
+  @media(max-width:720px){.rail .hint{display:none} .flipsw button{padding:8px 16px}}
 
   /* info popover (thesis / source) */
   .info{position:fixed;right:16px;bottom:58px;z-index:45;width:300px;max-width:calc(100vw - 32px);
@@ -191,38 +177,35 @@
   <div class="lede">
     <div class="kick">Stardust redesigns</div>
     <h1>Before / After</h1>
-    <p>The live original, beside its stardust prototype. Open any pair to flip, wipe, or split-compare.</p>
+    <p>The live original, beside its stardust redesign. Hover a card to preview the after; open any pair to flip between them.</p>
   </div>
   <div class="grid" id="grid"></div>
 </main>
 
 <!-- COMPARE STAGE -->
-<section class="stage" id="stage" data-mode="flip" data-side="after" hidden>
-  <div class="frame desktop" id="frame">
-    <div class="pane before" id="paneBefore"><div class="lbl"><span>Before · original</span></div></div>
-    <div class="pane after"  id="paneAfter"><div class="lbl"><span id="afterLbl">After · stardust</span></div></div>
-    <div class="handle" id="handle"></div>
+<section class="stage" id="stage" data-side="after" hidden>
+  <div class="frame" id="frame">
+    <div class="pane before" id="paneBefore"></div>
+    <div class="pane after"  id="paneAfter"></div>
+    <button class="badge" id="badge" title="Click or press Space to flip">
+      <span id="badgeText">After · Stardust</span><span class="swap">⇄</span>
+    </button>
   </div>
 </section>
 
 <div class="rail" id="rail" hidden>
   <div class="nav">
-    <button id="prev" title="Previous (←)">‹</button>
+    <button id="prev" title="Previous sample (←)">‹</button>
     <span class="counter" id="counter">1 / 21</span>
-    <button id="next" title="Next (→)">›</button>
-  </div>
-  <div class="seg">
-    <button data-mode="flip"   class="on">Flip</button>
-    <button data-mode="slider">Slider</button>
-    <button data-mode="split">Split</button>
-  </div>
-  <div class="seg device">
-    <button data-dev="desktop" class="on">Desk</button>
-    <button data-dev="tablet">Tab</button>
-    <button data-dev="mobile">Mob</button>
+    <button id="next" title="Next sample (→)">›</button>
   </div>
   <div class="spacer"></div>
-  <span class="hint" id="hint">Space · flip &nbsp;·&nbsp; ← → · samples</span>
+  <div class="flipsw" id="flipsw">
+    <button class="before" data-side="before">Before</button>
+    <button class="after on" data-side="after">After</button>
+  </div>
+  <div class="spacer"></div>
+  <span class="hint">Space or click to flip</span>
 </div>
 
 <aside class="info" id="info"></aside>
@@ -232,23 +215,24 @@
 <script>
 const S = window.SAMPLES || [];
 const $ = s => document.querySelector(s);
-const stage=$('#stage'), rail=$('#rail'), wall=$('#wall'), frame=$('#frame'),
-      paneBefore=$('#paneBefore'), paneAfter=$('#paneAfter'), handle=$('#handle'),
-      info=$('#info'), counter=$('#counter');
-let cur=-1, mode='flip', dev='desktop', side='after';
+const stage=$('#stage'), rail=$('#rail'), wall=$('#wall'),
+      paneBefore=$('#paneBefore'), paneAfter=$('#paneAfter'),
+      info=$('#info'), counter=$('#counter'),
+      badge=$('#badge'), badgeText=$('#badgeText'), flipsw=$('#flipsw');
+let cur=-1, side='after';
 
-/* ---------- INDEX WALL ---------- */
+/* ---------- INDEX WALL (before by default, after on hover) ---------- */
 function buildWall(){
   const g=$('#grid'); g.innerHTML='';
-  S.forEach((s,i)=>{
+  S.forEach(s=>{
     const c=document.createElement('a');
     c.className='card'; c.href='#'+s.slug;
     const afterImg = s.afterThumb || s.before; // fallback if a thumb is missing
     c.innerHTML=`
       <div class="thumb">
-        <img class="after" loading="lazy" src="${afterImg}" alt="${s.brand} redesign">
         ${s.before?`<img class="before" loading="lazy" src="${s.before}" alt="${s.brand} original">`:''}
-        <span class="tag after">After</span><span class="tag before">Before</span>
+        <img class="after" loading="lazy" src="${afterImg}" alt="${s.brand} redesign">
+        <span class="tag before">Before</span><span class="tag after">After</span>
       </div>
       <div class="meta"><span class="nm">${s.brand}</span>
         <span class="pg">${s.page}</span><span class="vr">${s.variant}</span></div>`;
@@ -256,84 +240,55 @@ function buildWall(){
   });
 }
 
-/* ---------- COMPARE STAGE ---------- */
+/* ---------- COMPARE STAGE (flip only) ---------- */
 function loadSample(i){
   cur=i; const s=S[i];
-  // before
   paneBefore.querySelectorAll('img.shot').forEach(n=>n.remove());
   if(s.before){ const img=new Image(); img.className='shot'; img.src=s.before; paneBefore.appendChild(img); }
-  // after
   paneAfter.querySelectorAll('iframe').forEach(n=>n.remove());
   const fr=document.createElement('iframe'); fr.src=s.after; paneAfter.appendChild(fr);
-  $('#afterLbl').textContent='After · stardust '+s.variant;
-  // chrome
   $('#crumbtail').hidden=false; $('#crumbhere').textContent=s.brand;
   counter.textContent=(i+1)+' / '+S.length;
-  // info popover
   info.innerHTML=`<div class="vr">${s.variant}</div><h2>${s.brand}</h2>
     <div class="src">original ↗ <a href="${s.url}" target="_blank" rel="noopener">${s.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</a></div>
     <div class="th"><span class="k">Redesign thesis</span>${s.thesis}</div>
     <div class="src"><a href="${s.after}" target="_blank" rel="noopener">Open prototype ↗</a></div>`;
-  setMode('flip'); setSide('after'); syncScroll();
+  setSide('after', true); syncScroll();
   location.hash=s.slug;
 }
-function setMode(m){
-  mode=m; stage.dataset.mode=m;
-  rail.querySelectorAll('.seg button[data-mode]').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
-  $('#hint').textContent = m==='flip' ? 'Space · flip  ·  ← → · samples'
-                        : m==='slider' ? 'Drag divider  ·  ← → · samples'
-                        : 'Scroll synced  ·  ← → · samples';
-  if(m==='slider'){ frame.style.setProperty('--split','50%'); }
+function setSide(sd, silent){
+  side=sd; stage.dataset.side=sd;
+  flipsw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.side===sd));
+  const s=S[cur];
+  badgeText.textContent = sd==='after' ? ('After · Stardust '+(s?s.variant:'')) : 'Before · Original';
+  if(!silent){ badge.classList.remove('pulse'); void badge.offsetWidth; badge.classList.add('pulse'); }
 }
-function setSide(sd){ side=sd; stage.dataset.side=sd; }
-function setDev(d){
-  dev=d; frame.className='frame '+d;
-  rail.querySelectorAll('.seg.device button').forEach(b=>b.classList.toggle('on',b.dataset.dev===d));
-}
+function flip(){ setSide(side==='after'?'before':'after'); }
 function go(delta){ let n=(cur+delta+S.length)%S.length; loadSample(n); }
 
-/* scroll sync: before(image) <-> after(iframe) by fraction */
+/* keep before(image) & after(iframe) at the same scroll position, so a flip lands on the same region */
 let syncing=false;
 function frac(el){ const m=el.scrollHeight-el.clientHeight; return m>0?el.scrollTop/m:0; }
 function applyFrac(el,f){ const m=el.scrollHeight-el.clientHeight; el.scrollTop=f*m; }
 function syncScroll(){
-  const after=paneAfter, before=paneBefore;
-  function mk(srcEl,dstGetter){
-    srcEl.addEventListener('scroll',()=>{
-      if(syncing||mode==='split'===false&&false) {}
-      if(syncing) return; syncing=true;
-      const f=frac(srcEl); const dst=dstGetter();
-      if(dst) applyFrac(dst, f);
-      requestAnimationFrame(()=>syncing=false);
-    });
-  }
-  mk(before, ()=>{ const fr=paneAfter.querySelector('iframe'); try{return fr.contentDocument.scrollingElement}catch(e){return null} });
-  // iframe scroll listened after load
+  paneBefore.addEventListener('scroll',()=>{
+    if(syncing) return; syncing=true;
+    const fr=paneAfter.querySelector('iframe');
+    try{ if(fr) applyFrac(fr.contentDocument.scrollingElement, frac(paneBefore)); }catch(e){}
+    requestAnimationFrame(()=>syncing=false);
+  });
   const fr=paneAfter.querySelector('iframe');
   fr.addEventListener('load',()=>{
     try{
       const doc=fr.contentDocument, sc=doc.scrollingElement;
       doc.addEventListener('scroll',()=>{
         if(syncing) return; syncing=true;
-        applyFrac(before, frac(sc));
+        applyFrac(paneBefore, frac(sc));
         requestAnimationFrame(()=>syncing=false);
       });
     }catch(e){}
   });
 }
-
-/* slider drag */
-function dragTo(clientX){
-  const r=frame.getBoundingClientRect();
-  let p=(clientX-r.left)/r.width; p=Math.max(0,Math.min(1,p));
-  frame.style.setProperty('--split',(p*100)+'%');
-  handle.style.left=(p*100)+'%';
-}
-let dragging=false;
-handle.addEventListener('pointerdown',e=>{dragging=true;handle.setPointerCapture(e.pointerId)});
-handle.addEventListener('pointermove',e=>{if(dragging)dragTo(e.clientX)});
-handle.addEventListener('pointerup',()=>dragging=false);
-stage.addEventListener('pointerdown',e=>{ if(mode==='slider'&&e.target!==handle){dragTo(e.clientX)} });
 
 /* ---------- ROUTER ---------- */
 function render(){
@@ -353,9 +308,9 @@ function showStage(){
 window.addEventListener('hashchange',render);
 
 /* ---------- WIRING ---------- */
-rail.querySelectorAll('.seg button[data-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
-rail.querySelectorAll('.seg.device button').forEach(b=>b.onclick=()=>setDev(b.dataset.dev));
 $('#prev').onclick=()=>go(-1); $('#next').onclick=()=>go(1);
+badge.onclick=flip;
+flipsw.querySelectorAll('button').forEach(b=>b.onclick=()=>setSide(b.dataset.side));
 $('#infobtn').onclick=()=>info.classList.toggle('show');
 $('#copybtn').onclick=async()=>{
   const url=location.origin+location.pathname+'#'+S[cur].slug;
@@ -364,13 +319,10 @@ $('#copybtn').onclick=async()=>{
 };
 document.addEventListener('keydown',e=>{
   if(stage.hidden) return;
-  if(e.key===' '){ e.preventDefault(); if(mode!=='flip')setMode('flip'); setSide(side==='after'?'before':'after'); }
+  if(e.key===' '){ e.preventDefault(); flip(); }
   else if(e.key==='ArrowRight') go(1);
   else if(e.key==='ArrowLeft') go(-1);
-  else if(e.key==='Escape'){ location.hash=''; }
-  else if(e.key==='1') setMode('flip');
-  else if(e.key==='2') setMode('slider');
-  else if(e.key==='3') setMode('split');
+  else if(e.key==='Escape') location.hash='';
 });
 
 buildWall(); render();
