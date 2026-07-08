@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<!-- _provenance: { writtenBy: "stardust:uplift prototype (variant B — binational duality as layout)", against: "https://www.euroairport.com/", mode: "A (brand-faithful)", inheritsCanon: "home-A-proposed.html", whatIf: "what if 'the world's only binational airport' were the layout itself?", capturedTrait: "binational France/Suisse duality", motion: null } -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'EuroAirport — un aéroport, deux pays</title>
+<link rel="icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAD////c////7f///+3////t////7f///+3////t////7f///+3////t////7f///+3////t////7f///+3////c////8f//////////////////////////////////////////////////////////////////////////////8f///+3//////////////////////////////////////////////////////////////////////////////+3////t///////////////////////////////////////////////////////////////////////////////t////7f//////////////////////////////////////////////////////////////////////////////7cqbjfata0n/q2hC/6pmQP+0eF3/lY+W/zk2Pv///////////3d1fv9PTFX/VFFa/4B+h////////////////+25fmf5n1UD/929tv/mz8v/5czH/7i0uf8eGyD/SUVO/1VSW/8iHiP/fHqC/1FOV/9APEX/WFVd/4uJkf/////tvIRv+aBWDP/Jmoz/zaGU/9/CvP/m5+r/VlNc/y0pMP9kYmr/HBcb/+Xl5/9OS1P/MS01/4OBif8fHCD/qKet8ryEb/mgVgz/xZOD/8iZiv/evrf/+/39/7m4vv8rJy3/V1Rd/0I+R///////Qj9I/3Fvd///////ODQ8/2lmcPa4fWX6n1UD/9GnnP/Zta3/3sC5//7+/f/4+Pn/KiYt/xoWGv+cm6H//////0E9Rv8uKjD/hYOL/x8bH/+pqK7y1a6l9L2Fcf+4fWX/t3xk/8CKd//8+Pj//////4uKkv9PTFX/7e3v//////+VlJv/bmx1/1RRWv+MipH/////7f///+3//////////////////////////////////////////////////////////////////////////////+3////t///////////////////////////////////////////////////////////////////////////////t////7f//////////////////////////////////////////////////////////////////////////////7f////H///////////////////////////////////////////////////////////////////////////////H////c////7f///+3////t////7f///+3////t////7f///+3////t////7f///+3////t////7f///+3////cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==">
+<style>
+:root{
+  /* palette — pinned from captured brand surface (hex, per DESIGN.md) */
+  --bg:#ffffff; --surface:#f1f1f2; --surface-2:#e5e5e6;
+  --text:#000000; --text-2:#535252; --text-muted:#767676; --border:#a9a9ab;
+  --primary:#0035ad; --primary-active:#004dff; --primary-dark:#002a87;
+  --on-dark:#cfd8f5; --on-dark-hi:#9fd0ff; --on-dark-mut:#9fb2e8;
+  --hairline:rgba(255,255,255,.16); --hairline-2:rgba(255,255,255,.10); --scrim:rgba(0,42,135,.28);
+  --success:#00b64d; --warning:#fbba00; --danger:#da291c;
+  --fr:#0035ad; --ch:#da291c; /* sector accents: France blue, Suisse red */
+  /* type */
+  --font:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --fw-light:300; --fw-reg:400; --fw-bold:700;
+  --fs-h1:3.5rem; --fs-h2:2rem; --fs-h3:1.5rem; --fs-h4:1.25rem;
+  --fs-data:2.75rem; --fs-body:1rem; --fs-cta:.9375rem; --fs-tag:.875rem;
+  /* space */
+  --s-3xs:.5rem; --s-2xs:.75rem; --s-xs:1rem; --s-s:1.5rem; --s-m:2rem;
+  --s-l:2.5rem; --s-xl:3rem; --s-sec:56px; /* section padding — density floor ≤64px */
+  --radius:4px; --shadow:0 0 .5rem 0 rgba(0,0,0,.16);
+  --shadow-lift:0 6px 20px -6px rgba(0,42,135,.28);
+  --container:76rem;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.5;font-size:var(--fs-body)}
+h1,h2,h3,h4{margin:0;font-weight:var(--fw-bold);line-height:1.12;letter-spacing:-.01em}
+h2{font-size:var(--fs-h2);color:var(--primary-dark)}
+h3{font-size:var(--fs-h3)}
+p{margin:0}
+a{color:var(--primary);text-decoration:none}
+a:hover{color:var(--primary-active)}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--container);margin:0 auto;padding-inline:var(--s-s)}
+.sec{padding-block:var(--s-sec)}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-s);margin-bottom:var(--s-m);flex-wrap:wrap}
+.sec-head .more{font-size:var(--fs-cta);font-weight:var(--fw-bold)}
+.eyebrow{font-size:var(--fs-tag);font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:.12em;color:var(--primary)}
+
+/* ---------- header ---------- */
+.util{background:var(--primary-dark);color:#fff;font-size:var(--fs-tag)}
+.util .wrap{display:flex;align-items:center;justify-content:flex-end;gap:var(--s-s);height:2.25rem}
+.util a{color:var(--on-dark)}.util a:hover{color:#fff}
+.util .wx{margin-right:auto;color:#fff;display:flex;align-items:center;gap:.4rem}
+.util .lang{display:flex;gap:.5rem}
+.util .lang b{color:#fff}
+.hdr{position:sticky;top:0;z-index:40;background:var(--primary);color:#fff;box-shadow:var(--shadow)}
+.hdr .wrap{display:flex;align-items:center;gap:var(--s-l);height:4.5rem}
+.brand{font-weight:var(--fw-bold);font-size:1.6rem;letter-spacing:-.02em;line-height:1;white-space:nowrap}
+.brand .a{color:#fff}.brand .e{color:var(--on-dark-hi)}.brand sup{font-size:.5em;top:-.7em}
+.brand small{display:block;font-size:.5rem;font-weight:var(--fw-reg);letter-spacing:.28em;color:var(--on-dark);margin-top:.28rem}
+.nav{display:flex;gap:var(--s-m);margin-left:var(--s-s);font-size:var(--fs-cta);font-weight:var(--fw-bold)}
+.nav a{color:#fff;padding-block:.4rem;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--on-dark-hi)}
+.hdr .right{margin-left:auto;display:flex;align-items:center;gap:var(--s-s);font-size:var(--fs-cta)}
+.hdr .right a{color:#fff}
+.pill{border:1px solid var(--hairline);border-radius:999px;padding:.3rem .8rem}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:auto}
+
+/* alert band */
+.alert{background:var(--warning);color:var(--text);font-size:var(--fs-tag);font-weight:var(--fw-bold)}
+.alert .wrap{display:flex;gap:.6rem;align-items:flex-start;padding-block:.6rem}
+.alert svg{flex:none;margin-top:.05rem}
+
+/* ---------- operational hero ---------- */
+.hero{position:relative;background:var(--primary-dark);color:#fff;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(0,42,135,.96) 0%,rgba(0,42,135,.72) 45%,rgba(0,42,135,.30) 100%),
+  url("https://www.euroairport.com/sites/default/files/styles/banner_lp_1440_328/public/medias/image/2025/01/%C2%AEEuroAirport_Credit_photo_Greg_Gonzalez%20%282%29.jpg.webp?itok=Q54gwWP7") center/cover no-repeat;
+  z-index:0}
+.hero .wrap{position:relative;z-index:1;padding-block:var(--s-xl)}
+.hero h1{font-size:var(--fs-h1);color:#fff}
+.hero .sub{font-size:var(--fs-h4);color:var(--on-dark);margin-top:.6rem;font-weight:var(--fw-light)}
+.hero .binat{display:inline-flex;align-items:center;gap:.5rem;margin-top:var(--s-s);font-size:var(--fs-tag);font-weight:var(--fw-bold);letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.flag{width:1.1rem;height:.78rem;border-radius:2px;display:inline-block;box-shadow:0 0 0 1px var(--hairline)}
+.flag.france{background:linear-gradient(90deg,#0035ad 33%,#fff 33% 66%,#da291c 66%)}
+.flag.suisse{background:#da291c;position:relative}
+.flag.suisse::before{content:"";position:absolute;inset:0;margin:auto;width:.42rem;height:.42rem;background:#fff;box-shadow:0 -.13rem #fff,0 .13rem #fff,-.13rem 0 #fff,.13rem 0 #fff}
+
+/* flight search */
+.search{margin-top:var(--s-l);background:#fff;color:var(--text);border-radius:var(--radius);box-shadow:var(--shadow-lift);max-width:44rem;overflow:hidden}
+.search .tabs{display:flex}
+.search .tabs button{flex:1;background:var(--surface);border:0;padding:.9rem;font:inherit;font-weight:var(--fw-bold);font-size:var(--fs-cta);color:var(--text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.search .tabs button[aria-selected="true"]{background:#fff;color:var(--primary);box-shadow:inset 0 -3px var(--primary)}
+.search .field{display:flex;gap:.6rem;padding:var(--s-xs)}
+.search input{flex:1;border:1px solid var(--border);border-radius:var(--radius);padding:.75rem .9rem;font:inherit}
+.search .go{background:var(--primary);color:#fff;border:0;border-radius:var(--radius);padding:0 1.3rem;font:inherit;font-weight:var(--fw-bold);cursor:pointer}
+.search .go:hover{background:var(--primary-active)}
+
+/* at-a-glance ops strip */
+.glance{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hairline);margin-top:var(--s-l);border-radius:var(--radius);overflow:hidden}
+.glance .g{background:rgba(255,255,255,.06);padding:var(--s-s);backdrop-filter:saturate(1.1)}
+.glance .lbl{font-size:var(--fs-tag);color:var(--on-dark);text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:.4rem}
+.glance .val{font-size:var(--fs-data);font-weight:var(--fw-bold);line-height:1;margin-top:.4rem;font-variant-numeric:tabular-nums}
+.glance .val small{font-size:1rem;font-weight:var(--fw-reg);color:var(--on-dark)}
+.dot{width:.5rem;height:.5rem;border-radius:50%;background:var(--success);display:inline-block}
+
+/* ---------- flight board ---------- */
+.board{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-l)}
+.board .col h3{display:flex;align-items:center;gap:.5rem;margin-bottom:var(--s-xs);color:var(--primary-dark)}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s-s);align-items:center;padding:.85rem 0;border-bottom:1px solid var(--surface-2)}
+.row .time{font-size:1.5rem;font-weight:var(--fw-bold);font-variant-numeric:tabular-nums;color:var(--primary-dark);min-width:4.2rem}
+.row .dest{font-weight:var(--fw-bold)}
+.row .meta{font-size:var(--fs-tag);color:var(--text-2)}
+.row .logo{height:1.3rem;width:auto;opacity:.9}
+.row .tag{font-size:var(--fs-tag);font-weight:var(--fw-bold);color:var(--primary);text-align:right}
+
+/* ---------- dual sector parking ---------- */
+.parking{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-s)}
+.pcard{border:1px solid var(--surface-2);border-radius:var(--radius);overflow:hidden;background:#fff}
+.pcard .top{display:flex;align-items:center;gap:.6rem;padding:var(--s-s);border-top:3px solid var(--fr)}
+.pcard.ch .top{border-top-color:var(--ch)}
+.pcard .top h3{font-size:var(--fs-h4)}
+.pcard .body{padding:0 var(--s-s) var(--s-s)}
+.pcard .avail{display:flex;align-items:baseline;gap:.5rem}
+.pcard .num{font-size:var(--fs-data);font-weight:var(--fw-bold);color:var(--success);font-variant-numeric:tabular-nums}
+.pcard .cap{font-size:var(--fs-tag);color:var(--text-2)}
+.bar{height:.5rem;border-radius:99px;background:var(--surface-2);margin-top:.6rem;overflow:hidden}
+.bar span{display:block;height:100%;background:var(--success);border-radius:99px}
+
+/* ---------- services icon grid ---------- */
+.icons{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-s)}
+.ic{display:flex;flex-direction:column;gap:.6rem;padding:var(--s-s);background:var(--surface);border-radius:var(--radius);color:var(--text);font-weight:var(--fw-bold);font-size:var(--fs-cta);transition:box-shadow .2s,transform .2s}
+.ic:hover{box-shadow:var(--shadow-lift);transform:translateY(-2px)}
+.ic svg{color:var(--primary)}
+
+/* ---------- lifestyle + destination cards ---------- */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-s)}
+.card{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:var(--shadow);color:var(--text)}
+.card .ph{aspect-ratio:1/1;overflow:hidden}
+.card.wide .ph{aspect-ratio:16/10}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.04)}
+.card .cap{padding:var(--s-xs);display:flex;align-items:center;justify-content:space-between;gap:.5rem;font-weight:var(--fw-bold)}
+.card .cap .arw{color:var(--primary)}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-s)}
+.dest{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9;color:#fff}
+.dest img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dest::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.6))}
+.dest span{position:absolute;left:var(--s-xs);bottom:var(--s-2xs);z-index:1;font-weight:var(--fw-bold);text-transform:uppercase;letter-spacing:.06em}
+
+/* map teaser */
+.map{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--s-l);align-items:center;background:var(--surface);border-radius:var(--radius);overflow:hidden}
+.map img{width:100%;height:100%;object-fit:cover;min-height:16rem}
+.map .txt{padding:var(--s-l)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:var(--s-s)}
+.chip{font-size:var(--fs-tag);background:#fff;border:1px solid var(--border);border-radius:999px;padding:.3rem .8rem;color:var(--text)}
+
+/* news strip (compressed) */
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-s)}
+.ni{display:flex;gap:.75rem;align-items:flex-start;padding:var(--s-xs);border-left:0;background:var(--surface);border-radius:var(--radius)}
+.ni time{font-size:var(--fs-tag);color:var(--primary);font-weight:var(--fw-bold);flex:none}
+.ni p{font-size:var(--fs-cta);font-weight:var(--fw-bold);line-height:1.3}
+
+/* faq */
+.faq details{border-bottom:1px solid var(--surface-2)}
+.faq summary{padding:var(--s-xs) 0;font-weight:var(--fw-bold);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--primary);font-size:1.4rem;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{padding:0 0 var(--s-xs);color:var(--text-2);font-size:var(--fs-cta);max-width:60rem}
+
+/* footer */
+.ft{background:var(--primary-dark);color:var(--on-dark);margin-top:var(--s-sec)}
+.ft .wrap{padding-block:var(--s-xl);display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:var(--s-l)}
+.ft h4{color:#fff;font-size:var(--fs-cta);text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--s-xs)}
+.ft a{color:var(--on-dark);display:block;padding:.2rem 0;font-size:var(--fs-cta)}
+.ft a:hover{color:#fff}
+.ft .social{display:flex;gap:.75rem}
+.ft .social a{background:var(--hairline-2);width:2.2rem;height:2.2rem;border-radius:50%;display:grid;place-items:center}
+.ft .brand small{color:var(--on-dark-mut)}
+.ft .legal{grid-column:1/-1;border-top:1px solid var(--hairline);padding-top:var(--s-s);font-size:var(--fs-tag);display:flex;gap:var(--s-s);flex-wrap:wrap}
+
+@media(max-width:900px){
+  .nav,.hdr .right .pill{display:none}
+  .burger{display:block}
+  .board,.parking,.map,.glance{grid-template-columns:1fr}
+  .icons,.cards,.news{grid-template-columns:repeat(2,1fr)}
+  .dgrid{grid-template-columns:1fr}
+  :root{--fs-h1:2.4rem;--fs-data:2.2rem;--fs-h2:1.6rem}
+  .ft .wrap{grid-template-columns:1fr 1fr}
+}
+@media(max-width:560px){
+  .icons,.cards,.news{grid-template-columns:1fr}
+  .ft .wrap{grid-template-columns:1fr}
+}
+
+/* ---------- variant B: binational spine ---------- */
+.bihero{background:var(--primary-dark);color:#fff;position:relative}
+.bihero .grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;max-width:var(--container);margin:0 auto}
+.bihero .side{padding:var(--s-xl) var(--s-l)}
+.bihero .side.fr{border-top:4px solid var(--fr)}
+.bihero .side.ch{border-top:4px solid var(--ch);text-align:right}
+.bihero .side h3{font-size:var(--fs-h3);margin:.5rem 0}
+.bihero .side .kv{font-size:var(--fs-cta);color:var(--on-dark);margin:.25rem 0;display:flex;gap:.5rem;align-items:center}
+.bihero .side.ch .kv{justify-content:flex-end}
+.bihero .side .go{display:inline-block;margin-top:var(--s-s);background:#fff;color:var(--primary-dark);font-weight:var(--fw-bold);border-radius:var(--radius);padding:.6rem 1rem;font-size:var(--fs-cta)}
+.bihero .spine{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:var(--s-xl) var(--s-m);border-inline:1px solid var(--hairline);background:rgba(255,255,255,.05);min-width:20rem}
+.bihero .spine .brand{margin-bottom:var(--s-s)}
+.bihero .spine .lead{font-size:var(--fs-h1);font-weight:var(--fw-bold);line-height:1.04;color:#fff}
+.bihero .spine .tag{color:var(--on-dark);margin-top:.7rem;max-width:17rem}
+.whichside{background:var(--surface)}
+.ws{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-s)}
+.ws .opt{background:#fff;border-radius:var(--radius);border-top:4px solid var(--fr);padding:var(--s-l);box-shadow:var(--shadow)}
+.ws .opt.ch{border-top-color:var(--ch)}
+.ws .opt h3{display:flex;align-items:center;gap:.6rem;margin-bottom:var(--s-s);font-size:var(--fs-h4)}
+.ws .opt ul{list-style:none;margin:0;padding:0}
+.ws .opt li{display:flex;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--surface-2);font-size:var(--fs-cta)}
+.ws .opt li:last-child{border-bottom:0}
+.ws .opt li b{color:var(--primary-dark);min-width:6.5rem;flex:none}
+@media(max-width:900px){
+  .bihero .grid{grid-template-columns:1fr}
+  .bihero .spine{border-inline:0;border-block:1px solid var(--hairline);min-width:0}
+  .bihero .side.ch,.bihero .side.ch .kv{text-align:left;justify-content:flex-start}
+  .ws{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="util" data-section="utility" data-intent="secondary-nav">
+  <div class="wrap">
+    <span class="wx">☀ 31&nbsp;°C · Bâle-Mulhouse</span>
+    <a href="#">Professionnels</a>
+    <a href="#">L'EuroAirport</a>
+    <a href="#" aria-label="Rechercher">Rechercher</a>
+    <a href="#">Se connecter</a>
+    <span class="lang"><b>FR</b> · <a href="#">EN</a> · <a href="#">DE</a></span>
+  </div>
+</div>
+
+<header class="hdr" data-section="header" data-intent="primary-nav" data-layout="bar">
+  <div class="wrap">
+    <div class="brand"><span class="e">Euro</span><span class="a">Airport</span><sup>®</sup>
+      <small>BASEL · MULHOUSE · FREIBURG</small></div>
+    <nav class="nav" aria-label="Principale">
+      <a href="#board">Vols et destinations</a>
+      <a href="#parking">Parking et transports</a>
+      <a href="#services">Enregistrement et formalités</a>
+      <a href="#shopping">Shopping et services</a>
+    </nav>
+    <div class="right">
+      <a href="#" class="pill">PMR</a>
+      <a href="#map" class="pill">Plan</a>
+      <a href="#faq" class="pill">FAQ</a>
+    </div>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="m-nav">☰</button>
+  </div>
+</header>
+
+<div class="alert" data-section="alert" data-intent="operational-notice">
+  <div class="wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 1 21h22L12 2zm0 5 7.5 13h-15L12 7zm-1 4v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>
+    <span>Attention : en raison de travaux, l'accès routier à l'EuroAirport est actuellement perturbé depuis la Suisse et la France. Les passagers sont priés de prévoir plus de temps pour se rendre à l'aéroport.</span>
+  </div>
+</div>
+
+<main>
+<section class="bihero" data-section="hero" data-intent="binational-spine" data-layout="split-spine">
+  <div class="grid">
+    <div class="side fr">
+      <span class="flag france"></span>
+      <h3>Côté France</h3>
+      <p class="kv">Accès A35 · Mulhouse / Saint-Louis</p>
+      <p class="kv">Paiement en euros €</p>
+      <p class="kv">Parkings F1–F5</p>
+      <a class="go" href="#parking">Départs &amp; parking France →</a>
+    </div>
+    <div class="spine">
+      <div class="brand"><span class="e">Euro</span><span class="a">Airport</span><sup>®</sup><small>BASEL · MULHOUSE · FREIBURG</small></div>
+      <div class="lead">Un aéroport,<br>deux pays.</div>
+      <p class="tag">Le seul aéroport binational au monde</p>
+    </div>
+    <div class="side ch">
+      <span class="flag suisse"></span>
+      <h3>Côté Suisse</h3>
+      <p class="kv">Accès douane suisse · depuis Bâle</p>
+      <p class="kv">Paiement en francs CHF</p>
+      <p class="kv">Parking S1 (couvert)</p>
+      <a class="go" href="#parking">Départs &amp; parking Suisse →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec whichside" id="whichside" data-section="which-side" data-intent="wayfinding" data-layout="two-col">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Repérez-vous</span><h2>Vous arrivez par quel côté&nbsp;?</h2></div></div>
+    <div class="ws">
+      <div class="opt fr">
+        <h3><span class="flag france"></span> J'arrive côté France</h3>
+        <ul>
+          <li><b>Accès route</b><span>A35 depuis Mulhouse et Saint-Louis</span></li>
+          <li><b>Parking</b><span>France, F1–F5 · réservation en euros €</span></li>
+          <li><b>Paiement</b><span>VISA, Mastercard, American Express, Maestro</span></li>
+          <li><b>Deux-roues</b><span>gratuit sur le parking couvert F1</span></li>
+        </ul>
+      </div>
+      <div class="opt ch">
+        <h3><span class="flag suisse"></span> J'arrive côté Suisse</h3>
+        <ul>
+          <li><b>Accès route</b><span>Douane suisse depuis Bâle</span></li>
+          <li><b>Parking</b><span>Suisse, S1 · réservation en francs CHF</span></li>
+          <li><b>Paiement</b><span>VISA, Mastercard, Amex, Diners Club, Maestro</span></li>
+          <li><b>Deux-roues</b><span>gratuit sur le parking couvert S1</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="parking" data-section="parking" data-intent="dual-sector" data-layout="two-col" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head"><h2>Parkings et accès</h2><a class="more" href="#">Venir à l'aéroport →</a></div>
+    <div class="parking">
+      <div class="pcard fr">
+        <div class="top"><span class="flag france"></span><h3>Parking France</h3></div>
+        <div class="body">
+          <div class="avail"><span class="num">241</span><span class="cap">places disponibles · réservation en €</span></div>
+          <div class="bar"><span style="width:62%"></span></div>
+        </div>
+      </div>
+      <div class="pcard ch">
+        <div class="top"><span class="flag suisse"></span><h3>Parking Suisse</h3></div>
+        <div class="body">
+          <div class="avail"><span class="num">246</span><span class="cap">places disponibles · réservation en CHF</span></div>
+          <div class="bar"><span style="width:68%"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="board" data-section="flight-board" data-intent="live-data" data-layout="two-col">
+  <div class="wrap">
+    <div class="sec-head"><h2>Infos vols</h2><a class="more" href="#">Tous les vols →</a></div>
+    <div class="board">
+      <div class="col">
+        <h3>✈ Départs</h3>
+        <div class="row"><span class="time">13:20</span><span><span class="dest">NAPLES</span><br><span class="meta">DS1101 easyJet</span></span><span class="tag">Porte&nbsp;84</span></div>
+        <div class="row"><span class="time">13:25</span><span><span class="dest">BELGRADE</span><br><span class="meta">W64052 Wizz Air</span></span><span class="tag">Porte&nbsp;22</span></div>
+        <div class="row"><span class="time">13:25</span><span><span class="dest">PALERME</span><br><span class="meta">DS1115 easyJet</span></span><span class="tag">Porte&nbsp;44</span></div>
+      </div>
+      <div class="col">
+        <h3>🛬 Arrivées</h3>
+        <div class="row"><span class="time">13:21</span><span><span class="dest">PARIS CDG</span><br><span class="meta">AF1392 Air France</span></span><span class="tag">Tapis&nbsp;4</span></div>
+        <div class="row"><span class="time">13:36</span><span><span class="dest">CHANIA</span><br><span class="meta">DS1154 easyJet</span></span><span class="tag">Tapis&nbsp;7</span></div>
+        <div class="row"><span class="time">13:40</span><span><span class="dest">BARCELONE</span><br><span class="meta">VY6260 Vueling</span></span><span class="tag">Tapis&nbsp;6</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec" id="services" data-section="services" data-intent="wayfinding" data-layout="icon-grid">
+  <div class="wrap">
+    <div class="sec-head"><h2>Sur place</h2><a class="more" href="#map">Plan interactif →</a></div>
+    <div class="icons">
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Bagages, objets</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M12 22v-6M8 22l1-8 3-2 3 2 1 8M5 12h14"/></svg>Assistance PMR</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13m-14 0h14v4H5v-4z"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>Location voiture</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="14" rx="2"/><path d="M8 20h8M9 8h6M9 12h6"/></svg>Bus, VTC, Taxi</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5a10 10 0 0 1 14 0M8 15.5a6 6 0 0 1 8 0"/><circle cx="12" cy="18.5" r="1"/></svg>Wifi gratuit</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg>Argent, change</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 16.5 7.1 18l.9-5.5-4-3.9L9.5 8 12 3z"/></svg>Services premium</a>
+      <a class="ic" href="#"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>Business Center</a>
+    </div>
+  </div>
+</section>
+<section class="sec" id="shopping" data-section="shopping" data-intent="leisure" data-layout="card-grid" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Prenez le temps</span><h2>de vous faire plaisir</h2></div></div>
+    <div class="cards">
+      <a class="card" href="#"><div class="ph"><img src="https://www.euroairport.com/sites/default/files/styles/1_1_292x292/public/medias/image/2025/03/restaurant.png.webp?itok=6002cnYF" alt="Couple au restaurant" loading="lazy"></div><div class="cap">Bars, Restaurants<span class="arw">→</span></div></a>
+      <a class="card" href="#"><div class="ph"><img src="https://www.euroairport.com/sites/default/files/styles/1_1_292x292/public/medias/image/2025/03/BDF03_Dufry_Main.jpg.webp?itok=h7Xz1AJW" alt="Duty free" loading="lazy"></div><div class="cap">Boutique, Duty Free<span class="arw">→</span></div></a>
+      <a class="card" href="#"><div class="ph"><img src="https://www.euroairport.com/sites/default/files/styles/1_1_292x292/public/medias/image/2025/03/skyview%20lunge.jpg.webp?itok=jCKs6TCz" alt="Skyview Lounge" loading="lazy"></div><div class="cap">Skyview Lounge<span class="arw">→</span></div></a>
+      <a class="card" href="#"><div class="ph"><img src="https://www.euroairport.com/sites/default/files/styles/1_1_292x292/public/medias/image/2025/03/Spielecke_500.jpg.webp?itok=yDwfOsiw" alt="Espace de jeux" loading="lazy"></div><div class="cap">Espace de Jeux<span class="arw">→</span></div></a>
+    </div>
+  </div>
+</section>
+<section class="sec" id="dest" data-section="destinations" data-intent="inspiration" data-layout="card-grid">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow">Inspirez-vous</span><h2>avec nos 138 destinations</h2></div><a class="more" href="#">Nos destinations →</a></div>
+    <div class="dgrid">
+      <a class="dest" href="#"><img src="https://www.euroairport.com/sites/default/files/styles/59_30_472x240/public/medias/image/2025/01/vivre-malte.jpeg.webp?itok=JqNtM3OP" alt="Malte" loading="lazy"><span>Malte</span></a>
+      <a class="dest" href="#"><img src="https://www.euroairport.com/sites/default/files/styles/59_30_472x240/public/medias/image/2025/03/vienne.png.webp?itok=lCWpqMJL" alt="Vienne" loading="lazy"><span>Vienne</span></a>
+      <a class="dest" href="#"><img src="https://www.euroairport.com/sites/default/files/styles/59_30_472x240/public/medias/image/2025/02/majorque-espagne-1.webp?itok=q7OTAMML" alt="Majorque" loading="lazy"><span>Majorque</span></a>
+    </div>
+  </div>
+</section>
+<section class="sec" id="faq" data-section="faq" data-intent="support" data-layout="accordion">
+  <div class="wrap" style="max-width:60rem">
+    <div class="sec-head"><div><span class="eyebrow">Réponses</span><h2>à vos questions</h2></div><a class="more" href="#">Toute la FAQ →</a></div>
+    <div class="faq">
+      <details open><summary>J'ai effectué une réservation. Est-il possible de modifier mon immatriculation ?</summary><p>Une modification est uniquement possible sur les champs « données personnelles » et « voiture et vol ». En cas de changement de véhicule, il n'est pas obligatoire de modifier votre réservation : en scannant le QR-Code à la borne d'entrée, le système reliera la plaque à la réservation.</p></details>
+      <details><summary>Existe-t-il un parking pour les deux roues à l'EuroAirport ?</summary><p>Oui, gratuitement sur les parkings couverts S1 côté suisse ou F1 côté français. Pour le F1, l'accès se fait par le trottoir à côté des bornes d'entrée ; l'aire de stationnement est en face de la sortie.</p></details>
+      <details><summary>J'ai perdu mon ticket de parking, comment procéder ?</summary><p>Secteur France comme Suisse : rendez-vous à une caisse automatique ou en borne de sortie et contactez l'interphonie ; il vous sera demandé votre plaque d'immatriculation. L'édition d'un nouveau ticket entraîne 5 € / 5 CHF de frais administratifs.</p></details>
+      <details><summary>Quelles sont les possibilités de règlement ?</summary><p>Paiement en espèces aux caisses automatiques (niveau 2, hall Arrivée) et par carte (VISA, Mastercard, Amex, Maestro). Le stationnement en secteur suisse se paie en francs suisses, en secteur français en euros.</p></details>
+      <details><summary>J'ai réservé une place, puis-je arriver plus tôt que l'heure indiquée ?</summary><p>Une tolérance d'entrée de 2 heures est accordée sans frais supplémentaires.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft" data-section="footer" data-intent="secondary-nav">
+  <div class="wrap">
+    <div>
+      <div class="brand"><span class="e">Euro</span><span class="a">Airport</span><sup>®</sup><small>BASEL · MULHOUSE · FREIBURG</small></div>
+      <div class="social" style="margin-top:var(--s-s)">
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3H13V9c0-.9.3-1.5 1.6-1.5H17V4.8C16.6 4.7 15.4 4.6 14 4.6c-2.6 0-4 1.5-4 4.3V11H7v3h3v8h3z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM10 15V9l5 3-5 3z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8H3.9v12h3V8zM5.4 3.5A1.75 1.75 0 1 0 5.4 7a1.75 1.75 0 0 0 0-3.5zM20 20v-6.6c0-3.5-1.9-5.2-4.4-5.2-2 0-2.9 1.1-3.4 1.9V8H9.2v12h3v-6.4c0-1.7.3-3.3 2.4-3.3 2 0 2.1 1.9 2.1 3.4V20h3.3z"/></svg></a>
+      </div>
+    </div>
+    <div><h4>Vols</h4><a href="#">Arrivées du jour</a><a href="#">Départs du jour</a><a href="#">Nos destinations</a></div>
+    <div><h4>Pratique</h4><a href="#">Les parkings</a><a href="#">Plan de l'EuroAirport</a><a href="#">Services pratiques</a></div>
+    <div><h4>Aide</h4><a href="#">FAQ</a><a href="#">Assistance</a><a href="#">PMR</a></div>
+    <div class="legal">
+      <span>© 2026 EuroAirport Basel Mulhouse Freiburg</span>
+      <a href="#">Mentions légales</a>
+      <a href="#">Protection des données & cookies</a>
+      <a href="#">Gestion des cookies</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* mobile nav a11y only (permitted inline-script exception) */
+(function(){var b=document.querySelector('.burger');var n=document.querySelector('.nav');if(!b||!n)return;
+b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));n.style.display=o?'':'flex';n.style.position='absolute';n.style.top='7.25rem';n.style.left='0';n.style.right='0';n.style.flexDirection='column';n.style.background='var(--primary-dark)';n.style.padding='1rem 1.5rem';});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){b.setAttribute('aria-expanded','false');n.style.display='';}});})();
+</script>
+</body>
+</html>

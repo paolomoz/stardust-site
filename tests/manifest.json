@@ -33,5 +33,75 @@
     "thesis": "What if motion was part of the identity? Editorial register — full-bleed coffee photography as protagonist, revealed at reading pace with soft parallax and long crossfades."
    }
   ]
+ },
+ {
+  "slug": "agglo-saint-louis",
+  "brand": "Saint-Louis Agglomération",
+  "url": "https://www.agglo-saint-louis.fr/",
+  "page": "Homepage",
+  "thesis": "A cross-border French agglomération that buried residents' daily tasks under an institutional org-chart, colored tab bars, and tri-color separators. Three brand-faithful directions on the trois-frontières identity.",
+  "before": "data/agglo-saint-louis/before.jpg",
+  "defaultVariant": "C",
+  "variants": [
+   {
+    "id": "A",
+    "label": "A · Faithful",
+    "motion": "static",
+    "file": "data/agglo-saint-louis/A.html",
+    "thumb": "data/agglo-saint-louis/A.jpg",
+    "thesis": "Tomorrow's version of the site you have today — a quiet sticky header replaces the colored tab bar, a compact quick-task band and meaningful access cards replace the utility clutter, the territory photo is promoted to a legible full-bleed hero, and one accent rule per section replaces the marquee and tri-color separators."
+   },
+   {
+    "id": "B",
+    "label": "B · Tasks",
+    "motion": "static",
+    "file": "data/agglo-saint-louis/B.html",
+    "thumb": "data/agglo-saint-louis/B.jpg",
+    "thesis": "What if the homepage led with what residents actually came to do, instead of the org chart of the institution? A task-first « Je cherche… » action grid leads the page; institutional categories retreat to a utility row. IA reprioritised, content unchanged."
+   },
+   {
+    "id": "C",
+    "label": "C · Cinematic",
+    "motion": "cinematic",
+    "file": "data/agglo-saint-louis/C.html",
+    "thumb": "data/agglo-saint-louis/C.jpg",
+    "thesis": "What if the territory — and the three-link « trois pays » mark that stands for it — became the site's kinetic identity? The full-bleed bridge hero parallaxes up, a rising content plate covers it, and the three-link mark recurs as scroll-revealed dividers (arrival register)."
+   }
+  ]
+ },
+ {
+  "slug": "euroairport",
+  "brand": "EuroAirport",
+  "url": "https://www.euroairport.com/",
+  "page": "Homepage",
+  "thesis": "The world's only binational airport hid its live operational state under a terminal photo and a mega-nav. Three brand-faithful directions foregrounding what travelers actually need.",
+  "before": "data/euroairport/before.jpg",
+  "defaultVariant": "C",
+  "variants": [
+   {
+    "id": "A",
+    "label": "A · Faithful",
+    "motion": "static",
+    "file": "data/euroairport/A.html",
+    "thumb": "data/euroairport/A.jpg",
+    "thesis": "Tomorrow's version of the site you have today — an operational hero (flight search plus an at-a-glance strip of next departures, parking availability FR/CH, and security wait) leads the first viewport; corporate and secondary paths recede into a quiet utility tier, and live numerals get a large tabular treatment."
+   },
+   {
+    "id": "B",
+    "label": "B · Binational",
+    "motion": "static",
+    "file": "data/euroairport/B.html",
+    "thumb": "data/euroairport/B.jpg",
+    "thesis": "What if « the world's only binational airport » were the layout itself? A France ↔ Suisse structural spine organizes parking, currency (EUR | CHF), road access and wayfinding around a unifying EuroAirport centerline — one airport, two countries, made legible."
+   },
+   {
+    "id": "C",
+    "label": "C · Cinematic",
+    "motion": "cinematic",
+    "file": "data/euroairport/C.html",
+    "thumb": "data/euroairport/C.jpg",
+    "thesis": "What if the airport's real-time state WAS the homepage? A departures ticker, count-up on wait/parking/board numerals, capacity bars filling per sector, and live pulse dots — the data is the choreography, headings stay still (live-systems register)."
+   }
+  ]
  }
 ]

@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- stardust:provenance
+  writtenBy:        stardust:uplift → stardust:prototype (variant C, cinematic)
+  writtenAt:        2026-07-08T11:52:00Z
+  page:             index
+  pageUrl:          https://www.agglo-saint-louis.fr/
+  variant:          C (cinematic — territory as kinetic identity)
+  againstDirection: stardust/direction.md
+  readArtifacts:
+    - stardust/current/pages/index.json
+    - stardust/current/_brand-extraction.json
+    - DESIGN.md
+    - DESIGN.json
+    - DESIGN-C.json
+  paletteSource:    Mode A (captured four-hue civic palette, pinned; two AA nudges per DESIGN.json divergence.notes)
+  fontDeck:         captured (Open Sans body, Museo display promoted from nav)
+  motion:
+    register:       arrival
+    registerSource: auto (PRODUCT.md Brand Personality civic-formal + place-led → motion-registers.md selection heuristic)
+    runtime:        canonical inline runtime (motion-runtime.md), animConfig tuned for arrival
+    fallbacks:      prefers-reduced-motion neutralization + <noscript> static end-state
+  note:             IA identical to variant A; the bet is motion, not layout (C-cliff refusal).
+  unsourcedContent: []
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accueil du site de Saint-Louis Agglomération</title>
+<link rel="stylesheet" href="lenis.min.css">
+<noscript><style>
+  /* No-JS fallback — force every motion-hidden initial state to visible (motion-runtime.md § No-JS fallback) */
+  [data-anim], [data-tile-anim], [data-split] span { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
+  .word { clip-path: none !important; transform: none !important; }
+  [data-parallax], .hero-marquee, .post-hero { transform: none !important; }
+  .site-footer__wordmark { clip-path: none !important; }
+</style></noscript>
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTMyIDc5LjE1OTI4NCwgMjAxNi8wNC8xOS0xMzoxMzo0MCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUuNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTMxNjkzOTZCNzE2MTFFNjg2QjNDOEEwOTQwQ0ZCMkUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTMxNjkzOTdCNzE2MTFFNjg2QjNDOEEwOTQwQ0ZCMkUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1MzE2OTM5NEI3MTYxMUU2ODZCM0M4QTA5NDBDRkIyRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1MzE2OTM5NUI3MTYxMUU2ODZCM0M4QTA5NDBDRkIyRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgsQe/kAAAknSURBVHja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">
+<style>
+  :root {
+    /* Museo (captured display, promoted from nav) / Open Sans (captured body) */
+    --heading-font-family: 'Museo', 'Museo Sans', 'Poppins', 'Century Gothic', system-ui, sans-serif;
+    --body-font-family:    'Open Sans', 'Segoe UI', system-ui, sans-serif;
+
+    --heading-xxl: 68px;
+    --heading-xl:  48px;
+    --heading-lg:  36px;
+    --heading-md:  26px;
+    --body:        18px;
+    --body-sm:     15px;
+
+    --line-height-heading: 1.08;
+    --line-height-body:    1.6;
+
+    /* Cream */         --color-bg:      #f4efeb;
+    /* White */         --color-surface: #ffffff;
+    /* Sand */          --color-surface-alt: #eae2d8;
+    /* Rhin-Navy */     --color-fg:      #013c54;
+    /* Slate-Ink */     --color-body:    #2c3742;
+    /* Ciel */          --color-accent:  #00adef;
+    /* Ciel-Deep */     --color-accent-deep: #0079b0;
+    /* Prairie */       --color-action:  #5ea315;
+    /* Ble */           --color-highlight: #e8e100;
+    /* Fog */           --color-muted:   #6b7680;
+
+    --spacing-xs:  4px;
+    --spacing-sm:  8px;
+    --spacing-md:  16px;
+    --spacing-lg:  24px;
+    --spacing-xl:  48px;
+    --spacing-2xl: 96px;
+
+    --section-padding: 88px;
+    --max-width:       1200px;
+    --radius:          12px;
+
+    /* shadow tone: #0b1620 (navy tonal ramp, near-neutral) */
+    --shadow-card: 0 2px 4px rgba(11,22,32,.06), 0 12px 32px rgba(11,22,32,.10);
+    --shadow-card-hover: 0 4px 8px rgba(11,22,32,.09), 0 20px 48px rgba(11,22,32,.17);
+
+    /* Motion (cinematic — arrival register; token-contract.md § motion) */
+    --ease-out-cubic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-out-quart: cubic-bezier(0.42, 0, 0, 1);
+    --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+    --enter-duration: 700ms;
+    --enter-stagger:  90ms;
+    --parallax-translate: 35;   /* used as <value>vh in transforms */
+    --parallax-fade:      0.55;
+    --parallax-progress:  0;     /* JS-driven; 0–1 */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--body-font-family);
+    font-size: var(--body);
+    line-height: var(--line-height-body);
+    color: var(--color-body);
+    background: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display { font-family: var(--heading-font-family); color: var(--color-fg); line-height: var(--line-height-heading); font-weight: 700; margin: 0; }
+  a { color: var(--color-accent-deep); text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .wrap { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+  .eyebrow {
+    font-family: var(--heading-font-family);
+    font-size: var(--body-sm); font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--color-accent-deep); margin: 0 0 var(--spacing-md);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 3px; background: var(--color-highlight); border-radius: 2px; }
+  .section-head { max-width: 780px; margin-bottom: var(--spacing-xl); }
+  .section-head h2 { font-size: var(--heading-lg); }
+  .section-head p { color: var(--color-muted); font-size: var(--body); margin: var(--spacing-md) 0 0; }
+  section { padding: var(--section-padding) 0; }
+
+  /* ── Buttons ──────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--heading-font-family); font-weight: 700; font-size: var(--body-sm);
+    letter-spacing: .04em; text-transform: uppercase;
+    padding: 14px 26px; border-radius: 999px; border: 2px solid transparent;
+    cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s, color .2s;
+  }
+  .btn--primary { background: var(--color-action); color: #fff; }
+  .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(11,22,32,.18); }
+  .btn--ghost { background: transparent; color: var(--color-fg); border-color: rgba(1,60,84,.22); }
+  .btn--ghost:hover { border-color: var(--color-accent); color: var(--color-accent-deep); }
+  .btn--ondark { background: var(--color-action); color: #fff; }
+  .btn--ondark:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11,22,32,.42); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ── Brand mark (three-link) ──────────────────────────── */
+  .mark { width: 46px; height: 46px; flex: none; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; }
+  .brand__name { font-family: var(--heading-font-family); line-height: 1; }
+  .brand__name strong { display: block; font-size: 19px; font-weight: 700; letter-spacing: .01em; color: var(--color-fg); }
+  .brand__name span { display: block; font-size: 12px; letter-spacing: .02em; color: var(--color-accent-deep); font-weight: 700; }
+
+  /* ── Header ───────────────────────────────────────────── */
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(1,60,84,.10);
+  }
+  .site-header__bar { display: flex; align-items: center; gap: 24px; padding: 14px 32px; max-width: 1360px; margin: 0 auto; }
+  .site-header .brand__name span { color: var(--color-accent-deep); }
+  .site-nav { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
+  .site-nav a {
+    font-family: var(--heading-font-family); font-weight: 700; font-size: 14px;
+    color: var(--color-fg); padding: 10px 12px; border-radius: 8px;
+    position: relative; transition: color .2s, background .2s;
+  }
+  .site-nav a::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 3px;
+    background: var(--color-accent); border-radius: 2px; transform: scaleX(0); transform-origin: left; transition: transform .25s;
+  }
+  .site-nav a:hover { color: var(--color-accent-deep); }
+  .site-nav a:hover::after, .site-nav a.is-active::after { transform: scaleX(1); }
+  .site-header__util { display: flex; align-items: center; gap: 14px; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(1,60,84,.16);
+    background: #fff; color: var(--color-fg); display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: border-color .2s, color .2s;
+  }
+  .icon-btn:hover { border-color: var(--color-accent); color: var(--color-accent-deep); }
+  .icon-btn svg { width: 18px; height: 18px; }
+  .a11y-size { display: inline-flex; gap: 2px; font-family: var(--heading-font-family); font-weight: 700; font-size: 13px; color: var(--color-muted); }
+  .a11y-size button { background: none; border: none; cursor: pointer; color: var(--color-muted); padding: 4px 6px; font: inherit; border-radius: 6px; }
+  .a11y-size button:hover { color: var(--color-fg); background: var(--color-surface-alt); }
+  .burger { display: none; }
+
+  /* ── Hero ─────────────────────────────────────────────── */
+  .hero { position: relative; padding: 0; min-height: 620px; display: flex; align-items: flex-end; overflow: hidden; }
+  .hero__photo { position: absolute; inset: 0; }
+  .hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__scrim { position: absolute; inset: 0; background:
+     linear-gradient(180deg, rgba(1,60,84,.55) 0%, rgba(1,60,84,.12) 34%, rgba(1,60,84,.10) 60%, rgba(1,60,84,.78) 100%); }
+  .hero__inner { position: relative; width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 60px 32px 64px; }
+  .hero__lockup { display: flex; align-items: center; gap: 18px; margin-bottom: auto; }
+  .hero__lockup .mark { width: 68px; height: 68px; }
+  .hero__lockup h1 { color: #fff; font-size: 40px; letter-spacing: .01em; }
+  .hero__lockup h1 span { display: block; font-size: 18px; font-weight: 700; color: #bfe9ff; letter-spacing: .04em; }
+  .hero__grid { display: grid; grid-template-columns: 1fr minmax(300px, 420px); gap: 40px; align-items: end; margin-top: 90px; }
+  .hero__title { color: #fff; font-size: var(--heading-xxl); max-width: 12ch; text-shadow: 0 2px 30px rgba(1,60,84,.5); }
+  .hero__tagline { color: #eafff0; font-size: 22px; font-family: var(--heading-font-family); font-weight: 700; margin-top: 12px; }
+  .feature-card {
+    background: rgba(255,255,255,.96); border-radius: var(--radius); padding: 28px;
+    box-shadow: var(--shadow-card); border-top: 5px solid var(--color-highlight);
+  }
+  .feature-card .eyebrow { color: var(--color-action); }
+  .feature-card .eyebrow::before { background: var(--color-action); }
+  .feature-card h3 { font-size: var(--heading-md); margin-bottom: 10px; }
+  .feature-card p { margin: 0 0 20px; color: var(--color-body); font-size: var(--body-sm); }
+
+  /* ── Quick-task cards ─────────────────────────────────── */
+  .tasks { background: var(--color-bg); }
+  .task-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .task-card {
+    background: var(--color-surface); border-radius: var(--radius); padding: 26px 24px;
+    box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 14px;
+    transition: transform .25s, box-shadow .25s; color: var(--color-fg);
+  }
+  .task-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+  .task-card__icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(0,173,239,.10); color: var(--color-accent-deep); display: inline-flex; align-items: center; justify-content: center; }
+  .task-card:nth-child(4n+2) .task-card__icon { background: rgba(94,163,21,.12); color: var(--color-action); }
+  .task-card:nth-child(4n+3) .task-card__icon { background: rgba(232,225,0,.22); color: #8a7d00; }
+  .task-card__icon svg { width: 22px; height: 22px; }
+  .task-card h3 { font-size: 18px; font-family: var(--heading-font-family); }
+  .task-card span.arw { margin-top: auto; color: var(--color-accent-deep); font-weight: 700; font-size: var(--body-sm); font-family: var(--heading-font-family); }
+
+  /* ── News ─────────────────────────────────────────────── */
+  .news { background: var(--color-surface); }
+  .news__grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: stretch; }
+  .news__lead { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); display: flex; flex-direction: column; background: var(--color-surface); }
+  .news__lead .media { height: 260px; overflow: hidden; }
+  .news__lead .media img { width: 100%; height: 100%; object-fit: cover; }
+  .news__lead .body { padding: 28px 32px 32px; }
+  .news__lead .body h3 { font-size: var(--heading-md); }
+  .news__lead .body p { color: var(--color-body); margin: 10px 0 18px; font-size: var(--body-sm); }
+  .news__side { display: flex; flex-direction: column; gap: 16px; }
+  .news-item { display: flex; gap: 16px; padding: 18px; border-radius: var(--radius); background: var(--color-bg); align-items: center; transition: background .2s; }
+  .news-item:hover { background: var(--color-surface-alt); }
+  .news-item time { font-family: var(--heading-font-family); font-weight: 700; text-align: center; color: var(--color-accent-deep); line-height: 1; flex: none; width: 52px; }
+  .news-item time b { display: block; font-size: 24px; color: var(--color-fg); }
+  .news-item h4 { margin: 0; font-size: var(--body-sm); color: var(--color-fg); font-family: var(--body-font-family); font-weight: 700; }
+
+  /* ── Feature split (projects / open data) ─────────────── */
+  .split { background: var(--color-bg); }
+  .split__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .split__media { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); position: relative; }
+  .split__media img { width: 100%; height: 440px; object-fit: cover; }
+  .split__media .tag { position: absolute; top: 20px; left: 20px; background: var(--color-action); color: #fff; font-family: var(--heading-font-family); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 8px 14px; border-radius: 8px; }
+  .split--rev .split__grid { direction: rtl; }
+  .split--rev .split__grid > * { direction: ltr; }
+  .split__body h2 { font-size: var(--heading-lg); margin-bottom: var(--spacing-md); }
+  .split__body p { margin: 0 0 16px; color: var(--color-body); }
+
+  /* ── Positioning band ─────────────────────────────────── */
+  .positioning { background: var(--color-fg); color: #dfeef4; text-align: center; }
+  .positioning .wrap { max-width: 940px; }
+  .positioning .mark { width: 56px; height: 56px; margin: 0 auto 24px; }
+  .positioning p { font-family: var(--heading-font-family); font-weight: 700; font-size: 27px; line-height: 1.4; color: #fff; }
+  .positioning .tag { color: var(--color-highlight); }
+
+  /* ── Footer ───────────────────────────────────────────── */
+  .site-footer { background: #01293a; color: #b9d2dd; padding: 72px 0 32px; }
+  .site-footer .brand__name strong { color: #fff; }
+  .site-footer__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 40px; }
+  .site-footer h4 { font-family: var(--heading-font-family); color: var(--color-highlight); font-size: 14px; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 18px; }
+  .site-footer a { color: #b9d2dd; }
+  .site-footer a:hover { color: #fff; }
+  .site-footer p { margin: 0 0 8px; font-size: var(--body-sm); line-height: 1.7; }
+  .footer-map { border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); background: #063346; position: relative; height: 130px; margin-top: 8px; }
+  .footer-map svg { width: 100%; height: 100%; display: block; }
+  .footer-map .pin { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-100%); color: var(--color-highlight); }
+  .footer-contact a.phone { font-family: var(--heading-font-family); font-weight: 700; font-size: 20px; color: #fff; display: inline-block; margin-bottom: 12px; }
+  .site-footer__legal { border-top: 1px solid rgba(255,255,255,.12); margin-top: 48px; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13px; }
+  .site-footer__legal .cred { margin-left: auto; color: #6d8b98; }
+
+  /* ── Responsive ───────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .task-grid { grid-template-columns: repeat(2, 1fr); }
+    .split__grid, .news__grid, .hero__grid { grid-template-columns: 1fr; }
+    .split--rev .split__grid { direction: ltr; }
+    .site-footer__grid { grid-template-columns: 1fr 1fr; }
+    .hero__title { font-size: 54px; }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 0 20px; }
+    section { padding: 56px 0; }
+    .site-nav { display: none; }
+    .site-nav.open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: #fff; padding: 12px 20px 20px; box-shadow: var(--shadow-card); }
+    .burger { display: inline-flex; }
+    .site-header__bar { gap: 10px; padding: 12px 16px; }
+    .site-header .brand__name span { display: none; }
+    .site-header__util .icon-btn:not(.burger) { display: none; }
+    .site-header__util .btn--primary { padding: 12px 16px; }
+    .a11y-size, .util-social { display: none; }
+    .task-grid { grid-template-columns: 1fr; }
+    .site-footer__grid { grid-template-columns: 1fr; }
+    .hero__title { font-size: 40px; }
+    .hero__lockup h1 { font-size: 28px; }
+    .positioning p { font-size: 21px; }
+  }
+
+  /* ── Cinematic layer (arrival register) ───────────────── */
+  /* hero photo is the parallax plate; .hero already has overflow:hidden */
+  .hero-marquee { position: absolute; inset: -8vh 0; will-change: transform; }
+  .hero-marquee img { width: 100%; height: 100%; object-fit: cover; }
+  /* the first content band rises faster and covers the hero */
+  .post-hero { position: relative; z-index: 2; background: var(--color-bg); will-change: transform; }
+  /* three-link mark used as a scroll-revealed section divider */
+  .mark-divider { display: flex; justify-content: center; align-items: center; gap: 16px; padding: 8px 0 0; }
+  .mark-divider::before, .mark-divider::after { content: ""; height: 2px; width: min(120px, 22vw); background: linear-gradient(90deg, transparent, rgba(1,60,84,.18)); border-radius: 2px; }
+  .mark-divider::after { background: linear-gradient(90deg, rgba(1,60,84,.18), transparent); }
+  .mark-divider .mark { width: 40px; height: 40px; }
+  /* footer display wordmark that wipes up on scroll */
+  .site-footer__wordmark {
+    font-family: var(--heading-font-family); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(52px, 11vw, 150px); line-height: .9; letter-spacing: .01em;
+    color: rgba(255,255,255,.07); margin: 0 0 8px; will-change: clip-path; user-select: none;
+  }
+  .site-footer__wordmark span { color: rgba(232,225,0,.14); }
+
+  /* reduced-motion: neutralize everything to final state (motion-attributes.md) */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    [data-anim], [data-tile-anim], [data-split] span { opacity: 1 !important; transform: none !important; filter: none !important; clip-path: none !important; }
+    .word { clip-path: none !important; transform: none !important; }
+    .hero-marquee, .post-hero, [data-parallax] { transform: none !important; }
+    .site-footer__wordmark { clip-path: none !important; }
+  }
+</style>
+</head>
+<body data-template="landing">
+
+<!-- three-link mark, reusable symbol -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 64 64">
+    <circle cx="40" cy="30" r="22" fill="#013c54"/>
+    <circle cx="26" cy="34" r="20" fill="#00adef"/>
+    <path d="M8 34c0-9 7-16 16-16 5 0 9 2 12 6-3 1-6 4-7 8-1-3-4-5-7-5-4 0-7 3-7 7z" fill="#5ea315"/>
+    <g fill="#fff">
+      <circle cx="22" cy="26" r="3.4"/><circle cx="34" cy="34" r="3.4"/><circle cx="22" cy="42" r="3.4"/>
+      <path d="M23.5 27.4 32 32.6M23.5 40.6 32 35.4" stroke="#fff" stroke-width="2.4"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="site-header" data-section="site-header" data-intent="wayfinding" data-layout="stack" data-nav-collapse="hamburger">
+  <div class="site-header__bar">
+    <a class="brand" href="/fr/" aria-label="Accueil Saint-Louis Agglomération">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="brand__name"><strong>Saint-Louis</strong><span>Agglomération · Terres d'avenir</span></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+      <a href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/">L'Agglomération</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/au-quotidien/">Vie quotidienne</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/eco-citoyen/">Éco-citoyen</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/economie-emploi-formation/">Économie &amp; emploi</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/amenagement-territoire/">Aménagement</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/cooperation-transfrontaliere/">Transfrontalier</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/sports-culture-tourisme/">Sports &amp; Culture</a>
+    </nav>
+    <div class="site-header__util">
+      <span class="a11y-size" aria-label="Taille du texte"><button type="button">A+</button><button type="button">A−</button></span>
+      <button class="icon-btn" type="button" aria-label="Rechercher">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <a class="btn btn--primary" href="/fr/contact/">Contact</a>
+      <button class="icon-btn burger" type="button" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed" data-media="image">
+    <div class="hero-marquee"><img src="assets/hero-bridge.jpg" alt="La Passerelle des Trois Pays sur le Rhin, Saint-Louis Agglomération"></div>
+    <div class="hero__scrim"></div>
+    <div class="hero__inner">
+      <div class="hero__lockup" data-anim>
+        <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+        <h1>Saint-Louis Agglomération<span>Terres d'avenir</span></h1>
+      </div>
+      <div class="hero__grid">
+        <div>
+          <h2 class="hero__title" data-anim>Le territoire des trois frontières</h2>
+          <p class="hero__tagline" data-anim><span data-countup="40">0</span> communes, une agglomération au cœur de l'Europe rhénane.</p>
+        </div>
+        <article class="feature-card" data-anim>
+          <span class="eyebrow">À la une</span>
+          <h3>Fête Nationale | 14 juillet 2026</h3>
+          <p>Retrouvez les informations utiles dans notre article.</p>
+          <a class="btn btn--primary" href="https://www.agglo-saint-louis.fr/fr/fete-nationale-14-juillet-2026/">En savoir plus</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK TASKS — the rising plate that covers the hero -->
+  <section class="tasks post-hero" data-section="quick-access" data-intent="drive action" data-layout="grid" data-items="8">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" data-anim>Accès directs</span>
+        <h2 data-anim>Vos démarches et services</h2>
+        <p data-anim>Les rubriques les plus consultées de Saint-Louis Agglomération.</p>
+      </div>
+      <div class="task-grid">
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/actualites-2/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+          <h3>Actualités</h3><span class="arw">Consulter →</span>
+        </a>
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/agenda/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+          <h3>Agenda des évènements</h3><span class="arw">Voir l'agenda →</span>
+        </a>
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/fr/nous-trouver/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <h3>Nous trouver</h3><span class="arw">Itinéraire →</span>
+        </a>
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/marches-publics/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h16l-1 11H5z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg></span>
+          <h3>Marchés publics</h3><span class="arw">Consulter →</span>
+        </a>
+        <a class="task-card" data-anim href="https://agglo-saint-louis.gestmax.fr/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+          <h3>Offres d'emplois</h3><span class="arw">Postuler →</span>
+        </a>
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/telecharger">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M5 21h14"/></svg></span>
+          <h3>Documents à télécharger</h3><span class="arw">Télécharger →</span>
+        </a>
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/publications/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h8v18H6a2 2 0 0 1-2-2z"/><path d="M14 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/></svg></span>
+          <h3>Publications</h3><span class="arw">Lire →</span>
+        </a>
+        <a class="task-card" data-anim href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/galerie-multimedia/">
+          <span class="task-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m3 17 5-4 4 3 3-2 6 4"/></svg></span>
+          <h3>Galerie multimédia</h3><span class="arw">Découvrir →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news" data-section="news" data-intent="inform" data-layout="split-media" data-items="4">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Actualités</span>
+        <h2>La vie de l'agglomération</h2>
+      </div>
+      <div class="news__grid">
+        <article class="news__lead" data-anim>
+          <div class="media"><img src="assets/impact-collecte.jpg" alt="Collecte des déchets — Saint-Louis Agglomération"></div>
+          <div class="body">
+            <span class="eyebrow" style="color:var(--color-action)">Déchets ménagers</span>
+            <h3>Impact de la Fête Nationale sur la collecte</h3>
+            <p>Retrouvez les informations utiles dans notre article.</p>
+            <a class="btn btn--primary" href="https://www.agglo-saint-louis.fr/fr/fete-nationale-14-juillet-2026/">En savoir plus</a>
+          </div>
+        </article>
+        <div class="news__side">
+          <a class="news-item" data-anim href="https://www.agglo-saint-louis.fr/fr/dechetteries-horaires-adaptes-25-27-juin/">
+            <time>Juin<b>25</b></time><h4>Déchetteries : horaires adaptés du 25 au 27 juin</h4>
+          </a>
+          <a class="news-item" data-anim href="https://www.agglo-saint-louis.fr/fr/declenchement-plan-canicule/">
+            <time>Juil<b>08</b></time><h4>Déclenchement du plan canicule</h4>
+          </a>
+          <a class="news-item" data-anim href="https://www.agglo-saint-louis.fr/fr/ferme-ouverte-2026/">
+            <time>2026</time><h4>Ferme ouverte 2026</h4>
+          </a>
+          <a class="news-item" data-anim href="https://www.agglo-saint-louis.fr/fr/plan-de-deplacement/">
+            <time>Info</time><h4>Plan de déplacement</h4>
+          </a>
+          <a class="btn btn--ghost" href="https://www.agglo-saint-louis.fr/fr/saint-louis-agglomeration/actualites-2/" style="align-self:flex-start">Toutes les actualités</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- three-link mark divider (signature gesture, scroll-revealed) -->
+  <div class="mark-divider" data-anim aria-hidden="true"><svg class="mark"><use href="#mark"/></svg></div>
+
+  <!-- PROJECTS / OPEN DATA -->
+  <section class="split" data-section="projects" data-intent="value proposition" data-layout="split-media" data-media="image">
+    <div class="wrap">
+      <div class="split__grid">
+        <div class="split__media" data-anim>
+          <span class="tag">Grands projets</span>
+          <img src="assets/opendata.jpg" alt="Découvrez notre territoire autrement — Portail Open Data">
+        </div>
+        <div class="split__body" data-anim>
+          <span class="eyebrow">Portail Open Data</span>
+          <h2>Découvrez notre territoire autrement</h2>
+          <p>Saint-Louis Agglomération propose depuis le 30 septembre 2021 son portail Open Data.</p>
+          <p>Cette plateforme en ligne, ouverte au grand public, permet de mettre à disposition de nombreuses informations relevant de l'action publique menée par Saint-Louis Agglomération.</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px">
+            <a class="btn btn--primary" href="https://saint-louis-agglo.opendatasoft.com">Portail Open Data</a>
+            <a class="btn btn--ghost" href="https://www.agglo-saint-louis.fr/projet/">Voir tous les projets</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTATIONS -->
+  <section class="split split--rev" data-section="consultations" data-intent="build trust" data-layout="split-media" data-media="image" style="background:var(--color-surface)">
+    <div class="wrap">
+      <div class="split__grid">
+        <div class="split__media" data-anim>
+          <span class="tag" style="background:var(--color-accent)">Concertations publiques</span>
+          <img src="assets/zai-gruen.jpg" alt="Vue aérienne — projet de création de la ZAI Gruen à Sierentz">
+        </div>
+        <div class="split__body" data-anim>
+          <span class="eyebrow">Concertation en cours</span>
+          <h2>Projet de création de la ZAI Gruen à Sierentz</h2>
+          <p>Participez aux concertations publiques qui dessinent l'aménagement du territoire — donnez votre avis sur les projets structurants de l'agglomération.</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px">
+            <a class="btn btn--primary" href="https://www.agglo-saint-louis.fr/concertation/projet-de-creation-de-zai-gruen-a-sierentz/">Découvrir le projet</a>
+            <a class="btn btn--ghost" href="https://www.agglo-saint-louis.fr/concertation/">Toutes les concertations</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING -->
+  <section class="positioning" data-section="positioning" data-intent="brand statement" data-layout="contained">
+    <div class="wrap">
+      <svg class="mark" aria-hidden="true" data-anim><use href="#mark"/></svg>
+      <p data-anim>Située en Alsace, dans le sud-est du Haut-Rhin, Saint-Louis Agglomération est l'aboutissement de la coopération intercommunale dans la <span class="tag">région des trois frontières</span> — une structure opérationnelle en cohérence avec l'aménagement du territoire.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" data-section="site-footer" data-intent="contact + navigation" data-layout="grid">
+  <div class="wrap">
+    <div class="site-footer__wordmark" aria-hidden="true">Terres<br><span>d'avenir</span></div>
+    <div class="site-footer__grid">
+      <div>
+        <a class="brand" href="/fr/" aria-label="Saint-Louis Agglomération">
+          <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+          <span class="brand__name"><strong>Saint-Louis</strong><span style="color:var(--color-highlight)">Agglomération</span></span>
+        </a>
+        <p style="margin-top:16px">Place de l'Hôtel de Ville<br>CS 50199<br>68305 Saint-Louis Cedex</p>
+      </div>
+      <div>
+        <h4>Nous trouver</h4>
+        <div class="footer-map" aria-label="Localisation à Saint-Louis, Haut-Rhin">
+          <svg viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="130" fill="#0b3b50"/>
+            <path d="M0 74 L60 66 L120 82 L200 70" stroke="#1d5f7c" stroke-width="2" fill="none"/>
+            <path d="M0 30 L70 40 L140 24 L200 44" stroke="#1d5f7c" stroke-width="2" fill="none"/>
+            <path d="M96 0 L104 130" stroke="#2a7ba0" stroke-width="3" fill="none"/>
+            <path d="M40 0 L52 130" stroke="#164e69" stroke-width="2" fill="none"/>
+          </svg>
+          <span class="pin"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s7-6.4 7-11a7 7 0 1 0-14 0c0 4.6 7 11 7 11z"/><circle cx="12" cy="11" r="2.6" fill="#01293a"/></svg></span>
+        </div>
+      </div>
+      <div>
+        <h4>Horaires</h4>
+        <p><strong style="color:#fff">Du lundi au jeudi</strong><br>09h00 – 11h30 · 14h30 – 17h00</p>
+        <p><strong style="color:#fff">Vendredi</strong><br>09h00 – 11h30 · 14h30 – 16h30</p>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <a class="phone" href="tel:0389709070">03.89.70.90.70</a>
+        <p><a href="/fr/contact/">Envoyez un message →</a></p>
+        <p class="util-social" style="display:flex;gap:12px;margin-top:12px">
+          <a href="https://www.facebook.com/SaintLouisAgglo/" aria-label="Facebook">Facebook</a>
+          <a href="https://www.instagram.com/saintlouisagglo/" aria-label="Instagram">Instagram</a>
+          <a href="https://www.youtube.com/channel/UCFz7ePAx07OtgSh2dXEJE3A" aria-label="YouTube">YouTube</a>
+        </p>
+      </div>
+    </div>
+    <div class="site-footer__legal">
+      <a href="https://www.agglo-saint-louis.fr/fr/mentions-legales/">Mentions légales</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/plan-du-site/">Plan du site</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/espace-presse/">Espace presse</a>
+      <a href="https://www.agglo-saint-louis.fr/fr/politique-de-confidentialite/">Politique de confidentialité</a>
+      <span class="cred">© Saint-Louis Agglomération</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* mobile nav a11y — the one permitted inline script (mobile-nav-collapse) */
+  (function () {
+    var b = document.getElementById('burger'), n = document.getElementById('site-nav');
+    if (!b || !n) return;
+    b.addEventListener('click', function () {
+      var open = n.classList.toggle('open');
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && n.classList.contains('open')) { n.classList.remove('open'); b.setAttribute('aria-expanded', 'false'); b.focus(); }
+    });
+  })();
+</script>
+
+<!-- ── Cinematic motion: Lenis + canonical arrival runtime (motion-runtime.md) ── -->
+<script src="lenis.min.js"></script>
+<script>
+(function () {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── Lenis bootstrap ────────────────────────────────────────────
+  const lenis = new Lenis({ lerp: 0.1, smoothWheel: !prefersReducedMotion });
+  window.__lenis = lenis;
+  (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+
+  // ── Nav scrolled state ─────────────────────────────────────────
+  const nav = document.getElementById('nav');
+  if (nav) lenis.on('scroll', ({ scroll }) => { nav.classList.toggle('scrolled', scroll > 40); });
+
+  // ── Helpers ────────────────────────────────────────────────────
+  const clamp = (v, lo, hi) => v < lo ? lo : v > hi ? hi : v;
+  const easeOut3 = t => 1 - Math.pow(1 - t, 3);
+  const getDocTop = el => el.getBoundingClientRect().top + (window.__lenis ? window.__lenis.scroll : window.scrollY);
+
+  // ── Register-specific configuration (arrival) ──────────────────
+  const animConfig = {
+    parallax:      { translate: 35, fade: 0.55, rangeStart: 0, range: 80 },
+    plansParallax: { translate: 16, rangeStart: 0, range: 80 },
+    cards:         { trigger: 0.85, range: 0.32, slide: 40, stagger: 0.12 },
+    wordmark:      { range: 0.6, clip: 80 },
+  };
+
+  // ── data-split: pre-process letter spans ───────────────────────
+  document.querySelectorAll('[data-split]').forEach((el) => {
+    const text = el.textContent; el.textContent = '';
+    text.split('').forEach((ch) => {
+      const s = document.createElement('span');
+      s.textContent = ch === ' ' ? ' ' : ch;
+      s.style.opacity = '0'; s.style.transform = 'translateY(60%)'; s.style.filter = 'blur(8px)';
+      el.appendChild(s);
+    });
+  });
+
+  // ── Register lists ─────────────────────────────────────────────
+  const animList = [];
+  const headWords = [];
+  const splitLetters = [];
+  let wordmarkEl = null, wordmarkTop = 0;
+
+  function measure() {
+    const postHeroEl = document.querySelector('.post-hero');
+    const savedTransform = postHeroEl ? postHeroEl.style.transform : '';
+    if (postHeroEl) postHeroEl.style.transform = '';
+
+    animList.forEach(({ el }) => { el.style.opacity = el.style.transform = el.style.willChange = ''; });
+    animList.length = 0; headWords.length = 0; splitLetters.length = 0;
+
+    document.querySelectorAll('[data-anim], [data-tile-anim]').forEach((el) => {
+      const parent = el.closest('.band, .ops-band, .alerts, .access, .news, .ops-section > div, .ops-tiles, .ops-alerts, .ops-mini, section');
+      let stagger = 0;
+      if (parent) {
+        const peers = parent.querySelectorAll('[data-anim], [data-tile-anim]');
+        const idx = Array.prototype.indexOf.call(peers, el);
+        stagger = (idx % 8) * animConfig.cards.stagger;
+      }
+      el.style.opacity = '0';
+      el.style.transform = el.hasAttribute('data-tile-anim') ? `translateY(28px) rotateX(8deg)` : `translateY(${animConfig.cards.slide}px)`;
+      el.style.willChange = 'opacity, transform';
+      animList.push({ el, triggerTop: getDocTop(el), staggerDelay: stagger });
+    });
+
+    document.querySelectorAll('.display-head, .terminals-band__head h2').forEach((head) => {
+      const words = head.querySelectorAll('.word');
+      const top = getDocTop(head);
+      words.forEach((w, i) => {
+        w.style.clipPath = 'inset(0 100% 0 0)'; w.style.transform = 'translateY(110%)'; w.style.willChange = 'clip-path, transform';
+        headWords.push({ el: w, triggerTop: top, staggerDelay: i * 0.15 });
+      });
+    });
+
+    document.querySelectorAll('[data-split]').forEach((el) => {
+      const top = getDocTop(el);
+      el.querySelectorAll('span').forEach((s, i) => { splitLetters.push({ el: s, triggerTop: top, staggerDelay: i * 0.05 }); });
+    });
+
+    wordmarkEl = document.querySelector('.site-footer__wordmark');
+    if (wordmarkEl) {
+      wordmarkTop = getDocTop(wordmarkEl);
+      wordmarkEl.style.clipPath = `inset(${animConfig.wordmark.clip}% 0 0 0)`;
+      wordmarkEl.style.willChange = 'clip-path';
+    }
+    if (postHeroEl) postHeroEl.style.transform = savedTransform;
+  }
+
+  // ── [data-countup]: IO-triggered numeric tween ─────────────────
+  const countSeen = new WeakSet();
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || countSeen.has(entry.target)) return;
+      countSeen.add(entry.target);
+      const target = +entry.target.getAttribute('data-countup');
+      const duration = target > 20 ? 1400 : target > 5 ? 900 : 600;
+      const start = performance.now();
+      (function step(now) {
+        const t = clamp((now - start) / duration, 0, 1);
+        entry.target.textContent = String(Math.round(easeOut3(t) * target));
+        if (t < 1) requestAnimationFrame(step);
+      })(performance.now());
+    });
+  }, { threshold: 0.4 });
+  // reduced-motion: do NOT observe count-ups — the reduced-motion block below sets them to target (no tween)
+  if (!prefersReducedMotion) document.querySelectorAll('[data-countup]').forEach((el) => countObserver.observe(el));
+
+  // ── rAF loop: scroll-progress reveals + parallax ───────────────
+  const heroMarqueeEl = document.querySelector('.hero-marquee');
+  const postHeroEl = document.querySelector('.post-hero');
+  let _lastMB = null;
+
+  (function tick() {
+    if (prefersReducedMotion) { requestAnimationFrame(tick); return; }
+    const sY = window.__lenis ? window.__lenis.scroll : window.scrollY;
+    const vh = window.innerHeight;
+    const isDesktop = window.innerWidth > 767;
+
+    if (heroMarqueeEl) {
+      const pp = animConfig.parallax;
+      if (isDesktop) {
+        const rs = pp.rangeStart / 100 * vh, re = pp.range / 100 * vh;
+        const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1));
+        heroMarqueeEl.style.transform = `translateY(${p * -pp.translate}vh)`;
+        document.documentElement.style.setProperty('--parallax-progress', p);
+      } else { heroMarqueeEl.style.transform = ''; document.documentElement.style.setProperty('--parallax-progress', 0); }
+    }
+
+    let postHeroOffsetPx = 0;
+    if (postHeroEl) {
+      const pp2 = animConfig.plansParallax;
+      if (isDesktop) {
+        const rs = pp2.rangeStart / 100 * vh, re = pp2.range / 100 * vh;
+        const p = easeOut3(clamp((sY - rs) / (re - rs), 0, 1));
+        postHeroOffsetPx = p * -pp2.translate / 100 * vh;
+        postHeroEl.style.transform = `translateY(${p * -pp2.translate}vh)`;
+        const newMB = `${p * -pp2.translate}vh`;
+        if (newMB !== _lastMB) { postHeroEl.style.marginBottom = newMB; _lastMB = newMB; }
+      } else {
+        postHeroEl.style.transform = '';
+        if (_lastMB !== '') { postHeroEl.style.marginBottom = ''; _lastMB = ''; }
+      }
+    }
+
+    for (let i = 0; i < animList.length; i++) {
+      const item = animList[i];
+      const { trigger, range, slide } = animConfig.cards;
+      const raw = (sY + vh * trigger - (item.triggerTop + postHeroOffsetPx)) / (vh * range);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      if (item.el.hasAttribute('data-tile-anim')) {
+        item.el.style.transform = `translateY(${(1 - p) * 28}px) rotateX(${(1 - p) * 8}deg)`;
+      } else {
+        item.el.style.transform = `translateY(${(1 - p) * slide}px)`;
+      }
+    }
+
+    for (let i = 0; i < headWords.length; i++) {
+      const item = headWords[i];
+      const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.30);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
+      item.el.style.transform = `translateY(${(1 - p) * 110}%)`;
+    }
+
+    for (let i = 0; i < splitLetters.length; i++) {
+      const item = splitLetters[i];
+      const raw = (sY + vh * 0.85 - (item.triggerTop + postHeroOffsetPx)) / (vh * 0.35);
+      const p = easeOut3(clamp(raw - item.staggerDelay, 0, 1));
+      item.el.style.opacity = String(p);
+      item.el.style.transform = `translateY(${(1 - p) * 60}%)`;
+      item.el.style.filter = `blur(${(1 - p) * 8}px)`;
+    }
+
+    if (wordmarkEl) {
+      const adjustedTop = wordmarkTop + postHeroOffsetPx;
+      const wP = easeOut3(clamp((sY + vh - adjustedTop) / (vh * animConfig.wordmark.range), 0, 1));
+      wordmarkEl.style.clipPath = `inset(${(1 - wP) * animConfig.wordmark.clip}% 0 0 0)`;
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  measure();
+  window.addEventListener('load',   () => requestAnimationFrame(measure), { once: true });
+  window.addEventListener('resize', measure, { passive: true });
+
+  // ── Reduced-motion: force final states ─────────────────────────
+  if (prefersReducedMotion) {
+    document.querySelectorAll('[data-anim], [data-tile-anim], [data-split] span').forEach((el) => {
+      el.style.opacity = '1'; el.style.transform = 'none'; el.style.filter = 'none'; el.style.clipPath = 'none';
+    });
+    document.querySelectorAll('.word').forEach((el) => { el.style.clipPath = 'none'; el.style.transform = 'none'; });
+    document.querySelectorAll('[data-countup]').forEach((el) => { el.textContent = el.getAttribute('data-countup'); });
+    if (heroMarqueeEl) heroMarqueeEl.style.transform = 'none';
+    if (postHeroEl) postHeroEl.style.transform = 'none';
+    if (wordmarkEl) wordmarkEl.style.clipPath = 'none';
+  }
+})();
+</script>
+</body>
+</html>
