@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy: stardust:prototype (via stardust:uplift Phase 5)
+  writtenAt: 2026-07-08T12:10:00Z
+  page: index
+  variant: C (cinematic)
+  motion.register: editorial
+  pageUrl: https://frescopa.coffee/
+  againstDirection: stardust/direction.md (Active 2026-07-08)
+  readArtifacts: [stardust/current/pages/index.json, stardust/current/_brand-extraction.json, DESIGN.md, DESIGN.json, DESIGN-C.json, index-A-proposed.html]
+  fontStrategy: "Baskerville (system, macOS) with Libre Baskerville web fallback; Roboto + Roboto Condensed via Google Fonts (prototype-only import)"
+  paletteSource: "Mode A pinned — captured --frescopa-color-* tokens"
+  unsourcedContent: []
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frescopa - Coffee, Tea & Accessories</title>
+<link rel="icon" href="assets/favicon.ico">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Condensed:wght@400;700&display=swap');
+:root{
+  /* ---- token contract ---- */
+  --heading-font-family: Baskerville,"Libre Baskerville","Baskerville Old Face","Hoefler Text",Garamond,"Times New Roman",serif;
+  --body-font-family: Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  --condensed-font-family:"Roboto Condensed",var(--body-font-family);
+  --heading-xxl:72px; --heading-xl:56px; --heading-lg:40px; --heading-md:30px;
+  --body:18px; --body-sm:15px;
+  --line-height-heading:1.08; --line-height-body:1.55;
+  /* brand palette (pinned) */
+  --cream:#F4E9DC; --oxblood:#58181D; --teal:#00647D; --coral:#DC6E52;
+  --amber:#EBA439; --brick:#A33532; --deep-brick:#95351D; --charcoal:#2C2C2C; --white:#fff;
+  --color-bg:var(--cream); --color-fg:var(--oxblood); --color-accent:var(--teal);
+  --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px; --spacing-lg:24px; --spacing-xl:48px; --spacing-2xl:96px;
+  --section-padding:60px; /* density floor: 7 sections >5 → <=64px */
+  --max-width:1200px; --radius:24px; --radius-panel:16px; --radius-card:8px;
+  --shadow-card:0 12px 40px rgba(88,24,29,.10);
+  /* ---- motion tokens (variant C, editorial) ---- */
+  --ease-editorial:cubic-bezier(0.16,1,0.3,1); --enter-duration:900ms; --enter-stagger:140ms; --parallax-translate:10;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--oxblood);font-family:var(--body-font-family);font-size:var(--body);line-height:var(--line-height-body);font-weight:300;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--heading-font-family);font-weight:400;line-height:var(--line-height-heading);letter-spacing:.01em;margin:0}
+h1{font-size:var(--heading-xl)}h2{font-size:var(--heading-lg)}h3{font-size:var(--heading-md)}
+p{margin:0 0 1em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--max-width);margin:0 auto;padding:0 var(--spacing-lg)}
+.eyebrow{font-family:var(--condensed-font-family);text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:700}
+.btn{display:inline-block;border:none;border-radius:var(--radius);padding:14px 30px;font-family:var(--body-font-family);font-weight:500;font-size:16px;letter-spacing:.06em;cursor:pointer;text-decoration:none;transition:transform .25s ease,background .25s ease;line-height:1.2}
+.btn.primary{background:var(--teal);color:#fff}
+.btn.secondary{background:var(--deep-brick);color:#fff}
+.btn.ghost{background:transparent;color:var(--oxblood);border:2px solid rgba(88,24,29,.3)}
+.btn:hover{transform:translateY(-2px);filter:brightness(.92)}
+
+/* announcement */
+.announce{background:var(--brick);color:#fff;text-align:center;font-family:var(--condensed-font-family);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px}
+.announce a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin-left:12px}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(244,233,220,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(88,24,29,.10)}
+.nav{display:flex;align-items:center;gap:28px;height:72px}
+.logo{height:30px;width:auto}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;font-size:15px}
+.nav ul a{text-decoration:none;padding:6px 0;border-bottom:2px solid transparent;transition:border-color .3s}
+.nav ul a:hover{border-color:var(--brick)}
+.nav .util{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:14px}
+.nav .util a{text-decoration:none}
+.nav .util .signin{font-weight:500}
+.burger{display:none;margin-left:auto;background:none;border:none;font-size:26px;color:var(--oxblood);cursor:pointer}
+
+/* hero — full-bleed photographic moment */
+.hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--oxblood)}
+.hero__media{position:absolute;left:0;right:0;top:-7vh;bottom:-7vh;will-change:transform}
+.hero__media img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero__scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(88,24,29,.88) 0%,rgba(88,24,29,.52) 34%,rgba(0,0,0,.14) 66%,rgba(0,0,0,.30) 100%)}
+.hero__content{position:relative;padding-bottom:clamp(48px,7vw,96px);padding-top:64px;color:#fff}
+.hero .eyebrow{color:var(--amber)}
+.hero h1{color:#fff;font-size:clamp(44px,6.6vw,88px);line-height:1.04;max-width:15ch;margin:16px 0 22px;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero .lede{color:rgba(255,255,255,.9);max-width:38ch;margin-bottom:30px;font-size:20px}
+
+/* subscription */
+.subscribe .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:var(--section-padding) var(--spacing-lg)}
+.subscribe .eyebrow{color:var(--brick)}
+.subscribe h2{margin:12px 0 18px;max-width:14ch}
+.subscribe .art{aspect-ratio:4/3;border-radius:var(--radius-card);background:var(--amber) url('https://frescopa.coffee/styles/backgrounds/small.svg') center/cover;box-shadow:var(--shadow-card);display:flex;align-items:center;justify-content:center}
+.subscribe .art img{width:62%}
+
+/* locations */
+.locations{background:var(--coral);color:#fff}
+.locations .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:var(--section-padding) var(--spacing-lg)}
+.locations .eyebrow{color:rgba(255,255,255,.82)}
+.locations h2{color:#fff;margin:12px 0 16px}
+.finder{display:flex;gap:8px;background:#fff;border-radius:var(--radius);padding:6px;max-width:420px}
+.finder input{flex:1;border:none;background:none;padding:12px 18px;font-family:var(--body-font-family);font-size:15px;color:var(--oxblood);outline:none}
+.finder button{border-radius:var(--radius)}
+.loc-card{background:rgba(255,255,255,.14);border-radius:var(--radius-card);padding:26px;backdrop-filter:blur(4px)}
+.loc-card h3{color:#fff;font-size:26px;margin-bottom:6px}
+.loc-card .addr{font-size:15px;line-height:1.7;opacity:.95}
+.loc-card .pin{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-family:var(--condensed-font-family);opacity:.85}
+
+/* categories */
+.categories{padding:var(--section-padding) 0}
+.categories h2{text-align:center;margin-bottom:38px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.cat{position:relative;border-radius:var(--radius-card);padding:30px 18px 24px;text-align:center;background:var(--white);box-shadow:var(--shadow-card);text-decoration:none;color:var(--oxblood);transition:transform .3s ease}
+.cat img{height:96px;margin:0 auto 16px;transition:transform 900ms var(--ease-editorial)}
+.cat:hover{transform:translateY(-6px)}
+.cat:hover img{transform:scale(1.06)}
+.cat h4{font-family:var(--heading-font-family);font-size:21px;font-weight:400;position:relative;display:inline-block}
+.cat h4::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:100%;background:var(--brick);transform:scaleX(0);transform-origin:left;transition:transform 400ms var(--ease-editorial)}
+.cat:hover h4::after{transform:scaleX(1)}
+
+/* stories — full-bleed alternating photo bands */
+.stories{padding:0}
+.story{position:relative;min-height:80vh;display:flex;align-items:center;overflow:hidden;background:var(--oxblood)}
+.story__media{position:absolute;inset:0}
+.story__media img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 900ms var(--ease-editorial)}
+.story:hover .story__media img{transform:scale(1.03)}
+.story__scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(88,24,29,.86) 0%,rgba(88,24,29,.58) 42%,rgba(88,24,29,.06) 78%)}
+.story.reverse .story__scrim{background:linear-gradient(to left,rgba(88,24,29,.86) 0%,rgba(88,24,29,.58) 42%,rgba(88,24,29,.06) 78%)}
+.story__content{position:relative;width:100%}
+.story__text{max-width:520px;color:#fff;padding:clamp(48px,7vw,96px) 0}
+.story.reverse .story__text{margin-left:auto}
+.story .eyebrow{color:var(--amber)}
+.story h3{color:#fff;font-size:clamp(30px,3.6vw,48px);margin:12px 0 18px;text-shadow:0 2px 24px rgba(0,0,0,.3)}
+.story p{color:rgba(255,255,255,.9);max-width:44ch;margin-bottom:28px}
+
+/* rewards */
+.rewards{background:var(--teal);color:#fff}
+.rewards .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:center;padding:56px var(--spacing-lg)}
+.rewards .gift{font-size:76px;line-height:1}
+.rewards h3{color:#fff;font-size:32px;margin-bottom:10px}
+.rewards p{max-width:52ch;opacity:.92;margin:0}
+
+/* footer */
+footer{background:var(--cream);border-top:1px solid rgba(88,24,29,.12);padding:56px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr repeat(5,1fr);gap:32px}
+.foot-brand .logo{height:34px;margin-bottom:14px}
+.foot-brand .tag{font-family:var(--heading-font-family);font-style:italic;font-size:20px;margin-bottom:16px}
+.foot-brand .contact{font-size:14px;line-height:1.9}
+.foot-brand .contact a{text-decoration:none}
+.foot-col h5{font-family:var(--condensed-font-family);text-transform:uppercase;letter-spacing:.12em;font-size:13px;margin:0 0 14px;color:var(--brick)}
+.foot-col ul{list-style:none;margin:0;padding:0;font-size:14px;line-height:2.1}
+.foot-col a{text-decoration:none;opacity:.85}
+.foot-col a:hover{opacity:1}
+.legal{max-width:var(--max-width);margin:36px auto 0;padding:20px var(--spacing-lg) 0;border-top:1px solid rgba(88,24,29,.12);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;opacity:.7}
+
+@media(max-width:900px){
+  .nav ul,.nav .util{display:none}
+  .burger{display:block}
+  .nav.open ~ .mobile-menu{display:block}
+  .subscribe .wrap,.locations .wrap{grid-template-columns:1fr;gap:28px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{min-height:82vh}
+  .story{min-height:70vh;align-items:flex-end}
+  .story__scrim,.story.reverse .story__scrim{background:linear-gradient(to top,rgba(88,24,29,.9) 0%,rgba(88,24,29,.56) 46%,rgba(88,24,29,.08) 82%)}
+  .story__text,.story.reverse .story__text{max-width:none;margin:0}
+  .rewards .wrap{grid-template-columns:1fr;text-align:center}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  :root{--heading-xl:40px;--heading-lg:32px}
+}
+.mobile-menu{display:none;padding:12px var(--spacing-lg) 20px;border-top:1px solid rgba(88,24,29,.1)}
+.mobile-menu a{display:block;padding:10px 0;text-decoration:none;font-size:16px}
+
+/* ---- editorial motion (gated on motion preference) ---- */
+@media (prefers-reduced-motion: no-preference){
+  [data-anim]{opacity:0;transition:opacity var(--enter-duration) var(--ease-editorial),transform var(--enter-duration) var(--ease-editorial)}
+  [data-anim="img"]{transform:translateY(18px)}
+  [data-anim].is-in{opacity:1;transform:none}
+}
+</style>
+</head>
+<body data-template="landing">
+
+<div class="announce" data-section="announcement-bar" data-intent="promo" data-layout="full-bleed">
+  FREE SHIPPING FROM $35 &amp; FREE COFFEE SAMPLES WITH CODE FRESCOPA <a href="/subscription">SHOP NOW</a>
+</div>
+
+<header data-section="header" data-intent="wayfind" data-layout="contained" data-nav-collapse="hamburger">
+  <div class="wrap nav" id="nav">
+    <img class="logo" src="https://frescopa.coffee/icons/frescopa_logo.svg" alt="Fréscopa">
+    <ul>
+      <li><a href="/coffee">Coffee</a></li><li><a href="/tea">Tea</a></li>
+      <li><a href="/machines">Machines</a></li><li><a href="/accessories">Accessories</a></li>
+      <li><a href="/locations">Locations</a></li><li><a href="/sustainability">Sustainability</a></li>
+    </ul>
+    <div class="util">
+      <a href="#" aria-label="Search">Search</a>
+      <a href="/login?redirect=%2F" class="signin">Sign in</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="/coffee">Coffee</a><a href="/tea">Tea</a><a href="/machines">Machines</a>
+    <a href="/accessories">Accessories</a><a href="/locations">Locations</a>
+    <a href="/sustainability">Sustainability</a><a href="/login?redirect=%2F">Sign in</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" data-section="hero" data-intent="emotional hook" data-layout="full-bleed" data-media="image">
+  <div class="hero__media" data-parallax><img src="https://frescopa.coffee/media_1990fe27244fdc5d261155cd983f85a56415baf1c.jpg?width=2000&format=webply&optimize=medium" alt="Slow latte pour into a Fréscopa cup"></div>
+  <div class="hero__scrim"></div>
+  <div class="wrap hero__content">
+    <span class="eyebrow" data-anim data-delay="0">MyBarista Coffee Quiz</span>
+    <h1 data-anim data-delay="140">Your perfect coffee is four questions away!</h1>
+    <p class="lede" data-anim data-delay="280">Answer four quick questions and let MyBarista match you to a roast made for your taste.</p>
+    <a href="/quiz" class="btn primary" data-anim data-delay="420">Start Quiz Now</a>
+  </div>
+</section>
+
+<section class="subscribe" data-section="subscription" data-intent="value proposition" data-layout="split-media" data-media="image">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-anim data-delay="0">MyBarista Subscription</span>
+      <h2 data-anim data-delay="140">Fall in love with rich aromas and bold flavors—every single day.</h2>
+      <p data-anim data-delay="280">With a MyBarista subscription, savor hand-selected coffees—each chosen for their unique taste and aroma—delivered right to your door every month. Experience new flavors, curated for your lifestyle.</p>
+      <a href="/subscription" class="btn secondary" data-anim data-delay="420">Shop Now</a>
+    </div>
+    <div class="art" data-anim="img"><img src="https://frescopa.coffee/icons/frescopa_logo.svg" alt="Fréscopa"></div>
+  </div>
+</section>
+
+<section class="locations" data-section="locations" data-intent="drive action" data-layout="contained" data-interactive="form">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" data-anim data-delay="0">Find Another Location Now</span>
+      <h2 data-anim data-delay="140">Try a new roast at a Fréscopa near you!</h2>
+      <p data-anim data-delay="280">Enter your post code and we'll point you to the nearest place to taste, sip, and stock up.</p>
+      <form class="finder" onsubmit="return false" data-anim data-delay="420">
+        <input type="text" placeholder="Post Code" aria-label="Post code">
+        <button class="btn primary" type="submit">Search</button>
+      </form>
+    </div>
+    <div class="loc-card" data-anim="img">
+      <span class="pin">Flagship roastery</span>
+      <h3>Fréscopa Lehi</h3>
+      <p class="addr">3900 Adobe Way<br>Lehi, UT 84043<br>(385) 345-0000</p>
+    </div>
+  </div>
+</section>
+
+<section class="categories" data-section="categories" data-intent="discovery" data-layout="grid" data-items="5">
+  <div class="wrap">
+    <h2 data-anim>Shop all Fréscopa products.</h2>
+    <div class="cat-grid">
+      <a class="cat" href="/machines" data-anim="img" data-delay="0"><img src="https://frescopa.coffee/media_18d90d06cb150321e2b7de19e82a9818c57b1eaaa.png?width=750&format=webply&optimize=medium" alt="Coffee machine icon"><h4>Coffee Machines</h4></a>
+      <a class="cat" href="/coffee" data-anim="img" data-delay="120"><img src="https://frescopa.coffee/media_11f2acc820929d908638cf3f7f133c5ac9792a560.png?width=750&format=webply&optimize=medium" alt="Bagged coffee icon"><h4>Bagged Coffee</h4></a>
+      <a class="cat" href="/coffee" data-anim="img" data-delay="240"><img src="https://frescopa.coffee/media_1611a15fc05b259399fa254f961f08b9f7804cd23.png?width=750&format=webply&optimize=medium" alt="Coffee pods icon"><h4>Coffee Pods</h4></a>
+      <a class="cat" href="/coffee" data-anim="img" data-delay="360"><img src="https://frescopa.coffee/media_1b4036e97de71a31f998526cf47deb2999dbaee87.png?width=750&format=webply&optimize=medium" alt="Bundles icon"><h4>Bundles</h4></a>
+      <a class="cat" href="/accessories" data-anim="img" data-delay="480"><img src="https://frescopa.coffee/media_1ad953e2b8b4f9e3e3f11e8fb8cedeca7a5ab2343.png?width=750&format=webply&optimize=medium" alt="Accessories icon"><h4>Accessories</h4></a>
+    </div>
+  </div>
+</section>
+
+<section class="stories" data-section="stories" data-intent="build desire" data-layout="full-bleed" data-media="image" data-items="2">
+  <article class="story" data-section="story-item">
+    <div class="story__media"><img data-anim="img" src="https://frescopa.coffee/media_1990fe27244fdc5d261155cd983f85a56415baf1c.jpg?width=2000&format=webply&optimize=medium" alt="Morning Muse light roast poured slowly"></div>
+    <div class="story__scrim"></div>
+    <div class="wrap story__content">
+      <div class="story__text">
+        <span class="eyebrow" data-anim data-delay="0">Morning Muse Light Roast</span>
+        <h3 data-anim data-delay="140">Elevate Your Coffee Game</h3>
+        <p data-anim data-delay="280">Experience the bright, citrusy notes and smooth finish of Morning Muse Light Roast. A perfect start to any day.</p>
+        <a href="/coffee" class="btn primary" data-anim data-delay="420">Learn More</a>
+      </div>
+    </div>
+  </article>
+  <article class="story reverse" data-section="story-item">
+    <div class="story__media"><img data-anim="img" src="https://frescopa.coffee/media_142bc7969dd6719789e5d13a853d6e6887c5311c5.png?width=2000&format=webply&optimize=medium" alt="MyBarista subscription box on the doorstep"></div>
+    <div class="story__scrim"></div>
+    <div class="wrap story__content">
+      <div class="story__text">
+        <span class="eyebrow" data-anim data-delay="0">MyBarista</span>
+        <h3 data-anim data-delay="140">Your coffee. On your doorstep.</h3>
+        <p data-anim data-delay="280">Start a MyBarista subscription to get a carefully selected variety of coffees sent to you each month. As you rate the coffees you try, we'll fine-tune your flavor profile to give you flavors we think you'll love.</p>
+        <a href="/subscription" class="btn primary" data-anim data-delay="420">Start Now</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="rewards" data-section="rewards" data-intent="drive action" data-layout="full-bleed">
+  <div class="wrap">
+    <div class="gift" aria-hidden="true">🎁</div>
+    <div>
+      <h3 data-anim>Rewards unclaimed is a Gift missed!</h3>
+      <p data-anim data-delay="140">Surprise your loved ones with the ultimate coffee experience. Our gift cards are the perfect way to share the joy of a freshly brewed cup from our top-of-the-line coffee machines.</p>
+    </div>
+    <a href="/signup" class="btn secondary" data-anim data-delay="280">Claim Rewards</a>
+  </div>
+</section>
+</main>
+
+<footer data-section="footer" data-intent="wayfind" data-layout="grid">
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <img class="logo" src="https://frescopa.coffee/icons/frescopa_logo.svg" alt="Fréscopa">
+      <p class="tag">Smiles one cup at a time.</p>
+      <p class="contact">3900 Adobe Way, Lehi, UT 84043<br><a href="mailto:info@frescopa.coffee">info@frescopa.coffee</a><br>(385) 345-0000</p>
+    </div>
+    <div class="foot-col"><h5>Machines</h5><ul><li><a href="/machines">Espresso Machines</a></li><li><a href="/machines">Fréscopa Major</a></li><li><a href="/machines">Fréscopa Minor</a></li><li><a href="/machines">Autodrip Coffee Makers</a></li><li><a href="/machines">Coffee Grinders</a></li></ul></div>
+    <div class="foot-col"><h5>Coffee</h5><ul><li><a href="/coffee">Bagged Coffee</a></li><li><a href="/coffee">Coffee Pods</a></li><li><a href="/locations">Find a Retailer</a></li><li><a href="/coffee">Fréscopa Affiliate</a></li></ul></div>
+    <div class="foot-col"><h5>Tea</h5><ul><li><a href="/tea">Loose Leaf</a></li><li><a href="/tea">Pods</a></li><li><a href="/tea">Bundles</a></li></ul></div>
+    <div class="foot-col"><h5>Accessories</h5><ul><li><a href="/accessories">Replacement Parts</a></li><li><a href="/accessories">Cups &amp; Mugs</a></li><li><a href="/accessories">Travel Mugs</a></li><li><a href="/accessories">Kettles &amp; Carafs</a></li><li><a href="/accessories">Carafs</a></li></ul></div>
+    <div class="foot-col"><h5>About Fréscopa</h5><ul><li><a href="/about-us">About Us</a></li><li><a href="/locations">Support</a></li><li><a href="/locations">Find a Retailer</a></li><li><a href="/business.html">Fréscopa Enterprise</a></li><li><a href="/sustainability">Sustainability</a></li><li><a href="/blog">Blog</a></li></ul></div>
+  </div>
+  <div class="legal">
+    <span>© Fréscopa, Inc. All rights reserved.</span>
+    <span>Terms of Use · Privacy Policy · Cookie Notice · Diversity &amp; Inclusion · Social Responsibility · Site Map</span>
+  </div>
+</footer>
+
+<script>
+/* mobile-nav a11y only (proposed-file-shell hard req #1 exception) */
+(function(){var b=document.getElementById('burger'),m=document.getElementById('mobileMenu');
+if(!b)return;b.addEventListener('click',function(){var o=m.style.display==='block';m.style.display=o?'none':'block';b.setAttribute('aria-expanded',String(!o));});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){m.style.display='none';b.setAttribute('aria-expanded','false');}});})();
+</script>
+
+<script>
+/* editorial motion runtime — reading-paced reveals + soft hero parallax. Self-contained, no external lib. */
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return; /* reduced-motion: CSS keeps [data-anim] at final state; parallax never runs */
+
+  /* reading-paced reveals via IntersectionObserver (fires on-load for above-the-fold) */
+  var els = document.querySelectorAll('[data-anim]');
+  var reveal = function(el){
+    if(el.classList.contains('is-in')) return;
+    var d = parseInt(el.getAttribute('data-delay')||'0',10);
+    setTimeout(function(){ el.classList.add('is-in'); }, d);
+  };
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        reveal(e.target);
+        io.unobserve(e.target);
+      });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+    /* Safety net: guarantee below-fold content is never trapped at opacity:0 for
+       non-scrolling agents (crawlers, print, full-page capture) — reveal any element
+       still hidden shortly after load. Scrolled viewers get the true scroll reveal first. */
+    setTimeout(function(){ els.forEach(reveal); }, 700);
+  } else {
+    els.forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  /* soft hero parallax — photo drifts up to ~--parallax-translate vh across scroll */
+  var pxEls = document.querySelectorAll('[data-parallax]');
+  if(pxEls.length){
+    var max = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--parallax-translate')) || 10;
+    var ticking = false;
+    function update(){
+      var vh = window.innerHeight;
+      pxEls.forEach(function(el){
+        var host = el.parentElement || el;
+        var r = host.getBoundingClientRect();
+        var prog = r.top / vh;                 /* 0 at top of viewport, negative as it scrolls up */
+        var t = Math.max(-max, Math.min(max, -prog * max));
+        el.style.transform = 'translateY(' + t.toFixed(2) + 'vh)';
+      });
+      ticking = false;
+    }
+    function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll, {passive:true});
+    update();
+  }
+})();
+</script>
+</body>
+</html>

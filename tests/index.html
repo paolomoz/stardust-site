@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stardust — Tests</title>
+<meta name="description" content="Stardust uplift test gallery. Flip each live original against three brand-faithful redesign variants (A faithful, B serif, C cinematic).">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stardust — Tests">
+<meta property="og:description" content="Flip each live original against three brand-faithful redesign variants.">
+<meta property="og:image" content="https://paolomoz.github.io/stardust-site/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --ink:#0a1024; --ink-deep:#060a14; --ink-soft:#141b3a;
+    --dust:#f5f0e6; --dust-72:rgba(245,240,230,.72); --dust-50:rgba(245,240,230,.5);
+    --dust-30:rgba(245,240,230,.3); --dust-15:rgba(245,240,230,.15); --dust-08:rgba(245,240,230,.08);
+    --amber:#e8b95e; --amber-light:#ffd98a; --amber-deep:#c9822d;
+    --display:"SF Pro Display",Inter,system-ui,sans-serif;
+    --text:"SF Pro Text",Inter,system-ui,sans-serif;
+    --mono:"SF Mono","JetBrains Mono",ui-monospace,monospace;
+    --pad:clamp(16px,2vw,28px); --header-h:52px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--ink-deep);color:var(--dust);font:14px/1.5 var(--text);
+       font-feature-settings:"ss01","ss02";overflow:hidden}
+  ::selection{background:var(--amber);color:var(--ink)}
+  a{color:inherit}
+  [hidden]{display:none!important}
+
+  /* ---------- HEADER (browser chrome) ---------- */
+  header.chrome{position:fixed;top:0;left:0;right:0;z-index:40;background:var(--ink-deep);
+    border-bottom:1px solid var(--dust-08);height:var(--header-h);display:flex;align-items:center;padding:0 var(--pad)}
+  header .row{display:flex;align-items:center;gap:14px;width:100%}
+  .lockup{display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+  .lockup .mark{width:26px;height:26px;border-radius:5px;background:linear-gradient(180deg,#151e42,#08101f);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .lockup .mark svg{width:26px;height:26px;display:block}
+  .lockup .word{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:-.025em;color:var(--dust)}
+  .crumb{color:var(--dust-50);font:11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    display:flex;align-items:center;min-width:0}
+  .crumb a{color:var(--dust-50);text-decoration:none}
+  .crumb a:hover{color:var(--amber)}
+  .crumb .sep{color:var(--dust-30);padding:0 8px}
+  .crumb .here{color:var(--dust);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  header .actions{margin-left:auto;display:flex;gap:14px;align-items:center;flex-shrink:0}
+  header .actions a,header .actions button{color:var(--dust-50);text-decoration:none;font:11px/1 var(--mono);
+    letter-spacing:.14em;text-transform:uppercase;background:transparent;border:0;padding:0;cursor:pointer}
+  header .actions a:hover,header .actions button:hover{color:var(--amber)}
+
+  /* ---------- INDEX WALL ---------- */
+  .wall{position:fixed;inset:var(--header-h) 0 0 0;overflow:auto;padding:clamp(20px,3vw,40px)}
+  .wall .lede{max-width:660px;margin:0 auto clamp(24px,3vw,40px);text-align:center}
+  .wall .lede .kick{font:500 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--amber)}
+  .wall .lede h1{font-family:var(--display);font-weight:600;font-size:clamp(26px,4vw,40px);
+    letter-spacing:-.02em;margin:14px 0 10px}
+  .wall .lede p{color:var(--dust-50);font-size:14px;margin:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(14px,1.6vw,22px);
+    max-width:1440px;margin:0 auto}
+  .card{background:var(--ink);border:1px solid var(--dust-08);border-radius:14px;overflow:hidden;cursor:pointer;
+    transition:transform .25s cubic-bezier(.25,1,.5,1),border-color .2s,box-shadow .25s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--dust-15);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .card .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink-soft)}
+  .card .thumb img.before,.card .thumb img.after{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:top}
+  .card .thumb img.before{z-index:1}
+  .card .thumb img.after{z-index:2;opacity:0;transition:opacity .35s}
+  .card:hover .thumb img.after{opacity:1}
+  .card .thumb .tag{position:absolute;top:10px;left:10px;z-index:3;font:600 9px/1 var(--mono);letter-spacing:.14em;
+    text-transform:uppercase;padding:5px 8px;border-radius:5px;backdrop-filter:blur(6px);transition:opacity .3s}
+  .card .thumb .tag.before{background:#1e40af;color:var(--amber)}
+  .card .thumb .tag.after{background:rgba(232,185,94,.95);color:var(--ink);opacity:0}
+  .card:hover .thumb .tag.before{opacity:0}
+  .card:hover .thumb .tag.after{opacity:1}
+  .card .thumb .vcount{position:absolute;top:10px;right:10px;z-index:3;font:600 9px/1 var(--mono);letter-spacing:.12em;
+    text-transform:uppercase;padding:5px 8px;border-radius:5px;background:rgba(6,10,20,.7);color:var(--dust-72);backdrop-filter:blur(6px)}
+  .card .meta{padding:13px 15px 15px;display:flex;align-items:baseline;gap:8px;border-top:1px solid var(--dust-08)}
+  .card .meta .nm{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:-.01em}
+  .card .meta .pg{margin-left:auto;font:11px/1 var(--mono);color:var(--dust-30)}
+
+  /* ---------- COMPARE STAGE ---------- */
+  .stage{position:fixed;inset:var(--header-h) 0 52px 0;background:var(--ink-deep);overflow:hidden}
+  .frame{position:absolute;inset:0;background:var(--ink-deep)}
+  .pane{position:absolute;inset:0;overflow:auto;background:#fff;scrollbar-width:thin}
+  .pane img.shot{display:block;width:100%;height:auto}
+  .pane iframe{display:block;width:100%;height:100%;border:0;background:#fff}
+  .pane.before{z-index:1}
+  .pane.after{z-index:2}
+  .stage[data-side="before"] .pane.after{opacity:0;pointer-events:none}
+  .stage[data-side="after"]  .pane.before{opacity:0;pointer-events:none}
+
+  /* big corner state badge — click to flip */
+  .badge{position:absolute;top:16px;left:16px;z-index:15;display:inline-flex;align-items:center;gap:10px;
+    padding:11px 18px;border-radius:999px;cursor:pointer;border:0;
+    font:700 13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;
+    box-shadow:0 12px 34px rgba(0,0,0,.5);transition:transform .15s}
+  .badge:hover{transform:scale(1.04)}
+  .badge .swap{font-size:15px;opacity:.75}
+  .stage[data-side="before"] .badge{background:#1e40af;color:var(--amber)}
+  .stage[data-side="after"]  .badge{background:var(--amber);color:var(--ink)}
+  @keyframes flippulse{0%{transform:scale(1)}45%{transform:scale(1.13)}100%{transform:scale(1)}}
+  .badge.pulse{animation:flippulse .3s ease}
+
+  /* variant switch — top-right of stage, only when side=after */
+  .vswitch{position:absolute;top:16px;right:16px;z-index:15;display:flex;gap:4px;padding:4px;border-radius:999px;
+    background:rgba(6,10,20,.72);border:1px solid var(--dust-15);backdrop-filter:blur(10px);
+    box-shadow:0 12px 34px rgba(0,0,0,.5);transition:opacity .25s}
+  .stage[data-side="before"] .vswitch{opacity:0;pointer-events:none}
+  .vswitch button{background:transparent;border:0;cursor:pointer;padding:8px 14px;border-radius:999px;
+    font:700 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--dust-50);transition:all .15s;white-space:nowrap}
+  .vswitch button:hover{color:var(--dust)}
+  .vswitch button.on{background:var(--amber);color:var(--ink)}
+  .vswitch button .m{font-size:9px;opacity:.7;margin-left:6px;letter-spacing:.06em}
+
+  /* ---------- BOTTOM RAIL ---------- */
+  .rail{position:fixed;left:0;right:0;bottom:0;height:52px;z-index:40;background:var(--ink-deep);
+    border-top:1px solid var(--dust-08);display:flex;align-items:center;gap:16px;padding:0 var(--pad)}
+  .rail .nav{display:flex;align-items:center;gap:6px}
+  .rail .nav button{width:30px;height:30px;border-radius:7px;border:1px solid var(--dust-15);background:transparent;
+    color:var(--dust-50);cursor:pointer;font:14px/1 var(--mono);display:flex;align-items:center;justify-content:center}
+  .rail .nav button:hover{color:var(--amber);border-color:var(--amber)}
+  .rail .counter{font:11px/1 var(--mono);letter-spacing:.12em;color:var(--dust-50);min-width:54px;text-align:center}
+  .rail .spacer{flex:1}
+  .rail .hint{font:10px/1 var(--mono);letter-spacing:.1em;color:var(--dust-30);text-transform:uppercase}
+  .flipsw{display:flex;background:var(--ink);border:1px solid var(--dust-15);border-radius:999px;padding:4px;gap:3px}
+  .flipsw button{background:transparent;border:0;cursor:pointer;padding:8px 24px;border-radius:999px;
+    font:700 12px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dust-50);transition:all .15s}
+  .flipsw button:hover{color:var(--dust)}
+  .flipsw button.before.on{background:#1e40af;color:var(--amber)}
+  .flipsw button.after.on{background:var(--amber);color:var(--ink)}
+  @media(max-width:720px){.rail .hint{display:none} .flipsw button{padding:8px 16px} .vswitch button{padding:8px 10px} .vswitch button .m{display:none}}
+
+  /* info popover (thesis / source) */
+  .info{position:fixed;right:16px;bottom:58px;z-index:45;width:320px;max-width:calc(100vw - 32px);
+    background:rgba(20,27,58,.94);backdrop-filter:blur(14px);border:1px solid var(--dust-15);border-radius:14px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);padding:16px 18px;transform:translateY(8px);opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s}
+  .info.show{opacity:1;transform:translateY(0);pointer-events:auto}
+  .info h2{font-family:var(--display);font-weight:600;font-size:17px;margin:0 0 3px}
+  .info .vr{font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+  .info .src{margin:12px 0 0;font:12px/1.5 var(--mono);color:var(--dust-50)}
+  .info .src a{color:var(--dust-72);text-decoration:none;border-bottom:1px dashed var(--dust-15)}
+  .info .src a:hover{color:var(--amber);border-bottom-color:var(--amber)}
+  .info .th{margin:12px 0 0;font-size:13px;line-height:1.55;color:var(--dust-72)}
+  .info .th .k{display:block;font:500 9px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;
+    color:var(--dust-30);margin-bottom:6px}
+
+  #toast{position:fixed;bottom:64px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--amber);
+    color:var(--ink);padding:10px 18px;border-radius:8px;font:500 12px/1 var(--mono);letter-spacing:.12em;
+    text-transform:uppercase;box-shadow:0 12px 32px rgba(0,0,0,.4);opacity:0;pointer-events:none;
+    transition:opacity .2s,transform .2s;z-index:100}
+  #toast.shown{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="chrome"><div class="row">
+  <a href="#" class="lockup" aria-label="Stardust home" id="homelink">
+    <span class="mark"><svg viewBox="0 0 200 200" aria-hidden="true">
+      <g fill="#e8b95e">
+        <rect x="92" y="26" width="16" height="16"/><rect x="92" y="46" width="16" height="16" opacity="0.7"/>
+        <rect x="92" y="66" width="16" height="16" opacity="0.5"/><rect x="92" y="118" width="16" height="16" opacity="0.5"/>
+        <rect x="92" y="138" width="16" height="16" opacity="0.7"/><rect x="92" y="158" width="16" height="16"/>
+        <rect x="26" y="92" width="16" height="16"/><rect x="46" y="92" width="16" height="16" opacity="0.7"/>
+        <rect x="66" y="92" width="16" height="16" opacity="0.5"/><rect x="118" y="92" width="16" height="16" opacity="0.5"/>
+        <rect x="138" y="92" width="16" height="16" opacity="0.7"/><rect x="158" y="92" width="16" height="16"/>
+      </g><rect x="85" y="85" width="30" height="30" fill="#ffd98a"/>
+    </svg></span><span class="word">stardust</span>
+  </a>
+  <nav class="crumb">
+    <a href="#">Tests</a>
+    <span id="crumbtail" hidden><span class="sep">/</span><span class="here" id="crumbhere"></span></span>
+  </nav>
+  <div class="actions">
+    <a href="../">Stardust</a>
+    <a href="../before-after/">Before / After</a>
+    <a id="origlink" hidden target="_blank" rel="noopener">Original ↗</a>
+    <button id="infobtn" hidden>Details</button>
+    <button id="copybtn" hidden>Copy link</button>
+  </div>
+</div></header>
+
+<!-- INDEX WALL -->
+<main class="wall" id="wall">
+  <div class="lede">
+    <div class="kick">Stardust uplift · test runs</div>
+    <h1>Tests</h1>
+    <p>Each live original beside three brand-faithful redesign variants — faithful, serif-amplified, and cinematic. Hover a card to preview; open any project to flip Before/After and switch variants.</p>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- COMPARE STAGE -->
+<section class="stage" id="stage" data-side="after" hidden>
+  <div class="frame" id="frame">
+    <div class="pane before" id="paneBefore"></div>
+    <div class="pane after"  id="paneAfter"></div>
+    <button class="badge" id="badge" title="Click or press Space to flip">
+      <span id="badgeText">After · Stardust</span><span class="swap">⇄</span>
+    </button>
+    <div class="vswitch" id="vswitch"></div>
+  </div>
+</section>
+
+<div class="rail" id="rail" hidden>
+  <div class="nav">
+    <button id="prev" title="Previous (←)">‹</button>
+    <span class="counter" id="counter">1 / 1</span>
+    <button id="next" title="Next (→)">›</button>
+  </div>
+  <div class="spacer"></div>
+  <div class="flipsw" id="flipsw">
+    <button class="before" data-side="before">Before</button>
+    <button class="after on" data-side="after">After</button>
+  </div>
+  <div class="spacer"></div>
+  <span class="hint">Space flips · 1/2/3 switch variant</span>
+</div>
+
+<aside class="info" id="info"></aside>
+<div id="toast">Link copied</div>
+
+<script src="manifest.js"></script>
+<script>
+const S = window.TESTS || [];
+const $ = s => document.querySelector(s);
+const stage=$('#stage'), rail=$('#rail'), wall=$('#wall'),
+      paneBefore=$('#paneBefore'), paneAfter=$('#paneAfter'),
+      info=$('#info'), counter=$('#counter'),
+      badge=$('#badge'), badgeText=$('#badgeText'), flipsw=$('#flipsw'), vswitch=$('#vswitch');
+let cur=-1, side='after', vi=0;
+
+const defVariant = s => Math.max(0, s.variants.findIndex(v=>v.id===s.defaultVariant));
+
+/* ---------- INDEX WALL ---------- */
+function buildWall(){
+  const g=$('#grid'); g.innerHTML='';
+  S.forEach(s=>{
+    const dv = s.variants[defVariant(s)];
+    const c=document.createElement('a');
+    c.className='card'; c.href='#'+s.slug;
+    c.innerHTML=`
+      <div class="thumb">
+        ${s.before?`<img class="before" loading="lazy" src="${s.before}" alt="${s.brand} original">`:''}
+        <img class="after" loading="lazy" src="${dv.thumb}" alt="${s.brand} redesign">
+        <span class="tag before">Before</span><span class="tag after">After · ${dv.id}</span>
+        <span class="vcount">${s.variants.length} variants</span>
+      </div>
+      <div class="meta"><span class="nm">${s.brand}</span><span class="pg">${s.page}</span></div>`;
+    g.appendChild(c);
+  });
+}
+
+/* ---------- VARIANT SWITCH ---------- */
+function buildVSwitch(){
+  const s=S[cur]; vswitch.innerHTML='';
+  s.variants.forEach((v,i)=>{
+    const b=document.createElement('button');
+    b.innerHTML=`${v.label.replace(/·.*/,'').trim()||v.id}<span class="m">${v.label.split('·')[1]?v.label.split('·')[1].trim():''}${v.motion==='cinematic'?' ▸':''}</span>`;
+    b.classList.toggle('on', i===vi);
+    b.onclick=()=>setVariant(i);
+    vswitch.appendChild(b);
+  });
+}
+function setVariant(i, silent){
+  const s=S[cur]; vi=i;
+  vswitch.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k===vi));
+  const v=s.variants[vi];
+  paneAfter.querySelectorAll('iframe').forEach(n=>n.remove());
+  const fr=document.createElement('iframe'); fr.src=v.file; paneAfter.appendChild(fr);
+  wireAfterScroll();
+  updateInfo(); if(side==='after') setSide('after', true);
+  if(!silent) location.hash=s.slug+'/'+v.id;
+}
+
+/* ---------- COMPARE STAGE ---------- */
+function loadSample(i, wantVariant){
+  cur=i; const s=S[i];
+  vi = wantVariant!=null ? Math.max(0, s.variants.findIndex(v=>v.id===wantVariant)) : defVariant(s);
+  paneBefore.querySelectorAll('img.shot').forEach(n=>n.remove());
+  if(s.before){ const img=new Image(); img.className='shot'; img.src=s.before; paneBefore.appendChild(img); }
+  buildVSwitch();
+  const orig=$('#origlink'); orig.hidden=false; orig.href=s.url;
+  $('#crumbtail').hidden=false; $('#crumbhere').textContent=s.brand;
+  counter.textContent=(i+1)+' / '+S.length;
+  setVariant(vi, true);
+  setSide('after', true); syncScroll();
+  location.hash=s.slug+'/'+s.variants[vi].id;
+}
+function updateInfo(){
+  const s=S[cur], v=s.variants[vi];
+  info.innerHTML=`<div class="vr">${v.label}${v.motion==='cinematic'?' · motion':''}</div><h2>${s.brand}</h2>
+    <div class="src">original ↗ <a href="${s.url}" target="_blank" rel="noopener">${s.url.replace(/^https?:\/\//,'').replace(/\/$/,'')}</a></div>
+    <div class="th"><span class="k">This variant</span>${v.thesis}</div>
+    <div class="src"><a href="${v.file}" target="_blank" rel="noopener">Open ${v.id} full-screen ↗</a></div>`;
+}
+function setSide(sd, silent){
+  side=sd; stage.dataset.side=sd;
+  flipsw.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.side===sd));
+  const s=S[cur], v=s?s.variants[vi]:null;
+  badgeText.textContent = sd==='after' ? ('After · '+(v?v.label:'Stardust')) : 'Before · Original';
+  if(!silent){ badge.classList.remove('pulse'); void badge.offsetWidth; badge.classList.add('pulse'); }
+}
+function flip(){ setSide(side==='after'?'before':'after'); }
+function go(delta){ let n=(cur+delta+S.length)%S.length; loadSample(n); }
+
+/* keep before(image) & after(iframe) scroll in sync */
+let syncing=false;
+function frac(el){ const m=el.scrollHeight-el.clientHeight; return m>0?el.scrollTop/m:0; }
+function applyFrac(el,f){ const m=el.scrollHeight-el.clientHeight; el.scrollTop=f*m; }
+function syncScroll(){
+  paneBefore.addEventListener('scroll',()=>{
+    if(syncing) return; syncing=true;
+    const fr=paneAfter.querySelector('iframe');
+    try{ if(fr) applyFrac(fr.contentDocument.scrollingElement, frac(paneBefore)); }catch(e){}
+    requestAnimationFrame(()=>syncing=false);
+  });
+}
+function wireAfterScroll(){
+  const fr=paneAfter.querySelector('iframe'); if(!fr) return;
+  fr.addEventListener('load',()=>{
+    try{
+      const doc=fr.contentDocument, sc=doc.scrollingElement;
+      doc.addEventListener('scroll',()=>{
+        if(syncing) return; syncing=true;
+        applyFrac(paneBefore, frac(sc));
+        requestAnimationFrame(()=>syncing=false);
+      });
+    }catch(e){}
+  });
+}
+
+/* ---------- ROUTER (#slug or #slug/VARIANT) ---------- */
+function render(){
+  const h=location.hash.replace(/^#/,'');
+  const [slug, vId] = h.split('/');
+  const idx=S.findIndex(s=>s.slug===slug);
+  if(idx>=0){ showStage(); if(idx!==cur){ loadSample(idx, vId); }
+    else if(vId){ const k=S[idx].variants.findIndex(v=>v.id===vId); if(k>=0 && k!==vi) setVariant(k,true); } }
+  else { showWall(); }
+}
+function showWall(){
+  wall.hidden=false; stage.hidden=true; rail.hidden=true; info.classList.remove('show');
+  $('#crumbtail').hidden=true; $('#infobtn').hidden=true; $('#copybtn').hidden=true; $('#origlink').hidden=true; cur=-1;
+}
+function showStage(){
+  wall.hidden=true; stage.hidden=false; rail.hidden=false;
+  $('#infobtn').hidden=false; $('#copybtn').hidden=false;
+}
+window.addEventListener('hashchange',render);
+
+/* ---------- WIRING ---------- */
+$('#prev').onclick=()=>go(-1); $('#next').onclick=()=>go(1);
+badge.onclick=flip;
+flipsw.querySelectorAll('button').forEach(b=>b.onclick=()=>setSide(b.dataset.side));
+$('#infobtn').onclick=()=>info.classList.toggle('show');
+$('#copybtn').onclick=async()=>{
+  const url=location.origin+location.pathname+'#'+S[cur].slug+'/'+S[cur].variants[vi].id;
+  try{await navigator.clipboard.writeText(url)}catch(e){}
+  const t=$('#toast'); t.classList.add('shown'); setTimeout(()=>t.classList.remove('shown'),1400);
+};
+document.addEventListener('keydown',e=>{
+  if(stage.hidden) return;
+  if(e.key===' '){ e.preventDefault(); flip(); }
+  else if(e.key==='ArrowRight') go(1);
+  else if(e.key==='ArrowLeft') go(-1);
+  else if(e.key==='Escape') location.hash='';
+  else if(cur>=0 && /^[1-9]$/.test(e.key)){ const k=+e.key-1; if(k<S[cur].variants.length){ setSide('after',true); setVariant(k); } }
+});
+
+buildWall(); render();
+</script>
+</body>
+</html>
