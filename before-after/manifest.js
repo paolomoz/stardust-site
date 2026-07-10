@@ -33,17 +33,6 @@ window.SAMPLES = [
   "afterThumb": "data/dtn/after.jpg"
  },
  {
-  "slug": "parkroyal",
-  "brand": "PARKROYAL Hotels",
-  "url": "https://www.park-royalhotels.com/",
-  "variant": "C \u00b7 Cinematic",
-  "page": "Homepage",
-  "thesis": "Cinematic hospitality mood over a flat booking layout.",
-  "before": "data/parkroyal/before.jpg",
-  "after": "data/parkroyal/after.html",
-  "afterThumb": "data/parkroyal/after.jpg"
- },
- {
   "slug": "fairmas",
   "brand": "Fairmas",
   "url": "https://fairmas.com/",
@@ -64,17 +53,6 @@ window.SAMPLES = [
   "before": "data/elevenlabs/before.jpg",
   "after": "data/elevenlabs/after.html",
   "afterThumb": "data/elevenlabs/after.jpg"
- },
- {
-  "slug": "paramount",
-  "brand": "Paramount",
-  "url": "https://www.paramount.com/",
-  "variant": "C \u00b7 Cinematic",
-  "page": "Homepage",
-  "thesis": "Studio-grade storytelling over a link-heavy portal.",
-  "before": "data/paramount/before.jpg",
-  "after": "data/paramount/after.html",
-  "afterThumb": "data/paramount/after.jpg"
  },
  {
   "slug": "festool",
@@ -165,17 +143,6 @@ window.SAMPLES = [
   "afterThumb": "data/jfkairport/after.jpg"
  },
  {
-  "slug": "sagora",
-  "brand": "Sagora",
-  "url": "https://www.sagora.com/",
-  "variant": "C \u00b7 Cinematic",
-  "page": "Homepage",
-  "thesis": "Senior-living warmth with clearer hierarchy.",
-  "before": "data/sagora/before.jpg",
-  "after": "data/sagora/after.html",
-  "afterThumb": "data/sagora/after.jpg"
- },
- {
   "slug": "virginatlantic",
   "brand": "Virgin Atlantic",
   "url": "https://www.virginatlantic.com/",
@@ -185,28 +152,6 @@ window.SAMPLES = [
   "before": "data/virginatlantic/before.jpg",
   "after": "data/virginatlantic/after.html",
   "afterThumb": "data/virginatlantic/after.jpg"
- },
- {
-  "slug": "semrush",
-  "brand": "Semrush",
-  "url": "https://www.semrush.com/",
-  "variant": "A \u00b7 Proposed",
-  "page": "Homepage",
-  "thesis": "Sharpened SaaS hierarchy over a dense marketing grid.",
-  "before": "data/semrush/before.jpg",
-  "after": "data/semrush/after.html",
-  "afterThumb": "data/semrush/after.jpg"
- },
- {
-  "slug": "wellsfargo",
-  "brand": "Wells Fargo",
-  "url": "https://www.wellsfargo.com/",
-  "variant": "A \u00b7 Proposed",
-  "page": "Homepage",
-  "thesis": "Trust-forward banking calm over a busy promo stack.",
-  "before": "data/wellsfargo/before.jpg",
-  "after": "data/wellsfargo/after.html",
-  "afterThumb": "data/wellsfargo/after.jpg"
  },
  {
   "slug": "cecreditsonline",
